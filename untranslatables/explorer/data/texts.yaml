@@ -1,0 +1,39 @@
+# Step-1 texts (spec §Material).  Poems are public domain (Bécquer d. 1870, Rosalía de Castro d. 1885, Machado d. 1939).
+# Wording from memory of the standard editions; check against an edition before quoting results.
+texts:
+- id: duende_flamenco
+  kind: hard
+  text: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
+  note: "duende = Lorca's sense (the dark power of a performance)"
+- id: duende_cuento
+  kind: hard
+  text: "En el cuento, el duende se escondió debajo de la cama."
+  note: "duende = goblin; few readings expected"
+- id: duende_bare
+  kind: hard
+  text: "Me gusta mucho el duende."
+  note: "the father's sentence, no context: goblin vs artistic power"
+- id: becquer_xxi
+  kind: hard
+  text: "¿Qué es poesía?, dices mientras clavas en mi pupila tu pupila azul. ¿Qué es poesía? ¿Y tú me lo preguntas? Poesía... eres tú."
+  note: "Bécquer, Rima XXI"
+- id: becquer_liii
+  kind: hard
+  text: "Volverán las oscuras golondrinas en tu balcón sus nidos a colgar, y otra vez con el ala a sus cristales jugando llamarán."
+  note: "Bécquer, Rima LIII, first stanza (hyperbaton)"
+- id: machado_caminante
+  kind: hard
+  text: "Caminante, son tus huellas el camino y nada más; caminante, no hay camino, se hace camino al andar."
+  note: "Machado, Proverbios y cantares XXIX"
+- id: rosalia_dicen
+  kind: hard
+  text: "Dicen que no hablan las plantas, ni las fuentes, ni los pájaros, ni el onda con sus rumores, ni con su brillo los astros; lo dicen, pero no es cierto."
+  note: "Rosalía de Castro, En las orillas del Sar"
+- id: monte_catalejo
+  kind: hard
+  text: "Vi al hombre en el monte con el catalejo."
+  note: "attachment ambiguity: who has the telescope"
+- id: control_museo
+  kind: control
+  text: "El museo abre a las diez de la mañana."
+  note: "plain control: one reading expected"

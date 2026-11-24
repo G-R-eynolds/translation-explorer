@@ -1,0 +1,1886 @@
+{
+ "40": {
+  "ablation": [
+   {
+    "sid": "duende",
+    "word": "gusta",
+    "hot": true,
+    "explanation": "The word \"gusta\" is the third person singular form of the verb \"gustar\", which means \"to please\" or \"to like\", so in this context, \"me gusta\"",
+    "translate_private": -0.017763160169124603,
+    "translate_shared": -0.010696850717067719,
+    "translate_full": -0.004807502031326294,
+    "explain_private": 0.10509957745671272,
+    "explain_shared": 0.006093326956033707,
+    "explain_full": 0.17607464268803596
+   },
+   {
+    "sid": "duende",
+    "word": "duende",
+    "hot": true,
+    "explanation": "In this context, \"duende\" likely refers to a type of supernatural being in Spanish folklore, similar to a goblin or elf.",
+    "translate_private": 0.07749596238136292,
+    "translate_shared": 0.08249682188034058,
+    "translate_full": 0.051349058747291565,
+    "explain_private": 0.21860197186470032,
+    "explain_shared": 0.009899571537971497,
+    "explain_full": 0.01917591691017151
+   },
+   {
+    "sid": "sobremesa",
+    "word": "sobremesa",
+    "hot": true,
+    "explanation": "The word \"sobremesa\" refers to the time spent relaxing or chatting after a meal, similar to the English concept of \"lingering at the table\".",
+    "translate_private": 0.02999376505613327,
+    "translate_shared": 0.029726877808570862,
+    "translate_full": 0.03422471880912781,
+    "explain_private": 0.0006604194641113281,
+    "explain_shared": -0.00600028783082962,
+    "explain_full": 0.37831077724695206
+   },
+   {
+    "sid": "madrugada",
+    "word": "madrugada",
+    "hot": true,
+    "explanation": "The word \"madrugada\" means \"early morning hours\" or \"dawn\", indicating that they arrived home very late at night or very early in the morning.",
+    "translate_private": 0.13822373002767563,
+    "translate_shared": 0.016182981431484222,
+    "translate_full": 0.00918702781200409,
+    "explain_private": 0.6218827590346336,
+    "explain_shared": 0.009799398481845856,
+    "explain_full": 0.7318499907851219
+   },
+   {
+    "sid": "estrenar",
+    "word": "estreno",
+    "hot": true,
+    "explanation": "In this context, \"estreno\" means \"I wear for the first time\" or \"I premiere\", implying that the speaker is wearing the gifted shoes for the first time.",
+    "translate_private": 0.05375021416693926,
+    "translate_shared": 0.058008876629173756,
+    "translate_full": 0.06432769168168306,
+    "explain_private": 0.24526426196098328,
+    "explain_shared": 0.03542156517505646,
+    "explain_full": 0.3636656701564789
+   },
+   {
+    "sid": "verguenza",
+    "word": "vergüenza",
+    "hot": true,
+    "explanation": "In this context, \"vergüenza\" means embarrassment or shame on behalf of someone else, often referred to as \"second-hand embarrassment\".",
+    "translate_private": -0.014650657773017883,
+    "translate_shared": -0.02461535483598709,
+    "translate_full": -0.0245797261595726,
+    "explain_private": 0.10043466091156006,
+    "explain_shared": 0.06875930726528168,
+    "explain_full": 0.20542792975902557
+   },
+   {
+    "sid": "verguenza",
+    "word": "ajena",
+    "hot": true,
+    "explanation": "In this context, \"ajena\" means \"on behalf of someone else\" or \"for someone else's actions\", implying that the speaker felt embarrassed for the person giving the speech, not for themselves",
+    "translate_private": 0.021750271320343018,
+    "translate_shared": 0.014945045113563538,
+    "translate_full": 0.03655503690242767,
+    "explain_private": 0.37658507749438286,
+    "explain_shared": 0.001198064535856247,
+    "explain_full": 0.2657657377421856
+   },
+   {
+    "sid": "tertulia",
+    "word": "tertulia",
+    "hot": true,
+    "explanation": "The word \"tertulia\" refers to a social gathering or meeting, often informal, where people discuss various topics, typically held at a café.",
+    "translate_private": 0.01361732929944992,
+    "translate_shared": 0.004943959414958954,
+    "translate_full": 0.0058675482869148254,
+    "explain_private": 0.14178144931793213,
+    "explain_shared": 0.0309436172246933,
+    "explain_full": 0.35593360662460327
+   },
+   {
+    "sid": "olvido",
+    "word": "Se",
+    "hot": true,
+    "explanation": "The word \"Se\" is a reflexive pronoun indicating that the subject (I) performed the action (forgot) on myself, and is often translated to English as \"I\" in this context",
+    "translate_private": 0.00047883251681923866,
+    "translate_shared": -1.9451603293418884e-05,
+    "translate_full": -5.960464477539063e-08,
+    "explain_private": 0.07142555713653564,
+    "explain_shared": 0.024520739912986755,
+    "explain_full": 0.10348261892795563
+   },
+   {
+    "sid": "olvido",
+    "word": "me",
+    "hot": true,
+    "explanation": "The word \"me\" is a reflexive pronoun that indicates the subject of the sentence (I) is also the one affected by the action, and can be translated to English as \"to me",
+    "translate_private": -0.0003895079717040062,
+    "translate_shared": -4.470348358154297e-08,
+    "translate_full": 5.494803190231323e-08,
+    "explain_private": 0.005916759371757507,
+    "explain_shared": 0.0032787173986434937,
+    "explain_full": -0.004134729504585266
+   },
+   {
+    "sid": "olvido",
+    "word": "olvidó",
+    "hot": true,
+    "explanation": "The word \"olvidó\" is the preterite form of \"olvidar\", meaning \"forgot\".",
+    "translate_private": -0.0010649235919117928,
+    "translate_shared": 0.0006422079168260098,
+    "translate_full": 0.0002462631091475487,
+    "explain_private": 0.2467464953660965,
+    "explain_shared": 0.02735668420791626,
+    "explain_full": 0.6008612364530563
+   },
+   {
+    "sid": "estar_aburrido",
+    "word": "está",
+    "hot": true,
+    "explanation": "The word \"está\" is the third person singular form of the verb \"estar\", meaning \"is\" in this context, indicating a temporary state of being bored.",
+    "translate_private": 0.0002755541354417801,
+    "translate_shared": 2.3227185010910034e-06,
+    "translate_full": 2.173706889152527e-06,
+    "explain_private": 0.02138678729534149,
+    "explain_shared": -0.00660569965839386,
+    "explain_full": 0.0027128085494041443
+   },
+   {
+    "sid": "estar_aburrido",
+    "word": "aburrido",
+    "hot": true,
+    "explanation": "The word \"aburrido\" means \"bored\" in this context, indicating that Juan is feeling uninterested or unengaged in the meeting.",
+    "translate_private": 0.0053791143000125885,
+    "translate_shared": 0.010915175080299377,
+    "translate_full": 0.011258402839303017,
+    "explain_private": 0.046094149351119995,
+    "explain_shared": -0.006902575492858887,
+    "explain_full": 0.008950620889663696
+   },
+   {
+    "sid": "ser_aburrido",
+    "word": "es",
+    "hot": true,
+    "explanation": "The word \"es\" is the third person singular of the verb \"ser\" (to be), meaning \"is\" in English.",
+    "translate_private": 0.0014353767037391663,
+    "translate_shared": 0.016241945326328278,
+    "translate_full": 0.014596924185752869,
+    "explain_private": 0.001399252563714981,
+    "explain_shared": 7.789582014083862e-05,
+    "explain_full": 0.000849459320306778
+   },
+   {
+    "sid": "ser_aburrido",
+    "word": "aburrido",
+    "hot": true,
+    "explanation": "The word \"aburrido\" means \"bored\" in this context, indicating that Juan feels uninterested or unengaged during meetings.",
+    "translate_private": 0.034218840301036835,
+    "translate_shared": 0.04977136105298996,
+    "translate_full": 0.05038263648748398,
+    "explain_private": 0.1722821593284607,
+    "explain_shared": -0.00517871230840683,
+    "explain_full": 0.01026412844657898
+   },
+   {
+    "sid": "ojala",
+    "word": "Ojalá",
+    "hot": true,
+    "explanation": "\"Ojalá\" is an expression that means \"I hope\" or \"hopefully\", used to express a wish or desire for something to happen.",
+    "translate_private": 5.8027646446134895e-05,
+    "translate_shared": 2.4931257939897478e-05,
+    "translate_full": 4.7852641728240997e-05,
+    "explain_private": 0.03627164661884308,
+    "explain_shared": -0.0022205710411071777,
+    "explain_full": 0.2644609957933426
+   },
+   {
+    "sid": "pelo",
+    "word": "tomando",
+    "hot": true,
+    "explanation": "The word \"tomando\" in this context means \"pulling\" or \"taking\", but the idiomatic expression \"tomarme el pelo\" is equivalent to \"pulling my leg\" in English",
+    "translate_private": 6.580029730685055e-05,
+    "translate_shared": 2.479268005117774e-06,
+    "translate_full": 6.19270431343466e-05,
+    "explain_private": 0.23916959762573242,
+    "explain_shared": 0.02438129484653473,
+    "explain_full": 0.2228335738182068
+   },
+   {
+    "sid": "pelo",
+    "word": "el",
+    "hot": true,
+    "explanation": "In this context, \"el\" is a pronoun that means \"it\" or refers to a previously mentioned thing or situation, implying that the speaker thinks someone is joking or teasing them.",
+    "translate_private": -2.4646578822284937e-06,
+    "translate_shared": -5.014901398681104e-05,
+    "translate_full": -4.572261241264641e-05,
+    "explain_private": 0.018596932291984558,
+    "explain_shared": 0.07783672213554382,
+    "explain_full": 0.27712398767471313
+   },
+   {
+    "sid": "pelo",
+    "word": "pelo",
+    "hot": true,
+    "explanation": "In this context, \"pelo\" is an idiomatic expression meaning \"for a ride\" or \"in a foolish way\", similar to the English phrase \"to take someone for a ride\" or",
+    "translate_private": 0.0003833726223092526,
+    "translate_shared": 0.0004996598872821778,
+    "translate_full": 0.0006312178156804293,
+    "explain_private": 0.2066056877374649,
+    "explain_shared": 0.005150303244590759,
+    "explain_full": 0.3736468106508255
+   },
+   {
+    "sid": "nubes",
+    "word": "en",
+    "hot": true,
+    "explanation": "In this context, \"en\" is an idiomatic expression meaning \"daydreaming\" or \"preoccupied\", rather than its literal meaning of \"in\" or \"on\".",
+    "translate_private": 4.015862941741943e-06,
+    "translate_shared": -0.00118260458111763,
+    "translate_full": 0.01759927347302437,
+    "explain_private": -0.0012384504079818726,
+    "explain_shared": 0.005648940801620483,
+    "explain_full": 0.0014844238758087158
+   },
+   {
+    "sid": "nubes",
+    "word": "las",
+    "hot": true,
+    "explanation": "In this context, \"las\" is a definite article meaning \"the\", referring to the clouds or \"nubes\" as a specific, previously mentioned or general location.",
+    "translate_private": 0.0027216635644435883,
+    "translate_shared": -0.0031805597245693207,
+    "translate_full": 0.008062805980443954,
+    "explain_private": -0.0037901997566223145,
+    "explain_shared": -0.008088409900665283,
+    "explain_full": 0.0021224617958068848
+   },
+   {
+    "sid": "nubes",
+    "word": "nubes",
+    "hot": true,
+    "explanation": "In this context, \"nubes\" means \"daydreams\" or being \"distracted\" or \"preoccupied\", rather than literal clouds.",
+    "translate_private": 0.021371323615312576,
+    "translate_shared": 0.01713671162724495,
+    "translate_full": 0.02034502848982811,
+    "explain_private": 0.4499520882964134,
+    "explain_shared": 0.18138407915830612,
+    "explain_full": 0.638544999063015
+   },
+   {
+    "sid": "pelos",
+    "word": "no",
+    "hot": true,
+    "explanation": "The word \"no\" in this sentence means \"not\" or indicates negation, used to deny or contradict the statement that follows.",
+    "translate_private": -4.073977470397949e-05,
+    "translate_shared": -0.0016197115182876587,
+    "translate_full": -0.0017363280057907104,
+    "explain_private": -0.006419166922569275,
+    "explain_shared": 0.004013583064079285,
+    "explain_full": 0.005380496382713318
+   },
+   {
+    "sid": "pelos",
+    "word": "tiene",
+    "hot": true,
+    "explanation": "The word \"tiene\" is the third person singular present tense of the verb \"tener\", which in this context means \"has\".",
+    "translate_private": -0.011110622435808182,
+    "translate_shared": -0.008022375404834747,
+    "translate_full": -0.0066128261387348175,
+    "explain_private": 0.1966216266155243,
+    "explain_shared": -0.002843465656042099,
+    "explain_full": 0.005762744694948196
+   },
+   {
+    "sid": "pelos",
+    "word": "pelos",
+    "hot": true,
+    "explanation": "In this context, \"pelos\" means \"hair\", but the phrase \"no tener pelos en la lengua\" is an idiom that means \"to speak one's mind frankly\" or \"",
+    "translate_private": 0.02150069922208786,
+    "translate_shared": 0.009370684623718262,
+    "translate_full": 0.01741449534893036,
+    "explain_private": 0.05967293679714203,
+    "explain_shared": 0.018863826990127563,
+    "explain_full": 0.3894888609647751
+   },
+   {
+    "sid": "pelos",
+    "word": "en",
+    "hot": true,
+    "explanation": "In this sentence, \"en\" is a preposition that means \"on\", indicating the location where the hair would normally be, which is on her tongue.",
+    "translate_private": 0.01487952470779419,
+    "translate_shared": 0.007376134395599365,
+    "translate_full": 0.011444590985774994,
+    "explain_private": -0.008588306605815887,
+    "explain_shared": -0.007613576948642731,
+    "explain_full": -0.015740081667900085
+   },
+   {
+    "sid": "pelos",
+    "word": "la",
+    "hot": true,
+    "explanation": "The word \"la\" is a definite article meaning \"the\" in this sentence, referring to the noun \"lengua\", which means \"tongue\".",
+    "translate_private": 0.0017685368657112122,
+    "translate_shared": 0.005448482930660248,
+    "translate_full": 0.0019611716270446777,
+    "explain_private": -0.0020640790462493896,
+    "explain_shared": -0.00833633542060852,
+    "explain_full": 0.005311042070388794
+   },
+   {
+    "sid": "pelos",
+    "word": "lengua",
+    "hot": true,
+    "explanation": "In this context, \"lengua\" means \"tongue\", as in the bodily organ, rather than the language.",
+    "translate_private": 0.003873862326145172,
+    "translate_shared": 0.0016479790210723877,
+    "translate_full": -0.00012040138244628906,
+    "explain_private": 0.010716915130615234,
+    "explain_shared": -0.0030841603875160217,
+    "explain_full": 0.20621775090694427
+   },
+   {
+    "sid": "tren",
+    "word": "tren",
+    "hot": false,
+    "explanation": "The word \"tren\" means \"train\" in this context.",
+    "translate_private": -1.7817510524764657e-05,
+    "translate_shared": 4.6954635763540864e-05,
+    "translate_full": -9.585072984918952e-05,
+    "explain_private": 0.6186580788344145,
+    "explain_shared": 0.0018679164350032806,
+    "explain_full": 0.9378498326987028
+   },
+   {
+    "sid": "tren",
+    "word": "sale",
+    "hot": false,
+    "explanation": "The word \"sale\" is the third person singular present tense of the verb \"salir\", meaning \"leaves\" or \"departs\".",
+    "translate_private": -0.00013689522165805101,
+    "translate_shared": -2.2140011424198747e-05,
+    "translate_full": -5.895915091969073e-05,
+    "explain_private": 0.03273473680019379,
+    "explain_shared": 0.020247839391231537,
+    "explain_full": 0.028673797845840454
+   },
+   {
+    "sid": "tren",
+    "word": "ocho",
+    "hot": false,
+    "explanation": "The word \"ocho\" means \"eight\" in this context, referring to 8:00 in the morning.",
+    "translate_private": 0.00014045904390513897,
+    "translate_shared": 0.0009951410465873778,
+    "translate_full": 0.002681399288121611,
+    "explain_private": 0.011914847418665886,
+    "explain_shared": -0.0007474049925804138,
+    "explain_full": 0.05498363636434078
+   },
+   {
+    "sid": "tren",
+    "word": "mañana",
+    "hot": false,
+    "explanation": "In this context, \"mañana\" means \"morning\", referring to the time of day the train departs.",
+    "translate_private": 4.2846251744776964e-05,
+    "translate_shared": 0.0001583971898071468,
+    "translate_full": 0.00013467116514220834,
+    "explain_private": 0.42516179010272026,
+    "explain_shared": -0.005839027464389801,
+    "explain_full": 0.008927915245294571
+   },
+   {
+    "sid": "hermano",
+    "word": "hermano",
+    "hot": false,
+    "explanation": "The word \"hermano\" means \"brother\" in this context.",
+    "translate_private": 2.1156192815396935e-06,
+    "translate_shared": 2.130520442733541e-06,
+    "translate_full": 8.209004590753466e-06,
+    "explain_private": 0.5689602494239807,
+    "explain_shared": -0.00761060044169426,
+    "explain_full": 0.8807098865509033
+   },
+   {
+    "sid": "hermano",
+    "word": "vive",
+    "hot": false,
+    "explanation": "The word \"vive\" means \"lives\" in this context, indicating the brother's place of residence.",
+    "translate_private": 8.940696716308594e-08,
+    "translate_shared": 1.341104507446289e-07,
+    "translate_full": 4.022876964882016e-07,
+    "explain_private": 0.13571394607424736,
+    "explain_shared": 0.004248760640621185,
+    "explain_full": 0.02662951871752739
+   },
+   {
+    "sid": "hermano",
+    "word": "piso",
+    "hot": false,
+    "explanation": "In this context, \"piso\" means \"apartment\".",
+    "translate_private": -1.2366672763164388e-05,
+    "translate_shared": -4.410156179801561e-06,
+    "translate_full": -5.810704351461027e-06,
+    "explain_private": 0.06302279233932495,
+    "explain_shared": -0.004184763878583908,
+    "explain_full": 0.548535443842411
+   },
+   {
+    "sid": "hermano",
+    "word": "pequeño",
+    "hot": false,
+    "explanation": "The word \"pequeño\" means \"small\" in this context, describing the size of the apartment or flat where the brother lives.",
+    "translate_private": 1.4900670066708699e-06,
+    "translate_shared": 8.806171535979956e-06,
+    "translate_full": 9.864073945209384e-06,
+    "explain_private": 0.2610289342701435,
+    "explain_shared": -0.0021040625870227814,
+    "explain_full": 0.9108671732246876
+   },
+   {
+    "sid": "pan",
+    "word": "Compré",
+    "hot": false,
+    "explanation": "The word \"Compré\" is the first person singular preterite form of the verb \"comprar\", meaning \"I bought\".",
+    "translate_private": 0.002665298990905285,
+    "translate_shared": 0.002666583750396967,
+    "translate_full": 0.0026783309876918793,
+    "explain_private": 0.10124368965625763,
+    "explain_shared": -0.017353184521198273,
+    "explain_full": -0.014640633016824722
+   },
+   {
+    "sid": "pan",
+    "word": "leche",
+    "hot": false,
+    "explanation": "The word \"leche\" means \"milk\" in this context.",
+    "translate_private": 0.0020815622992813587,
+    "translate_shared": 0.0035800589248538017,
+    "translate_full": 0.0020868987776339054,
+    "explain_private": 0.5188893973827362,
+    "explain_shared": -0.016248174011707306,
+    "explain_full": 1.1608755886554718
+   },
+   {
+    "sid": "pan",
+    "word": "tienda",
+    "hot": false,
+    "explanation": "The word \"tienda\" means \"store\" in this context.",
+    "translate_private": 0.0009245979599654675,
+    "translate_shared": 1.0328367352485657e-05,
+    "translate_full": 1.5888363122940063e-06,
+    "explain_private": 0.047970738261938095,
+    "explain_shared": 0.006001342087984085,
+    "explain_full": 0.06361003592610359
+   },
+   {
+    "sid": "reunion",
+    "word": "reunión",
+    "hot": false,
+    "explanation": "The word \"reunión\" means \"meeting\" in this context.",
+    "translate_private": 0.022797688841819763,
+    "translate_shared": 0.010438241064548492,
+    "translate_full": 0.021162085235118866,
+    "explain_private": 0.012503396719694138,
+    "explain_shared": -0.0006159655749797821,
+    "explain_full": 0.17948148772120476
+   },
+   {
+    "sid": "reunion",
+    "word": "empieza",
+    "hot": false,
+    "explanation": "The word \"empieza\" is the third person singular present tense of the verb \"empezar\", which means \"starts\" in this context.",
+    "translate_private": -0.002462439239025116,
+    "translate_shared": -0.002909831702709198,
+    "translate_full": -0.0019063800573349,
+    "explain_private": 0.24964183941483498,
+    "explain_shared": 0.017574239522218704,
+    "explain_full": 0.05961006507277489
+   },
+   {
+    "sid": "reunion",
+    "word": "diez",
+    "hot": false,
+    "explanation": "The word \"diez\" means \"ten\" in this context, referring to the time 10:00.",
+    "translate_private": -0.042165882885456085,
+    "translate_shared": -0.07099991105496883,
+    "translate_full": -0.06907784380018711,
+    "explain_private": -0.008535489439964294,
+    "explain_shared": 0.004414010792970657,
+    "explain_full": 0.0038149692118167877
+   },
+   {
+    "sid": "reunion",
+    "word": "punto",
+    "hot": false,
+    "explanation": "In this context, \"punto\" means \"sharp\" and is used to emphasize that the meeting starts exactly at 10:00, not a minute later.",
+    "translate_private": 0.07868073880672455,
+    "translate_shared": 0.1188330352306366,
+    "translate_full": 0.12029281258583069,
+    "explain_private": 0.1354210190474987,
+    "explain_shared": 0.07136664912104607,
+    "explain_full": 0.3236033283174038
+   },
+   {
+    "sid": "gatos",
+    "word": "Tengo",
+    "hot": false,
+    "explanation": "The word \"Tengo\" means \"I have\" in this context, indicating possession or ownership of the pets.",
+    "translate_private": -3.046438337150903e-07,
+    "translate_shared": -3.4438022566973814e-07,
+    "translate_full": -5.563070146763494e-07,
+    "explain_private": 0.030995190143585205,
+    "explain_shared": -0.009065374732017517,
+    "explain_full": 0.10955417156219482
+   },
+   {
+    "sid": "gatos",
+    "word": "gatos",
+    "hot": false,
+    "explanation": "The word \"gatos\" means \"male cats\" in this context.",
+    "translate_private": 1.509962089585315e-06,
+    "translate_shared": 2.2517099296237575e-07,
+    "translate_full": 9.669078053775593e-07,
+    "explain_private": 0.05536840856075287,
+    "explain_shared": 0.0004592686891555786,
+    "explain_full": 0.051678553223609924
+   },
+   {
+    "sid": "gatos",
+    "word": "negros",
+    "hot": false,
+    "explanation": "The word \"negros\" means \"black\" in this context, describing the color of the cats.",
+    "translate_private": 2.5166184514091583e-07,
+    "translate_shared": 2.5166184514091583e-07,
+    "translate_full": 2.781526973194559e-07,
+    "explain_private": 3.600865602493286e-05,
+    "explain_shared": 0.008995793759822845,
+    "explain_full": 0.09898311644792557
+   },
+   {
+    "sid": "gatos",
+    "word": "perro",
+    "hot": false,
+    "explanation": "The word \"perro\" means \"dog\".",
+    "translate_private": 1.3245448826637585e-07,
+    "translate_shared": -5.298085170579725e-08,
+    "translate_full": 7.947267022245796e-08,
+    "explain_private": 0.1555473357439041,
+    "explain_shared": 0.026704564690589905,
+    "explain_full": 0.5050607621669769
+   },
+   {
+    "sid": "invierno",
+    "word": "invierno",
+    "hot": false,
+    "explanation": "The word \"invierno\" means \"winter\" in English.",
+    "translate_private": -0.012120656669139862,
+    "translate_shared": -0.008840475231409073,
+    "translate_full": -0.009114645421504974,
+    "explain_private": -0.014832958579063416,
+    "explain_shared": -0.01648087427020073,
+    "explain_full": -0.01529647409915924
+   },
+   {
+    "sid": "invierno",
+    "word": "hace",
+    "hot": false,
+    "explanation": "In this context, \"hace\" is an idiomatic expression that means \"it is\" or \"there is\", used to describe the weather.",
+    "translate_private": 0.01272713765501976,
+    "translate_shared": 0.0059703923761844635,
+    "translate_full": 0.005845014005899429,
+    "explain_private": 0.03910360485315323,
+    "explain_shared": 0.008043251931667328,
+    "explain_full": 0.024741843342781067
+   },
+   {
+    "sid": "invierno",
+    "word": "mucho",
+    "hot": false,
+    "explanation": "The word \"mucho\" in this sentence means \"very\" or \"a lot\", intensifying the adjective \"frío\" (cold).",
+    "translate_private": 0.008470933884382248,
+    "translate_shared": 0.017443940043449402,
+    "translate_full": 0.017426569014787674,
+    "explain_private": 0.016008742153644562,
+    "explain_shared": 0.08380990475416183,
+    "explain_full": 0.27060817927122116
+   },
+   {
+    "sid": "invierno",
+    "word": "frío",
+    "hot": false,
+    "explanation": "The word \"frío\" means \"cold\" in this context.",
+    "translate_private": -0.006049808114767075,
+    "translate_shared": 0.004759106785058975,
+    "translate_full": 0.013678435236215591,
+    "explain_private": 0.006858740001916885,
+    "explain_shared": 0.0019288361072540283,
+    "explain_full": 0.00439593568444252
+   },
+   {
+    "sid": "invierno",
+    "word": "norte",
+    "hot": false,
+    "explanation": "In this context, \"norte\" means \"north\", referring to a geographical region that is typically colder in winter.",
+    "translate_private": -0.0052960775792598724,
+    "translate_shared": 0.05423184111714363,
+    "translate_full": 0.16420115157961845,
+    "explain_private": 0.0013109296560287476,
+    "explain_shared": -0.011864736676216125,
+    "explain_full": 0.5015580654144287
+   }
+  ],
+  "interchange": [
+   {
+    "id": "cura",
+    "base_gap": -15.20746660232544,
+    "flip": {
+     "private": 0.07096094053094645,
+     "shared": 0.07201912470033192,
+     "full": 0.13129962217607605
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 5.122976779937744,
+       "private": 3.465407371520996,
+       "shared": 3.871950626373291,
+       "full": 2.571908473968506
+      },
+      "generations": {
+       "none": "I'm worried about the priest.",
+       "private": "I'm worried about the priest.",
+       "shared": "The priest worries me.",
+       "full": "I'm worried about the priest."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -10.084489822387695,
+       "private": -9.583786964416504,
+       "shared": -9.14505910873413,
+       "full": -8.642088890075684
+      },
+      "generations": {
+       "none": "I'm worried about the cure.",
+       "private": "I'm worried about the cure.",
+       "shared": "I'm worried about the cure.",
+       "full": "I'm worried about the cure."
+      }
+     }
+    }
+   },
+   {
+    "id": "cometa",
+    "base_gap": -5.081321358680725,
+    "flip": {
+     "private": -0.000415311707650587,
+     "shared": 0.04291455388152547,
+     "full": 0.039790346619499595
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 26.707078337669373,
+       "private": 26.711292028427124,
+       "shared": 26.646050691604614,
+       "full": 26.67770165205002
+      },
+      "generations": {
+       "none": "We watched the comet.",
+       "private": "We watched the comet.",
+       "shared": "We watched the comet.",
+       "full": "We watched the comet."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": 21.625756978988647,
+       "private": 21.62575000524521,
+       "shared": 22.00085461139679,
+       "full": 22.00075536966324
+      },
+      "generations": {
+       "none": "We looked at the comet.",
+       "private": "We looked at the comet.",
+       "shared": "We looked at the comet.",
+       "full": "We watched the comet."
+      }
+     }
+    }
+   },
+   {
+    "id": "pendiente",
+    "base_gap": -51.905383127741516,
+    "flip": {
+     "private": 0.12699617407175945,
+     "shared": 0.03300597613532397,
+     "full": 0.17176358880896897
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 27.3907072795555,
+       "private": 19.75004118680954,
+       "shared": 25.531313197221607,
+       "full": 16.250025622546673
+      },
+      "generations": {
+       "none": "I saw the earring.",
+       "private": "I saw the earring.",
+       "shared": "I saw the earring.",
+       "full": "I saw the earring."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -24.514675848186016,
+       "private": -18.97177179902792,
+       "shared": -22.94769425690174,
+       "full": -17.824447736144066
+      },
+      "generations": {
+       "none": "I saw the slope.",
+       "private": "I saw the slope.",
+       "shared": "I saw the slope.",
+       "full": "I saw the slope."
+      }
+     }
+    }
+   },
+   {
+    "id": "corte",
+    "base_gap": -26.804163947701454,
+    "flip": {
+     "private": 0.13762961570338805,
+     "shared": 0.0824296956949605,
+     "full": 0.19653376451080157
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 16.44750103354454,
+       "private": 14.0139299929142,
+       "shared": 14.345395214855671,
+       "full": 11.236143507063389
+      },
+      "generations": {
+       "none": "The cut surprised me.",
+       "private": "The cut surprised me.",
+       "shared": "The cut surprised me.",
+       "full": "The cut surprised me."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -10.356662914156914,
+       "private": -5.412140388041735,
+       "shared": -8.039850577712059,
+       "full": -5.032173950225115
+      },
+      "generations": {
+       "none": "The court surprised me.",
+       "private": "The court surprised me.",
+       "shared": "The court surprised me.",
+       "full": "The court surprised me."
+      }
+     }
+    }
+   },
+   {
+    "id": "frente",
+    "base_gap": -15.903544425964355,
+    "flip": {
+     "private": 0.15289257214302526,
+     "shared": 0.08915434237373003,
+     "full": 0.2372353206614866
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 8.99927043914795,
+       "private": 6.498705863952637,
+       "shared": 7.373891830444336,
+       "full": 4.623663902282715
+      },
+      "generations": {
+       "none": "He pointed out the front.",
+       "private": "He pointed out the front.",
+       "shared": "He pointed out the front.",
+       "full": "He pointed out the front."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -6.904273986816406,
+       "private": -4.541770935058594,
+       "shared": -5.693912506103516,
+       "full": -3.7341156005859375
+      },
+      "generations": {
+       "none": "He pointed to his forehead.",
+       "private": "He pointed to his forehead.",
+       "shared": "He pointed to his forehead.",
+       "full": "He pointed to his forehead."
+      }
+     }
+    }
+   },
+   {
+    "id": "papa",
+    "base_gap": -6.944415092468262,
+    "flip": {
+     "private": 0.049278147125957544,
+     "shared": 0.022018651568092112,
+     "full": 0.04920216947938456
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": -6.37739372253418,
+       "private": -6.251709938049316,
+       "shared": -6.127047061920166,
+       "full": -5.751952648162842
+      },
+      "generations": {
+       "none": "I like potatoes.",
+       "private": "I like potatoes.",
+       "shared": "I like potatoes.",
+       "full": "I like potatoes."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -13.321808815002441,
+       "private": -12.511709213256836,
+       "shared": -12.76564884185791,
+       "full": -12.013007164001465
+      },
+      "generations": {
+       "none": "I like potatoes.",
+       "private": "I like potatoes.",
+       "shared": "I like potatoes.",
+       "full": "I like potatoes."
+      }
+     }
+    }
+   },
+   {
+    "id": "aburrido",
+    "base_gap": -17.247134178876877,
+    "flip": {
+     "private": 0.06167891942343967,
+     "shared": 0.029158020130747975,
+     "full": 0.08679932132931437
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 2.499948501586914,
+       "private": 1.1249446868896484,
+       "shared": 1.749955654144287,
+       "full": 0.49994516372680664
+      },
+      "generations": {
+       "none": "John is boring.",
+       "private": "John is boring.",
+       "shared": "John is boring.",
+       "full": "John is boring."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -14.747185677289963,
+       "private": -13.99462029337883,
+       "shared": -14.491393953561783,
+       "full": -13.7531099319458
+      },
+      "generations": {
+       "none": "Juan is bored.",
+       "private": "Juan is bored.",
+       "shared": "Juan is bored.",
+       "full": "Juan is bored."
+      }
+     }
+    }
+   },
+   {
+    "id": "duende_ctx",
+    "base_gap": -58.7821478843689,
+    "flip": {
+     "private": 0.015790261097255336,
+     "shared": 0.021529895506309835,
+     "full": 0.04686176727385958
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 27.375235557556152,
+       "private": 27.156347274780273,
+       "shared": 26.59357261657715,
+       "full": 26.37466812133789
+      },
+      "generations": {
+       "none": "In that children's story, what I like the most is the elf.",
+       "private": "In that children's story, what I like the most is the elf.",
+       "shared": "In that children's story, what I like the most is the elf.",
+       "full": "In that children's story, what I like the most is the elf."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -31.406912326812744,
+       "private": -29.769429683685303,
+       "shared": -29.65742826461792,
+       "full": -26.89820909500122
+      },
+      "generations": {
+       "none": "In that flamenco singing, what I like the most is the soul.",
+       "private": "In that flamenco singing, what I like the most is the soul.",
+       "shared": "In that flamenco singing, what I like the most is the soul.",
+       "full": "In that flamenco singing, what I like the most is the soul."
+      }
+     }
+    }
+   }
+  ]
+ },
+ "60": {
+  "ablation": [
+   {
+    "sid": "duende",
+    "word": "gusta",
+    "hot": true,
+    "explanation": "The word \"gusta\" is the third person singular form of the verb \"gustar\", which means \"to please\" or \"to like\", so in this context, \"me gusta\"",
+    "translate_private": 0.016748517751693726,
+    "translate_shared": 0.013358131051063538,
+    "translate_full": 0.01794867217540741,
+    "explain_private": 0.001994442194700241,
+    "explain_shared": -0.0012146048247814178,
+    "explain_full": -0.0068666040897369385
+   },
+   {
+    "sid": "duende",
+    "word": "duende",
+    "hot": true,
+    "explanation": "In this context, \"duende\" likely refers to a type of supernatural being in Spanish folklore, similar to a goblin or elf.",
+    "translate_private": 0.010564148426055908,
+    "translate_shared": 0.008622035384178162,
+    "translate_full": 9.299814701080322e-05,
+    "explain_private": -0.015930503606796265,
+    "explain_shared": -0.01633574068546295,
+    "explain_full": -0.006868451833724976
+   },
+   {
+    "sid": "sobremesa",
+    "word": "sobremesa",
+    "hot": true,
+    "explanation": "The word \"sobremesa\" refers to the time spent relaxing or chatting after a meal, similar to the English concept of \"lingering at the table\".",
+    "translate_private": -0.0024017393589019775,
+    "translate_shared": 0.00024194270372390747,
+    "translate_full": -0.0008603930473327637,
+    "explain_private": -0.002561695873737335,
+    "explain_shared": 0.0006593093276023865,
+    "explain_full": -0.008844159543514252
+   },
+   {
+    "sid": "madrugada",
+    "word": "madrugada",
+    "hot": true,
+    "explanation": "The word \"madrugada\" means \"early morning hours\" or \"dawn\", indicating that they arrived home very late at night or very early in the morning.",
+    "translate_private": 0.012219630181789398,
+    "translate_shared": 0.010658957064151764,
+    "translate_full": 0.001140095293521881,
+    "explain_private": 0.07766706496477127,
+    "explain_shared": 0.01043083518743515,
+    "explain_full": 0.07468589395284653
+   },
+   {
+    "sid": "estrenar",
+    "word": "estreno",
+    "hot": true,
+    "explanation": "In this context, \"estreno\" means \"I wear for the first time\" or \"I premiere\", implying that the speaker is wearing the gifted shoes for the first time.",
+    "translate_private": -0.002539456821978092,
+    "translate_shared": 0.00011299923062324524,
+    "translate_full": -0.0024515921249985695,
+    "explain_private": 0.0172271728515625,
+    "explain_shared": 0.010475598275661469,
+    "explain_full": 0.010669417679309845
+   },
+   {
+    "sid": "verguenza",
+    "word": "vergüenza",
+    "hot": true,
+    "explanation": "In this context, \"vergüenza\" means embarrassment or shame on behalf of someone else, often referred to as \"second-hand embarrassment\".",
+    "translate_private": -0.007337197661399841,
+    "translate_shared": -0.012640312314033508,
+    "translate_full": -0.017529115080833435,
+    "explain_private": -0.003699392080307007,
+    "explain_shared": -0.012367315590381622,
+    "explain_full": -0.015236891806125641
+   },
+   {
+    "sid": "verguenza",
+    "word": "ajena",
+    "hot": true,
+    "explanation": "In this context, \"ajena\" means \"on behalf of someone else\" or \"for someone else's actions\", implying that the speaker felt embarrassed for the person giving the speech, not for themselves",
+    "translate_private": -0.0045250654220581055,
+    "translate_shared": -0.011880293488502502,
+    "translate_full": -0.004536047577857971,
+    "explain_private": 0.005179226398468018,
+    "explain_shared": 0.005447685718536377,
+    "explain_full": 0.009028267115354538
+   },
+   {
+    "sid": "tertulia",
+    "word": "tertulia",
+    "hot": true,
+    "explanation": "The word \"tertulia\" refers to a social gathering or meeting, often informal, where people discuss various topics, typically held at a café.",
+    "translate_private": -0.008091069757938385,
+    "translate_shared": -0.006025917828083038,
+    "translate_full": -0.005843468010425568,
+    "explain_private": 0.025550872087478638,
+    "explain_shared": 0.011689886450767517,
+    "explain_full": 0.014215975999832153
+   },
+   {
+    "sid": "olvido",
+    "word": "Se",
+    "hot": true,
+    "explanation": "The word \"Se\" is a reflexive pronoun indicating that the subject (I) performed the action (forgot) on myself, and is often translated to English as \"I\" in this context",
+    "translate_private": 0.0012987926602363586,
+    "translate_shared": -3.7082936614751816e-05,
+    "translate_full": 0.0017971070483326912,
+    "explain_private": -0.0020662546157836914,
+    "explain_shared": -0.000501684844493866,
+    "explain_full": -0.0030118823051452637
+   },
+   {
+    "sid": "olvido",
+    "word": "me",
+    "hot": true,
+    "explanation": "The word \"me\" is a reflexive pronoun that indicates the subject of the sentence (I) is also the one affected by the action, and can be translated to English as \"to me",
+    "translate_private": 0.0004981569945812225,
+    "translate_shared": -1.9555911421775818e-05,
+    "translate_full": 0.0004982543177902699,
+    "explain_private": -0.0030603110790252686,
+    "explain_shared": -0.008709698915481567,
+    "explain_full": -0.007754892110824585
+   },
+   {
+    "sid": "olvido",
+    "word": "olvidó",
+    "hot": true,
+    "explanation": "The word \"olvidó\" is the preterite form of \"olvidar\", meaning \"forgot\".",
+    "translate_private": 0.0013442323543131351,
+    "translate_shared": -0.0005199937149882317,
+    "translate_full": 0.0007787537761032581,
+    "explain_private": 0.005224451422691345,
+    "explain_shared": -0.0011445581912994385,
+    "explain_full": 0.010040812194347382
+   },
+   {
+    "sid": "estar_aburrido",
+    "word": "está",
+    "hot": true,
+    "explanation": "The word \"está\" is the third person singular form of the verb \"estar\", meaning \"is\" in this context, indicating a temporary state of being bored.",
+    "translate_private": 1.735985279083252e-06,
+    "translate_shared": 1.3280659914016724e-06,
+    "translate_full": 4.636123776435852e-06,
+    "explain_private": 0.002749502658843994,
+    "explain_shared": 0.00018505007028579712,
+    "explain_full": 0.0035457946360111237
+   },
+   {
+    "sid": "estar_aburrido",
+    "word": "aburrido",
+    "hot": true,
+    "explanation": "The word \"aburrido\" means \"bored\" in this context, indicating that Juan is feeling uninterested or unengaged in the meeting.",
+    "translate_private": 0.0006159227341413498,
+    "translate_shared": 0.005022045224905014,
+    "translate_full": 0.0006110332906246185,
+    "explain_private": 0.012505590915679932,
+    "explain_shared": 0.005828060209751129,
+    "explain_full": 0.0028266459703445435
+   },
+   {
+    "sid": "ser_aburrido",
+    "word": "es",
+    "hot": true,
+    "explanation": "The word \"es\" is the third person singular of the verb \"ser\" (to be), meaning \"is\" in English.",
+    "translate_private": 0.016496330499649048,
+    "translate_shared": 0.015444256365299225,
+    "translate_full": 0.014153718948364258,
+    "explain_private": -0.002252921462059021,
+    "explain_shared": 9.23052430152893e-05,
+    "explain_full": -0.0018315985798835754
+   },
+   {
+    "sid": "ser_aburrido",
+    "word": "aburrido",
+    "hot": true,
+    "explanation": "The word \"aburrido\" means \"bored\" in this context, indicating that Juan feels uninterested or unengaged during meetings.",
+    "translate_private": 0.017299175262451172,
+    "translate_shared": 0.01565602421760559,
+    "translate_full": 0.01549425721168518,
+    "explain_private": 0.021635502576828003,
+    "explain_shared": 0.007111765444278717,
+    "explain_full": 0.004487268626689911
+   },
+   {
+    "sid": "ojala",
+    "word": "Ojalá",
+    "hot": true,
+    "explanation": "\"Ojalá\" is an expression that means \"I hope\" or \"hopefully\", used to express a wish or desire for something to happen.",
+    "translate_private": 4.2729079723358154e-06,
+    "translate_shared": 1.1540018022060394e-05,
+    "translate_full": 2.0251027308404446e-06,
+    "explain_private": 0.011599205434322357,
+    "explain_shared": -0.009853839874267578,
+    "explain_full": -0.0008557513356208801
+   },
+   {
+    "sid": "pelo",
+    "word": "tomando",
+    "hot": true,
+    "explanation": "The word \"tomando\" in this context means \"pulling\" or \"taking\", but the idiomatic expression \"tomarme el pelo\" is equivalent to \"pulling my leg\" in English",
+    "translate_private": 7.185476715676486e-05,
+    "translate_shared": 7.349095540121198e-06,
+    "translate_full": 0.00012905916082672775,
+    "explain_private": -0.006847873330116272,
+    "explain_shared": -0.005424559116363525,
+    "explain_full": -0.0075263530015945435
+   },
+   {
+    "sid": "pelo",
+    "word": "el",
+    "hot": true,
+    "explanation": "In this context, \"el\" is a pronoun that means \"it\" or refers to a previously mentioned thing or situation, implying that the speaker thinks someone is joking or teasing them.",
+    "translate_private": -4.652494681067765e-05,
+    "translate_shared": 1.334992703050375e-07,
+    "translate_full": 5.939800757914782e-07,
+    "explain_private": 0.005332186818122864,
+    "explain_shared": 0.13677754998207092,
+    "explain_full": 0.23339036107063293
+   },
+   {
+    "sid": "pelo",
+    "word": "pelo",
+    "hot": true,
+    "explanation": "In this context, \"pelo\" is an idiomatic expression meaning \"for a ride\" or \"in a foolish way\", similar to the English phrase \"to take someone for a ride\" or",
+    "translate_private": -4.647241439670324e-06,
+    "translate_shared": -5.1203445764258504e-05,
+    "translate_full": -2.16788612306118e-06,
+    "explain_private": 0.016490355134010315,
+    "explain_shared": 0.002283841371536255,
+    "explain_full": 0.011049136519432068
+   },
+   {
+    "sid": "nubes",
+    "word": "en",
+    "hot": true,
+    "explanation": "In this context, \"en\" is an idiomatic expression meaning \"daydreaming\" or \"preoccupied\", rather than its literal meaning of \"in\" or \"on\".",
+    "translate_private": -0.0038261599838733673,
+    "translate_shared": -0.00108366459608078,
+    "translate_full": 0.0021950192749500275,
+    "explain_private": 0.0046918392181396484,
+    "explain_shared": 0.003327511250972748,
+    "explain_full": -0.00044877082109451294
+   },
+   {
+    "sid": "nubes",
+    "word": "las",
+    "hot": true,
+    "explanation": "In this context, \"las\" is a definite article meaning \"the\", referring to the clouds or \"nubes\" as a specific, previously mentioned or general location.",
+    "translate_private": -0.0012874454259872437,
+    "translate_shared": 0.0030140168964862823,
+    "translate_full": 0.003030475229024887,
+    "explain_private": -0.006680771708488464,
+    "explain_shared": -0.007661342620849609,
+    "explain_full": -0.004280015826225281
+   },
+   {
+    "sid": "nubes",
+    "word": "nubes",
+    "hot": true,
+    "explanation": "In this context, \"nubes\" means \"daydreams\" or being \"distracted\" or \"preoccupied\", rather than literal clouds.",
+    "translate_private": 0.008459437638521194,
+    "translate_shared": -0.004096716642379761,
+    "translate_full": 0.004768650978803635,
+    "explain_private": 0.006976775825023651,
+    "explain_shared": 0.003160439431667328,
+    "explain_full": 0.014889650046825409
+   },
+   {
+    "sid": "pelos",
+    "word": "no",
+    "hot": true,
+    "explanation": "The word \"no\" in this sentence means \"not\" or indicates negation, used to deny or contradict the statement that follows.",
+    "translate_private": -0.004856150597333908,
+    "translate_shared": -4.222989082336426e-05,
+    "translate_full": 1.0952353477478027e-05,
+    "explain_private": -0.0028672367334365845,
+    "explain_shared": -0.006537765264511108,
+    "explain_full": -0.005838125944137573
+   },
+   {
+    "sid": "pelos",
+    "word": "tiene",
+    "hot": true,
+    "explanation": "The word \"tiene\" is the third person singular present tense of the verb \"tener\", which in this context means \"has\".",
+    "translate_private": 0.0071044862270355225,
+    "translate_shared": -4.0397047996520996e-05,
+    "translate_full": 4.889070987701416e-05,
+    "explain_private": -0.003990918397903442,
+    "explain_shared": -0.001020483672618866,
+    "explain_full": -0.004080187529325485
+   },
+   {
+    "sid": "pelos",
+    "word": "pelos",
+    "hot": true,
+    "explanation": "In this context, \"pelos\" means \"hair\", but the phrase \"no tener pelos en la lengua\" is an idiom that means \"to speak one's mind frankly\" or \"",
+    "translate_private": 0.013027526438236237,
+    "translate_shared": 0.013077706098556519,
+    "translate_full": 0.0194094181060791,
+    "explain_private": 0.012398354709148407,
+    "explain_shared": 0.005503624677658081,
+    "explain_full": 0.005614019930362701
+   },
+   {
+    "sid": "pelos",
+    "word": "en",
+    "hot": true,
+    "explanation": "In this sentence, \"en\" is a preposition that means \"on\", indicating the location where the hair would normally be, which is on her tongue.",
+    "translate_private": -0.001577131450176239,
+    "translate_shared": 0.005620114505290985,
+    "translate_full": 0.013116776943206787,
+    "explain_private": -0.011741697788238525,
+    "explain_shared": -0.005857542157173157,
+    "explain_full": -0.007877103984355927
+   },
+   {
+    "sid": "pelos",
+    "word": "la",
+    "hot": true,
+    "explanation": "The word \"la\" is a definite article meaning \"the\" in this sentence, referring to the noun \"lengua\", which means \"tongue\".",
+    "translate_private": 3.668665885925293e-05,
+    "translate_shared": 0.007142357528209686,
+    "translate_full": 0.005391418933868408,
+    "explain_private": -0.005703717470169067,
+    "explain_shared": -0.009678967297077179,
+    "explain_full": -0.008142180740833282
+   },
+   {
+    "sid": "pelos",
+    "word": "lengua",
+    "hot": true,
+    "explanation": "In this context, \"lengua\" means \"tongue\", as in the bodily organ, rather than the language.",
+    "translate_private": 0.01303774118423462,
+    "translate_shared": 0.014847829937934875,
+    "translate_full": 0.014891207218170166,
+    "explain_private": 0.0008523762226104736,
+    "explain_shared": 0.0004265904426574707,
+    "explain_full": 0.0032218769192695618
+   },
+   {
+    "sid": "tren",
+    "word": "tren",
+    "hot": false,
+    "explanation": "The word \"tren\" means \"train\" in this context.",
+    "translate_private": 4.658364923670888e-05,
+    "translate_shared": 2.9150396585464478e-05,
+    "translate_full": 9.97319002635777e-05,
+    "explain_private": 0.0016818586736917496,
+    "explain_shared": 0.0018480829894542694,
+    "explain_full": 0.0020182691514492035
+   },
+   {
+    "sid": "tren",
+    "word": "sale",
+    "hot": false,
+    "explanation": "The word \"sale\" is the third person singular present tense of the verb \"salir\", meaning \"leaves\" or \"departs\".",
+    "translate_private": 4.7471083234995604e-05,
+    "translate_shared": 0.00011757580796256661,
+    "translate_full": 4.702075966633856e-05,
+    "explain_private": 0.003256566822528839,
+    "explain_shared": 0.003774188458919525,
+    "explain_full": 0.005932435393333435
+   },
+   {
+    "sid": "tren",
+    "word": "ocho",
+    "hot": false,
+    "explanation": "The word \"ocho\" means \"eight\" in this context, referring to 8:00 in the morning.",
+    "translate_private": 3.9442325942218304e-05,
+    "translate_shared": 0.00010510027641430497,
+    "translate_full": 0.0001528748543933034,
+    "explain_private": 0.004659367725253105,
+    "explain_shared": 0.0012405849993228912,
+    "explain_full": 0.002955077216029167
+   },
+   {
+    "sid": "tren",
+    "word": "mañana",
+    "hot": false,
+    "explanation": "In this context, \"mañana\" means \"morning\", referring to the time of day the train departs.",
+    "translate_private": -1.358319423161447e-05,
+    "translate_shared": -3.8414145819842815e-07,
+    "translate_full": 3.2258976716548204e-05,
+    "explain_private": 0.010952409356832504,
+    "explain_shared": -0.013685911893844604,
+    "explain_full": 0.0014548897743225098
+   },
+   {
+    "sid": "hermano",
+    "word": "hermano",
+    "hot": false,
+    "explanation": "The word \"hermano\" means \"brother\" in this context.",
+    "translate_private": 2.2943968360777944e-06,
+    "translate_shared": -2.503040377632715e-06,
+    "translate_full": 2.309297997271642e-06,
+    "explain_private": -0.0013625100255012512,
+    "explain_shared": -0.002511966973543167,
+    "explain_full": 0.0012044236063957214
+   },
+   {
+    "sid": "hermano",
+    "word": "vive",
+    "hot": false,
+    "explanation": "The word \"vive\" means \"lives\" in this context, indicating the brother's place of residence.",
+    "translate_private": 1.1920928955078125e-07,
+    "translate_shared": 8.940696716308594e-08,
+    "translate_full": 1.043081283569336e-07,
+    "explain_private": 0.0013418123126029968,
+    "explain_shared": 7.954984903335571e-05,
+    "explain_full": -8.514150977134705e-05
+   },
+   {
+    "sid": "hermano",
+    "word": "piso",
+    "hot": false,
+    "explanation": "In this context, \"piso\" means \"apartment\".",
+    "translate_private": -1.4302859199233353e-06,
+    "translate_shared": 1.489934220444411e-08,
+    "translate_full": 2.8307476895861328e-06,
+    "explain_private": -0.0006059929728507996,
+    "explain_shared": -0.002913091331720352,
+    "explain_full": -0.003848014399409294
+   },
+   {
+    "sid": "hermano",
+    "word": "pequeño",
+    "hot": false,
+    "explanation": "The word \"pequeño\" means \"small\" in this context, describing the size of the apartment or flat where the brother lives.",
+    "translate_private": 2.3689026420470327e-06,
+    "translate_shared": -5.066031008027494e-07,
+    "translate_full": -2.7414571377448738e-06,
+    "explain_private": 0.2081737406551838,
+    "explain_shared": 0.002319391816854477,
+    "explain_full": 0.25447528436779976
+   },
+   {
+    "sid": "pan",
+    "word": "Compré",
+    "hot": false,
+    "explanation": "The word \"Compré\" is the first person singular preterite form of the verb \"comprar\", meaning \"I bought\".",
+    "translate_private": 0.001172045711427927,
+    "translate_shared": -0.0009212740696966648,
+    "translate_full": -7.916241884231567e-08,
+    "explain_private": -0.014592524617910385,
+    "explain_shared": -0.007506281137466431,
+    "explain_full": -0.015400957316160202
+   },
+   {
+    "sid": "pan",
+    "word": "leche",
+    "hot": false,
+    "explanation": "The word \"leche\" means \"milk\" in this context.",
+    "translate_private": 0.0009212084114551544,
+    "translate_shared": 8.553965017199516e-06,
+    "translate_full": 0.0009297891519963741,
+    "explain_private": 0.013102293014526367,
+    "explain_shared": 0.006778940558433533,
+    "explain_full": 0.008145421743392944
+   },
+   {
+    "sid": "pan",
+    "word": "tienda",
+    "hot": false,
+    "explanation": "The word \"tienda\" means \"store\" in this context.",
+    "translate_private": 0.0009215129539370537,
+    "translate_shared": -2.654269337654114e-07,
+    "translate_full": 0.0009209434501826763,
+    "explain_private": -0.0037568286061286926,
+    "explain_shared": -0.0032255835831165314,
+    "explain_full": -0.0037723854184150696
+   },
+   {
+    "sid": "reunion",
+    "word": "reunión",
+    "hot": false,
+    "explanation": "The word \"reunión\" means \"meeting\" in this context.",
+    "translate_private": 0.000668056309223175,
+    "translate_shared": -0.000937923789024353,
+    "translate_full": 0.010882288217544556,
+    "explain_private": 0.0018856283277273178,
+    "explain_shared": 0.0006446279585361481,
+    "explain_full": 0.010419223457574844
+   },
+   {
+    "sid": "reunion",
+    "word": "empieza",
+    "hot": false,
+    "explanation": "The word \"empieza\" is the third person singular present tense of the verb \"empezar\", which means \"starts\" in this context.",
+    "translate_private": -0.00042450428009033203,
+    "translate_shared": -0.0025562122464179993,
+    "translate_full": -8.746981620788574e-06,
+    "explain_private": -0.008347898721694946,
+    "explain_shared": -0.0025590360164642334,
+    "explain_full": -0.006180316209793091
+   },
+   {
+    "sid": "reunion",
+    "word": "diez",
+    "hot": false,
+    "explanation": "The word \"diez\" means \"ten\" in this context, referring to the time 10:00.",
+    "translate_private": -0.05477103963494301,
+    "translate_shared": -0.056459106504917145,
+    "translate_full": -0.0569213405251503,
+    "explain_private": 0.004725422710180283,
+    "explain_shared": -0.00043067336082458496,
+    "explain_full": -0.0005404166877269745
+   },
+   {
+    "sid": "reunion",
+    "word": "punto",
+    "hot": false,
+    "explanation": "In this context, \"punto\" means \"sharp\" and is used to emphasize that the meeting starts exactly at 10:00, not a minute later.",
+    "translate_private": -0.0017875134944915771,
+    "translate_shared": -0.0031336843967437744,
+    "translate_full": -0.003050588071346283,
+    "explain_private": 0.04777755215764046,
+    "explain_shared": 0.03020007535815239,
+    "explain_full": 0.04971907660365105
+   },
+   {
+    "sid": "gatos",
+    "word": "Tengo",
+    "hot": false,
+    "explanation": "The word \"Tengo\" means \"I have\" in this context, indicating possession or ownership of the pets.",
+    "translate_private": -1.854353399721731e-07,
+    "translate_shared": -3.4438022566973814e-07,
+    "translate_full": -4.6358900362974964e-07,
+    "explain_private": -0.01708899438381195,
+    "explain_shared": -0.004713952541351318,
+    "explain_full": -0.00612226128578186
+   },
+   {
+    "sid": "gatos",
+    "word": "gatos",
+    "hot": false,
+    "explanation": "The word \"gatos\" means \"male cats\" in this context.",
+    "translate_private": 0.0,
+    "translate_shared": 0.0,
+    "translate_full": 3.973639195464784e-08,
+    "explain_private": 0.027177229523658752,
+    "explain_shared": 0.02805487811565399,
+    "explain_full": 0.03202909976243973
+   },
+   {
+    "sid": "gatos",
+    "word": "negros",
+    "hot": false,
+    "explanation": "The word \"negros\" means \"black\" in this context, describing the color of the cats.",
+    "translate_private": 2.5166184514091583e-07,
+    "translate_shared": -2.649085217854008e-08,
+    "translate_full": 0.0,
+    "explain_private": -0.009074613451957703,
+    "explain_shared": -0.008583523333072662,
+    "explain_full": -0.004237078130245209
+   },
+   {
+    "sid": "gatos",
+    "word": "perro",
+    "hot": false,
+    "explanation": "The word \"perro\" means \"dog\".",
+    "translate_private": 0.0,
+    "translate_shared": 0.0,
+    "translate_full": 0.0,
+    "explain_private": 0.00020600855350494385,
+    "explain_shared": -0.011439666152000427,
+    "explain_full": -0.01340753585100174
+   },
+   {
+    "sid": "invierno",
+    "word": "invierno",
+    "hot": false,
+    "explanation": "The word \"invierno\" means \"winter\" in English.",
+    "translate_private": -0.00785234197974205,
+    "translate_shared": -0.00245651975274086,
+    "translate_full": -0.0026051029562950134,
+    "explain_private": 0.0016848593950271606,
+    "explain_shared": 9.663403034210205e-06,
+    "explain_full": 0.00107526034116745
+   },
+   {
+    "sid": "invierno",
+    "word": "hace",
+    "hot": false,
+    "explanation": "In this context, \"hace\" is an idiomatic expression that means \"it is\" or \"there is\", used to describe the weather.",
+    "translate_private": 0.004609785974025726,
+    "translate_shared": 0.00018620863556861877,
+    "translate_full": 0.005719006061553955,
+    "explain_private": 0.004336543381214142,
+    "explain_shared": 0.004514977335929871,
+    "explain_full": 0.009736895561218262
+   },
+   {
+    "sid": "invierno",
+    "word": "mucho",
+    "hot": false,
+    "explanation": "The word \"mucho\" in this sentence means \"very\" or \"a lot\", intensifying the adjective \"frío\" (cold).",
+    "translate_private": 0.006925452500581741,
+    "translate_shared": -9.786337614059448e-06,
+    "translate_full": -0.0004741065204143524,
+    "explain_private": 0.0033467262983322144,
+    "explain_shared": -0.001131601631641388,
+    "explain_full": -0.006944969296455383
+   },
+   {
+    "sid": "invierno",
+    "word": "frío",
+    "hot": false,
+    "explanation": "The word \"frío\" means \"cold\" in this context.",
+    "translate_private": -0.006710324436426163,
+    "translate_shared": -3.0174851417541504e-07,
+    "translate_full": -0.0009496845304965973,
+    "explain_private": 0.002727225422859192,
+    "explain_shared": -0.002437341958284378,
+    "explain_full": -0.0034466907382011414
+   },
+   {
+    "sid": "invierno",
+    "word": "norte",
+    "hot": false,
+    "explanation": "In this context, \"norte\" means \"north\", referring to a geographical region that is typically colder in winter.",
+    "translate_private": -0.006335858255624771,
+    "translate_shared": -0.007770974189043045,
+    "translate_full": -0.0065379515290260315,
+    "explain_private": 0.023902133107185364,
+    "explain_shared": 0.02017521858215332,
+    "explain_full": 0.022199347615242004
+   }
+  ],
+  "interchange": [
+   {
+    "id": "cura",
+    "base_gap": -15.20746660232544,
+    "flip": {
+     "private": -0.03244610019406209,
+     "shared": -0.019045041777862287,
+     "full": -0.04352102222321584
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 5.122976779937744,
+       "private": 5.4217681884765625,
+       "shared": 5.073378562927246,
+       "full": 5.3232035636901855
+      },
+      "generations": {
+       "none": "I'm worried about the priest.",
+       "private": "I'm worried about the priest.",
+       "shared": "I'm worried about the priest.",
+       "full": "I'm worried about the priest."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -10.084489822387695,
+       "private": -10.772544384002686,
+       "shared": -10.71334171295166,
+       "full": -11.20795202255249
+      },
+      "generations": {
+       "none": "I'm worried about the cure.",
+       "private": "I'm worried about the cure.",
+       "shared": "I'm worried about the cure.",
+       "full": "I'm worried about the cure."
+      }
+     }
+    }
+   },
+   {
+    "id": "cometa",
+    "base_gap": -5.081321358680725,
+    "flip": {
+     "private": 0.06745231982770385,
+     "shared": 0.024568581041460133,
+     "full": 0.06129141806282587
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 26.707078337669373,
+       "private": 26.33407974243164,
+       "shared": 26.70738446712494,
+       "full": 26.334126710891724
+      },
+      "generations": {
+       "none": "We watched the comet.",
+       "private": "We watched the comet.",
+       "shared": "We watched the comet.",
+       "full": "We watched the comet."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": 21.625756978988647,
+       "private": 21.938252210617065,
+       "shared": 21.875744819641113,
+       "full": 21.875688135623932
+      },
+      "generations": {
+       "none": "We looked at the comet.",
+       "private": "We looked at the comet.",
+       "shared": "We looked at the comet.",
+       "full": "We looked at the comet."
+      }
+     }
+    }
+   },
+   {
+    "id": "pendiente",
+    "base_gap": -51.905383127741516,
+    "flip": {
+     "private": 0.005543776441963964,
+     "shared": 0.004369719449791879,
+     "full": 0.006323592036092238
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 27.3907072795555,
+       "private": 27.031319476198405,
+       "shared": 27.0782016729936,
+       "full": 26.937568095047027
+      },
+      "generations": {
+       "none": "I saw the earring.",
+       "private": "I saw the earring.",
+       "shared": "I saw the earring.",
+       "full": "I saw the earring."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -24.514675848186016,
+       "private": -24.298559971153736,
+       "shared": -24.373557530343533,
+       "full": -24.311358097940683
+      },
+      "generations": {
+       "none": "I saw the slope.",
+       "private": "I saw the slope.",
+       "shared": "I saw the slope.",
+       "full": "I saw the slope."
+      }
+     }
+    }
+   },
+   {
+    "id": "corte",
+    "base_gap": -26.804163947701454,
+    "flip": {
+     "private": -0.010467459716561801,
+     "shared": 0.0012351077254107907,
+     "full": -0.006551629878669693
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 16.44750103354454,
+       "private": 16.44346659630537,
+       "shared": 16.318269044160843,
+       "full": 16.360513411462307
+      },
+      "generations": {
+       "none": "The cut surprised me.",
+       "private": "The cut surprised me.",
+       "shared": "The cut surprised me.",
+       "full": "The cut surprised me."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -10.356662914156914,
+       "private": -10.92184036411345,
+       "shared": -10.419682843610644,
+       "full": -10.794872459024191
+      },
+      "generations": {
+       "none": "The court surprised me.",
+       "private": "The court surprised me.",
+       "shared": "The court surprised me.",
+       "full": "The court surprised me."
+      }
+     }
+    }
+   },
+   {
+    "id": "frente",
+    "base_gap": -15.903544425964355,
+    "flip": {
+     "private": -0.006374071836448322,
+     "shared": 0.00785994306214142,
+     "full": -0.016777419146891584
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 8.99927043914795,
+       "private": 10.124187469482422,
+       "shared": 9.249192237854004,
+       "full": 10.936792373657227
+      },
+      "generations": {
+       "none": "He pointed out the front.",
+       "private": "He pointed out the front.",
+       "shared": "He pointed out the front.",
+       "full": "He pointed out the front."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -6.904273986816406,
+       "private": -5.982097625732422,
+       "shared": -6.404350280761719,
+       "full": -5.500392913818359
+      },
+      "generations": {
+       "none": "He pointed to his forehead.",
+       "private": "He pointed to his forehead.",
+       "shared": "He pointed to his forehead.",
+       "full": "He pointed to his forehead."
+      }
+     }
+    }
+   },
+   {
+    "id": "papa",
+    "base_gap": -6.944415092468262,
+    "flip": {
+     "private": 0.018081203590292274,
+     "shared": 0.009007728502514573,
+     "full": 0.022679687992455656
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": -6.37739372253418,
+       "private": -6.127220630645752,
+       "shared": -6.252695083618164,
+       "full": -6.252905368804932
+      },
+      "generations": {
+       "none": "I like potatoes.",
+       "private": "I like potatoes.",
+       "shared": "I like potatoes.",
+       "full": "I like potatoes."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -13.321808815002441,
+       "private": -12.82050895690918,
+       "shared": -13.072003364562988,
+       "full": -12.882326126098633
+      },
+      "generations": {
+       "none": "I like potatoes.",
+       "private": "I like potatoes.",
+       "shared": "I like potatoes.",
+       "full": "I like potatoes."
+      }
+     }
+    }
+   },
+   {
+    "id": "aburrido",
+    "base_gap": -17.247134178876877,
+    "flip": {
+     "private": 0.0006354807225893631,
+     "shared": 0.006929068990726777,
+     "full": 0.0037250867927784165
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 2.499948501586914,
+       "private": 2.4999499320983887,
+       "shared": 2.4999470710754395,
+       "full": 2.4999420642852783
+      },
+      "generations": {
+       "none": "John is boring.",
+       "private": "John is boring.",
+       "shared": "John is boring.",
+       "full": "John is boring."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -14.747185677289963,
+       "private": -14.725263804197311,
+       "shared": -14.508173942565918,
+       "full": -14.618697971105576
+      },
+      "generations": {
+       "none": "Juan is bored.",
+       "private": "Juan is bored.",
+       "shared": "Juan is bored.",
+       "full": "Juan is bored."
+      }
+     }
+    }
+   },
+   {
+    "id": "duende_ctx",
+    "base_gap": -58.7821478843689,
+    "flip": {
+     "private": 0.00728047275792494,
+     "shared": 0.005865044975546927,
+     "full": 0.004370789432503315
+    },
+    "runs": {
+     "a": {
+      "logodds": {
+       "none": 27.375235557556152,
+       "private": 26.65651035308838,
+       "shared": 27.375250816345215,
+       "full": 27.25013256072998
+      },
+      "generations": {
+       "none": "In that children's story, what I like the most is the elf.",
+       "private": "In that children's story, what I like the most is the elf.",
+       "shared": "In that children's story, what I like the most is the elf.",
+       "full": "In that children's story, what I like the most is the elf."
+      }
+     },
+     "b": {
+      "logodds": {
+       "none": -31.406912326812744,
+       "private": -31.269713878631592,
+       "shared": -30.717377185821533,
+       "full": -31.018166542053223
+      },
+      "generations": {
+       "none": "In that flamenco singing, what I like the most is the soul.",
+       "private": "In that flamenco singing, what I like the most is the soul.",
+       "shared": "In that flamenco singing, what I like the most is the soul.",
+       "full": "In that flamenco singing, what I like the most is the soul."
+      }
+     }
+    }
+   }
+  ]
+ }
+}

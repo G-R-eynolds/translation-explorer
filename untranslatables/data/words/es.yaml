@@ -1,0 +1,252 @@
+# Spanish word set.  Drafted by Claude Code (Opus 5.5), 18 Nov 2026; UNCHECKED.  See data/README.md.
+language: es
+templates:
+  - 'La palabra "{w}" significa'
+  - '¿Qué significa "{w}"?'
+  - '"{w}" es una palabra española.'
+  - 'En español se dice "{w}".'
+words:
+
+- word: sobremesa
+  category: untranslatable
+  emotion: false
+  gloss_en: the unhurried time spent talking at the table after a meal
+  senses:
+    - label: after-meal conversation time
+      clarify: 'Aquí "sobremesa" es el rato que se pasa charlando en la mesa después de comer.'
+  gloss_src: 'Sobremesa: tiempo que se pasa en la mesa después de comer, conversando. Ejemplo: "La sobremesa del domingo se alargó hasta las seis."'
+  source: TODO
+  notes: Culture-specific practice; one clear reading (gap without multiplicity).
+  exclude_from_pool: []
+  contexts:
+    - 'La [[sobremesa]] del domingo se alargó hasta las seis.'
+    - 'En mi familia la [[sobremesa]] es sagrada.'
+    - 'Durante la [[sobremesa]] salieron todos los secretos.'
+    - 'No hay prisa: quedémonos de [[sobremesa]] un rato más.'
+    - 'Las mejores ideas surgen en la [[sobremesa]].'
+  extra:
+    - 'Comimos paella en casa de los abuelos. Éramos doce a la mesa.'
+    - 'Mi tío siempre cuenta las mismas historias. Nadie se levanta.'
+
+- word: duende
+  category: untranslatable
+  emotion: false
+  gloss_en: (1) goblin, imp; (2) the mysterious power of art to move deeply (Lorca, flamenco)
+  senses:
+    - label: goblin, sprite
+      clarify: 'Aquí "duende" es un ser fantástico pequeño y travieso de los cuentos.'
+    - label: mysterious artistic power, soul (flamenco, Lorca)
+      clarify: 'Aquí "duende" es el encanto misterioso e inexplicable que hace que una interpretación conmueva profundamente.'
+  gloss_src: 'Duende: (1) espíritu fantástico pequeño y travieso; (2) encanto misterioso e inefable de una persona o de una interpretación artística, sobre todo en el flamenco. Ejemplo: "Esa cantaora tiene duende."'
+  source: TODO
+  notes: Both polysemous and untranslatable (Lorca's 'Juego y teoría del duende').
+  exclude_from_pool: []
+  sense_of_context: [1, 1, 0, 1, 0]
+  contexts:
+    - 'Esa cantaora tiene [[duende]].'
+    - 'Lorca escribió que el [[duende]] sube por dentro desde la planta de los pies.'
+    - 'Mi abuela decía que un [[duende]] escondía las llaves.'
+    - 'Técnicamente fue perfecto, pero le faltó [[duende]].'
+    - 'En el cuento, el [[duende]] vive debajo del puente.'
+  extra:
+    - 'El tablao estaba lleno. Cuando empezó a cantar, se hizo un silencio total.'
+    - 'Leímos la conferencia de Lorca en clase. El profesor habló de la muerte y del arte.'
+
+- word: madrugada
+  category: untranslatable
+  emotion: false
+  gloss_en: the small hours, between midnight and dawn
+  senses:
+    - label: the small hours after midnight
+      clarify: 'Aquí "madrugada" son las horas entre la medianoche y el amanecer.'
+    - label: very early morning, daybreak
+      clarify: 'Aquí "madrugada" es el momento muy temprano en que empieza a amanecer.'
+  gloss_src: 'Madrugada: período que va desde la medianoche hasta el amanecer. Ejemplo: "Volvimos de la fiesta a las cuatro de la madrugada."'
+  source: TODO
+  notes: English splits it across 'night', 'early morning', 'dawn'.
+  exclude_from_pool: []
+  contexts:
+    - 'Volvimos de la fiesta a las cuatro de la [[madrugada]].'
+    - 'El terremoto ocurrió de [[madrugada]].'
+    - 'En la [[madrugada]] el pueblo está en silencio.'
+    - 'Los panaderos empiezan a trabajar de [[madrugada]].'
+    - 'Me despertó una llamada en plena [[madrugada]].'
+  extra:
+    - 'Era el cumpleaños de Lucía. Bailamos hasta que cerraron el bar.'
+    - 'Nadie estaba despierto. Solo se oía el viento.'
+
+- word: estrenar
+  category: untranslatable
+  emotion: false
+  gloss_en: to use or wear something for the first time; to premiere (a play or film)
+  senses:
+    - label: to use or wear for the first time
+      clarify: 'Aquí "estrenar" significa usar o ponerse algo nuevo por primera vez.'
+    - label: to premiere a show or film
+      clarify: 'Aquí "estrenar" significa presentar al público por primera vez una obra o una película.'
+  gloss_src: 'Estrenar: (1) usar algo por primera vez; (2) representar o proyectar por primera vez una obra o una película. Ejemplo: "Hoy estreno zapatos"; "La película se estrena el viernes."'
+  source: TODO
+  notes: Verb; control is the verb 'barrer'.
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 0]
+  contexts:
+    - 'Hoy voy a [[estrenar]] los zapatos que me regalaste.'
+    - 'El teatro va a [[estrenar]] la obra en marzo.'
+    - 'Queríamos [[estrenar]] la cocina nueva con una cena.'
+    - 'La cadena piensa [[estrenar]] la serie en otoño.'
+    - 'Me encanta [[estrenar]] ropa en Año Nuevo.'
+  extra:
+    - 'Mañana es la boda de mi hermana. Compré un vestido el mes pasado.'
+    - 'El director llevaba dos años preparando el montaje. Los actores estaban nerviosos.'
+
+- word: tostadora
+  category: ordinary
+  freq_match_for: sobremesa
+  emotion: false
+  gloss_en: toaster
+  senses:
+    - label: toaster
+      clarify: 'Aquí "tostadora" es el aparato eléctrico para tostar pan.'
+  gloss_src: 'Tostadora: aparato eléctrico que sirve para tostar rebanadas de pan. Ejemplo: "Puso dos rebanadas en la tostadora."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'La [[tostadora]] quemó otra vez el pan.'
+    - 'Pon dos rebanadas en la [[tostadora]].'
+    - 'Compramos una [[tostadora]] nueva en las rebajas.'
+    - 'La [[tostadora]] está al lado de la cafetera.'
+    - 'Desenchufa la [[tostadora]] antes de limpiarla.'
+  extra:
+    - 'El desayuno es la comida que más me gusta. Siempre hay café y pan.'
+    - 'Olía a quemado en toda la casa. Abrimos las ventanas.'
+
+- word: escoba
+  category: ordinary
+  freq_match_for: duende
+  emotion: false
+  gloss_en: broom
+  senses:
+    - label: broom
+      clarify: 'Aquí "escoba" es el utensilio para barrer el suelo.'
+  gloss_src: 'Escoba: utensilio formado por un palo largo y un cepillo, que sirve para barrer. Ejemplo: "Barrió la cocina con la escoba."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Pásame la [[escoba]], que hay migas por todas partes.'
+    - 'La [[escoba]] está detrás de la puerta.'
+    - 'La bruja del cuento volaba en una [[escoba]].'
+    - 'Esta [[escoba]] ya no barre bien.'
+    - 'Compré una [[escoba]] nueva en la ferretería.'
+  extra:
+    - 'Los niños merendaron en la cocina. Dejaron el suelo hecho un desastre.'
+    - 'Era el día de limpieza general. Todos teníamos una tarea.'
+
+- word: camisa
+  category: ordinary
+  freq_match_for: madrugada
+  emotion: false
+  gloss_en: shirt
+  senses:
+    - label: shirt
+      clarify: 'Aquí "camisa" es la prenda de vestir con cuello y botones que cubre el torso.'
+  gloss_src: 'Camisa: prenda de vestir de tela fina, con cuello, mangas y botones, que cubre el torso. Ejemplo: "Se puso una camisa blanca para la entrevista."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Se puso una [[camisa]] blanca para la entrevista.'
+    - 'La [[camisa]] tiene una mancha de café.'
+    - 'Plancha la [[camisa]] antes de salir.'
+    - 'Me regalaron una [[camisa]] de lino.'
+    - 'A esta [[camisa]] le falta un botón.'
+  extra:
+    - 'Tenía una entrevista de trabajo a las nueve. Se levantó muy temprano.'
+    - 'Desayunamos deprisa en la cocina. Todos íbamos tarde.'
+
+- word: barrer
+  category: ordinary
+  freq_match_for: estrenar
+  emotion: false
+  gloss_en: to sweep
+  senses:
+    - label: to sweep
+      clarify: 'Aquí "barrer" significa limpiar el suelo con una escoba.'
+  gloss_src: 'Barrer: limpiar el suelo arrastrando la suciedad con una escoba. Ejemplo: "Hay que barrer la terraza."'
+  source: TODO
+  notes: Verb, POS-matched control for 'estrenar'. Figurative 'barrer' (to sweep the board) avoided.
+  exclude_from_pool: []
+  contexts:
+    - 'Tengo que [[barrer]] la cocina antes de cenar.'
+    - 'Ayúdame a [[barrer]] las hojas del patio.'
+    - 'Mi madre me enseñó a [[barrer]] bien los rincones.'
+    - 'Después de la fiesta hubo que [[barrer]] todo el salón.'
+    - 'No me gusta [[barrer]], prefiero fregar.'
+  extra:
+    - 'Era otoño y el patio estaba lleno de hojas secas. El viento las movía de un lado a otro.'
+    - 'Los invitados se fueron a medianoche. Había confeti por todas partes.'
+
+- word: alegría
+  category: emotion_plain
+  emotion: true
+  gloss_en: joy, happiness
+  senses:
+    - label: joy
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Siento [[alegría]].'
+    - 'Estoy lleno de [[alegría]].'
+  contexts:
+    - 'Saltaba de [[alegría]] con la noticia.'
+    - 'Su [[alegría]] era contagiosa.'
+    - 'La [[alegría]] de los niños llenaba la casa.'
+    - 'Recibimos la invitación con mucha [[alegría]].'
+    - 'Hay [[alegría]] en las calles después del partido.'
+
+- word: miedo
+  category: emotion_plain
+  emotion: true
+  gloss_en: fear
+  senses:
+    - label: fear
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Siento [[miedo]].'
+    - 'Tengo [[miedo]].'
+  contexts:
+    - 'El niño tiene [[miedo]] a la oscuridad.'
+    - 'El [[miedo]] no le dejaba hablar.'
+    - 'Sin [[miedo]], se lanzó al agua.'
+    - 'Le da [[miedo]] volar.'
+    - 'El [[miedo]] se apoderó del pueblo.'
+
+- word: muñeca
+  category: polysemous
+  emotion: false
+  gloss_en: (1) doll; (2) wrist
+  senses:
+    - label: doll
+      clarify: 'Aquí "muñeca" es el juguete con forma de persona.'
+    - label: wrist
+      clarify: 'Aquí "muñeca" es la articulación entre la mano y el brazo.'
+  gloss_src: 'Muñeca: (1) juguete con figura de niña o de mujer; (2) parte del cuerpo donde se une la mano con el brazo. Ejemplo: "La niña juega con su muñeca"; "Me torcí la muñeca."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 1]
+  contexts:
+    - 'La niña le cepilla el pelo a su [[muñeca]].'
+    - 'Me torcí la [[muñeca]] jugando al tenis.'
+    - 'Esa [[muñeca]] de porcelana es de mi abuela.'
+    - 'Lleva el reloj en la [[muñeca]] derecha.'
+    - 'El médico le vendó la [[muñeca]].'
+  extra:
+    - 'Era el cumpleaños de Sofía. Abrió los regalos uno por uno.'
+    - 'En el partido del sábado se cayó mal. Le dolía al mover la mano.'

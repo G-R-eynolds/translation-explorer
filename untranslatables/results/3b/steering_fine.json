@@ -1,0 +1,688 @@
+{
+ "layer": 11,
+ "band": [
+  7,
+  8,
+  9,
+  10
+ ],
+ "gammas": [
+  -0.5,
+  -0.25,
+  -0.1,
+  0.0,
+  0.1,
+  0.25,
+  0.5
+ ],
+ "vector_norms": {
+  "7": 1.8410478830337524,
+  "8": 2.012418508529663,
+  "9": 2.095128297805786,
+  "10": 2.2189629077911377
+ },
+ "distinctions": {
+  "-0.5": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.05555555555555555,
+    "other": 0.1,
+    "excess": 0.05555555555555555
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.0,
+    "other": 0.125,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.0,
+    "other": 0.0,
+    "excess": 0.0
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.125,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.02631578947368421,
+    "other": 0.05,
+    "excess": 0.02631578947368421
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.0,
+    "other": 0.3,
+    "excess": null
+   }
+  },
+  "-0.25": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.07894736842105263,
+    "other": 0.05,
+    "excess": 0.07894736842105263
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.0,
+    "other": 0.075,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.0,
+    "other": 0.0,
+    "excess": 0.0
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.05128205128205128,
+    "other": 0.025,
+    "excess": 0.01902398676592225
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.03225806451612903,
+    "other": 0.225,
+    "excess": null
+   }
+  },
+  "-0.1": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.0,
+    "other": 0.05,
+    "excess": 0.0
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.0,
+    "other": 0.075,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.0,
+    "other": 0.0,
+    "excess": 0.0
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.05263157894736842,
+    "other": 0.05,
+    "excess": 0.020373514431239387
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.03225806451612903,
+    "other": 0.225,
+    "excess": null
+   }
+  },
+  "0.0": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": -0.02564102564102564
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.02564102564102564,
+    "other": 0.025,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.0,
+    "other": 0.0,
+    "excess": 0.0
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": -0.03125
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.03125,
+    "other": 0.2,
+    "excess": null
+   }
+  },
+  "0.1": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": -0.02702702702702703
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.02702702702702703,
+    "other": 0.075,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.0,
+    "other": 0.0,
+    "excess": 0.0
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": -0.03333333333333333
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.03333333333333333,
+    "other": 0.25,
+    "excess": null
+   }
+  },
+  "0.25": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.0,
+    "other": 0.025,
+    "excess": -0.02702702702702703
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.02702702702702703,
+    "other": 0.075,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.02564102564102564,
+    "other": 0.025,
+    "excess": 0.02564102564102564
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.075,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.0,
+    "other": 0.125,
+    "excess": -0.037037037037037035
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.037037037037037035,
+    "other": 0.325,
+    "excess": null
+   }
+  },
+  "0.5": {
+   "fr-es_savoir-connaitre": {
+    "greedy_error": 0.0,
+    "other": 0.25,
+    "excess": -0.03333333333333333
+   },
+   "fr-es_regarder-voir": {
+    "greedy_error": 0.03333333333333333,
+    "other": 0.25,
+    "excess": null
+   },
+   "pt-es_ser-estar": {
+    "greedy_error": 0.02631578947368421,
+    "other": 0.05,
+    "excess": 0.02631578947368421
+   },
+   "pt-es_olhar-ver": {
+    "greedy_error": 0.0,
+    "other": 0.15,
+    "excess": null
+   },
+   "it-es_tempo": {
+    "greedy_error": 0.0625,
+    "other": 0.6,
+    "excess": 0.017045454545454544
+   },
+   "it-es_guardare-vedere": {
+    "greedy_error": 0.045454545454545456,
+    "other": 0.45,
+    "excess": null
+   }
+  }
+ },
+ "leftovers": {
+  "-0.5": {
+   "de:Sehnsucht": 0.6862747531999426,
+   "de:Heimat": 0.7951873349394426,
+   "de:Fernweh": 0.7111826645619064,
+   "de:Weltschmerz": 0.7736870965471538,
+   "de:Gemütlichkeit": 0.8383160123735793,
+   "de:Teppich": 0.7908767285240257,
+   "de:Brücke": 0.7699003949159875,
+   "de:Gießkanne": 0.7907987905406457,
+   "de:Kleiderbügel": 0.7984462321465503,
+   "de:Wasserhahn": 0.7559913721344128,
+   "de:Freude": 0.6777744746494552,
+   "de:Traurigkeit": 0.6779127024084491,
+   "es:sobremesa": 0.7999689659775613,
+   "es:duende": 0.8127438938056907,
+   "es:madrugada": 0.7990533779339997,
+   "es:estrenar": 0.8355257063569921,
+   "es:tostadora": 0.7657552740486465,
+   "es:escoba": 0.8309758459515421,
+   "es:camisa": 0.6630880615038598,
+   "es:barrer": 0.8248277829701975,
+   "es:alegría": 0.6193127899186984,
+   "es:miedo": 0.7371124035570409,
+   "fr:dépaysement": 0.7769002029930193,
+   "fr:flâner": 0.7515876445846226,
+   "fr:retrouvailles": 0.718291188151043,
+   "fr:esprit de l'escalier": 0.8287201966499596,
+   "fr:bouilloire": 0.7617290842337823,
+   "fr:tricoter": 0.709594957857571,
+   "fr:oreiller": 0.7818122403404353,
+   "fr:poubelle": 0.7237625505012978,
+   "fr:colère": 0.8200946531541335,
+   "fr:tristesse": 0.6272081599370621,
+   "it:sprezzatura": 0.8059302400935966,
+   "it:magari": 0.8610867581401178,
+   "it:menefreghismo": 0.8497699461288574,
+   "it:abbiocco": 0.8770467976370264,
+   "it:annaffiatoio": 0.8153993679072596,
+   "it:domani": 0.7238718670149961,
+   "it:mestolo": 0.8246892705276208,
+   "it:ditale": 0.848626475258576,
+   "it:gioia": 0.6935168959079918,
+   "it:rabbia": 0.7616781444139795,
+   "pt:saudade": 0.8187518403196564,
+   "pt:cafuné": 0.8546541907392479,
+   "pt:jeitinho": 0.8597675397353253,
+   "pt:colher": 0.7385951367488364,
+   "pt:espremedor": 0.8058681417005952,
+   "pt:tijolo": 0.7651153313065697,
+   "pt:tristeza": 0.7005450419477296,
+   "pt:nostalgia": 0.7036293650739116
+  },
+  "-0.25": {
+   "de:Sehnsucht": 0.6848517880392024,
+   "de:Heimat": 0.7825943442515777,
+   "de:Fernweh": 0.7035421182176919,
+   "de:Weltschmerz": 0.75701668543581,
+   "de:Gemütlichkeit": 0.8336192605220987,
+   "de:Teppich": 0.7796667922847468,
+   "de:Brücke": 0.7648788666998203,
+   "de:Gießkanne": 0.7679639224640946,
+   "de:Kleiderbügel": 0.8046608509692988,
+   "de:Wasserhahn": 0.7330022754298243,
+   "de:Freude": 0.6604076906448503,
+   "de:Traurigkeit": 0.6617017705033372,
+   "es:sobremesa": 0.804725203133296,
+   "es:duende": 0.794079633882002,
+   "es:madrugada": 0.7947789364733899,
+   "es:estrenar": 0.8228580055531848,
+   "es:tostadora": 0.7733215027369902,
+   "es:escoba": 0.8248457001801699,
+   "es:camisa": 0.6458530000310052,
+   "es:barrer": 0.8120352127711957,
+   "es:alegría": 0.611951933242492,
+   "es:miedo": 0.7249215713894122,
+   "fr:dépaysement": 0.7686945944830657,
+   "fr:flâner": 0.7416232663982352,
+   "fr:retrouvailles": 0.718164830366856,
+   "fr:esprit de l'escalier": 0.8376351948012466,
+   "fr:bouilloire": 0.7410126267442496,
+   "fr:tricoter": 0.6989619278473594,
+   "fr:oreiller": 0.7770183663248595,
+   "fr:poubelle": 0.7125546164461254,
+   "fr:colère": 0.8049370044641712,
+   "fr:tristesse": 0.6171625600935435,
+   "it:sprezzatura": 0.7976204134218452,
+   "it:magari": 0.8572437846086375,
+   "it:menefreghismo": 0.8439381667506862,
+   "it:abbiocco": 0.865034412675739,
+   "it:annaffiatoio": 0.7968897623908967,
+   "it:domani": 0.7187772250271813,
+   "it:mestolo": 0.8213670026910526,
+   "it:ditale": 0.8501412970444089,
+   "it:gioia": 0.6722096385788258,
+   "it:rabbia": 0.7493019059340288,
+   "pt:saudade": 0.827649665182337,
+   "pt:cafuné": 0.8526168168643039,
+   "pt:jeitinho": 0.8562096658914231,
+   "pt:colher": 0.7358606594852783,
+   "pt:espremedor": 0.813398502799044,
+   "pt:tijolo": 0.7625019531788271,
+   "pt:tristeza": 0.6962812298128813,
+   "pt:nostalgia": 0.7162759004246635
+  },
+  "-0.1": {
+   "de:Sehnsucht": 0.6803190593708686,
+   "de:Heimat": 0.7733026380911231,
+   "de:Fernweh": 0.70192008795196,
+   "de:Weltschmerz": 0.7509235636978066,
+   "de:Gemütlichkeit": 0.8300893246323438,
+   "de:Teppich": 0.7703405999250885,
+   "de:Brücke": 0.7563405253373464,
+   "de:Gießkanne": 0.7535035953017133,
+   "de:Kleiderbügel": 0.8025813850112284,
+   "de:Wasserhahn": 0.7125886327885036,
+   "de:Freude": 0.6456410527431146,
+   "de:Traurigkeit": 0.6472009904009299,
+   "es:sobremesa": 0.8063456804194338,
+   "es:duende": 0.782496935711259,
+   "es:madrugada": 0.7898698721387691,
+   "es:estrenar": 0.8185365371023928,
+   "es:tostadora": 0.769602575187111,
+   "es:escoba": 0.8180507339402879,
+   "es:camisa": 0.6364999067775157,
+   "es:barrer": 0.8059714245868106,
+   "es:alegría": 0.6022064888739463,
+   "es:miedo": 0.7174080811982504,
+   "fr:dépaysement": 0.7631967399129551,
+   "fr:flâner": 0.7318816173829168,
+   "fr:retrouvailles": 0.7155458380044422,
+   "fr:esprit de l'escalier": 0.8341679320058163,
+   "fr:bouilloire": 0.7340510315794052,
+   "fr:tricoter": 0.6887450231274005,
+   "fr:oreiller": 0.7698084281707736,
+   "fr:poubelle": 0.7026728368175507,
+   "fr:colère": 0.8032298931899474,
+   "fr:tristesse": 0.610075330318768,
+   "it:sprezzatura": 0.7943941832822591,
+   "it:magari": 0.8561941428735791,
+   "it:menefreghismo": 0.8398525130322947,
+   "it:abbiocco": 0.8553543596594375,
+   "it:annaffiatoio": 0.787926497980779,
+   "it:domani": 0.7126487903606276,
+   "it:mestolo": 0.8203837410842454,
+   "it:ditale": 0.8438812050699872,
+   "it:gioia": 0.658939457453071,
+   "it:rabbia": 0.7440910561159876,
+   "pt:saudade": 0.8261278937352325,
+   "pt:cafuné": 0.8543129097377555,
+   "pt:jeitinho": 0.8541886023663758,
+   "pt:colher": 0.7315244783221861,
+   "pt:espremedor": 0.8008693504422094,
+   "pt:tijolo": 0.7489787950416349,
+   "pt:tristeza": 0.6890969439365843,
+   "pt:nostalgia": 0.7128766443012475
+  },
+  "0.0": {
+   "de:Sehnsucht": 0.6758985324670914,
+   "de:Heimat": 0.7659851266118362,
+   "de:Fernweh": 0.6995760977609635,
+   "de:Weltschmerz": 0.7465475808074983,
+   "de:Gemütlichkeit": 0.8262937025708539,
+   "de:Teppich": 0.7637448851329844,
+   "de:Brücke": 0.7496795706716545,
+   "de:Gießkanne": 0.7441726225919669,
+   "de:Kleiderbügel": 0.8012282917762404,
+   "de:Wasserhahn": 0.7052615787822712,
+   "de:Freude": 0.6340883725709725,
+   "de:Traurigkeit": 0.639274530960086,
+   "es:sobremesa": 0.8063487369225606,
+   "es:duende": 0.7785923260950469,
+   "es:madrugada": 0.7852654403917343,
+   "es:estrenar": 0.8156971346917761,
+   "es:tostadora": 0.765084302374784,
+   "es:escoba": 0.8217663363615791,
+   "es:camisa": 0.6294204949254846,
+   "es:barrer": 0.8066856233788489,
+   "es:alegría": 0.5934254903042782,
+   "es:miedo": 0.7039274318752411,
+   "fr:dépaysement": 0.760122026398369,
+   "fr:flâner": 0.7262964907952443,
+   "fr:retrouvailles": 0.7121272127541083,
+   "fr:esprit de l'escalier": 0.8295392540711497,
+   "fr:bouilloire": 0.7373156139884214,
+   "fr:tricoter": 0.6805772594240638,
+   "fr:oreiller": 0.7641812698701935,
+   "fr:poubelle": 0.691564205535062,
+   "fr:colère": 0.7995278350324544,
+   "fr:tristesse": 0.604605281965273,
+   "it:sprezzatura": 0.7915458844054069,
+   "it:magari": 0.8556870812779303,
+   "it:menefreghismo": 0.8407219388009161,
+   "it:abbiocco": 0.8538726043411229,
+   "it:annaffiatoio": 0.7825407353865916,
+   "it:domani": 0.7073746065283228,
+   "it:mestolo": 0.8182334957534756,
+   "it:ditale": 0.8402590773818628,
+   "it:gioia": 0.6487230494512385,
+   "it:rabbia": 0.7410659266385864,
+   "pt:saudade": 0.8233735261329025,
+   "pt:cafuné": 0.8517779927826983,
+   "pt:jeitinho": 0.8583752408967399,
+   "pt:colher": 0.7270396535970552,
+   "pt:espremedor": 0.7967420597521464,
+   "pt:tijolo": 0.74080723189257,
+   "pt:tristeza": 0.6819105794484468,
+   "pt:nostalgia": 0.7055912002764481
+  },
+  "0.1": {
+   "de:Sehnsucht": 0.6709347345165378,
+   "de:Heimat": 0.7584154128841314,
+   "de:Fernweh": 0.697069245820986,
+   "de:Weltschmerz": 0.7421700725539225,
+   "de:Gemütlichkeit": 0.8212760383439626,
+   "de:Teppich": 0.7574993242491196,
+   "de:Brücke": 0.7449849018484271,
+   "de:Gießkanne": 0.7344593076588992,
+   "de:Kleiderbügel": 0.799665224930106,
+   "de:Wasserhahn": 0.6975334515004724,
+   "de:Freude": 0.6217855408816061,
+   "de:Traurigkeit": 0.6307702570382427,
+   "es:sobremesa": 0.8058790955519358,
+   "es:duende": 0.7762598810501905,
+   "es:madrugada": 0.7802109578844416,
+   "es:estrenar": 0.8128895076494966,
+   "es:tostadora": 0.7594722313380146,
+   "es:escoba": 0.8156318049817355,
+   "es:camisa": 0.6270757496490195,
+   "es:barrer": 0.8034627520776946,
+   "es:alegría": 0.5847281918881202,
+   "es:miedo": 0.6922688196091116,
+   "fr:dépaysement": 0.7563862769321136,
+   "fr:flâner": 0.7216198879289547,
+   "fr:retrouvailles": 0.7063014334593478,
+   "fr:esprit de l'escalier": 0.8245658880093023,
+   "fr:bouilloire": 0.739596721466883,
+   "fr:tricoter": 0.6735979362444301,
+   "fr:oreiller": 0.7576606419763693,
+   "fr:poubelle": 0.6809426802291274,
+   "fr:colère": 0.7926242264896854,
+   "fr:tristesse": 0.5983782831810804,
+   "it:sprezzatura": 0.7883247343752304,
+   "it:magari": 0.850298867965257,
+   "it:menefreghismo": 0.8287046766727267,
+   "it:abbiocco": 0.8453247760673227,
+   "it:annaffiatoio": 0.7769379038646541,
+   "it:domani": 0.7016899098851923,
+   "it:mestolo": 0.8159489764835771,
+   "it:ditale": 0.8358115968022413,
+   "it:gioia": 0.6381702656351778,
+   "it:rabbia": 0.7367972361850225,
+   "pt:saudade": 0.8214236441745048,
+   "pt:cafuné": 0.8474933077403566,
+   "pt:jeitinho": 0.8528232034933654,
+   "pt:colher": 0.7210324669117235,
+   "pt:espremedor": 0.792388854166772,
+   "pt:tijolo": 0.7339313335832692,
+   "pt:tristeza": 0.6729774871857606,
+   "pt:nostalgia": 0.6989528441463556
+  },
+  "0.25": {
+   "de:Sehnsucht": 0.6643592204907298,
+   "de:Heimat": 0.7472289480750596,
+   "de:Fernweh": 0.6918801873595719,
+   "de:Weltschmerz": 0.7367129351953744,
+   "de:Gemütlichkeit": 0.8135591230360049,
+   "de:Teppich": 0.7479641850791277,
+   "de:Brücke": 0.732214683607883,
+   "de:Gießkanne": 0.7206405694727168,
+   "de:Kleiderbügel": 0.7956472488955428,
+   "de:Wasserhahn": 0.6856801416213543,
+   "de:Freude": 0.6040281538823354,
+   "de:Traurigkeit": 0.617914292310423,
+   "es:sobremesa": 0.7938946002969044,
+   "es:duende": 0.771658174003528,
+   "es:madrugada": 0.7712758539747948,
+   "es:estrenar": 0.8117677422679312,
+   "es:tostadora": 0.7499674428043035,
+   "es:escoba": 0.8095013041235938,
+   "es:camisa": 0.6135279542149574,
+   "es:barrer": 0.7975305083419674,
+   "es:alegría": 0.5716072723093341,
+   "es:miedo": 0.6757520698796615,
+   "fr:dépaysement": 0.7510758554392403,
+   "fr:flâner": 0.7162693332935823,
+   "fr:retrouvailles": 0.6962722453761182,
+   "fr:esprit de l'escalier": 0.8168959490167871,
+   "fr:bouilloire": 0.7287721164471663,
+   "fr:tricoter": 0.666440122239602,
+   "fr:oreiller": 0.7456672307693352,
+   "fr:poubelle": 0.6652478362848424,
+   "fr:colère": 0.7839962796322747,
+   "fr:tristesse": 0.5881681674984227,
+   "it:sprezzatura": 0.7819293280505861,
+   "it:magari": 0.8448750465801734,
+   "it:menefreghismo": 0.8191753739812704,
+   "it:abbiocco": 0.8305491600688136,
+   "it:annaffiatoio": 0.7683805950387345,
+   "it:domani": 0.6913437758271215,
+   "it:mestolo": 0.8091536666154566,
+   "it:ditale": 0.8266720146835136,
+   "it:gioia": 0.6200266491436143,
+   "it:rabbia": 0.7290064730305419,
+   "pt:saudade": 0.8168547108132744,
+   "pt:cafuné": 0.8363382129479904,
+   "pt:jeitinho": 0.8453601666774058,
+   "pt:colher": 0.7110150066089369,
+   "pt:espremedor": 0.7859129292440344,
+   "pt:tijolo": 0.7243719709654872,
+   "pt:tristeza": 0.6588785519837789,
+   "pt:nostalgia": 0.6883372392180126
+  },
+  "0.5": {
+   "de:Sehnsucht": 0.6522099258940718,
+   "de:Heimat": 0.7307062296242369,
+   "de:Fernweh": 0.6824571585112176,
+   "de:Weltschmerz": 0.7277750235691413,
+   "de:Gemütlichkeit": 0.7990092063675612,
+   "de:Teppich": 0.7296967623716519,
+   "de:Brücke": 0.7115775157307536,
+   "de:Gießkanne": 0.7005374050844074,
+   "de:Kleiderbügel": 0.7839870134570879,
+   "de:Wasserhahn": 0.668353087469871,
+   "de:Freude": 0.5763525321109917,
+   "de:Traurigkeit": 0.599603552377199,
+   "es:sobremesa": 0.7765962096803852,
+   "es:duende": 0.7659378712726287,
+   "es:madrugada": 0.754272593969523,
+   "es:estrenar": 0.8006626020223411,
+   "es:tostadora": 0.7332819065263259,
+   "es:escoba": 0.8009021120036364,
+   "es:camisa": 0.5967437587441797,
+   "es:barrer": 0.7867080518832487,
+   "es:alegría": 0.5511352376932227,
+   "es:miedo": 0.6500217409067074,
+   "fr:dépaysement": 0.7409146607745242,
+   "fr:flâner": 0.7044968404695267,
+   "fr:retrouvailles": 0.6778369555982339,
+   "fr:esprit de l'escalier": 0.8123901366333319,
+   "fr:bouilloire": 0.6871375930327172,
+   "fr:tricoter": 0.6546442767133716,
+   "fr:oreiller": 0.7252353146837757,
+   "fr:poubelle": 0.6443978055245161,
+   "fr:colère": 0.7674510747824435,
+   "fr:tristesse": 0.5736646006575992,
+   "it:sprezzatura": 0.7676503359154245,
+   "it:magari": 0.8327133607222132,
+   "it:menefreghismo": 0.8160338975940202,
+   "it:abbiocco": 0.8144921658381834,
+   "it:annaffiatoio": 0.7525863869237543,
+   "it:domani": 0.6722778443710355,
+   "it:mestolo": 0.7943855225057999,
+   "it:ditale": 0.8141761733822626,
+   "it:gioia": 0.5908972352228827,
+   "it:rabbia": 0.7171859204104566,
+   "pt:saudade": 0.8052540665176255,
+   "pt:cafuné": 0.8309486936054319,
+   "pt:jeitinho": 0.8345928038018069,
+   "pt:colher": 0.6968520744407496,
+   "pt:espremedor": 0.7757620411440284,
+   "pt:tijolo": 0.7132049769586295,
+   "pt:tristeza": 0.6354026859140146,
+   "pt:nostalgia": 0.6752914248289803
+  }
+ },
+ "fluency": {
+  "-0.5": {
+   "mean_token_logprob": -5.108109951019287,
+   "on_task": 0.8833333333333333,
+   "examples": [
+    "Yo sé que él vendrá mañana.",
+    "Conozco bien este barrio.",
+    "¿Sabes nadar?"
+   ],
+   "degraded": false
+  },
+  "-0.25": {
+   "mean_token_logprob": -5.0410590171813965,
+   "on_task": 0.9333333333333333,
+   "examples": [
+    "Conozco que él vendrá mañana.",
+    "Conozco bien este barrio.",
+    "¿Sabes nadar?"
+   ],
+   "degraded": false
+  },
+  "-0.1": {
+   "mean_token_logprob": -5.086191654205322,
+   "on_task": 0.9291666666666667,
+   "examples": [
+    "Sé que viene mañana.",
+    "Conozco bien este barrio.",
+    "¿Sabes nadar?"
+   ],
+   "degraded": false
+  },
+  "0.0": {
+   "mean_token_logprob": -5.121757507324219,
+   "on_task": 0.95,
+   "examples": [
+    "Sé que viene mañana.",
+    "Conozco bien este barrio.",
+    "Sabes nadar."
+   ],
+   "degraded": false
+  },
+  "0.1": {
+   "mean_token_logprob": -5.131383419036865,
+   "on_task": 0.9333333333333333,
+   "examples": [
+    "Sé que viene mañana.",
+    "Conozco bien este barrio.",
+    "Sabes nadar."
+   ],
+   "degraded": false
+  },
+  "0.25": {
+   "mean_token_logprob": -5.63830041885376,
+   "on_task": 0.8916666666666667,
+   "examples": [
+    "Sé que viene mañana.",
+    "Conozco bien este barrio.",
+    "¿Sabes nadar?"
+   ],
+   "degraded": false
+  },
+  "0.5": {
+   "mean_token_logprob": -6.361096382141113,
+   "on_task": 0.7083333333333334,
+   "examples": [
+    "Yo sé que he will come tomorrow.",
+    "Conozco this neighborhood well.",
+    "Tú sabes to swim."
+   ],
+   "degraded": true
+  }
+ }
+}

@@ -1,0 +1,605 @@
+{
+ "layer": 11,
+ "positives": [
+  "untranslatable"
+ ],
+ "negatives": [
+  "emotion_plain",
+  "ordinary"
+ ],
+ "rows": [
+  {
+   "id": "de:Sehnsucht",
+   "category": "untranslatable",
+   "leftover": 0.5871412978192818,
+   "csls": 0.3378083407878876,
+   "zipf": 4.1,
+   "n_tokens": 4,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Heimat",
+   "category": "untranslatable",
+   "leftover": 0.6215166436056124,
+   "csls": 0.20510947704315186,
+   "zipf": 4.73,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Fernweh",
+   "category": "untranslatable",
+   "leftover": 0.5912108828336525,
+   "csls": 0.30564528703689575,
+   "zipf": 2.87,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Weltschmerz",
+   "category": "untranslatable",
+   "leftover": 0.6583144364161451,
+   "csls": 0.06698396801948547,
+   "zipf": 2.69,
+   "n_tokens": 5,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Gemütlichkeit",
+   "category": "untranslatable",
+   "leftover": 0.7045028891402916,
+   "csls": 0.12796266376972198,
+   "zipf": 3.21,
+   "n_tokens": 3,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Teppich",
+   "category": "ordinary",
+   "leftover": 0.6744587424975146,
+   "csls": 0.09963375329971313,
+   "zipf": 4.11,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Brücke",
+   "category": "ordinary",
+   "leftover": 0.6870977826364789,
+   "csls": 0.02583026885986328,
+   "zipf": 4.61,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Gießkanne",
+   "category": "ordinary",
+   "leftover": 0.7105704244117238,
+   "csls": 0.08896610140800476,
+   "zipf": 2.72,
+   "n_tokens": 5,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Kleiderbügel",
+   "category": "ordinary",
+   "leftover": 0.7180700689739447,
+   "csls": 0.03649979829788208,
+   "zipf": 2.62,
+   "n_tokens": 5,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Wasserhahn",
+   "category": "ordinary",
+   "leftover": 0.5777427416163984,
+   "csls": 0.09111091494560242,
+   "zipf": 3.23,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Freude",
+   "category": "emotion_plain",
+   "leftover": 0.48507392858868736,
+   "csls": 0.27743062376976013,
+   "zipf": 4.87,
+   "n_tokens": 2,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "de:Traurigkeit",
+   "category": "emotion_plain",
+   "leftover": 0.5535066529382253,
+   "csls": 0.14963886141777039,
+   "zipf": 3.5,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:sobremesa",
+   "category": "untranslatable",
+   "leftover": 0.7401054734912911,
+   "csls": 0.08320885896682739,
+   "zipf": 2.97,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:duende",
+   "category": "untranslatable",
+   "leftover": 0.6389717153545168,
+   "csls": 0.11349788308143616,
+   "zipf": 3.46,
+   "n_tokens": 2,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:madrugada",
+   "category": "untranslatable",
+   "leftover": 0.6861987275151653,
+   "csls": 0.20803368091583252,
+   "zipf": 4.22,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:estrenar",
+   "category": "untranslatable",
+   "leftover": 0.7815869159880091,
+   "csls": -0.0176200270652771,
+   "zipf": 3.39,
+   "n_tokens": 3,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:tostadora",
+   "category": "ordinary",
+   "leftover": 0.6504406309120176,
+   "csls": 0.08364775776863098,
+   "zipf": 2.87,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:escoba",
+   "category": "ordinary",
+   "leftover": 0.7640188078108201,
+   "csls": 0.011108547449111938,
+   "zipf": 3.43,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:camisa",
+   "category": "ordinary",
+   "leftover": 0.5159398734817844,
+   "csls": 0.42561864852905273,
+   "zipf": 4.19,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:barrer",
+   "category": "ordinary",
+   "leftover": 0.631040848998522,
+   "csls": 0.1301465630531311,
+   "zipf": 3.29,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:alegría",
+   "category": "emotion_plain",
+   "leftover": 0.49031042632764277,
+   "csls": 0.4057777523994446,
+   "zipf": 4.6,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "es:miedo",
+   "category": "emotion_plain",
+   "leftover": 0.5680626854080026,
+   "csls": 0.3109937310218811,
+   "zipf": 5.24,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:dépaysement",
+   "category": "untranslatable",
+   "leftover": 0.7359247300047098,
+   "csls": 0.07540121674537659,
+   "zipf": 2.86,
+   "n_tokens": 4,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:flâner",
+   "category": "untranslatable",
+   "leftover": 0.6247261754062967,
+   "csls": 0.24753111600875854,
+   "zipf": 2.88,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:retrouvailles",
+   "category": "untranslatable",
+   "leftover": 0.5678356049945563,
+   "csls": 0.29568785429000854,
+   "zipf": 3.56,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:esprit de l'escalier",
+   "category": "untranslatable",
+   "leftover": 0.7989488914833367,
+   "csls": -0.05595040321350098,
+   "zipf": 4.16,
+   "n_tokens": 7,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:bouilloire",
+   "category": "ordinary",
+   "leftover": 0.6188376228827887,
+   "csls": 0.1699351668357849,
+   "zipf": 2.85,
+   "n_tokens": 3,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:tricoter",
+   "category": "ordinary",
+   "leftover": 0.5775852696619843,
+   "csls": 0.23346814513206482,
+   "zipf": 2.96,
+   "n_tokens": 3,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:oreiller",
+   "category": "ordinary",
+   "leftover": 0.6671050525422377,
+   "csls": 0.09468865394592285,
+   "zipf": 3.61,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:poubelle",
+   "category": "ordinary",
+   "leftover": 0.5328631565369994,
+   "csls": 0.3245003819465637,
+   "zipf": 4.07,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:colère",
+   "category": "emotion_plain",
+   "leftover": 0.7614937775707451,
+   "csls": -0.05676063895225525,
+   "zipf": 4.65,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "fr:tristesse",
+   "category": "emotion_plain",
+   "leftover": 0.5177862193740175,
+   "csls": 0.2639613747596741,
+   "zipf": 4.13,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:sprezzatura",
+   "category": "untranslatable",
+   "leftover": 0.7379240622415204,
+   "csls": 0.03076806664466858,
+   "zipf": 1.51,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:magari",
+   "category": "untranslatable",
+   "leftover": 0.7213893162070857,
+   "csls": -0.01359143853187561,
+   "zipf": 5.23,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:menefreghismo",
+   "category": "untranslatable",
+   "leftover": 0.7344574741627146,
+   "csls": 0.06408044695854187,
+   "zipf": 2.83,
+   "n_tokens": 5,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:abbiocco",
+   "category": "untranslatable",
+   "leftover": 0.7687047386848345,
+   "csls": 0.11298352479934692,
+   "zipf": 2.24,
+   "n_tokens": 3,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:annaffiatoio",
+   "category": "ordinary",
+   "leftover": 0.7386182188034499,
+   "csls": 0.09455835819244385,
+   "zipf": 1.66,
+   "n_tokens": 5,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:domani",
+   "category": "ordinary",
+   "leftover": 0.5383482027961979,
+   "csls": 0.6087793111801147,
+   "zipf": 5.17,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:mestolo",
+   "category": "ordinary",
+   "leftover": 0.7425261350418141,
+   "csls": -0.049829334020614624,
+   "zipf": 2.71,
+   "n_tokens": 2,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:ditale",
+   "category": "ordinary",
+   "leftover": 0.774462430095837,
+   "csls": 0.029307454824447632,
+   "zipf": 2.2,
+   "n_tokens": 2,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:gioia",
+   "category": "emotion_plain",
+   "leftover": 0.5682490035709818,
+   "csls": 0.3520171344280243,
+   "zipf": 4.67,
+   "n_tokens": 2,
+   "familiar": "no",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "it:rabbia",
+   "category": "emotion_plain",
+   "leftover": 0.6406876034450897,
+   "csls": 0.14938202500343323,
+   "zipf": 4.54,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:saudade",
+   "category": "untranslatable",
+   "leftover": 0.7389117072942966,
+   "csls": -0.02955600619316101,
+   "zipf": 4.18,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:cafuné",
+   "category": "untranslatable",
+   "leftover": 0.7956604971174415,
+   "csls": -0.0006152242422103882,
+   "zipf": 2.4,
+   "n_tokens": 3,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:jeitinho",
+   "category": "untranslatable",
+   "leftover": 0.7652178196830914,
+   "csls": 0.014754951000213623,
+   "zipf": 3.7,
+   "n_tokens": 3,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:colher",
+   "category": "ordinary",
+   "leftover": 0.6609195788831117,
+   "csls": 0.19611039757728577,
+   "zipf": 4.07,
+   "n_tokens": 2,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:espremedor",
+   "category": "ordinary",
+   "leftover": 0.7095674784563417,
+   "csls": 0.049208998680114746,
+   "zipf": 2.36,
+   "n_tokens": 4,
+   "familiar": "partly",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:tijolo",
+   "category": "ordinary",
+   "leftover": 0.6056034533765624,
+   "csls": 0.11372339725494385,
+   "zipf": 3.68,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:tristeza",
+   "category": "emotion_plain",
+   "leftover": 0.5461785510175295,
+   "csls": 0.2214551568031311,
+   "zipf": 4.41,
+   "n_tokens": 3,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  },
+  {
+   "id": "pt:nostalgia",
+   "category": "emotion_plain",
+   "leftover": 0.6252937890627007,
+   "csls": 0.09026888012886047,
+   "zipf": 3.63,
+   "n_tokens": 1,
+   "familiar": "yes",
+   "familiar_source": "provisional"
+  }
+ ],
+ "headline": {
+  "n_pos": 18,
+  "n_neg": 23,
+  "scores": {
+   "leftover": {
+    "auroc": [
+     0.717391304347826,
+     0.5483091787439613,
+     0.8599637681159418
+    ],
+    "matched": 0.6851851851851852,
+    "n_pairs": 18,
+    "residualised": 0.6908212560386473
+   },
+   "csls": {
+    "auroc": [
+     0.6207729468599034,
+     0.42995169082125606,
+     0.7922705314009661
+    ],
+    "matched": 0.5740740740740741,
+    "n_pairs": 18,
+    "residualised": 0.5241545893719807
+   },
+   "zipf": {
+    "auroc": [
+     0.6268115942028986,
+     0.45404589371980675,
+     0.7946859903381642
+    ],
+    "matched": 0.566358024691358,
+    "n_pairs": 18,
+    "residualised": 0.5169082125603864
+   },
+   "n_tokens": {
+    "auroc": [
+     0.6473429951690821,
+     0.4891304347826087,
+     0.79350845410628
+    ],
+    "matched": 0.6126543209876544,
+    "n_pairs": 18,
+    "residualised": 0.5157004830917875
+   }
+  }
+ },
+ "all_words": {
+  "n_pos": 20,
+  "n_neg": 30,
+  "scores": {
+   "leftover": {
+    "auroc": [
+     0.7283333333333334,
+     0.5849583333333332,
+     0.8550416666666665
+    ],
+    "matched": 0.71,
+    "n_pairs": 20,
+    "residualised": 0.7
+   },
+   "csls": {
+    "auroc": [
+     0.6266666666666667,
+     0.45829166666666665,
+     0.78
+    ],
+    "matched": 0.6075,
+    "n_pairs": 20,
+    "residualised": 0.555
+   },
+   "zipf": {
+    "auroc": [
+     0.5958333333333333,
+     0.4308125,
+     0.7483333333333333
+    ],
+    "matched": 0.49624999999999997,
+    "n_pairs": 20,
+    "residualised": 0.5083333333333333
+   },
+   "n_tokens": {
+    "auroc": [
+     0.6583333333333333,
+     0.5099583333333333,
+     0.7875208333333333
+    ],
+    "matched": 0.55875,
+    "n_pairs": 20,
+    "residualised": 0.5725
+   }
+  }
+ },
+ "note": "headline excludes familiarity 'no' (human ticks if present, else provisional flag)"
+}

@@ -1,0 +1,43 @@
+# E2 material beyond ../../data/sentences.yaml (HANDOFF_blind_spots.md §4.2).  Drafted by Claude Code, 23 Nov 2026.
+# UNCHECKED: stop point 1.
+#
+# The father's sentence itself (es_duende) comes from data/sentences.yaml; these are its context versions, so that the
+# intended sense of duende is fixed BEFORE any translation (the 70B read the bare sentence as "goblin").
+# Passages are invented. Each passage is run whole AND sentence by sentence (§5 E2: is the passage's U less than the
+# sum of its sentences' U?); `sentences` must concatenate (with single spaces) to `text`.
+
+sentences:
+- id: es_duende_flamenco
+  lang: es
+  category: untranslatable_in_context
+  context: flamenco
+  text: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
+  hot: ["duende#2", gusta]
+  note: "duende in Lorca's sense: the mysterious power of a performance to move"
+- id: es_duende_cuento
+  lang: es
+  category: untranslatable_in_context
+  context: goblin
+  text: "En el cuento, el duende se escondió debajo de la cama."
+  hot: [duende]
+  note: "duende = goblin, the dictionary sense; the control for the flamenco version"
+
+passages:
+- id: es_passage_plain
+  lang: es
+  category: passage_ordinary
+  sentences:
+  - "Esta mañana me levanté temprano y fui andando a la panadería."
+  - "Compré dos barras de pan y un periódico."
+  - "De vuelta a casa me encontré con mi vecino, que paseaba a su perro."
+  - "Hablamos un rato del tiempo y luego cada uno siguió su camino."
+  hot: [panadería, vecino]
+- id: es_passage_dense
+  lang: es
+  category: passage_dense
+  sentences:
+  - "Después de comer nos quedamos de sobremesa hasta las cinco, y mi tío, como siempre, se echó la siesta en el sillón."
+  - "Por la noche fuimos a un tablao, y cuando cantó la cantaora todos sentimos el duende."
+  - "Mi abuela decía que aquello era tener ángel."
+  - "Volvimos a casa de madrugada, con esa morriña dulce de las fiestas que se acaban."
+  hot: [de sobremesa, siesta, tablao, cantaora, duende, tener ángel, morriña, madrugada]

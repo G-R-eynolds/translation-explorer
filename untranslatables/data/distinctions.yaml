@@ -1,0 +1,324 @@
+# Distinction-collapse items (handoff §6.3).  Written by Claude Code (Opus 5.5), 18 Nov 2026; UNCHECKED --
+# every sentence, its English version and its expected class need a human check.
+#
+# Item types:
+#   english_lacks   source and target share a distinction English collapses (savoir/connaître -> saber/conocer,
+#                   'know'); the excess error rate over the matched control is the behavioural English-bias score.
+#   english_keeps   matched control: a distinction all three languages make (regarder/voir -> mirar/ver, look/see).
+#   english_splits  source and target share ONE word where English needs two (it 'tempo' -> es 'tiempo'; English
+#                   time/weather); the error is the target word for the English split ('clima').
+# Each pair lists target-language regexes per class.  An output is scored 'correct' if it matches the expected
+# class and no other, 'error' if it matches another class but not the expected one, otherwise 'other'
+# (paraphrase, both, or neither).  Error rate = error / (correct + error); 'other' is reported separately.
+# `en` is the English version, used for the English side of the steering vector (§6.4).
+
+pairs:
+
+# ---------------------------------------------------------------- fr -> es: savoir / connaître  (English: know)
+- id: fr-es_savoir-connaitre
+  src: fr
+  tgt: es
+  type: english_lacks
+  control: fr-es_regarder-voir
+  english_collapse: [know, knows, knew, known]
+  classes:
+    saber: ['\bsé\b', '\bsab\w+', '\bsup(e|o|iste|imos|isteis|ieron)\b', '\bsep(a|as|amos|áis|an)\b']
+    conocer: ['\bconoc\w*', '\bconozc\w*']
+  items:
+    - {s: "Je sais qu'il viendra demain.", en: "I know he will come tomorrow.", x: saber}
+    - {s: "Je connais bien ce quartier.", en: "I know this neighbourhood well.", x: conocer}
+    - {s: "Tu sais nager ?", en: "Do you know how to swim?", x: saber}
+    - {s: "Elle connaît tous les voisins.", en: "She knows all the neighbours.", x: conocer}
+    - {s: "Nous savons la vérité.", en: "We know the truth.", x: saber}
+    - {s: "Vous connaissez Paris ?", en: "Do you know Paris?", x: conocer}
+    - {s: "Il ne sait pas où elle habite.", en: "He doesn't know where she lives.", x: saber}
+    - {s: "Je connais un bon restaurant près d'ici.", en: "I know a good restaurant near here.", x: conocer}
+    - {s: "Ils savent parler trois langues.", en: "They know how to speak three languages.", x: saber}
+    - {s: "Tu connais mon frère ?", en: "Do you know my brother?", x: conocer}
+    - {s: "Je ne sais pas pourquoi il est parti.", en: "I don't know why he left.", x: saber}
+    - {s: "Elle connaît ce livre par cœur.", en: "She knows this book by heart.", x: conocer}
+    - {s: "Sais-tu à quelle heure part le train ?", en: "Do you know what time the train leaves?", x: saber}
+    - {s: "Nous connaissons cette chanson.", en: "We know this song.", x: conocer}
+    - {s: "Il sait cuisiner.", en: "He knows how to cook.", x: saber}
+    - {s: "Je ne connais personne ici.", en: "I don't know anyone here.", x: conocer}
+    - {s: "Elle sait que tu mens.", en: "She knows you are lying.", x: saber}
+    - {s: "Ils connaissent la région comme leur poche.", en: "They know the region like the back of their hand.", x: conocer}
+    - {s: "Je sais conduire depuis dix ans.", en: "I have known how to drive for ten years.", x: saber}
+    - {s: "Tu connais le nouveau professeur ?", en: "Do you know the new teacher?", x: conocer}
+    - {s: "Personne ne sait la réponse.", en: "Nobody knows the answer.", x: saber}
+    - {s: "Je connais très bien sa famille.", en: "I know his family very well.", x: conocer}
+    - {s: "Vous savez jouer du piano ?", en: "Do you know how to play the piano?", x: saber}
+    - {s: "Elle connaît la ville depuis l'enfance.", en: "She has known the city since childhood.", x: conocer}
+    - {s: "On ne sait jamais.", en: "You never know.", x: saber}
+    - {s: "Il connaît un raccourci par la forêt.", en: "He knows a shortcut through the forest.", x: conocer}
+    - {s: "Je sais qu'elle a raison.", en: "I know she is right.", x: saber}
+    - {s: "Nous ne connaissons pas cet auteur.", en: "We don't know this author.", x: conocer}
+    - {s: "Tu sais lire l'arabe ?", en: "Do you know how to read Arabic?", x: saber}
+    - {s: "Je connais ce genre de problème.", en: "I know this kind of problem.", x: conocer}
+    - {s: "Elle sait ce qu'elle veut.", en: "She knows what she wants.", x: saber}
+    - {s: "Il connaît le directeur personnellement.", en: "He knows the director personally.", x: conocer}
+    - {s: "Je ne sais pas son nom.", en: "I don't know his name.", x: saber}
+    - {s: "Vous connaissez ce musée ?", en: "Do you know this museum?", x: conocer}
+    - {s: "Ils savent que le magasin ferme tôt.", en: "They know that the shop closes early.", x: saber}
+    - {s: "Je connais la chanteuse depuis l'école.", en: "I have known the singer since school.", x: conocer}
+    - {s: "Sais-tu combien ça coûte ?", en: "Do you know how much it costs?", x: saber}
+    - {s: "Elle connaît bien la cuisine thaïe.", en: "She knows Thai cooking well.", x: conocer}
+    - {s: "Nous savons déjà le résultat.", en: "We already know the result.", x: saber}
+    - {s: "Tu connais ce film ?", en: "Do you know this film?", x: conocer}
+
+- id: fr-es_regarder-voir
+  src: fr
+  tgt: es
+  type: english_keeps
+  english_split: {mirar: [look, looks, looked, looking, watch, watches, watched, watching], ver: [see, sees, saw, seen, seeing]}
+  classes:
+    mirar: ['\bmir\w*']
+    ver: ['\bv(eo|es|e|emos|eis|en|i|io|iste|imos|ieron|eía\w*|er|isto|ista|istos|iendo|ea|eas|ean|eamos)\b']
+  items:
+    - {s: "Regarde ce tableau.", en: "Look at this painting.", x: mirar}
+    - {s: "Je vois la mer depuis ma fenêtre.", en: "I see the sea from my window.", x: ver}
+    - {s: "Il regarde par la fenêtre.", en: "He looks out of the window.", x: mirar}
+    - {s: "Tu vois cette maison là-bas ?", en: "Do you see that house over there?", x: ver}
+    - {s: "Elle regarde les photos de vacances.", en: "She is looking at the holiday photos.", x: mirar}
+    - {s: "Je ne vois rien sans mes lunettes.", en: "I can't see anything without my glasses.", x: ver}
+    - {s: "Nous regardons le coucher du soleil.", en: "We are watching the sunset.", x: mirar}
+    - {s: "Ils ont vu un renard dans le jardin.", en: "They saw a fox in the garden.", x: ver}
+    - {s: "Regarde-moi quand je te parle.", en: "Look at me when I'm talking to you.", x: mirar}
+    - {s: "J'ai vu ton frère au marché.", en: "I saw your brother at the market.", x: ver}
+    - {s: "Il regarde sa montre toutes les cinq minutes.", en: "He looks at his watch every five minutes.", x: mirar}
+    - {s: "On voit les montagnes par temps clair.", en: "You can see the mountains on a clear day.", x: ver}
+    - {s: "Elle regarde le menu sans rien dire.", en: "She looks at the menu without saying anything.", x: mirar}
+    - {s: "Je vois une lumière au bout du couloir.", en: "I see a light at the end of the corridor.", x: ver}
+    - {s: "Les enfants regardent les poissons dans l'aquarium.", en: "The children are looking at the fish in the aquarium.", x: mirar}
+    - {s: "Tu as vu l'accident ?", en: "Did you see the accident?", x: ver}
+    - {s: "Regardez bien avant de traverser.", en: "Look carefully before crossing.", x: mirar}
+    - {s: "Je n'ai jamais vu la neige.", en: "I have never seen snow.", x: ver}
+    - {s: "Il regarde le ciel en silence.", en: "He looks at the sky in silence.", x: mirar}
+    - {s: "Nous avons vu un arc-en-ciel.", en: "We saw a rainbow.", x: ver}
+    - {s: "Elle regarde ses mains.", en: "She looks at her hands.", x: mirar}
+    - {s: "Je vois mal de loin.", en: "I don't see well at a distance.", x: ver}
+    - {s: "Regarde comme il est grand !", en: "Look how tall he is!", x: mirar}
+    - {s: "Vous voyez le clocher ?", en: "Do you see the bell tower?", x: ver}
+    - {s: "Il regarde la carte avant de partir.", en: "He looks at the map before leaving.", x: mirar}
+    - {s: "J'ai vu un oiseau rare ce matin.", en: "I saw a rare bird this morning.", x: ver}
+    - {s: "Ne regarde pas en bas.", en: "Don't look down.", x: mirar}
+    - {s: "On ne voit pas les étoiles en ville.", en: "You can't see the stars in the city.", x: ver}
+    - {s: "Elle regarde la vitrine depuis dix minutes.", en: "She has been looking at the shop window for ten minutes.", x: mirar}
+    - {s: "Tu vois ce que je veux dire ?", en: "Do you see what I mean?", x: ver}
+    - {s: "Les touristes regardent la cathédrale.", en: "The tourists are looking at the cathedral.", x: mirar}
+    - {s: "Je vois un bateau à l'horizon.", en: "I see a boat on the horizon.", x: ver}
+    - {s: "Il me regarde d'un air étrange.", en: "He is looking at me strangely.", x: mirar}
+    - {s: "Nous n'avons rien vu.", en: "We didn't see anything.", x: ver}
+    - {s: "Regarde derrière toi.", en: "Look behind you.", x: mirar}
+    - {s: "Elle a vu le médecin hier.", en: "She saw the doctor yesterday.", x: ver}
+    - {s: "Je regarde les nuages passer.", en: "I watch the clouds go by.", x: mirar}
+    - {s: "Tu vois le chat sur le toit ?", en: "Do you see the cat on the roof?", x: ver}
+    - {s: "Il regarde le tableau de près.", en: "He looks at the painting up close.", x: mirar}
+    - {s: "J'ai vu ce film deux fois.", en: "I have seen this film twice.", x: ver}
+
+# ---------------------------------------------------------------- pt -> es: ser / estar  (English: be)
+- id: pt-es_ser-estar
+  src: pt
+  tgt: es
+  type: english_lacks
+  control: pt-es_olhar-ver
+  english_collapse: [am, is, are, was, were, be, been, being]
+  classes:
+    ser: ['\b(soy|eres|es|somos|sois|son|era|eras|éramos|erais|eran|fui|fuiste|fue|fuimos|fueron|ser|sido|siendo|será|serán|sería|serían|sea|seas|sean)\b']
+    estar: ['\b(estoy|estás|está|estamos|estáis|están|estaba\w*|estuv\w*|estar|estado|estando|estará|estarán|estaría\w*|esté|estés|estén)\b']
+  items:
+    - {s: "Ela é médica.", en: "She is a doctor.", x: ser}
+    - {s: "Ela está cansada.", en: "She is tired.", x: estar}
+    - {s: "O café está frio.", en: "The coffee is cold.", x: estar}
+    - {s: "A casa é grande.", en: "The house is big.", x: ser}
+    - {s: "Nós somos irmãos.", en: "We are brothers.", x: ser}
+    - {s: "Estamos em Lisboa.", en: "We are in Lisbon.", x: estar}
+    - {s: "O João é muito alto.", en: "João is very tall.", x: ser}
+    - {s: "O João está doente.", en: "João is ill.", x: estar}
+    - {s: "Esta mesa é de madeira.", en: "This table is made of wood.", x: ser}
+    - {s: "A porta está aberta.", en: "The door is open.", x: estar}
+    - {s: "Eles são do Brasil.", en: "They are from Brazil.", x: ser}
+    - {s: "Eles estão muito contentes.", en: "They are very happy.", x: estar}
+    - {s: "O livro é interessante.", en: "The book is interesting.", x: ser}
+    - {s: "A sopa está salgada.", en: "The soup is salty.", x: estar}
+    - {s: "A minha mãe é professora.", en: "My mother is a teacher.", x: ser}
+    - {s: "O meu pai está no escritório.", en: "My father is at the office.", x: estar}
+    - {s: "Hoje é segunda-feira.", en: "Today is Monday.", x: ser}
+    - {s: "O céu está nublado.", en: "The sky is cloudy.", x: estar}
+    - {s: "O exame foi difícil.", en: "The exam was difficult.", x: ser}
+    - {s: "A loja está fechada.", en: "The shop is closed.", x: estar}
+    - {s: "O meu carro é vermelho.", en: "My car is red.", x: ser}
+    - {s: "O carro está sujo.", en: "The car is dirty.", x: estar}
+    - {s: "Ela é muito simpática.", en: "She is very nice.", x: ser}
+    - {s: "Ela está nervosa antes da entrevista.", en: "She is nervous before the interview.", x: estar}
+    - {s: "O concerto é no sábado.", en: "The concert is on Saturday.", x: ser}
+    - {s: "As crianças estão no parque.", en: "The children are in the park.", x: estar}
+    - {s: "Este quadro é muito antigo.", en: "This painting is very old.", x: ser}
+    - {s: "O telemóvel está sem bateria.", en: "The phone is out of battery.", x: estar}
+    - {s: "O Pedro é engenheiro.", en: "Pedro is an engineer.", x: ser}
+    - {s: "O Pedro está de férias.", en: "Pedro is on holiday.", x: estar}
+    - {s: "A água do mar é salgada.", en: "Sea water is salty.", x: ser}
+    - {s: "A água está quente hoje.", en: "The water is warm today.", x: estar}
+    - {s: "O filme é muito longo.", en: "The film is very long.", x: ser}
+    - {s: "Estou pronto para sair.", en: "I am ready to go out.", x: estar}
+    - {s: "O meu avô era pescador.", en: "My grandfather was a fisherman.", x: ser}
+    - {s: "O meu avô estava a dormir.", en: "My grandfather was sleeping.", x: estar}
+    - {s: "A reunião é às três.", en: "The meeting is at three.", x: ser}
+    - {s: "O chão está molhado.", en: "The floor is wet.", x: estar}
+    - {s: "Ela é inteligente.", en: "She is intelligent.", x: ser}
+    - {s: "Ela está triste hoje.", en: "She is sad today.", x: estar}
+
+- id: pt-es_olhar-ver
+  src: pt
+  tgt: es
+  type: english_keeps
+  english_split: {mirar: [look, looks, looked, looking, watch, watches, watched, watching], ver: [see, sees, saw, seen, seeing]}
+  classes:
+    mirar: ['\bmir\w*']
+    ver: ['\bv(eo|es|e|emos|eis|en|i|io|iste|imos|ieron|eía\w*|er|isto|ista|istos|iendo|ea|eas|ean|eamos)\b']
+  items:
+    - {s: "Olha para este quadro.", en: "Look at this painting.", x: mirar}
+    - {s: "Vejo o mar da minha janela.", en: "I see the sea from my window.", x: ver}
+    - {s: "Ele olha pela janela.", en: "He looks out of the window.", x: mirar}
+    - {s: "Vês aquela casa ali?", en: "Do you see that house over there?", x: ver}
+    - {s: "Ela olha para as fotografias das férias.", en: "She is looking at the holiday photos.", x: mirar}
+    - {s: "Não vejo nada sem óculos.", en: "I can't see anything without glasses.", x: ver}
+    - {s: "Olhamos para o pôr do sol.", en: "We look at the sunset.", x: mirar}
+    - {s: "Eles viram uma raposa no jardim.", en: "They saw a fox in the garden.", x: ver}
+    - {s: "Olha para mim quando falo contigo.", en: "Look at me when I'm talking to you.", x: mirar}
+    - {s: "Vi o teu irmão no mercado.", en: "I saw your brother at the market.", x: ver}
+    - {s: "Ele olha para o relógio a cada cinco minutos.", en: "He looks at his watch every five minutes.", x: mirar}
+    - {s: "Vêem-se as montanhas nos dias claros.", en: "You can see the mountains on clear days.", x: ver}
+    - {s: "Ela olha para o menu sem dizer nada.", en: "She looks at the menu without saying anything.", x: mirar}
+    - {s: "Vejo uma luz ao fundo do corredor.", en: "I see a light at the end of the corridor.", x: ver}
+    - {s: "As crianças olham para os peixes do aquário.", en: "The children look at the fish in the aquarium.", x: mirar}
+    - {s: "Viste o acidente?", en: "Did you see the accident?", x: ver}
+    - {s: "Olhem bem antes de atravessar.", en: "Look carefully before crossing.", x: mirar}
+    - {s: "Nunca vi neve.", en: "I have never seen snow.", x: ver}
+    - {s: "Ele olha para o céu em silêncio.", en: "He looks at the sky in silence.", x: mirar}
+    - {s: "Vimos um arco-íris.", en: "We saw a rainbow.", x: ver}
+    - {s: "Ela olha para as mãos.", en: "She looks at her hands.", x: mirar}
+    - {s: "Vejo mal ao longe.", en: "I don't see well at a distance.", x: ver}
+    - {s: "Olha como ele está crescido!", en: "Look how big he has grown!", x: mirar}
+    - {s: "Vês a torre da igreja?", en: "Do you see the church tower?", x: ver}
+    - {s: "Ele olha para o mapa antes de sair.", en: "He looks at the map before leaving.", x: mirar}
+    - {s: "Vi um pássaro raro esta manhã.", en: "I saw a rare bird this morning.", x: ver}
+    - {s: "Não olhes para baixo.", en: "Don't look down.", x: mirar}
+    - {s: "Na cidade não se vêem as estrelas.", en: "In the city you can't see the stars.", x: ver}
+    - {s: "Ela olha para a montra há dez minutos.", en: "She has been looking at the shop window for ten minutes.", x: mirar}
+    - {s: "Vês o que eu quero dizer?", en: "Do you see what I mean?", x: ver}
+    - {s: "Os turistas olham para a catedral.", en: "The tourists look at the cathedral.", x: mirar}
+    - {s: "Vejo um barco no horizonte.", en: "I see a boat on the horizon.", x: ver}
+    - {s: "Ele olha para mim de maneira estranha.", en: "He looks at me strangely.", x: mirar}
+    - {s: "Não vimos nada.", en: "We didn't see anything.", x: ver}
+    - {s: "Olha para trás.", en: "Look behind you.", x: mirar}
+    - {s: "Ela viu o médico ontem.", en: "She saw the doctor yesterday.", x: ver}
+    - {s: "Olho para as nuvens a passar.", en: "I watch the clouds go by.", x: mirar}
+    - {s: "Vês o gato no telhado?", en: "Do you see the cat on the roof?", x: ver}
+    - {s: "Ele olha para o quadro de perto.", en: "He looks at the painting up close.", x: mirar}
+    - {s: "Vi este filme duas vezes.", en: "I have seen this film twice.", x: ver}
+
+# ---------------------------------------------------------------- it -> es: tempo -> tiempo  (English: time / weather)
+- id: it-es_tempo
+  src: it
+  tgt: es
+  type: english_splits
+  control: it-es_guardare-vedere
+  english_split: {time: [time], weather: [weather]}
+  # Expected class is always 'tiempo'; the error is the Spanish word for the English split (clima for
+  # weather; hora/rato/momento for clock-time readings, which only some items invite).
+  classes:
+    tiempo: ['\btiempo\b']
+    clima: ['\bclima\w*', '\bmeteorol\w*']
+    hora: ['\bhora\b', '\bhoras\b']
+  items:
+    - {s: "Che tempo fa oggi a Roma?", en: "What is the weather like in Rome today?", x: tiempo, sense: weather}
+    - {s: "Non ho tempo per queste cose.", en: "I don't have time for these things.", x: tiempo, sense: time}
+    - {s: "Il tempo è bellissimo questa mattina.", en: "The weather is beautiful this morning.", x: tiempo, sense: weather}
+    - {s: "Il tempo vola quando ci si diverte.", en: "Time flies when you're having fun.", x: tiempo, sense: time}
+    - {s: "Con questo tempo non usciamo.", en: "We are not going out in this weather.", x: tiempo, sense: weather}
+    - {s: "Ci vuole tempo per imparare una lingua.", en: "It takes time to learn a language.", x: tiempo, sense: time}
+    - {s: "Domani il tempo dovrebbe migliorare.", en: "The weather should improve tomorrow.", x: tiempo, sense: weather}
+    - {s: "Abbiamo poco tempo prima del treno.", en: "We have little time before the train.", x: tiempo, sense: time}
+    - {s: "Il tempo in montagna cambia in fretta.", en: "The weather in the mountains changes quickly.", x: tiempo, sense: weather}
+    - {s: "Quanto tempo ci vuole per arrivare?", en: "How much time does it take to get there?", x: tiempo, sense: time}
+    - {s: "Fa brutto tempo da una settimana.", en: "The weather has been bad for a week.", x: tiempo, sense: weather}
+    - {s: "Ho perso molto tempo in coda.", en: "I wasted a lot of time in the queue.", x: tiempo, sense: time}
+    - {s: "Le previsioni del tempo annunciano pioggia.", en: "The weather forecast says rain.", x: tiempo, sense: weather}
+    - {s: "Non c'è tempo da perdere.", en: "There is no time to lose.", x: tiempo, sense: time}
+    - {s: "Il tempo è stato perfetto per la gita.", en: "The weather was perfect for the trip.", x: tiempo, sense: weather}
+    - {s: "Col tempo capirai.", en: "In time you will understand.", x: tiempo, sense: time}
+    - {s: "In Scozia il tempo è sempre incerto.", en: "In Scotland the weather is always uncertain.", x: tiempo, sense: weather}
+    - {s: "Passo molto tempo in biblioteca.", en: "I spend a lot of time in the library.", x: tiempo, sense: time}
+    - {s: "Se il tempo lo permette, andiamo al mare.", en: "If the weather allows, we will go to the sea.", x: tiempo, sense: weather}
+    - {s: "È tempo di partire.", en: "It is time to leave.", x: tiempo, sense: time}
+    - {s: "Il tempo era nuvoloso ma mite.", en: "The weather was cloudy but mild.", x: tiempo, sense: weather}
+    - {s: "Da quanto tempo vivi qui?", en: "How long have you lived here?", x: tiempo, sense: time}
+    - {s: "Speriamo che il tempo tenga per la partita.", en: "Let's hope the weather holds for the match.", x: tiempo, sense: weather}
+    - {s: "Il tempo libero è prezioso.", en: "Free time is precious.", x: tiempo, sense: time}
+    - {s: "Che tempo farà a Natale?", en: "What will the weather be like at Christmas?", x: tiempo, sense: weather}
+    - {s: "Non trovo mai il tempo di leggere.", en: "I never find the time to read.", x: tiempo, sense: time}
+    - {s: "Il tempo è peggiorato nel pomeriggio.", en: "The weather got worse in the afternoon.", x: tiempo, sense: weather}
+    - {s: "Ci vediamo tra poco tempo.", en: "See you in a little while.", x: tiempo, sense: time}
+    - {s: "Al nord il tempo è più freddo.", en: "In the north the weather is colder.", x: tiempo, sense: weather}
+    - {s: "Il tempo guarisce ogni ferita.", en: "Time heals all wounds.", x: tiempo, sense: time}
+    - {s: "Ieri il tempo era splendido.", en: "Yesterday the weather was splendid.", x: tiempo, sense: weather}
+    - {s: "A suo tempo ti spiegherò tutto.", en: "In due time I will explain everything.", x: tiempo, sense: time}
+    - {s: "Col bel tempo la piazza si riempie.", en: "In good weather the square fills up.", x: tiempo, sense: weather}
+    - {s: "Il tempo stringe.", en: "Time is running out.", x: tiempo, sense: time}
+    - {s: "Il tempo di oggi è ideale per una passeggiata.", en: "Today's weather is ideal for a walk.", x: tiempo, sense: weather}
+    - {s: "Ho bisogno di più tempo.", en: "I need more time.", x: tiempo, sense: time}
+    - {s: "Il tempo in primavera è variabile.", en: "The weather in spring is changeable.", x: tiempo, sense: weather}
+    - {s: "Per molto tempo non ci siamo visti.", en: "For a long time we didn't see each other.", x: tiempo, sense: time}
+    - {s: "Brutto tempo per volare oggi.", en: "Bad weather for flying today.", x: tiempo, sense: weather}
+    - {s: "Il tempo è denaro.", en: "Time is money.", x: tiempo, sense: time}
+
+- id: it-es_guardare-vedere
+  src: it
+  tgt: es
+  type: english_keeps
+  english_split: {mirar: [look, looks, looked, looking, watch, watches, watched, watching], ver: [see, sees, saw, seen, seeing]}
+  classes:
+    mirar: ['\bmir\w*']
+    ver: ['\bv(eo|es|e|emos|eis|en|i|io|iste|imos|ieron|eía\w*|er|isto|ista|istos|iendo|ea|eas|ean|eamos)\b']
+  items:
+    - {s: "Guarda questo quadro.", en: "Look at this painting.", x: mirar}
+    - {s: "Vedo il mare dalla mia finestra.", en: "I see the sea from my window.", x: ver}
+    - {s: "Lui guarda fuori dalla finestra.", en: "He looks out of the window.", x: mirar}
+    - {s: "Vedi quella casa laggiù?", en: "Do you see that house down there?", x: ver}
+    - {s: "Lei guarda le foto delle vacanze.", en: "She is looking at the holiday photos.", x: mirar}
+    - {s: "Non vedo niente senza occhiali.", en: "I can't see anything without glasses.", x: ver}
+    - {s: "Guardiamo il tramonto.", en: "We are watching the sunset.", x: mirar}
+    - {s: "Hanno visto una volpe in giardino.", en: "They saw a fox in the garden.", x: ver}
+    - {s: "Guardami quando ti parlo.", en: "Look at me when I talk to you.", x: mirar}
+    - {s: "Ho visto tuo fratello al mercato.", en: "I saw your brother at the market.", x: ver}
+    - {s: "Guarda l'orologio ogni cinque minuti.", en: "He looks at the clock every five minutes.", x: mirar}
+    - {s: "Con il cielo sereno si vedono le montagne.", en: "When the sky is clear you can see the mountains.", x: ver}
+    - {s: "Guarda il menu senza dire niente.", en: "She looks at the menu without saying anything.", x: mirar}
+    - {s: "Vedo una luce in fondo al corridoio.", en: "I see a light at the end of the corridor.", x: ver}
+    - {s: "I bambini guardano i pesci nell'acquario.", en: "The children look at the fish in the aquarium.", x: mirar}
+    - {s: "Hai visto l'incidente?", en: "Did you see the accident?", x: ver}
+    - {s: "Guardate bene prima di attraversare.", en: "Look carefully before crossing.", x: mirar}
+    - {s: "Non ho mai visto la neve.", en: "I have never seen snow.", x: ver}
+    - {s: "Guarda il cielo in silenzio.", en: "He looks at the sky in silence.", x: mirar}
+    - {s: "Abbiamo visto un arcobaleno.", en: "We saw a rainbow.", x: ver}
+    - {s: "Si guarda le mani.", en: "She looks at her hands.", x: mirar}
+    - {s: "Da lontano vedo male.", en: "I don't see well at a distance.", x: ver}
+    - {s: "Guarda com'è cresciuto!", en: "Look how he has grown!", x: mirar}
+    - {s: "Vedete il campanile?", en: "Do you see the bell tower?", x: ver}
+    - {s: "Guarda la cartina prima di partire.", en: "He looks at the map before leaving.", x: mirar}
+    - {s: "Stamattina ho visto un uccello raro.", en: "This morning I saw a rare bird.", x: ver}
+    - {s: "Non guardare giù.", en: "Don't look down.", x: mirar}
+    - {s: "In città non si vedono le stelle.", en: "In the city you can't see the stars.", x: ver}
+    - {s: "Guarda la vetrina da dieci minuti.", en: "She has been looking at the shop window for ten minutes.", x: mirar}
+    - {s: "Vedi cosa intendo?", en: "Do you see what I mean?", x: ver}
+    - {s: "I turisti guardano la cattedrale.", en: "The tourists look at the cathedral.", x: mirar}
+    - {s: "Vedo una barca all'orizzonte.", en: "I see a boat on the horizon.", x: ver}
+    - {s: "Mi guarda in modo strano.", en: "He looks at me strangely.", x: mirar}
+    - {s: "Non abbiamo visto niente.", en: "We didn't see anything.", x: ver}
+    - {s: "Guarda dietro di te.", en: "Look behind you.", x: mirar}
+    - {s: "Ieri ha visto il medico.", en: "Yesterday she saw the doctor.", x: ver}
+    - {s: "Guardo le nuvole che passano.", en: "I watch the clouds go by.", x: mirar}
+    - {s: "Vedi il gatto sul tetto?", en: "Do you see the cat on the roof?", x: ver}
+    - {s: "Guarda il quadro da vicino.", en: "He looks at the painting up close.", x: mirar}
+    - {s: "Ho visto questo film due volte.", en: "I have seen this film twice.", x: ver}

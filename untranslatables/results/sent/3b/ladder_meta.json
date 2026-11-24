@@ -1,0 +1,715 @@
+{
+ "model": "meta-llama/Llama-3.2-3B-Instruct (bf16)",
+ "rungs": {
+  "B0": {
+   "practice": "word-for-word",
+   "max_new_tokens": 80,
+   "prompt": "Give a word-for-word English gloss of this {lang} sentence: one English word for each {lang} word, in the original word order, even if the result is not good English. Reply with the gloss only."
+  },
+  "B1": {
+   "practice": "standard translation",
+   "max_new_tokens": 80,
+   "prompt": "Translate this {lang} sentence into natural English, as a single sentence. Reply with the translation only."
+  },
+  "B2": {
+   "practice": "keep the word",
+   "max_new_tokens": 80,
+   "prompt": "Translate this {lang} sentence into English, but keep any word or phrase that has no good English equivalent in the original {lang}, in italics (*like this*). Reply with the translation only."
+  },
+  "B3": {
+   "practice": "inline gloss",
+   "max_new_tokens": 120,
+   "prompt": "Translate this {lang} sentence into English. After each word or phrase that is hard to translate, add a short gloss in square brackets (at most 8 words) saying what it means. Reply with the translation only."
+  },
+  "B4": {
+   "practice": "alternatives",
+   "max_new_tokens": 120,
+   "prompt": "Translate this {lang} sentence into English. For each part that is hard to translate, give 2 or 3 alternative English renderings separated by \" / \". Reply with the translation only."
+  },
+  "B5": {
+   "practice": "footnote",
+   "max_new_tokens": 140,
+   "prompt": "Translate this {lang} sentence into natural English, then add one footnote (at most 40 words) on what the English translation loses. Reply in this format: the translation, a blank line, then the footnote starting with \"Note:\"."
+  },
+  "B6": {
+   "practice": "thick translation",
+   "max_new_tokens": 280,
+   "prompt": "Translate this {lang} sentence into natural English, then write one paragraph (at most 120 words) that opens up the meanings, connotations and grammar of the original that the English cannot carry. Reply in this format: the translation, a blank line, then the paragraph."
+  },
+  "B7": {
+   "practice": "coinage",
+   "max_new_tokens": 140,
+   "prompt": "Translate this {lang} sentence into English. For the part that is hardest to translate, invent a new English term, define it in one sentence, and use it in the translation. Reply in this format: first the line \"Term: <the term> = <one-sentence definition>\", then a blank line, then the translation using the term."
+  }
+ },
+ "n": 5,
+ "temperature": 0.8,
+ "seed": 0,
+ "length_tokenizer": "meta-llama/Llama-3.2-3B-Instruct",
+ "sentences": [
+  {
+   "id": "es_duende",
+   "lang": "es",
+   "category": "untranslatable_in_context",
+   "text": "Me gusta mucho el duende.",
+   "spans": [
+    {
+     "text": "duende",
+     "start": 18,
+     "end": 24,
+     "kind": "hot"
+    },
+    {
+     "text": "gusta",
+     "start": 3,
+     "end": 8,
+     "kind": "hot"
+    }
+   ],
+   "notes": "The father's running example. duende = the mysterious power of art to move (Lorca, flamenco), also 'goblin'; gusta = the thing pleases me (gustar construction), and the verb is related to taste. Validation (§6.3) checks that the leftover orders duende > gusta > mucho.",
+   "source": "the father's example"
+  },
+  {
+   "id": "pt_saudade",
+   "lang": "pt",
+   "category": "untranslatable_in_context",
+   "text": "Sinto muita saudade da casa da minha avó.",
+   "spans": [
+    {
+     "text": "saudade",
+     "start": 12,
+     "end": 19,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Aching longing for something absent; the word-level runs' lead case.",
+   "source": "invented"
+  },
+  {
+   "id": "es_sobremesa",
+   "lang": "es",
+   "category": "untranslatable_in_context",
+   "text": "Nos quedamos de sobremesa hasta que anocheció.",
+   "spans": [
+    {
+     "text": "de sobremesa",
+     "start": 13,
+     "end": 25,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Unhurried after-meal conversation at the table; 'quedarse de sobremesa' is also a fixed expression.",
+   "source": "invented"
+  },
+  {
+   "id": "de_fernweh",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "Jeden Herbst packt mich das Fernweh.",
+   "spans": [
+    {
+     "text": "Fernweh",
+     "start": 28,
+     "end": 35,
+     "kind": "hot"
+    },
+    {
+     "text": "packt mich",
+     "start": 13,
+     "end": 23,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Longing for faraway places (the opposite of homesickness); 'packt mich' = seizes me.",
+   "source": "invented"
+  },
+  {
+   "id": "it_sprezzatura",
+   "lang": "it",
+   "category": "untranslatable_in_context",
+   "text": "Porta quel vestito con una certa sprezzatura.",
+   "spans": [
+    {
+     "text": "sprezzatura",
+     "start": 33,
+     "end": 44,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Studied nonchalance that hides effort (Castiglione).",
+   "source": "invented"
+  },
+  {
+   "id": "it_magari_forse",
+   "lang": "it",
+   "category": "untranslatable_in_context",
+   "text": "Magari passo da te stasera, vediamo.",
+   "spans": [
+    {
+     "text": "Magari",
+     "start": 0,
+     "end": 6,
+     "kind": "hot"
+    }
+   ],
+   "notes": "magari as 'maybe, perhaps, if things work out'. Its wish use ('if only') is in it_magari_wish (construction).",
+   "source": "invented"
+  },
+  {
+   "id": "pt_jeitinho",
+   "lang": "pt",
+   "category": "untranslatable_in_context",
+   "text": "Ele deu um jeitinho e conseguiu o documento no mesmo dia.",
+   "spans": [
+    {
+     "text": "deu um jeitinho",
+     "start": 4,
+     "end": 19,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Brazilian 'jeitinho': finding a creative, often rule-bending way round an obstacle.",
+   "source": "invented"
+  },
+  {
+   "id": "pt_cafune",
+   "lang": "pt",
+   "category": "untranslatable_in_context",
+   "text": "Ela fazia cafuné no filho até ele dormir.",
+   "spans": [
+    {
+     "text": "fazia cafuné",
+     "start": 4,
+     "end": 16,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Brazilian 'cafuné': tenderly running your fingers through someone's hair.",
+   "source": "invented"
+  },
+  {
+   "id": "de_gemuetlichkeit",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "In der kleinen Hütte herrschte eine wunderbare Gemütlichkeit.",
+   "spans": [
+    {
+     "text": "Gemütlichkeit",
+     "start": 47,
+     "end": 60,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Warmth, cosiness, belonging, unhurried good cheer.",
+   "source": "invented"
+  },
+  {
+   "id": "de_feierabend",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "Endlich Feierabend, gehen wir noch ein Bier trinken?",
+   "spans": [
+    {
+     "text": "Feierabend",
+     "start": 8,
+     "end": 18,
+     "kind": "hot"
+    }
+   ],
+   "notes": "The end of the working day, and the free time and mood that begin then.",
+   "source": "invented"
+  },
+  {
+   "id": "fr_depaysement",
+   "lang": "fr",
+   "category": "untranslatable_in_context",
+   "text": "À Tokyo, j'ai ressenti un profond dépaysement.",
+   "spans": [
+    {
+     "text": "dépaysement",
+     "start": 34,
+     "end": 45,
+     "kind": "hot"
+    }
+   ],
+   "notes": "The disorientation (pleasant or not) of being out of your own country or element.",
+   "source": "invented"
+  },
+  {
+   "id": "fr_retrouvailles",
+   "lang": "fr",
+   "category": "untranslatable_in_context",
+   "text": "Les retrouvailles avec mes cousins ont été très émouvantes.",
+   "spans": [
+    {
+     "text": "retrouvailles",
+     "start": 4,
+     "end": 17,
+     "kind": "hot"
+    }
+   ],
+   "notes": "The joy of being reunited after a long separation; a plural noun with no English singular equivalent.",
+   "source": "invented"
+  },
+  {
+   "id": "es_gustar",
+   "lang": "es",
+   "category": "construction",
+   "text": "A mi hermana le gustan las películas de terror.",
+   "spans": [
+    {
+     "text": "le gustan",
+     "start": 13,
+     "end": 22,
+     "kind": "hot"
+    }
+   ],
+   "notes": "The films please my sister (the experiencer is the indirect object; the verb agrees with the films).",
+   "source": "invented"
+  },
+  {
+   "id": "it_mi_manchi",
+   "lang": "it",
+   "category": "construction",
+   "text": "Mi manchi tanto, lo sai?",
+   "spans": [
+    {
+     "text": "Mi manchi",
+     "start": 0,
+     "end": 9,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"You are missing to me\": the person missed is the subject, the one who misses is the indirect object.",
+   "source": "invented"
+  },
+  {
+   "id": "es_se_me_olvido",
+   "lang": "es",
+   "category": "construction",
+   "text": "Se me olvidó el paraguas en el tren.",
+   "spans": [
+    {
+     "text": "Se me olvidó",
+     "start": 0,
+     "end": 12,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Accidental \"se\": the umbrella forgot itself on me (no blame on the speaker).",
+   "source": "invented"
+  },
+  {
+   "id": "de_mir_ist_kalt",
+   "lang": "de",
+   "category": "construction",
+   "text": "Mir ist kalt, kannst du das Fenster zumachen?",
+   "spans": [
+    {
+     "text": "Mir ist kalt",
+     "start": 0,
+     "end": 12,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"To me it is cold\": a dative experiencer, not \"I am cold\".",
+   "source": "invented"
+  },
+  {
+   "id": "es_ser_estar",
+   "lang": "es",
+   "category": "construction",
+   "text": "La película es aburrida, y yo estoy aburrido.",
+   "spans": [
+    {
+     "text": "es aburrida",
+     "start": 12,
+     "end": 23,
+     "kind": "hot"
+    },
+    {
+     "text": "estoy aburrido",
+     "start": 30,
+     "end": 44,
+     "kind": "hot"
+    }
+   ],
+   "notes": "ser/estar: \"boring\" vs \"bored\"; English uses \"be\" for both.",
+   "source": "invented"
+  },
+  {
+   "id": "fr_il_me_faut",
+   "lang": "fr",
+   "category": "construction",
+   "text": "Il me faut encore une heure pour finir.",
+   "spans": [
+    {
+     "text": "Il me faut",
+     "start": 0,
+     "end": 10,
+     "kind": "hot"
+    }
+   ],
+   "notes": "Impersonal necessity with a dative (\"it is needed to me\").",
+   "source": "invented"
+  },
+  {
+   "id": "pt_infinitivo_pessoal",
+   "lang": "pt",
+   "category": "construction",
+   "text": "Comprei o livro para lermos juntos.",
+   "spans": [
+    {
+     "text": "lermos",
+     "start": 21,
+     "end": 27,
+     "kind": "hot"
+    }
+   ],
+   "notes": "The Portuguese personal (inflected) infinitive, \"for us-to-read\".",
+   "source": "invented"
+  },
+  {
+   "id": "it_magari_wish",
+   "lang": "it",
+   "category": "construction",
+   "text": "Magari fosse già venerdì!",
+   "spans": [
+    {
+     "text": "Magari fosse",
+     "start": 0,
+     "end": 12,
+     "kind": "hot"
+    }
+   ],
+   "notes": "magari + imperfect subjunctive as a wish (\"if only\"). Pairs with it_magari_forse.",
+   "source": "invented"
+  },
+  {
+   "id": "es_tomar_el_pelo",
+   "lang": "es",
+   "category": "idiom",
+   "text": "No te creo, me estás tomando el pelo.",
+   "spans": [
+    {
+     "text": "me estás tomando el pelo",
+     "start": 12,
+     "end": 36,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"You are taking my hair\": you are pulling my leg.",
+   "source": "invented"
+  },
+  {
+   "id": "it_in_bocca_al_lupo",
+   "lang": "it",
+   "category": "idiom",
+   "text": "Domani hai l'esame? In bocca al lupo!",
+   "spans": [
+    {
+     "text": "In bocca al lupo",
+     "start": 20,
+     "end": 36,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"Into the wolf's mouth\": good luck (the reply is \"crepi\", may it die).",
+   "source": "invented"
+  },
+  {
+   "id": "fr_cafard",
+   "lang": "fr",
+   "category": "idiom",
+   "text": "Depuis qu'il pleut, j'ai le cafard.",
+   "spans": [
+    {
+     "text": "j'ai le cafard",
+     "start": 20,
+     "end": 34,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"I have the cockroach\": I feel down or blue.",
+   "source": "invented"
+  },
+  {
+   "id": "de_tomaten",
+   "lang": "de",
+   "category": "idiom",
+   "text": "Hast du Tomaten auf den Augen? Die Ampel ist rot!",
+   "spans": [
+    {
+     "text": "Tomaten auf den Augen",
+     "start": 8,
+     "end": 29,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"Tomatoes on your eyes\": you are not seeing the obvious.",
+   "source": "invented"
+  },
+  {
+   "id": "pt_estou_com_saudades",
+   "lang": "pt",
+   "category": "idiom",
+   "text": "Estou com saudades de você.",
+   "spans": [
+    {
+     "text": "Estou com saudades",
+     "start": 0,
+     "end": 18,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"I am with saudades of you\": I miss you. A fixed phrase built on an untranslatable (compare pt_saudade).",
+   "source": "invented"
+  },
+  {
+   "id": "es_en_las_nubes",
+   "lang": "es",
+   "category": "idiom",
+   "text": "Mi hijo siempre está en las nubes en clase.",
+   "spans": [
+    {
+     "text": "está en las nubes",
+     "start": 16,
+     "end": 33,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"Is in the clouds\": daydreaming, absent-minded.",
+   "source": "invented"
+  },
+  {
+   "id": "it_in_gamba",
+   "lang": "it",
+   "category": "idiom",
+   "text": "La nuova collega è proprio in gamba.",
+   "spans": [
+    {
+     "text": "in gamba",
+     "start": 27,
+     "end": 35,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"In leg\": capable, smart, on the ball.",
+   "source": "invented"
+  },
+  {
+   "id": "fr_poser_un_lapin",
+   "lang": "fr",
+   "category": "idiom",
+   "text": "Elle m'a posé un lapin hier soir.",
+   "spans": [
+    {
+     "text": "m'a posé un lapin",
+     "start": 5,
+     "end": 22,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"She put a rabbit on me\": she stood me up.",
+   "source": "invented"
+  },
+  {
+   "id": "es_tren",
+   "lang": "es",
+   "category": "control",
+   "text": "El tren sale a las ocho de la mañana.",
+   "spans": [
+    {
+     "text": "tren",
+     "start": 3,
+     "end": 7,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "es_casa",
+   "lang": "es",
+   "category": "control",
+   "text": "Mi hermana vive en una casa pequeña.",
+   "spans": [
+    {
+     "text": "casa",
+     "start": 23,
+     "end": 27,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "de_brueder",
+   "lang": "de",
+   "category": "control",
+   "text": "Ich habe zwei Brüder und eine Schwester.",
+   "spans": [
+    {
+     "text": "Brüder",
+     "start": 14,
+     "end": 20,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "de_tisch",
+   "lang": "de",
+   "category": "control",
+   "text": "Das Buch liegt auf dem Tisch in der Küche.",
+   "spans": [
+    {
+     "text": "Tisch",
+     "start": 23,
+     "end": 28,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "it_negozio",
+   "lang": "it",
+   "category": "control",
+   "text": "Il negozio chiude alle sette di sera.",
+   "spans": [
+    {
+     "text": "negozio",
+     "start": 3,
+     "end": 10,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "it_caffe",
+   "lang": "it",
+   "category": "control",
+   "text": "Mio padre beve un caffè ogni mattina.",
+   "spans": [
+    {
+     "text": "caffè",
+     "start": 18,
+     "end": 23,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "pt_medico",
+   "lang": "pt",
+   "category": "control",
+   "text": "O médico chegou ao hospital às nove horas.",
+   "spans": [
+    {
+     "text": "médico",
+     "start": 2,
+     "end": 8,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "pt_mercado",
+   "lang": "pt",
+   "category": "control",
+   "text": "Comprei pão e leite no mercado.",
+   "spans": [
+    {
+     "text": "leite",
+     "start": 14,
+     "end": 19,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "fr_chat",
+   "lang": "fr",
+   "category": "control",
+   "text": "Le chat dort sur le canapé rouge.",
+   "spans": [
+    {
+     "text": "canapé",
+     "start": 20,
+     "end": 26,
+     "kind": "probe"
+    }
+   ],
+   "notes": "probe is canapé, not chat (English 'chat' would trigger the source-word masking).",
+   "source": "invented"
+  },
+  {
+   "id": "fr_musee",
+   "lang": "fr",
+   "category": "control",
+   "text": "Nous avons visité le musée avec nos enfants.",
+   "spans": [
+    {
+     "text": "enfants",
+     "start": 36,
+     "end": 43,
+     "kind": "probe"
+    }
+   ],
+   "notes": "",
+   "source": "invented"
+  },
+  {
+   "id": "rom_ffora",
+   "lang": "rom",
+   "category": "dialect",
+   "text": "cominceranno a ddì: ffora a cchi ttoca.",
+   "spans": [
+    {
+     "text": "ffora a cchi ttoca",
+     "start": 20,
+     "end": 38,
+     "kind": "hot"
+    }
+   ],
+   "notes": "\"Out, whoever's turn it is!\", the trumpeting angels calling the dead out. Belli line 4.",
+   "source": "Belli, Er giorno der giudizzio, line 4 (web edition)"
+  },
+  {
+   "id": "rom_schertri",
+   "lang": "rom",
+   "category": "dialect",
+   "text": "de schertri da la terra a ppecorone,",
+   "spans": [
+    {
+     "text": "schertri",
+     "start": 3,
+     "end": 11,
+     "kind": "hot"
+    },
+    {
+     "text": "a ppecorone",
+     "start": 24,
+     "end": 35,
+     "kind": "hot"
+    }
+   ],
+   "notes": "schertri = skeletons; a ppecorone = on all fours. Both models misread schertri as \"jesters\" in the lattice run. Belli line 6.",
+   "source": "Belli, Er giorno der giudizzio, line 6 (web edition)"
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+# R3 of ../HANDOFF_internals.md: English loanwords from es, it, fr, de, pt, fixed BEFORE the neighbour test is rerun.
+# Written 21 Nov 2026 by Claude Code (Opus 5.5), before any internals run (committed in the same commit as this file).
+#
+# Provenance: each word is taken from the corresponding Wikipedia list, as Claude Code knew them (not re-fetched):
+#   "List of English words of Spanish origin", "... of Italian origin", "... of French origin",
+#   "... of German origin", "... of Portuguese origin".
+# Selection rule (fixed in advance): six per language, single words, known in English (wordfreq Zipf >= 2.3 in English; the rule was first written as >= 3, corrected before any run because 9 words fall between 2.3 and 3),
+# spelled the same in English and the source language (accents aside), and NOT any of the target words of
+# data/words/*.yaml.  Membership in the lists should be confirmed by a human before results are quoted.
+source: "Wikipedia, 'List of English words of <Spanish|Italian|French|German|Portuguese> origin' (from memory; to confirm)"
+rule: "6 per language; single words; English Zipf >= 2.3; same spelling in both languages; not a target word"
+words:
+  es: [siesta, fiesta, macho, patio, plaza, aficionado]
+  it: [fiasco, graffiti, incognito, vendetta, maestro, bravura]
+  fr: [finesse, cliché, ennui, genre, rendezvous, naïve]
+  de: [angst, zeitgeist, kindergarten, wanderlust, kitsch, poltergeist]
+  pt: [cobra, flamingo, samba, piranha, albino, zebra]

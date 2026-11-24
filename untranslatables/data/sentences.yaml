@@ -1,0 +1,646 @@
+# Sentence test set for the sentence-level untranslatability experiments (../HANDOFF_sentence_untranslatability.md §4).
+# Drafted by Claude Code (Opus 5.5), 19 Nov 2026.  UNCHECKED: stop point 1. Please check it (and ask your father) before any GPU run.
+#
+# Schema (validated by `python -m sent.data`):
+#   id        unique, <lang>_<slug>
+#   lang      es | it | pt | fr | de | hi | rom
+#   category  untranslatable_in_context | construction | idiom | control | dialect
+#   text      the sentence exactly as it will be shown to the model
+#   hot       expected hard parts, as substrings of `text` (first occurrence; write "x#2" for the 2nd occurrence).
+#             Character offsets are computed by the loader and written into every output, so you never type them.
+#   probe     (controls only) one plain content word, used as the "easy" comparison span for spread (§1).
+#   senses    {span: {en: intended sense in this sentence, src: the same in the source language (es, hi)}}
+#   draft     true = not yet checked by a speaker (all Hindi items)
+#   notes, source
+#   optional  true = dropped unless the run asks for it (`--dialect`), as the handoff's schedule allows.
+#
+# Every sentence is invented (source: invented) except the father's example and the two Belli lines.
+
+sentences:
+
+# ---------------------------------------------------------------- untranslatable_in_context (12)
+- id: es_duende
+  lang: es
+  category: untranslatable_in_context
+  text: Me gusta mucho el duende.
+  hot: [duende, gusta]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    duende:
+      en: "the mysterious, almost demonic power of a great artistic performance to move people (Lorca's sense)"
+      src: "el poder misterioso, casi demoníaco, de una gran interpretación artística para conmover"
+    gusta:
+      en: "pleases me, appeals to my taste (the thing liked is the subject)"
+      src: "me agrada, es de mi gusto"
+  notes: >-
+    The father's running example. duende = the mysterious power of art to move (Lorca, flamenco), also 'goblin';
+    gusta = the thing pleases me (gustar construction), and the verb is related to taste. Validation (§6.3) checks
+    that the leftover orders duende > gusta > mucho.
+  source: the father's example
+
+- id: pt_saudade
+  lang: pt
+  category: untranslatable_in_context
+  text: Sinto muita saudade da casa da minha avó.
+  hot: [saudade]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    saudade:
+      en: "an aching, loving longing for something or someone absent"
+  notes: Aching longing for something absent; the word-level runs' lead case.
+  source: invented
+
+- id: es_sobremesa
+  lang: es
+  category: untranslatable_in_context
+  text: Nos quedamos de sobremesa hasta que anocheció.
+  hot: [de sobremesa]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    de sobremesa:
+      en: "lingering at the table after the meal, talking"
+      src: "quedarse en la mesa después de comer, charlando"
+  notes: Unhurried after-meal conversation at the table; 'quedarse de sobremesa' is also a fixed expression.
+  source: invented
+
+- id: de_fernweh
+  lang: de
+  category: untranslatable_in_context
+  text: Jeden Herbst packt mich das Fernweh.
+  hot: [Fernweh, packt mich]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Fernweh:
+      en: "a longing for faraway places"
+    packt mich:
+      en: "seizes me, takes hold of me"
+  notes: Longing for faraway places (the opposite of homesickness); 'packt mich' = seizes me.
+  source: invented
+
+- id: it_sprezzatura
+  lang: it
+  category: untranslatable_in_context
+  text: Porta quel vestito con una certa sprezzatura.
+  hot: [sprezzatura]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    sprezzatura:
+      en: "studied nonchalance that makes something difficult look effortless"
+  notes: Studied nonchalance that hides effort (Castiglione).
+  source: invented
+
+- id: it_magari_forse
+  lang: it
+  category: untranslatable_in_context
+  text: Magari passo da te stasera, vediamo.
+  hot: [Magari]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Magari:
+      en: "maybe, if things work out"
+  notes: magari as 'maybe, perhaps, if things work out'. Its wish use ('if only') is in it_magari_wish (construction).
+  source: invented
+
+- id: pt_jeitinho
+  lang: pt
+  category: untranslatable_in_context
+  text: Ele deu um jeitinho e conseguiu o documento no mesmo dia.
+  hot: [deu um jeitinho]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    deu um jeitinho:
+      en: "found a clever, rule-bending way around the obstacle"
+  notes: "Brazilian 'jeitinho': finding a creative, often rule-bending way round an obstacle."
+  source: invented
+
+- id: pt_cafune
+  lang: pt
+  category: untranslatable_in_context
+  text: Ela fazia cafuné no filho até ele dormir.
+  hot: [fazia cafuné]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    fazia cafuné:
+      en: "tenderly ran her fingers through his hair"
+  notes: "Brazilian 'cafuné': tenderly running your fingers through someone's hair."
+  source: invented
+
+- id: de_gemuetlichkeit
+  lang: de
+  category: untranslatable_in_context
+  text: In der kleinen Hütte herrschte eine wunderbare Gemütlichkeit.
+  hot: [Gemütlichkeit]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Gemütlichkeit:
+      en: "warm, unhurried cosiness and a sense of belonging"
+  notes: Warmth, cosiness, belonging, unhurried good cheer.
+  source: invented
+
+- id: de_feierabend
+  lang: de
+  category: untranslatable_in_context
+  text: Endlich Feierabend, gehen wir noch ein Bier trinken?
+  hot: [Feierabend]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Feierabend:
+      en: "the end of the working day and the free time that begins then"
+  notes: The end of the working day, and the free time and mood that begin then.
+  source: invented
+
+- id: fr_depaysement
+  lang: fr
+  category: untranslatable_in_context
+  text: À Tokyo, j'ai ressenti un profond dépaysement.
+  hot: [dépaysement]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    dépaysement:
+      en: "the disorientation of being out of one's own country or element"
+  notes: The disorientation (pleasant or not) of being out of your own country or element.
+  source: invented
+
+- id: fr_retrouvailles
+  lang: fr
+  category: untranslatable_in_context
+  text: Les retrouvailles avec mes cousins ont été très émouvantes.
+  hot: [retrouvailles]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    retrouvailles:
+      en: "the joy of being reunited after a long separation"
+  notes: The joy of being reunited after a long separation; a plural noun with no English singular equivalent.
+  source: invented
+
+# ---------------------------------------------------------------- construction (8)
+- id: es_gustar
+  lang: es
+  category: construction
+  text: A mi hermana le gustan las películas de terror.
+  hot: [le gustan]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    le gustan:
+      en: "are pleasing to her (the films are the subject; she is the experiencer)"
+      src: "le agradan, son de su gusto"
+  notes: The films please my sister (the experiencer is the indirect object; the verb agrees with the films).
+  source: invented
+
+- id: it_mi_manchi
+  lang: it
+  category: construction
+  text: Mi manchi tanto, lo sai?
+  hot: [Mi manchi]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Mi manchi:
+      en: "I miss you (literally: you are missing to me)"
+  notes: '"You are missing to me": the person missed is the subject, the one who misses is the indirect object.'
+  source: invented
+
+- id: es_se_me_olvido
+  lang: es
+  category: construction
+  text: Se me olvidó el paraguas en el tren.
+  hot: [Se me olvidó]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Se me olvidó:
+      en: "I accidentally forgot it (it got forgotten on me, no blame)"
+      src: "lo olvidé sin querer, sin culpa"
+  notes: 'Accidental "se": the umbrella forgot itself on me (no blame on the speaker).'
+  source: invented
+
+- id: de_mir_ist_kalt
+  lang: de
+  category: construction
+  text: Mir ist kalt, kannst du das Fenster zumachen?
+  hot: [Mir ist kalt]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Mir ist kalt:
+      en: "I feel cold (literally: to me it is cold)"
+  notes: '"To me it is cold": a dative experiencer, not "I am cold".'
+  source: invented
+
+- id: es_ser_estar
+  lang: es
+  category: construction
+  text: La película es aburrida, y yo estoy aburrido.
+  hot: [es aburrida, estoy aburrido]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    es aburrida:
+      en: "is boring (a lasting quality of the film)"
+      src: "causa aburrimiento, no es entretenida"
+    estoy aburrido:
+      en: "am bored (my present state)"
+      src: "siento aburrimiento ahora"
+  notes: 'ser/estar: "boring" vs "bored"; English uses "be" for both.'
+  source: invented
+
+- id: fr_il_me_faut
+  lang: fr
+  category: construction
+  text: Il me faut encore une heure pour finir.
+  hot: [Il me faut]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Il me faut:
+      en: "I need (literally: it is needed to me)"
+  notes: Impersonal necessity with a dative ("it is needed to me").
+  source: invented
+
+- id: pt_infinitivo_pessoal
+  lang: pt
+  category: construction
+  text: Comprei o livro para lermos juntos.
+  hot: [lermos]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    lermos:
+      en: "for us to read (an infinitive marked for 'we')"
+  notes: The Portuguese personal (inflected) infinitive, "for us-to-read".
+  source: invented
+
+- id: it_magari_wish
+  lang: it
+  category: construction
+  text: Magari fosse già venerdì!
+  hot: [Magari fosse]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Magari fosse:
+      en: "if only it were"
+  notes: magari + imperfect subjunctive as a wish ("if only"). Pairs with it_magari_forse.
+  source: invented
+
+# ---------------------------------------------------------------- idiom (8)
+- id: es_tomar_el_pelo
+  lang: es
+  category: idiom
+  text: No te creo, me estás tomando el pelo.
+  hot: [me estás tomando el pelo]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    me estás tomando el pelo:
+      en: "you are pulling my leg, teasing me"
+      src: "me estás engañando en broma"
+  notes: '"You are taking my hair": you are pulling my leg.'
+  source: invented
+
+- id: it_in_bocca_al_lupo
+  lang: it
+  category: idiom
+  text: Domani hai l'esame? In bocca al lupo!
+  hot: [In bocca al lupo]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    In bocca al lupo:
+      en: "good luck"
+  notes: '"Into the wolf''s mouth": good luck (the reply is "crepi", may it die).'
+  source: invented
+
+- id: fr_cafard
+  lang: fr
+  category: idiom
+  text: Depuis qu'il pleut, j'ai le cafard.
+  hot: [j'ai le cafard]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    "j'ai le cafard":
+      en: "I feel down, blue"
+  notes: '"I have the cockroach": I feel down or blue.'
+  source: invented
+
+- id: de_tomaten
+  lang: de
+  category: idiom
+  text: Hast du Tomaten auf den Augen? Die Ampel ist rot!
+  hot: [Tomaten auf den Augen]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Tomaten auf den Augen:
+      en: "you are not seeing the obvious"
+  notes: '"Tomatoes on your eyes": you are not seeing the obvious.'
+  source: invented
+
+- id: pt_estou_com_saudades
+  lang: pt
+  category: idiom
+  text: Estou com saudades de você.
+  hot: [Estou com saudades]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Estou com saudades:
+      en: "I miss (you), with longing"
+  notes: '"I am with saudades of you": I miss you. A fixed phrase built on an untranslatable (compare pt_saudade).'
+  source: invented
+
+- id: es_en_las_nubes
+  lang: es
+  category: idiom
+  text: Mi hijo siempre está en las nubes en clase.
+  hot: [está en las nubes]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    está en las nubes:
+      en: "is daydreaming, absent-minded"
+      src: "está distraído, soñando despierto"
+  notes: '"Is in the clouds": daydreaming, absent-minded.'
+  source: invented
+
+- id: it_in_gamba
+  lang: it
+  category: idiom
+  text: La nuova collega è proprio in gamba.
+  hot: [in gamba]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    in gamba:
+      en: "capable, smart, on the ball"
+  notes: '"In leg": capable, smart, on the ball.'
+  source: invented
+
+- id: fr_poser_un_lapin
+  lang: fr
+  category: idiom
+  text: Elle m'a posé un lapin hier soir.
+  hot: [m'a posé un lapin]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    "m'a posé un lapin":
+      en: "stood me up"
+  notes: '"She put a rabbit on me": she stood me up.'
+  source: invented
+
+# ---------------------------------------------------------------- control (10): literal equivalents, length-matched
+- id: es_tren
+  lang: es
+  category: control
+  text: El tren sale a las ocho de la mañana.
+  probe: [tren]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    tren:
+      en: "train"
+      src: "tren, vehículo de ferrocarril"
+  source: invented
+
+- id: es_casa
+  lang: es
+  category: control
+  text: Mi hermana vive en una casa pequeña.
+  probe: [casa]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    casa:
+      en: "house"
+      src: "casa, vivienda"
+  source: invented
+
+- id: de_brueder
+  lang: de
+  category: control
+  text: Ich habe zwei Brüder und eine Schwester.
+  probe: [Brüder]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Brüder:
+      en: "brothers"
+  source: invented
+
+- id: de_tisch
+  lang: de
+  category: control
+  text: Das Buch liegt auf dem Tisch in der Küche.
+  probe: [Tisch]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    Tisch:
+      en: "table"
+  source: invented
+
+- id: it_negozio
+  lang: it
+  category: control
+  text: Il negozio chiude alle sette di sera.
+  probe: [negozio]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    negozio:
+      en: "shop"
+  source: invented
+
+- id: it_caffe
+  lang: it
+  category: control
+  text: Mio padre beve un caffè ogni mattina.
+  probe: [caffè]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    caffè:
+      en: "coffee"
+  source: invented
+
+- id: pt_medico
+  lang: pt
+  category: control
+  text: O médico chegou ao hospital às nove horas.
+  probe: [médico]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    médico:
+      en: "doctor"
+  source: invented
+
+- id: pt_mercado
+  lang: pt
+  category: control
+  text: Comprei pão e leite no mercado.
+  probe: [leite]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    leite:
+      en: "milk"
+  source: invented
+
+- id: fr_chat
+  lang: fr
+  category: control
+  text: Le chat dort sur le canapé rouge.
+  probe: [canapé]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    canapé:
+      en: "sofa"
+  notes: probe is canapé, not chat (English 'chat' would trigger the source-word masking).
+  source: invented
+
+- id: fr_musee
+  lang: fr
+  category: control
+  text: Nous avons visité le musée avec nos enfants.
+  probe: [enfants]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    enfants:
+      en: "children"
+  source: invented
+
+# ---------------------------------------------------------------- Hindi (12): DRAFTS FOR THE FATHER (or another Hindi
+# speaker) TO CHECK. Neither Claude Code nor the user speaks Hindi. Invented sentences; romanisation in `notes`.
+- id: hi_jugaad
+  lang: hi
+  category: untranslatable_in_context
+  draft: true
+  text: उसने जुगाड़ से टूटी साइकिल ठीक कर दी।
+  hot: [जुगाड़]
+  senses:
+    जुगाड़:
+      en: "a frugal, improvised fix made with whatever is at hand"
+      src: "कम साधनों से निकाला गया चतुर, कामचलाऊ उपाय"
+  notes: "usne jugaad se tooti cycle theek kar di. He fixed the broken bicycle with jugaad. DRAFT."
+  source: invented
+
+- id: hi_viraha
+  lang: hi
+  category: untranslatable_in_context
+  draft: true
+  text: विरह की आग में वह रात भर जागती रही।
+  hot: [विरह]
+  senses:
+    विरह:
+      en: "the anguish of separation from a beloved, as in devotional poetry"
+      src: "प्रिय से बिछड़ने की पीड़ा"
+  notes: "virah ki aag mein vah raat bhar jaagti rahi. In the fire of viraha she stayed awake all night. DRAFT."
+  source: invented
+
+- id: hi_abhimaan
+  lang: hi
+  category: untranslatable_in_context
+  draft: true
+  text: वह अभिमान के मारे माँ से बात नहीं कर रही थी।
+  hot: [अभिमान]
+  senses:
+    अभिमान:
+      en: "wounded pride towards a loved one: sulking and waiting for them to make amends"
+      src: "अपनों से रूठने वाला आहत स्वाभिमान"
+  notes: "vah abhimaan ke maare maa se baat nahin kar rahi thi. Out of abhimaan she was not speaking to her mother. DRAFT, and CHECK THE SENSE: in Hindi abhimaan often just means pride or arrogance; the loving-hurt sense is stronger in Bengali."
+  source: invented
+
+- id: hi_mann
+  lang: hi
+  category: untranslatable_in_context
+  draft: true
+  text: आज किसी काम में मेरा मन नहीं लग रहा।
+  hot: [मन नहीं लग रहा]
+  senses:
+    मन नहीं लग रहा:
+      en: "my heart-mind will not settle on anything (I cannot get absorbed in anything)"
+      src: "मन = दिल और दिमाग़; यहाँ किसी काम में जी न लगना"
+  notes: "aaj kisi kaam mein mera man nahin lag raha. Today my man (heart-mind) won't attach to any work. DRAFT."
+  source: invented
+
+- id: hi_nazar
+  lang: hi
+  category: untranslatable_in_context
+  draft: true
+  text: बच्चे को नज़र न लगे, इसलिए माँ ने काला टीका लगाया।
+  hot: [नज़र]
+  senses:
+    नज़र:
+      en: "the evil eye: harm caused by an envious or admiring gaze"
+      src: "बुरी नज़र, किसी की ईर्ष्या भरी दृष्टि से होने वाला नुक़सान"
+  notes: "bachche ko nazar na lage, isliye maa ne kaala teeka lagaaya. So that the child does not catch nazar, the mother put a black dot on him. DRAFT."
+  source: invented
+
+- id: hi_apnapan
+  lang: hi
+  category: untranslatable_in_context
+  draft: true
+  text: इस छोटे से गाँव में एक अजीब सा अपनापन है।
+  hot: [अपनापन]
+  senses:
+    अपनापन:
+      en: "a warm sense of belonging, of being treated as one's own"
+      src: "अपना होने का एहसास, आत्मीयता"
+  notes: "is chhote se gaanv mein ek ajeeb sa apnapan hai. In this little village there is a strange apnapan. DRAFT."
+  source: invented
+
+- id: hi_pasand
+  lang: hi
+  category: construction
+  draft: true
+  text: मुझे बारिश बहुत पसंद है।
+  hot: [मुझे, पसंद है]
+  senses:
+    मुझे:
+      en: "to me (the person who likes is a dative experiencer, as in Spanish 'me gusta')"
+      src: "मुझको, पसंद करने वाला व्यक्ति"
+    पसंद है:
+      en: "is liked, is pleasing (the rain is the grammatical subject)"
+      src: "अच्छी लगती है"
+  notes: "mujhe baarish bahut pasand hai. To-me rain is very liked: the dative-subject construction parallel to gustar. DRAFT."
+  source: invented
+
+- id: hi_lagta
+  lang: hi
+  category: construction
+  draft: true
+  text: मुझे लगता है कि वह कल नहीं आएगा।
+  hot: [मुझे लगता है]
+  senses:
+    मुझे लगता है:
+      en: "it seems to me, I think (dative experiencer)"
+      src: "मेरा ख़याल है"
+  notes: "mujhe lagta hai ki vah kal nahin aayega. To-me it-seems that he won't come tomorrow. DRAFT."
+  source: invented
+
+- id: hi_ne
+  lang: hi
+  category: construction
+  draft: true
+  text: सीता ने कल तीन चिट्ठियाँ लिखीं।
+  hot: [सीता ने, लिखीं]
+  senses:
+    सीता ने:
+      en: "Sita, marked as the agent with the ergative 'ne'"
+      src: "सीता (कर्ता, 'ने' के साथ)"
+    लिखीं:
+      en: "wrote (the verb agrees with the letters, feminine plural, not with Sita)"
+      src: "लिखीं (क्रिया चिट्ठियों से मेल खाती है)"
+  notes: "Sita ne kal teen chitthiyaan likhin. Sita-ERG yesterday three letters wrote(fem.pl). DRAFT."
+  source: invented
+
+- id: hi_bhai
+  lang: hi
+  category: control
+  draft: true
+  text: मेरे दो भाई और एक बहन हैं।
+  probe: [भाई]
+  senses:
+    भाई:
+      en: "brothers"
+      src: "भाई"
+  notes: "mere do bhai aur ek bahan hain. I have two brothers and a sister. DRAFT."
+  source: invented
+
+- id: hi_kitaab
+  lang: hi
+  category: control
+  draft: true
+  text: किताब रसोई में मेज़ पर रखी है।
+  probe: [किताब]
+  senses:
+    किताब:
+      en: "book"
+      src: "पुस्तक"
+  notes: "kitaab rasoi mein mez par rakhi hai. The book is on the table in the kitchen. DRAFT."
+  source: invented
+
+- id: hi_pita
+  lang: hi
+  category: control
+  draft: true
+  text: मेरे पिता हर सुबह चाय पीते हैं।
+  probe: [पिता]
+  senses:
+    पिता:
+      en: "father"
+      src: "पिताजी"
+  notes: "mere pita har subah chaay peete hain. My father drinks tea every morning. DRAFT."
+  source: invented
+
+# ---------------------------------------------------------------- dialect (optional; dropped first if time is short)
+# Lines of Belli, "Er giorno der giudizzio" (1831), copied from ../translation-lattice/data/source.json; both lines
+# were checked against a web edition, not a print one. Do not let anyone "fix" the spelling. Add Belli's own
+# footnotes as `gloss` if you want them used (TODO_USER); nothing uses `gloss` yet.
+- id: rom_ffora
+  lang: rom
+  category: dialect
+  optional: true
+  text: 'cominceranno a ddì: ffora a cchi ttoca.'
+  hot: [ffora a cchi ttoca]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    ffora a cchi ttoca:
+      en: "out, whoever's turn it is"
+  notes: '"Out, whoever''s turn it is!", the trumpeting angels calling the dead out. Belli line 4.'
+  source: Belli, Er giorno der giudizzio, line 4 (web edition)
+
+- id: rom_schertri
+  lang: rom
+  category: dialect
+  optional: true
+  text: de schertri da la terra a ppecorone,
+  hot: [schertri, a ppecorone]
+  senses:      # intended sense in THIS sentence: en (English gloss), src (source-language gloss; es/hi only)
+    schertri:
+      en: "skeletons"
+    a ppecorone:
+      en: "on all fours"
+  notes: 'schertri = skeletons; a ppecorone = on all fours. Both models misread schertri as "jesters" in the lattice run. Belli line 6.'
+  source: Belli, Er giorno der giudizzio, line 6 (web edition)

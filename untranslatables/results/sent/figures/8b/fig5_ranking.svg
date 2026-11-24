@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="1195.2pt" viewBox="0 0 864 1195.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-21T12:07:38.181236</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 1195.2 
+L 864 1195.2 
+L 864 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 362.88 1080 
+L 820.8 1080 
+L 820.8 72 
+L 362.88 72 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 362.88 1080 
+L 362.88 72 
+" clip-path="url(#pd0f3559519)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m7e74ef76a6" d="M 0 0 
+L 0 3.5 
+" style="stroke: #6b6a66; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m7e74ef76a6" x="362.88" y="1080" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="362.88" y="1096.876953" transform="rotate(-0 362.88 1096.876953)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 450.420583 1080 
+L 450.420583 72 
+" clip-path="url(#pd0f3559519)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m7e74ef76a6" x="450.420583" y="1080" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="450.420583" y="1096.876953" transform="rotate(-0 450.420583 1096.876953)">1</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 537.961166 1080 
+L 537.961166 72 
+" clip-path="url(#pd0f3559519)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m7e74ef76a6" x="537.961166" y="1080" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="537.961166" y="1096.876953" transform="rotate(-0 537.961166 1096.876953)">2</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 625.501749 1080 
+L 625.501749 72 
+" clip-path="url(#pd0f3559519)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m7e74ef76a6" x="625.501749" y="1080" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="625.501749" y="1096.876953" transform="rotate(-0 625.501749 1096.876953)">3</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 713.042332 1080 
+L 713.042332 72 
+" clip-path="url(#pd0f3559519)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m7e74ef76a6" x="713.042332" y="1080" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="713.042332" y="1096.876953" transform="rotate(-0 713.042332 1096.876953)">4</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 800.582915 1080 
+L 800.582915 72 
+" clip-path="url(#pd0f3559519)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m7e74ef76a6" x="800.582915" y="1080" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="800.582915" y="1096.876953" transform="rotate(-0 800.582915 1096.876953)">5</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6b6a66" x="591.84" y="1113.877969" transform="rotate(-0 591.84 1113.877969)">doublings of length needed before the meaning gets across</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="patch_3">
+    <path d="M 362.88 1034.181818 
+L 365.506217 1034.181818 
+L 365.506217 1017.570997 
+L 362.88 1017.570997 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 362.88 1011.111233 
+L 365.506217 1011.111233 
+L 365.506217 994.500412 
+L 362.88 994.500412 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 362.88 988.040648 
+L 365.506217 988.040648 
+L 365.506217 971.429827 
+L 362.88 971.429827 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 362.88 964.970063 
+L 365.506217 964.970063 
+L 365.506217 948.359242 
+L 362.88 948.359242 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 362.88 941.899478 
+L 365.506217 941.899478 
+L 365.506217 925.288657 
+L 362.88 925.288657 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 362.88 918.828893 
+L 365.506217 918.828893 
+L 365.506217 902.218072 
+L 362.88 902.218072 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 362.88 895.758308 
+L 365.506217 895.758308 
+L 365.506217 879.147487 
+L 362.88 879.147487 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 362.88 872.687723 
+L 365.506217 872.687723 
+L 365.506217 856.076902 
+L 362.88 856.076902 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 362.88 849.617138 
+L 365.506217 849.617138 
+L 365.506217 833.006317 
+L 362.88 833.006317 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 362.88 826.546553 
+L 365.506217 826.546553 
+L 365.506217 809.935732 
+L 362.88 809.935732 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 362.88 803.475968 
+L 365.506217 803.475968 
+L 365.506217 786.865147 
+L 362.88 786.865147 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 362.88 780.405383 
+L 365.506217 780.405383 
+L 365.506217 763.794562 
+L 362.88 763.794562 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 362.88 757.334798 
+L 365.506217 757.334798 
+L 365.506217 740.723977 
+L 362.88 740.723977 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 362.88 734.264213 
+L 365.506217 734.264213 
+L 365.506217 717.653392 
+L 362.88 717.653392 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 362.88 711.193628 
+L 365.506217 711.193628 
+L 365.506217 694.582807 
+L 362.88 694.582807 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 362.88 688.123043 
+L 365.506217 688.123043 
+L 365.506217 671.512222 
+L 362.88 671.512222 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 362.88 665.052458 
+L 365.506217 665.052458 
+L 365.506217 648.441637 
+L 362.88 648.441637 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 362.88 641.981873 
+L 365.506217 641.981873 
+L 365.506217 625.371052 
+L 362.88 625.371052 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 362.88 618.911288 
+L 365.506217 618.911288 
+L 365.506217 602.300467 
+L 362.88 602.300467 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 362.88 595.840703 
+L 365.506217 595.840703 
+L 365.506217 579.229882 
+L 362.88 579.229882 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 362.88 572.770118 
+L 365.506217 572.770118 
+L 365.506217 556.159297 
+L 362.88 556.159297 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 362.88 549.699533 
+L 365.506217 549.699533 
+L 365.506217 533.088712 
+L 362.88 533.088712 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 362.88 526.628948 
+L 365.506217 526.628948 
+L 365.506217 510.018127 
+L 362.88 510.018127 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 362.88 503.558363 
+L 365.506217 503.558363 
+L 365.506217 486.947542 
+L 362.88 486.947542 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_27">
+    <path d="M 362.88 480.487778 
+L 365.506217 480.487778 
+L 365.506217 463.876957 
+L 362.88 463.876957 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_28">
+    <path d="M 362.88 457.417193 
+L 379.744262 457.417193 
+L 379.744262 440.806372 
+L 362.88 440.806372 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_29">
+    <path d="M 362.88 434.346608 
+L 382.348362 434.346608 
+L 382.348362 417.735787 
+L 362.88 417.735787 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_30">
+    <path d="M 362.88 411.276023 
+L 387.400811 411.276023 
+L 387.400811 394.665202 
+L 362.88 394.665202 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_31">
+    <path d="M 362.88 388.205438 
+L 439.431536 388.205438 
+L 439.431536 371.594617 
+L 362.88 371.594617 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_32">
+    <path d="M 362.88 365.134853 
+L 482.160179 365.134853 
+L 482.160179 348.524032 
+L 362.88 348.524032 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #6250d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_33">
+    <path d="M 362.88 342.064268 
+L 509.059765 342.064268 
+L 509.059765 325.453447 
+L 362.88 325.453447 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c98a00; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_34">
+    <path d="M 362.88 318.993683 
+L 516.503875 318.993683 
+L 516.503875 302.382862 
+L 362.88 302.382862 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_35">
+    <path d="M 362.88 295.923098 
+L 545.617714 295.923098 
+L 545.617714 279.312277 
+L 362.88 279.312277 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #1a8a72; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_36">
+    <path d="M 362.88 272.852513 
+L 547.094858 272.852513 
+L 547.094858 256.241692 
+L 362.88 256.241692 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_37">
+    <path d="M 362.88 249.781928 
+L 610.428926 249.781928 
+L 610.428926 233.171107 
+L 362.88 233.171107 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #6250d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_38">
+    <path d="M 362.88 226.711343 
+L 618.39899 226.711343 
+L 618.39899 210.100522 
+L 362.88 210.100522 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_39">
+    <path d="M 362.88 203.640758 
+L 691.064239 203.640758 
+L 691.064239 187.029937 
+L 362.88 187.029937 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_40">
+    <path d="M 362.88 180.570173 
+L 708.579169 180.570173 
+L 708.579169 163.959352 
+L 362.88 163.959352 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #c4562f; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_41">
+    <path d="M 362.88 157.499588 
+L 713.042332 157.499588 
+L 713.042332 140.888767 
+L 362.88 140.888767 
+z
+" clip-path="url(#pd0f3559519)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_42">
+    <path d="M 362.88 134.429003 
+L 798.994286 134.429003 
+L 798.994286 117.818182 
+L 362.88 117.818182 
+z
+" clip-path="url(#pd0f3559519)" style="fill: url(#h7260a1c37c); stroke: #c98a00; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_43">
+    <path d="M 362.88 1080 
+L 820.8 1080 
+" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_8">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="1028.604357" transform="rotate(-0 355.876753 1028.604357)">Jeden Herbst packt mich das Fernweh.</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="1028.344181" transform="rotate(-0 369.883247 1028.344181)">0.0</text>
+   </g>
+   <g id="text_10">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="1005.533772" transform="rotate(-0 355.876753 1005.533772)">Porta quel vestito con una certa sprezzatura.</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="1005.273596" transform="rotate(-0 369.883247 1005.273596)">0.0</text>
+   </g>
+   <g id="text_12">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="982.463187" transform="rotate(-0 355.876753 982.463187)">Magari passo da te stasera, vediamo.</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="982.203011" transform="rotate(-0 369.883247 982.203011)">0.0</text>
+   </g>
+   <g id="text_14">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="959.602602" transform="rotate(-0 355.876753 959.602602)">Ela fazia cafuné no filho até ele dormir.</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="959.132426" transform="rotate(-0 369.883247 959.132426)">0.0</text>
+   </g>
+   <g id="text_16">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="936.354829" transform="rotate(-0 355.876753 936.354829)">In der kleinen Hütte herrschte eine wunderbare Gemütlichkeit.</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="936.061841" transform="rotate(-0 369.883247 936.061841)">0.0</text>
+   </g>
+   <g id="text_18">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="914.130807" transform="rotate(-0 355.876753 914.130807)">À Tokyo, j'ai ressenti un profond dépaysement.</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="912.991256" transform="rotate(-0 369.883247 912.991256)">0.0</text>
+   </g>
+   <g id="text_20">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="890.390847" transform="rotate(-0 355.876753 890.390847)">Les retrouvailles avec mes cousins ont été très émouvantes.</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="889.920671" transform="rotate(-0 369.883247 889.920671)">0.0</text>
+   </g>
+   <g id="text_22">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="867.110262" transform="rotate(-0 355.876753 867.110262)">Mi manchi tanto, lo sai?</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="866.850086" transform="rotate(-0 369.883247 866.850086)">0.0</text>
+   </g>
+   <g id="text_24">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="844.249677" transform="rotate(-0 355.876753 844.249677)">Se me olvidó el paraguas en el tren.</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="843.779501" transform="rotate(-0 369.883247 843.779501)">0.0</text>
+   </g>
+   <g id="text_26">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="821.179092" transform="rotate(-0 355.876753 821.179092)">La película es aburrida, y yo estoy aburrido.</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="820.708916" transform="rotate(-0 369.883247 820.708916)">0.0</text>
+   </g>
+   <g id="text_28">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="797.898507" transform="rotate(-0 355.876753 797.898507)">Il me faut encore une heure pour finir.</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="797.638331" transform="rotate(-0 369.883247 797.638331)">0.0</text>
+   </g>
+   <g id="text_30">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="775.037922" transform="rotate(-0 355.876753 775.037922)">No te creo, me estás tomando el pelo.</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="774.567746" transform="rotate(-0 369.883247 774.567746)">0.0</text>
+   </g>
+   <g id="text_32">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="751.757337" transform="rotate(-0 355.876753 751.757337)">Domani hai l'esame? In bocca al lupo!</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="751.497161" transform="rotate(-0 369.883247 751.497161)">0.0</text>
+   </g>
+   <g id="text_34">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="728.686752" transform="rotate(-0 355.876753 728.686752)">Hast du Tomaten auf den Augen? Die Ampel ist rot!</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="728.426576" transform="rotate(-0 369.883247 728.426576)">0.0</text>
+   </g>
+   <g id="text_36">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="705.826167" transform="rotate(-0 355.876753 705.826167)">Mi hijo siempre está en las nubes en clase.</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="705.355991" transform="rotate(-0 369.883247 705.355991)">0.0</text>
+   </g>
+   <g id="text_38">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="682.755582" transform="rotate(-0 355.876753 682.755582)">Elle m'a posé un lapin hier soir.</text>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="682.285406" transform="rotate(-0 369.883247 682.285406)">0.0</text>
+   </g>
+   <g id="text_40">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="659.564411" transform="rotate(-0 355.876753 659.564411)">El tren sale a las ocho de la mañana.</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="659.214821" transform="rotate(-0 369.883247 659.214821)">0.0</text>
+   </g>
+   <g id="text_42">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="636.493826" transform="rotate(-0 355.876753 636.493826)">Mi hermana vive en una casa pequeña.</text>
+   </g>
+   <g id="text_43">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="636.144236" transform="rotate(-0 369.883247 636.144236)">0.0</text>
+   </g>
+   <g id="text_44">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="613.366639" transform="rotate(-0 355.876753 613.366639)">Ich habe zwei Brüder und eine Schwester.</text>
+   </g>
+   <g id="text_45">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="613.073651" transform="rotate(-0 369.883247 613.073651)">0.0</text>
+   </g>
+   <g id="text_46">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="590.296054" transform="rotate(-0 355.876753 590.296054)">Das Buch liegt auf dem Tisch in der Küche.</text>
+   </g>
+   <g id="text_47">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="590.003066" transform="rotate(-0 369.883247 590.003066)">0.0</text>
+   </g>
+   <g id="text_48">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="567.192657" transform="rotate(-0 355.876753 567.192657)">Il negozio chiude alle sette di sera.</text>
+   </g>
+   <g id="text_49">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="566.932481" transform="rotate(-0 369.883247 566.932481)">0.0</text>
+   </g>
+   <g id="text_50">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="544.332072" transform="rotate(-0 355.876753 544.332072)">O médico chegou ao hospital às nove horas.</text>
+   </g>
+   <g id="text_51">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="543.861896" transform="rotate(-0 369.883247 543.861896)">0.0</text>
+   </g>
+   <g id="text_52">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="521.140901" transform="rotate(-0 355.876753 521.140901)">Comprei pão e leite no mercado.</text>
+   </g>
+   <g id="text_53">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="520.791311" transform="rotate(-0 369.883247 520.791311)">0.0</text>
+   </g>
+   <g id="text_54">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="498.190902" transform="rotate(-0 355.876753 498.190902)">Le chat dort sur le canapé rouge.</text>
+   </g>
+   <g id="text_55">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="497.720726" transform="rotate(-0 369.883247 497.720726)">0.0</text>
+   </g>
+   <g id="text_56">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="475.120317" transform="rotate(-0 355.876753 475.120317)">Nous avons visité le musée avec nos enfants.</text>
+   </g>
+   <g id="text_57">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="369.883247" y="474.650141" transform="rotate(-0 369.883247 474.650141)">0.0</text>
+   </g>
+   <g id="text_58">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="452.04481" transform="rotate(-0 355.876753 452.04481)">La nuova collega è proprio in gamba.</text>
+   </g>
+   <g id="text_59">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="384.121292" y="451.579556" transform="rotate(-0 384.121292 451.579556)">0.2</text>
+   </g>
+   <g id="text_60">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="428.769147" transform="rotate(-0 355.876753 428.769147)">Me gusta mucho el duende.</text>
+   </g>
+   <g id="text_61">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="386.725391" y="428.508971" transform="rotate(-0 386.725391 428.508971)">0.2</text>
+   </g>
+   <g id="text_62">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="405.698562" transform="rotate(-0 355.876753 405.698562)">Ele deu um jeitinho e conseguiu o documento no mesmo dia.</text>
+   </g>
+   <g id="text_63">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="391.77784" y="405.438386" transform="rotate(-0 391.77784 405.438386)">0.3</text>
+   </g>
+   <g id="text_64">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="382.837977" transform="rotate(-0 355.876753 382.837977)">A mi hermana le gustan las películas de terror.</text>
+   </g>
+   <g id="text_65">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="443.808566" y="382.367801" transform="rotate(-0 443.808566 382.367801)">0.9</text>
+   </g>
+   <g id="text_66">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="359.557392" transform="rotate(-0 355.876753 359.557392)">de schertri da la terra a ppecorone,</text>
+   </g>
+   <g id="text_67">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="486.537208" y="359.297216" transform="rotate(-0 486.537208 359.297216)">1.4</text>
+   </g>
+   <g id="text_68">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="336.486807" transform="rotate(-0 355.876753 336.486807)">Depuis qu'il pleut, j'ai le cafard.</text>
+   </g>
+   <g id="text_69">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="513.436794" y="336.226631" transform="rotate(-0 513.436794 336.226631)">1.7</text>
+   </g>
+   <g id="text_70">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="313.6213" transform="rotate(-0 355.876753 313.6213)">Magari fosse già venerdì!</text>
+   </g>
+   <g id="text_71">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="520.880904" y="313.156046" transform="rotate(-0 520.880904 313.156046)">1.8</text>
+   </g>
+   <g id="text_72">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="290.550715" transform="rotate(-0 355.876753 290.550715)">Mio padre beve un caffè ogni mattina.</text>
+   </g>
+   <g id="text_73">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="549.994743" y="290.085461" transform="rotate(-0 549.994743 290.085461)">2.1</text>
+   </g>
+   <g id="text_74">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="267.275052" transform="rotate(-0 355.876753 267.275052)">Mir ist kalt, kannst du das Fenster zumachen?</text>
+   </g>
+   <g id="text_75">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="551.471887" y="267.014876" transform="rotate(-0 551.471887 267.014876)">2.1</text>
+   </g>
+   <g id="text_76">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="244.409545" transform="rotate(-0 355.876753 244.409545)">cominceranno a ddì: ffora a cchi ttoca.</text>
+   </g>
+   <g id="text_77">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="614.805955" y="243.944291" transform="rotate(-0 614.805955 243.944291)">2.8</text>
+   </g>
+   <g id="text_78">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="221.133882" transform="rotate(-0 355.876753 221.133882)">Endlich Feierabend, gehen wir noch ein Bier trinken?</text>
+   </g>
+   <g id="text_79">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="622.776019" y="220.873706" transform="rotate(-0 622.776019 220.873706)">2.9</text>
+   </g>
+   <g id="text_80">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="198.273297" transform="rotate(-0 355.876753 198.273297)">Nos quedamos de sobremesa hasta que anocheció.</text>
+   </g>
+   <g id="text_81">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="695.441268" y="197.803121" transform="rotate(-0 695.441268 197.803121)">3.7</text>
+   </g>
+   <g id="text_82">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="175.202712" transform="rotate(-0 355.876753 175.202712)">Sinto muita saudade da casa da minha avó.</text>
+   </g>
+   <g id="text_83">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="712.956198" y="174.732536" transform="rotate(-0 712.956198 174.732536)">3.9</text>
+   </g>
+   <g id="text_84">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="151.922127" transform="rotate(-0 355.876753 151.922127)">Comprei o livro para lermos juntos.</text>
+   </g>
+   <g id="text_85">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="717.419361" y="151.661951" transform="rotate(-0 717.419361 151.661951)">4.0</text>
+   </g>
+   <g id="text_86">
+    <text style="font-style: italic; font-size: 10.5px; font-family: 'DejaVu Serif'; text-anchor: end; fill: #1f1f1e" x="355.876753" y="129.061542" transform="rotate(-0 355.876753 129.061542)">Estou com saudades de você.</text>
+   </g>
+   <g id="text_87">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="803.371315" y="128.591366" transform="rotate(-0 803.371315 128.591366)">&gt;5.0</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_44">
+     <path d="M 627.339062 993.59375 
+L 647.339062 993.59375 
+L 647.339062 986.59375 
+L 627.339062 986.59375 
+z
+" style="fill: #c4562f; stroke: #c4562f; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_88">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="655.339062" y="993.59375" transform="rotate(-0 655.339062 993.59375)">untranslatable word</text>
+    </g>
+    <g id="patch_45">
+     <path d="M 627.339062 1008.594531 
+L 647.339062 1008.594531 
+L 647.339062 1001.594531 
+L 627.339062 1001.594531 
+z
+" style="fill: #2a78d6; stroke: #2a78d6; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_89">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="655.339062" y="1008.594531" transform="rotate(-0 655.339062 1008.594531)">grammatical construction</text>
+    </g>
+    <g id="patch_46">
+     <path d="M 627.339062 1023.595312 
+L 647.339062 1023.595312 
+L 647.339062 1016.595312 
+L 627.339062 1016.595312 
+z
+" style="fill: #c98a00; stroke: #c98a00; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_90">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="655.339062" y="1023.595312" transform="rotate(-0 655.339062 1023.595312)">idiom</text>
+    </g>
+    <g id="patch_47">
+     <path d="M 627.339062 1038.596094 
+L 647.339062 1038.596094 
+L 647.339062 1031.596094 
+L 627.339062 1031.596094 
+z
+" style="fill: #1a8a72; stroke: #1a8a72; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_91">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="655.339062" y="1038.596094" transform="rotate(-0 655.339062 1038.596094)">plain sentence</text>
+    </g>
+    <g id="patch_48">
+     <path d="M 627.339062 1053.596875 
+L 647.339062 1053.596875 
+L 647.339062 1046.596875 
+L 627.339062 1046.596875 
+z
+" style="fill: #6250d6; stroke: #6250d6; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_92">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="655.339062" y="1053.596875" transform="rotate(-0 655.339062 1053.596875)">Roman dialect (Belli)</text>
+    </g>
+    <g id="patch_49">
+     <path d="M 627.339062 1068.597656 
+L 647.339062 1068.597656 
+L 647.339062 1061.597656 
+L 627.339062 1061.597656 
+z
+" style="fill: url(#h95eb41ce13); stroke: #6b6a66; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_93">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="655.339062" y="1068.597656" transform="rotate(-0 655.339062 1068.597656)">never got across (lower bound)</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_94">
+   <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="10.368" y="30.0855" transform="rotate(-0 10.368 30.0855)">Doublings of length needed, average by kind of sentence: plain 0.2, untranslatable word 0.9, construction 1.1, idiom 0.9, dialect 2.1</text>
+  </g>
+  <g id="text_95">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #6b6a66" transform="translate(10.368 1163.91094)">How to read this: each bar is one sentence; its length is how many times the English had to double in length (from the standard translation) before the</text>
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #6b6a66" transform="translate(10.368 1177.113948)">original could be rebuilt as well as an easy sentence's can. Hatched: it never got there, even with a paragraph of commentary.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd0f3559519">
+   <rect x="362.88" y="72" width="457.92" height="1008"/>
+  </clipPath>
+ </defs>
+ <defs>
+  <pattern id="h7260a1c37c" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+   <rect x="0" y="0" width="73" height="73" fill="#fcfcfb"/>
+   <path d="M -36 36 
+L 36 -36 
+M -32 40 
+L 40 -32 
+M -28 44 
+L 44 -28 
+M -24 48 
+L 48 -24 
+M -20 52 
+L 52 -20 
+M -16 56 
+L 56 -16 
+M -12 60 
+L 60 -12 
+M -8 64 
+L 64 -8 
+M -4 68 
+L 68 -4 
+M 0 72 
+L 72 0 
+M 4 76 
+L 76 4 
+M 8 80 
+L 80 8 
+M 12 84 
+L 84 12 
+M 16 88 
+L 88 16 
+M 20 92 
+L 92 20 
+M 24 96 
+L 96 24 
+M 28 100 
+L 100 28 
+M 32 104 
+L 104 32 
+M 36 108 
+L 108 36 
+" style="fill: #c98a00; stroke: #c98a00; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+  </pattern>
+  <pattern id="h95eb41ce13" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+   <rect x="0" y="0" width="73" height="73" fill="#fcfcfb"/>
+   <path d="M -36 36 
+L 36 -36 
+M -32 40 
+L 40 -32 
+M -28 44 
+L 44 -28 
+M -24 48 
+L 48 -24 
+M -20 52 
+L 52 -20 
+M -16 56 
+L 56 -16 
+M -12 60 
+L 60 -12 
+M -8 64 
+L 64 -8 
+M -4 68 
+L 68 -4 
+M 0 72 
+L 72 0 
+M 4 76 
+L 76 4 
+M 8 80 
+L 80 8 
+M 12 84 
+L 84 12 
+M 16 88 
+L 88 16 
+M 20 92 
+L 92 20 
+M 24 96 
+L 96 24 
+M 28 100 
+L 100 28 
+M 32 104 
+L 104 32 
+M 36 108 
+L 108 36 
+" style="fill: #6b6a66; stroke: #6b6a66; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+  </pattern>
+ </defs>
+</svg>

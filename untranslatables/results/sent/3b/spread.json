@@ -1,0 +1,5025 @@
+{
+ "model": "meta-llama/Llama-3.2-3B-Instruct (bf16)",
+ "n": 20,
+ "temperature": 1.0,
+ "extract_prompt": "Here is a {lang} sentence and an English translation of it.\n\n{lang}: {source}\nEnglish: {english}\n\nWhich words of the English translation render the {lang} \"{span}\"? Reply with those English words only, copied exactly from the translation. If nothing renders it, reply \"(none)\".",
+ "spans": [
+  {
+   "sid": "es_duende",
+   "lang": "es",
+   "category": "untranslatable_in_context",
+   "text": "Me gusta mucho el duende.",
+   "span": {
+    "text": "duende",
+    "start": 18,
+    "end": 24,
+    "kind": "hot"
+   },
+   "H_bits": 3.2037016960573483,
+   "n_used": 20,
+   "n_clusters": 11,
+   "clusters": [
+    {
+     "rep": "i really",
+     "share": 0.25,
+     "members": [
+      "I really"
+     ]
+    },
+    {
+     "rep": "goblin",
+     "share": 0.15,
+     "members": [
+      "Goblin",
+      "goblin",
+      "goblins"
+     ]
+    },
+    {
+     "rep": "dwarf",
+     "share": 0.1,
+     "members": [
+      "dwarf"
+     ]
+    },
+    {
+     "rep": "little",
+     "share": 0.1,
+     "members": [
+      "little"
+     ]
+    },
+    {
+     "rep": "spirit",
+     "share": 0.1,
+     "members": [
+      "spirit"
+     ]
+    },
+    {
+     "rep": "pixie",
+     "share": 0.05,
+     "members": [
+      "pixie"
+     ]
+    },
+    {
+     "rep": "really",
+     "share": 0.05,
+     "members": [
+      "really"
+     ]
+    },
+    {
+     "rep": "gypsy spirit",
+     "share": 0.05,
+     "members": [
+      "gypsy spirit"
+     ]
+    },
+    {
+     "rep": "him",
+     "share": 0.05,
+     "members": [
+      "him"
+     ]
+    },
+    {
+     "rep": "acrobat",
+     "share": 0.05,
+     "members": [
+      "acrobat"
+     ]
+    },
+    {
+     "rep": "trickster",
+     "share": 0.05,
+     "members": [
+      "trickster"
+     ]
+    }
+   ],
+   "renderings": [
+    "dwarf",
+    "little",
+    "pixie",
+    "spirit",
+    "really",
+    "I really",
+    "goblins",
+    "Goblin",
+    "I really",
+    "goblin",
+    "gypsy spirit",
+    "I really",
+    "I really",
+    "him",
+    "I really",
+    "acrobat",
+    "dwarf",
+    "spirit",
+    "trickster",
+    "little"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "I really like the dwarf.",
+    "I really like the little imp.",
+    "I really like the pixie.",
+    "I greatly enjoy the spirit.",
+    "I really like it.",
+    "I really like the elf.",
+    "I really like goblins.",
+    "I really like the Goblin.",
+    "I really like the fairy.",
+    "I really like the goblin.",
+    "I really like the gypsy spirit.",
+    "I really like the elf.",
+    "I really like the gnome.",
+    "I like him very much.",
+    "I really enjoy the elf.",
+    "I really like the acrobat.",
+    "I really like the dwarf.",
+    "I really like the spirit of the thing.",
+    "I really like the trickster.",
+    "I really like the little imp."
+   ]
+  },
+  {
+   "sid": "es_duende",
+   "lang": "es",
+   "category": "untranslatable_in_context",
+   "text": "Me gusta mucho el duende.",
+   "span": {
+    "text": "gusta",
+    "start": 3,
+    "end": 8,
+    "kind": "hot"
+   },
+   "H_bits": 1.6010143058068347,
+   "n_used": 20,
+   "n_clusters": 4,
+   "clusters": [
+    {
+     "rep": "really",
+     "share": 0.55,
+     "members": [
+      "really"
+     ]
+    },
+    {
+     "rep": "i",
+     "share": 0.25,
+     "members": [
+      "I"
+     ]
+    },
+    {
+     "rep": "i really",
+     "share": 0.15,
+     "members": [
+      "I greatly",
+      "I really"
+     ]
+    },
+    {
+     "rep": "him",
+     "share": 0.05,
+     "members": [
+      "him"
+     ]
+    }
+   ],
+   "renderings": [
+    "really",
+    "really",
+    "really",
+    "I greatly",
+    "really",
+    "I",
+    "I",
+    "I",
+    "really",
+    "I",
+    "I really",
+    "I",
+    "really",
+    "him",
+    "really",
+    "I really",
+    "really",
+    "really",
+    "really",
+    "really"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "I really like the dwarf.",
+    "I really like the little imp.",
+    "I really like the pixie.",
+    "I greatly enjoy the spirit.",
+    "I really like it.",
+    "I really like the elf.",
+    "I really like goblins.",
+    "I really like the Goblin.",
+    "I really like the fairy.",
+    "I really like the goblin.",
+    "I really like the gypsy spirit.",
+    "I really like the elf.",
+    "I really like the gnome.",
+    "I like him very much.",
+    "I really enjoy the elf.",
+    "I really like the acrobat.",
+    "I really like the dwarf.",
+    "I really like the spirit of the thing.",
+    "I really like the trickster.",
+    "I really like the little imp."
+   ]
+  },
+  {
+   "sid": "pt_saudade",
+   "lang": "pt",
+   "category": "untranslatable_in_context",
+   "text": "Sinto muita saudade da casa da minha avó.",
+   "span": {
+    "text": "saudade",
+    "start": 12,
+    "end": 19,
+    "kind": "hot"
+   },
+   "H_bits": 2.016875695766564,
+   "n_used": 18,
+   "n_clusters": 5,
+   "clusters": [
+    {
+     "rep": "i",
+     "share": 0.4444444444444444,
+     "members": [
+      "I,"
+     ]
+    },
+    {
+     "rep": "i miss",
+     "share": 0.2222222222222222,
+     "members": [
+      "I miss"
+     ]
+    },
+    {
+     "rep": "i feel a lot of nostalgia for my grandmother's house",
+     "share": 0.16666666666666666,
+     "members": [
+      "I feel a lot of nostalgia for my grandmother's house."
+     ]
+    },
+    {
+     "rep": "much",
+     "share": 0.1111111111111111,
+     "members": [
+      "I greatly",
+      "much"
+     ]
+    },
+    {
+     "rep": "i miss her house very much",
+     "share": 0.05555555555555555,
+     "members": [
+      "I miss her house very much."
+     ]
+    }
+   ],
+   "renderings": [
+    "I miss",
+    "I miss, dearly",
+    "I miss",
+    "much",
+    "I,",
+    "I,",
+    "I miss her house very much.",
+    "I miss",
+    "I feel a lot of nostalgia for my grandmother's house.",
+    "I,",
+    "I feel a lot of nostalgia for my grandmother's house.",
+    "I feel a lot of nostalgia for my grandmother's house.",
+    "I,",
+    "I,",
+    "I,",
+    "I, a lot",
+    "I miss",
+    "I,",
+    "I,",
+    "I greatly"
+   ],
+   "aligned": [
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.9,
+   "none_rate": 0.0,
+   "translations": [
+    "I miss my grandmother's house greatly.",
+    "I miss my grandmother's old house dearly.",
+    "I miss my grandmother's house greatly.",
+    "I have much nostalgia for my grandmother's house.",
+    "I miss my grandmother's house.",
+    "I miss my grandmother's house.",
+    "I miss her house very much.",
+    "I miss my grandmother's house very much.",
+    "I feel a lot of nostalgia for my grandmother's house.",
+    "I miss my grandmother's house a lot.",
+    "I feel a lot of nostalgia for my grandmother's house.",
+    "I feel a lot of nostalgia for my grandmother's house.",
+    "I miss my grandmother's old house.",
+    "I miss my grandmother's house.",
+    "I miss my grandmother's house a lot.",
+    "I miss my grandmother's old house a lot.",
+    "I miss my grandmother's house almost too much.",
+    "I miss my grandmother's house a lot.",
+    "I miss my grandmother's house.",
+    "I greatly miss my grandmother's house."
+   ]
+  },
+  {
+   "sid": "es_sobremesa",
+   "lang": "es",
+   "category": "untranslatable_in_context",
+   "text": "Nos quedamos de sobremesa hasta que anocheció.",
+   "span": {
+    "text": "de sobremesa",
+    "start": 13,
+    "end": 25,
+    "kind": "hot"
+   },
+   "H_bits": 1.5394910703001345,
+   "n_used": 20,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "over",
+     "share": 0.45,
+     "members": [
+      "over"
+     ]
+    },
+    {
+     "rep": "until",
+     "share": 0.3,
+     "members": [
+      "late hours",
+      "until"
+     ]
+    },
+    {
+     "rep": "we stayed up late until it got dark",
+     "share": 0.25,
+     "members": [
+      "We stayed up late until it got dark.",
+      "We stayed up late until it was dark."
+     ]
+    }
+   ],
+   "renderings": [
+    "We stayed up late until it was dark.",
+    "over",
+    "over",
+    "until",
+    "over",
+    "late hours",
+    "until",
+    "until",
+    "over",
+    "over",
+    "We stayed up late until it got dark.",
+    "over",
+    "We stayed up late until it got dark.",
+    "over",
+    "over",
+    "We stayed up late until it got dark.",
+    "We stayed up late until it got dark.",
+    "until",
+    "until",
+    "over"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "We stayed up late until it was dark.",
+    "We stayed over dessert until it got dark.",
+    "We stayed over late until it got dark.",
+    "We stayed up until it got dark.",
+    "We stayed over dessert until it got dark.",
+    "We stayed over to the late hours until it darkened.",
+    "We stayed until late as the evening fell.",
+    "We stayed over until it got dark.",
+    "We stayed over late until it got dark.",
+    "We stayed over dessert until it got dark.",
+    "We stayed up late until it got dark.",
+    "We stayed over dessert until it got dark.",
+    "We stayed up late until it got dark.",
+    "We stayed over the dinner until it got dark.",
+    "We stayed over dessert until it got dark.",
+    "We stayed up late until it got dark.",
+    "We stayed up late until it got dark.",
+    "We stayed over until it got dark.",
+    "We stayed over until it got dark.",
+    "We stayed over dessert until it got dark."
+   ]
+  },
+  {
+   "sid": "de_fernweh",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "Jeden Herbst packt mich das Fernweh.",
+   "span": {
+    "text": "Fernweh",
+    "start": 28,
+    "end": 35,
+    "kind": "hot"
+   },
+   "H_bits": 1.7916674843771045,
+   "n_used": 18,
+   "n_clusters": 6,
+   "clusters": [
+    {
+     "rep": "homesickness",
+     "share": 0.6111111111111112,
+     "members": [
+      "homesickness"
+     ]
+    },
+    {
+     "rep": "strong longing",
+     "share": 0.16666666666666666,
+     "members": [
+      "strong longing",
+      "this strong yearning"
+     ]
+    },
+    {
+     "rep": "wanderlust",
+     "share": 0.05555555555555555,
+     "members": [
+      "wanderlust"
+     ]
+    },
+    {
+     "rep": "irrepressible",
+     "share": 0.05555555555555555,
+     "members": [
+      "irrepressible"
+     ]
+    },
+    {
+     "rep": "strong feeling",
+     "share": 0.05555555555555555,
+     "members": [
+      "strong feeling"
+     ]
+    },
+    {
+     "rep": "far-off",
+     "share": 0.05555555555555555,
+     "members": [
+      "far-off"
+     ]
+    }
+   ],
+   "renderings": [
+    "wanderlust",
+    "homesickness",
+    "irrepressible",
+    "homesickness",
+    "this strong yearning",
+    "strong longing",
+    "homesickness",
+    "homesickness",
+    "strong feeling",
+    "homesickness",
+    "homesickness",
+    "deep, homesickness",
+    "deep, homesickness",
+    "homesickness",
+    "homesickness",
+    "far-off",
+    "homesickness",
+    "homesickness",
+    "homesickness",
+    "strong longing"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.9,
+   "none_rate": 0.0,
+   "translations": [
+    "Every autumn, I get a bad case of wanderlust.",
+    "Every autumn, I get a strong feeling of homesickness.",
+    "Every autumn, I get this irrepressible homesickness.",
+    "Every autumn, I'm hit with homesickness.",
+    "Every autumn, I get this strong yearning to be somewhere else.",
+    "Every autumn, I get a strong longing for roaming.",
+    "Every autumn, I'm overcome with homesickness.",
+    "I get a strong feeling of homesickness every autumn.",
+    "I get a strong feeling of nostalgia every fall.",
+    "Every autumn, I'm struck with homesickness.",
+    "Every autumn, I am struck by homesickness.",
+    "Every autumn, I am hit with a deep homesickness.",
+    "Every autumn, I get a deep homesickness.",
+    "Every fall, I'm struck by homesickness.",
+    "Every autumn, I am overcome with homesickness.",
+    "Every autumn I get this pervasive longing for far-off places.",
+    "Every autumn, I'm hit with homesickness.",
+    "Every autumn, I am overcome with homesickness.",
+    "Every fall, I'm struck by homesickness.",
+    "Every autumn is haunted by a strong longing for distant places."
+   ]
+  },
+  {
+   "sid": "de_fernweh",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "Jeden Herbst packt mich das Fernweh.",
+   "span": {
+    "text": "packt mich",
+    "start": 13,
+    "end": 23,
+    "kind": "hot"
+   },
+   "H_bits": 1.5783898247235197,
+   "n_used": 20,
+   "n_clusters": 4,
+   "clusters": [
+    {
+     "rep": "i'm",
+     "share": 0.5,
+     "members": [
+      "I am",
+      "I'm",
+      "I,",
+      "is"
+     ]
+    },
+    {
+     "rep": "get",
+     "share": 0.35,
+     "members": [
+      "get"
+     ]
+    },
+    {
+     "rep": "i get a strong feeling of homesickness every autumn",
+     "share": 0.1,
+     "members": [
+      "I get a strong feeling of homesickness every autumn.",
+      "I get a strong feeling of nostalgia every fall."
+     ]
+    },
+    {
+     "rep": "i am struck",
+     "share": 0.05,
+     "members": [
+      "I am struck"
+     ]
+    }
+   ],
+   "renderings": [
+    "get",
+    "get",
+    "get",
+    "I'm",
+    "get",
+    "get",
+    "I'm",
+    "I get a strong feeling of homesickness every autumn.",
+    "I get a strong feeling of nostalgia every fall.",
+    "I'm",
+    "I am struck",
+    "I,",
+    "get",
+    "I'm",
+    "I am",
+    "get",
+    "I'm",
+    "I am",
+    "I'm",
+    "is"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Every autumn, I get a bad case of wanderlust.",
+    "Every autumn, I get a strong feeling of homesickness.",
+    "Every autumn, I get this irrepressible homesickness.",
+    "Every autumn, I'm hit with homesickness.",
+    "Every autumn, I get this strong yearning to be somewhere else.",
+    "Every autumn, I get a strong longing for roaming.",
+    "Every autumn, I'm overcome with homesickness.",
+    "I get a strong feeling of homesickness every autumn.",
+    "I get a strong feeling of nostalgia every fall.",
+    "Every autumn, I'm struck with homesickness.",
+    "Every autumn, I am struck by homesickness.",
+    "Every autumn, I am hit with a deep homesickness.",
+    "Every autumn, I get a deep homesickness.",
+    "Every fall, I'm struck by homesickness.",
+    "Every autumn, I am overcome with homesickness.",
+    "Every autumn I get this pervasive longing for far-off places.",
+    "Every autumn, I'm hit with homesickness.",
+    "Every autumn, I am overcome with homesickness.",
+    "Every fall, I'm struck by homesickness.",
+    "Every autumn is haunted by a strong longing for distant places."
+   ]
+  },
+  {
+   "sid": "it_sprezzatura",
+   "lang": "it",
+   "category": "untranslatable_in_context",
+   "text": "Porta quel vestito con una certa sprezzatura.",
+   "span": {
+    "text": "sprezzatura",
+    "start": 33,
+    "end": 44,
+    "kind": "hot"
+   },
+   "H_bits": 0.7742433029172697,
+   "n_used": 19,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "nonchalance",
+     "share": 0.8421052631578947,
+     "members": [
+      "a certain air of dismissiveness",
+      "a certain air of indifference",
+      "a certain air of nonchalance",
+      "nonchalance"
+     ]
+    },
+    {
+     "rep": "a certain air of disdain",
+     "share": 0.10526315789473684,
+     "members": [
+      "a certain air of disdain"
+     ]
+    },
+    {
+     "rep": "a certain",
+     "share": 0.05263157894736842,
+     "members": [
+      "a certain"
+     ]
+    }
+   ],
+   "renderings": [
+    "somewhat, dismissive",
+    "a certain air of dismissiveness",
+    "a certain air of disdain",
+    "nonchalance",
+    "nonchalance",
+    "a certain air of nonchalance",
+    "a certain air of nonchalance",
+    "nonchalance",
+    "a certain air of nonchalance",
+    "nonchalance",
+    "nonchalance",
+    "a certain air of nonchalance",
+    "nonchalance",
+    "a certain air of nonchalance",
+    "a certain air of nonchalance",
+    "a certain",
+    "a certain air of disdain",
+    "a certain air of indifference",
+    "a certain air of nonchalance",
+    "nonchalance"
+   ],
+   "aligned": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.95,
+   "none_rate": 0.0,
+   "translations": [
+    "Her attitude towards the outfit is somewhat dismissive.",
+    "Wear that dress with a certain air of dismissiveness.",
+    "Put on that outfit with a certain air of disdain.",
+    "Wear that outfit with a certain nonchalance.",
+    "Wear that outfit with a certain nonchalance.",
+    "Carry that outfit with a certain air of nonchalance.",
+    "Port that outfit with a certain air of nonchalance.",
+    "Wear that dress with a certain nonchalance.",
+    "Port that outfit with a certain air of nonchalance.",
+    "Wear that dress with a certain nonchalance.",
+    "She wore that dress with a certain nonchalance.",
+    "Put that outfit on with a certain air of nonchalance.",
+    "She wore that outfit with a certain nonchalance.",
+    "Wear that dress with a certain air of nonchalance.",
+    "Wear that dress with a certain air of nonchalance.",
+    "Wear that dress with a certain disdain.",
+    "Wear that dress with a certain air of disdain.",
+    "Wear that dress with a certain air of indifference.",
+    "Wear that dress with a certain air of nonchalance.",
+    "Wear that outfit with a certain nonchalance."
+   ]
+  },
+  {
+   "sid": "it_magari_forse",
+   "lang": "it",
+   "category": "untranslatable_in_context",
+   "text": "Magari passo da te stasera, vediamo.",
+   "span": {
+    "text": "Magari",
+    "start": 0,
+    "end": 6,
+    "kind": "hot"
+   },
+   "H_bits": 0.0,
+   "n_used": 20,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "maybe",
+     "share": 1.0,
+     "members": [
+      "Maybe"
+     ]
+    }
+   ],
+   "renderings": [
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Maybe we could pass by your place tonight, let's see.",
+    "Maybe you'll pass by tonight, let's check.",
+    "Maybe we can go out tonight and see.",
+    "Maybe you'll take a step, let's see.",
+    "Maybe you can come over tonight, let's see.",
+    "Maybe you could come over tonight, let's see.",
+    "Maybe you'd like to pass by this evening and let's see.",
+    "Maybe you could come over tonight, let's check.",
+    "Maybe we can take a step from you tonight, let's see.",
+    "Maybe I'll take a step from you tonight, let's see.",
+    "Maybe you could pass by tonight, and we'll see.",
+    "Maybe we could meet up and see what happens tonight.",
+    "Maybe we can take a step together tonight and see.",
+    "Maybe I'll give you a pass by tonight, let's check.",
+    "Maybe we could take a step with you tonight and see.",
+    "Maybe you could take me out tonight, let's see.",
+    "Maybe you could drop by tonight, let's see.",
+    "Maybe you could drop by tonight, we can see.",
+    "Maybe I could drop by tonight and take a look.",
+    "Maybe I'll take a step from you tonight, let's see."
+   ]
+  },
+  {
+   "sid": "pt_jeitinho",
+   "lang": "pt",
+   "category": "untranslatable_in_context",
+   "text": "Ele deu um jeitinho e conseguiu o documento no mesmo dia.",
+   "span": {
+    "text": "deu um jeitinho",
+    "start": 4,
+    "end": 19,
+    "kind": "hot"
+   },
+   "H_bits": 2.9037016960573485,
+   "n_used": 20,
+   "n_clusters": 9,
+   "clusters": [
+    {
+     "rep": "he managed to get the document on the same day",
+     "share": 0.25,
+     "members": [
+      "He managed to get the document on the same day.",
+      "He managed to get the document the same day."
+     ]
+    },
+    {
+     "rep": "he managed to get the document on the same day by finding a way to do it",
+     "share": 0.2,
+     "members": [
+      "He found a way and managed to get the document on the same day.",
+      "He managed to find a way and got the document on the same day.",
+      "He managed to get the document by some means on the same day.",
+      "He managed to get the document on the same day by finding a way to do it."
+     ]
+    },
+    {
+     "rep": "he managed to get the document that day with some fiddling",
+     "share": 0.15,
+     "members": [
+      "He managed to find the document by some trick on the same day.",
+      "He managed to get the document that day with some fiddling.",
+      "He managed to pull off a clever trick and got the document on the same day."
+     ]
+    },
+    {
+     "rep": "he managed to get the document on the same day he came up with a clever plan",
+     "share": 0.1,
+     "members": [
+      "He managed to get the document on the same day he came up with a clever plan.",
+      "He managed to get the document on the same day that he came up with a clever idea."
+     ]
+    },
+    {
+     "rep": "he managed to get the document on the same day by being clever",
+     "share": 0.1,
+     "members": [
+      "He managed to get the document on the same day by being clever.",
+      "He managed to get the document on the same day by his cleverness."
+     ]
+    },
+    {
+     "rep": "thanks to his quick thinking",
+     "share": 0.05,
+     "members": [
+      "thanks to his quick thinking."
+     ]
+    },
+    {
+     "rep": "some luck",
+     "share": 0.05,
+     "members": [
+      "some luck"
+     ]
+    },
+    {
+     "rep": "he managed to get the document on the same day through his own quick thinking",
+     "share": 0.05,
+     "members": [
+      "He managed to get the document on the same day through his own quick thinking."
+     ]
+    },
+    {
+     "rep": "he managed to get the document on the same day by some lucky break",
+     "share": 0.05,
+     "members": [
+      "He managed to get the document on the same day by some lucky break."
+     ]
+    }
+   ],
+   "renderings": [
+    "He managed to get the document that day with some fiddling.",
+    "He managed to get the document on the same day.",
+    "He managed to get the document the same day.",
+    "He managed to get the document on the same day.",
+    "He managed to get the document on the same day he came up with a clever plan.",
+    "thanks to his quick thinking.",
+    "He managed to get the document on the same day by finding a way to do it.",
+    "some luck",
+    "He managed to get the document on the same day that he came up with a clever idea.",
+    "He managed to find the document by some trick on the same day.",
+    "He managed to get the document by some means on the same day.",
+    "He managed to get the document on the same day.",
+    "He found a way and managed to get the document on the same day.",
+    "He managed to get the document on the same day.",
+    "He managed to get the document on the same day by being clever.",
+    "He managed to get the document on the same day by his cleverness.",
+    "He managed to get the document on the same day through his own quick thinking.",
+    "He managed to get the document on the same day by some lucky break.",
+    "He managed to find a way and got the document on the same day.",
+    "He managed to pull off a clever trick and got the document on the same day."
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "He managed to get the document that day with some fiddling.",
+    "He managed to get the document on the same day.",
+    "He managed to get the document the same day.",
+    "He managed to get the document on the same day.",
+    "He managed to get the document on the same day he came up with a clever plan.",
+    "He managed to get the document on the same day, thanks to his quick thinking.",
+    "He managed to get the document on the same day by finding a way to do it.",
+    "He managed to get the document with some luck on the same day.",
+    "He managed to get the document on the same day that he came up with a clever idea.",
+    "He managed to find the document by some trick on the same day.",
+    "He managed to get the document by some means on the same day.",
+    "He managed to get the document on the same day.",
+    "He found a way and managed to get the document on the same day.",
+    "He managed to get the document on the same day.",
+    "He managed to get the document on the same day by being clever.",
+    "He managed to get the document on the same day by his cleverness.",
+    "He managed to get the document on the same day through his own quick thinking.",
+    "He managed to get the document on the same day by some lucky break.",
+    "He managed to find a way and got the document on the same day.",
+    "He managed to pull off a clever trick and got the document on the same day."
+   ]
+  },
+  {
+   "sid": "pt_cafune",
+   "lang": "pt",
+   "category": "untranslatable_in_context",
+   "text": "Ela fazia cafuné no filho até ele dormir.",
+   "span": {
+    "text": "fazia cafuné",
+    "start": 4,
+    "end": 16,
+    "kind": "hot"
+   },
+   "H_bits": 3.3464393446710154,
+   "n_used": 20,
+   "n_clusters": 12,
+   "clusters": [
+    {
+     "rep": "she was rocking",
+     "share": 0.2,
+     "members": [
+      "She was rocking"
+     ]
+    },
+    {
+     "rep": "was braiding",
+     "share": 0.15,
+     "members": [
+      "She braided",
+      "She used to braid",
+      "was braiding"
+     ]
+    },
+    {
+     "rep": "she was rocking her child to sleep",
+     "share": 0.15,
+     "members": [
+      "She was rocking her child to sleep.",
+      "She would rock her child to sleep."
+     ]
+    },
+    {
+     "rep": "she was rubbing",
+     "share": 0.1,
+     "members": [
+      "She was rubbing"
+     ]
+    },
+    {
+     "rep": "she was oiling his hair",
+     "share": 0.05,
+     "members": [
+      "She was oiling his hair"
+     ]
+    },
+    {
+     "rep": "she was babysitting her son until he fell asleep",
+     "share": 0.05,
+     "members": [
+      "She was babysitting her son until he fell asleep."
+     ]
+    },
+    {
+     "rep": "she used to dress him up in a shroud until he fell asleep",
+     "share": 0.05,
+     "members": [
+      "She used to dress him up in a shroud until he fell asleep."
+     ]
+    },
+    {
+     "rep": "she gave her child a combing(style of dressing the body for burial) until he fell asleep",
+     "share": 0.05,
+     "members": [
+      "She gave her child a combing(style of dressing the body for burial) until he fell asleep."
+     ]
+    },
+    {
+     "rep": "she would stroke his hair until he fell asleep",
+     "share": 0.05,
+     "members": [
+      "She would stroke his hair until he fell asleep."
+     ]
+    },
+    {
+     "rep": "wrapped",
+     "share": 0.05,
+     "members": [
+      "wrapped"
+     ]
+    },
+    {
+     "rep": "she was braiding",
+     "share": 0.05,
+     "members": [
+      "She was braiding"
+     ]
+    },
+    {
+     "rep": "was doing",
+     "share": 0.05,
+     "members": [
+      "was doing"
+     ]
+    }
+   ],
+   "renderings": [
+    "She was rocking",
+    "She was rubbing",
+    "was braiding",
+    "She was oiling his hair",
+    "She was rocking",
+    "She was babysitting her son until he fell asleep.",
+    "She used to dress him up in a shroud until he fell asleep.",
+    "She braided",
+    "She would rock her child to sleep.",
+    "She used to braid",
+    "She gave her child a combing(style of dressing the body for burial) until he fell asleep.",
+    "She would stroke his hair until he fell asleep.",
+    "She was rocking her child to sleep.",
+    "wrapped",
+    "She was rubbing",
+    "She was rocking her child to sleep.",
+    "She was rocking",
+    "She was braiding",
+    "was doing",
+    "She was rocking"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "She was rocking the child to sleep.",
+    "She was rubbing confeit (a mixture of sugar, water, and aromatics) on her son until he fell asleep.",
+    "She was braiding her son's hair until he fell asleep.",
+    "She was oiling his hair until he fell asleep.",
+    "She was rocking the child to sleep.",
+    "She was babysitting her son until he fell asleep.",
+    "She used to dress him up in a shroud until he fell asleep.",
+    "She braided her hair on her son until he fell asleep.",
+    "She would rock her child to sleep.",
+    "She used to braid her son's hair until he fell asleep.",
+    "She gave her child a combing(style of dressing the body for burial) until he fell asleep.",
+    "She would stroke his hair until he fell asleep.",
+    "She was rocking her child to sleep.",
+    "She wrapped the baby in a blanket until he fell asleep.",
+    "She was rubbing her son's head until he fell asleep.",
+    "She was rocking her child to sleep.",
+    "She was rocking the child to sleep.",
+    "She was braiding her child's hair until he fell asleep.",
+    "She was doing the vinegar bath to her child until he fell asleep.",
+    "She was rocking the child to sleep."
+   ]
+  },
+  {
+   "sid": "de_gemuetlichkeit",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "In der kleinen Hütte herrschte eine wunderbare Gemütlichkeit.",
+   "span": {
+    "text": "Gemütlichkeit",
+    "start": 47,
+    "end": 60,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 4,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "cozy",
+     "share": 0.5,
+     "members": [
+      "conviviality",
+      "cozy"
+     ]
+    },
+    {
+     "rep": "a wonderful atmosphere",
+     "share": 0.25,
+     "members": [
+      "A wonderful atmosphere,"
+     ]
+    },
+    {
+     "rep": "wonderful sense",
+     "share": 0.25,
+     "members": [
+      "wonderful sense"
+     ]
+    }
+   ],
+   "renderings": [
+    "There, wonderful atmosphere",
+    "warmth, hospitality",
+    "cozy",
+    "A wonderful atmosphere,",
+    "wonderful sense",
+    "There, wonderful atmosphere",
+    "There, wonderful atmosphere",
+    "There, wonderful atmosphere",
+    "wonderful, atmosphere",
+    "wonderful, atmosphere",
+    "conviviality",
+    "There, wonderful atmosphere",
+    "There, wonderful atmosphere",
+    "warmth, friendliness",
+    "There, lovely, atmosphere",
+    "wonderful, atmosphere",
+    "wonderful, atmosphere",
+    "There, lovely, atmosphere",
+    "There, wonderful atmosphere",
+    "charming, atmosphere"
+   ],
+   "aligned": [
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "aligned_rate": 0.2,
+   "none_rate": 0.0,
+   "translations": [
+    "There was a wonderful atmosphere in the small cabin.",
+    "The tiny cabin was filled with a wonderful atmosphere of warmth and hospitality.",
+    "The small cottage was incredibly cozy.",
+    "A wonderful atmosphere prevailed in the small cottage.",
+    "There was a wonderful sense of camaraderie in the small hut.",
+    "There was a wonderful atmosphere in the small cabin.",
+    "There was a wonderful atmosphere in the cozy little hut.",
+    "There was a wonderful atmosphere in the small cabin.",
+    "There was a wonderful atmosphere in the small cottage.",
+    "There was a wonderful atmosphere in the small cottage.",
+    "There was a wonderful conviviality in the little cottage.",
+    "There was a wonderful atmosphere in the small cabin.",
+    "There was a wonderful atmosphere in the small cabin.",
+    "There was a wonderful warmth and friendliness in the small cabin.",
+    "There was a lovely atmosphere in the small cabin.",
+    "The small cottage had a wonderful atmosphere.",
+    "There was a wonderful atmosphere in the small cottage.",
+    "There was a lovely atmosphere in the small cabin.",
+    "There was a wonderful atmosphere in the tiny cabin.",
+    "There was a truly charming atmosphere in the small hut."
+   ]
+  },
+  {
+   "sid": "de_feierabend",
+   "lang": "de",
+   "category": "untranslatable_in_context",
+   "text": "Endlich Feierabend, gehen wir noch ein Bier trinken?",
+   "span": {
+    "text": "Feierabend",
+    "start": 8,
+    "end": 18,
+    "kind": "hot"
+   },
+   "H_bits": 3.7841837197791888,
+   "n_used": 20,
+   "n_clusters": 15,
+   "clusters": [
+    {
+     "rep": "it's",
+     "share": 0.15,
+     "members": [
+      "it's"
+     ]
+    },
+    {
+     "rep": "do you want to still go out",
+     "share": 0.1,
+     "members": [
+      "do you want to still go out"
+     ]
+    },
+    {
+     "rep": "evening",
+     "share": 0.1,
+     "members": [
+      "evening"
+     ]
+    },
+    {
+     "rep": "grab",
+     "share": 0.1,
+     "members": [
+      "grab"
+     ]
+    },
+    {
+     "rep": "finally",
+     "share": 0.05,
+     "members": [
+      "Finally"
+     ]
+    },
+    {
+     "rep": "is it time",
+     "share": 0.05,
+     "members": [
+      "is it time"
+     ]
+    },
+    {
+     "rep": "are we done",
+     "share": 0.05,
+     "members": [
+      "are we done"
+     ]
+    },
+    {
+     "rep": "after",
+     "share": 0.05,
+     "members": [
+      "after"
+     ]
+    },
+    {
+     "rep": "going out",
+     "share": 0.05,
+     "members": [
+      "going out"
+     ]
+    },
+    {
+     "rep": "wrap",
+     "share": 0.05,
+     "members": [
+      "wrap"
+     ]
+    },
+    {
+     "rep": "do you want to go out",
+     "share": 0.05,
+     "members": [
+      "do you want to go out"
+     ]
+    },
+    {
+     "rep": "let's",
+     "share": 0.05,
+     "members": [
+      "let's"
+     ]
+    },
+    {
+     "rep": "work",
+     "share": 0.05,
+     "members": [
+      "work"
+     ]
+    },
+    {
+     "rep": "celebrate",
+     "share": 0.05,
+     "members": [
+      "celebrate"
+     ]
+    },
+    {
+     "rep": "isn't it about time we're off work, let's go grab a beer afterwards",
+     "share": 0.05,
+     "members": [
+      "Isn't it about time we're off work, let's go grab a beer afterwards?"
+     ]
+    }
+   ],
+   "renderings": [
+    "it's",
+    "Finally",
+    "is it time",
+    "do you want to still go out",
+    "evening",
+    "are we done",
+    "after",
+    "grab",
+    "do you want to still go out",
+    "going out",
+    "grab",
+    "wrap",
+    "do you want to go out",
+    "it's",
+    "let's",
+    "work",
+    "it's",
+    "evening",
+    "celebrate",
+    "Isn't it about time we're off work, let's go grab a beer afterwards?"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Finally, it's five o'clock, shall we still go out for a beer?",
+    "Finally it's the end of work, shall we still grab a beer?",
+    "Finally, is it time to go out for a beer?",
+    "Finally, it's five o'clock, do you want to still go out and have a beer?",
+    "Finally, evening, shall we still head out for a beer?",
+    "Finally, are we done working, shall we go grab a beer?",
+    "Finally, let's head out for a drink after work.",
+    "Finally, it's five o'clock, want to grab a beer?",
+    "Finally, it's 5 o'clock, do you want to still go out and have a beer?",
+    "Can't wait for five, are you up for going out for a beer?",
+    "Finally, it's five o'clock, shall we still go grab a beer?",
+    "Finally, let's wrap up work and still go have a beer.",
+    "Finally it's five o'clock, do you want to go out for a drink?",
+    "Finally, it's 5 o'clock, shall we go have a beer?",
+    "Finally, evening is over, let's still go grab a beer.",
+    "Now that work is over, do you want to still go grab a beer?",
+    "Finally, it's five o'clock, shall we still go out for a beer?",
+    "Finally, evening is here, are we going to still go grab a beer?",
+    "Sooner or later, let's celebrate the end of work with a beer.",
+    "Isn't it about time we're off work, let's go grab a beer afterwards?"
+   ]
+  },
+  {
+   "sid": "fr_depaysement",
+   "lang": "fr",
+   "category": "untranslatable_in_context",
+   "text": "À Tokyo, j'ai ressenti un profond dépaysement.",
+   "span": {
+    "text": "dépaysement",
+    "start": 34,
+    "end": 45,
+    "kind": "hot"
+   },
+   "H_bits": 2.192005835492107,
+   "n_used": 13,
+   "n_clusters": 6,
+   "clusters": [
+    {
+     "rep": "homesickness",
+     "share": 0.38461538461538464,
+     "members": [
+      "homesickness"
+     ]
+    },
+    {
+     "rep": "deep sense",
+     "share": 0.3076923076923077,
+     "members": [
+      "deep sense",
+      "profound sense"
+     ]
+    },
+    {
+     "rep": "culture shock",
+     "share": 0.07692307692307693,
+     "members": [
+      "culture shock"
+     ]
+    },
+    {
+     "rep": "i deeply felt",
+     "share": 0.07692307692307693,
+     "members": [
+      "I deeply felt"
+     ]
+    },
+    {
+     "rep": "disorientation",
+     "share": 0.07692307692307693,
+     "members": [
+      "disorientation"
+     ]
+    },
+    {
+     "rep": "strong sense",
+     "share": 0.07692307692307693,
+     "members": [
+      "strong sense"
+     ]
+    }
+   ],
+   "renderings": [
+    "deep, sense, of, disorientation",
+    "culture shock",
+    "deep, sense, of, disorientation",
+    "deep sense",
+    "deep sense",
+    "I deeply felt",
+    "homesickness",
+    "profound sense",
+    "disorientation",
+    "deep sense",
+    "strong sense",
+    "deep, sense, of, disorientation",
+    "homesickness",
+    "deep, sense, of",
+    "homesickness",
+    "deeply, a",
+    "deep, sense, disorientation",
+    "homesickness",
+    "homesickness",
+    "deep, sense, of, disorientation"
+   ],
+   "aligned": [
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false
+   ],
+   "aligned_rate": 0.65,
+   "none_rate": 0.0,
+   "translations": [
+    "I felt a deep sense of disorientation in Tokyo.",
+    "I felt a deep culture shock in Tokyo.",
+    "When I arrived in Tokyo, I felt a deep sense of disorientation.",
+    "I felt a deep sense of displacement in Tokyo.",
+    "I felt a deep sense of displacement in Tokyo.",
+    "I deeply felt out of place in Tokyo.",
+    "In Tokyo, I felt a deep homesickness.",
+    "In Tokyo, I felt a profound sense of displacement.",
+    "I felt a profound sense of disorientation in Tokyo.",
+    "I felt a deep sense of displacement in Tokyo.",
+    "I felt a strong sense of displacement in Tokyo.",
+    "In Tokyo, I felt a deep sense of disorientation.",
+    "In Tokyo, I deeply felt homesickness.",
+    "In Tokyo, I felt a deep sense of dislocation.",
+    "In Tokyo, I felt a deep sense of homesickness.",
+    "In Tokyo, I deeply felt a sense of disorientation.",
+    "I felt a deep sense of disorientation in Tokyo.",
+    "In Tokyo, I felt a deep sense of homesickness.",
+    "I felt a deep homesickness in Tokyo.",
+    "In Tokyo, I felt a deep sense of disorientation."
+   ]
+  },
+  {
+   "sid": "fr_retrouvailles",
+   "lang": "fr",
+   "category": "untranslatable_in_context",
+   "text": "Les retrouvailles avec mes cousins ont été très émouvantes.",
+   "span": {
+    "text": "retrouvailles",
+    "start": 4,
+    "end": 17,
+    "kind": "hot"
+   },
+   "H_bits": 0.6098403047164004,
+   "n_used": 20,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "reunion",
+     "share": 0.85,
+     "members": [
+      "Reunions",
+      "The reconnections",
+      "The reunions",
+      "reunion"
+     ]
+    },
+    {
+     "rep": "my",
+     "share": 0.15,
+     "members": [
+      "My"
+     ]
+    }
+   ],
+   "renderings": [
+    "reunion",
+    "The reconnections",
+    "reunion",
+    "Reunions",
+    "reunion",
+    "reunion",
+    "reunion",
+    "reunion",
+    "Reunions",
+    "reunion",
+    "My",
+    "reunion",
+    "The reunions",
+    "My",
+    "reunion",
+    "The reunions",
+    "reunion",
+    "reunion",
+    "reunion",
+    "My"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "The reunion with my cousins was very emotional.",
+    "The reconnections with my cousins were very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "Reunions with my cousins were very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "Reunions with my cousins were very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "My reunions with my cousins have been very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunions with my cousins were very moving.",
+    "My reunions with my cousins were very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunions with my cousins were very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "The reunion with my cousins was very emotional.",
+    "My reunions with my cousins were very emotional."
+   ]
+  },
+  {
+   "sid": "es_gustar",
+   "lang": "es",
+   "category": "construction",
+   "text": "A mi hermana le gustan las películas de terror.",
+   "span": {
+    "text": "le gustan",
+    "start": 13,
+    "end": 22,
+    "kind": "hot"
+   },
+   "H_bits": 0.28639695711595625,
+   "n_used": 20,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "my",
+     "share": 0.95,
+     "members": [
+      "My"
+     ]
+    },
+    {
+     "rep": "enjoys",
+     "share": 0.05,
+     "members": [
+      "enjoys"
+     ]
+    }
+   ],
+   "renderings": [
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "enjoys",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My",
+    "My"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister enjoys horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies.",
+    "My sister likes horror movies."
+   ]
+  },
+  {
+   "sid": "it_mi_manchi",
+   "lang": "it",
+   "category": "construction",
+   "text": "Mi manchi tanto, lo sai?",
+   "span": {
+    "text": "Mi manchi",
+    "start": 0,
+    "end": 9,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 1,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "i desperately",
+     "share": 1.0,
+     "members": [
+      "I desperately"
+     ]
+    }
+   ],
+   "renderings": [
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I, you",
+    "I desperately",
+    "I, you",
+    "I, you"
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false,
+    false
+   ],
+   "aligned_rate": 0.05,
+   "none_rate": 0.0,
+   "translations": [
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I really miss you, you know?",
+    "I miss you so much, you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much.",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, do you know?",
+    "I desperately miss you, do you know?",
+    "I miss you so much, do you know?",
+    "I miss you so much, you know?"
+   ]
+  },
+  {
+   "sid": "es_se_me_olvido",
+   "lang": "es",
+   "category": "construction",
+   "text": "Se me olvidó el paraguas en el tren.",
+   "span": {
+    "text": "Se me olvidó",
+    "start": 0,
+    "end": 12,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 3,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "i",
+     "share": 1.0,
+     "members": [
+      "I"
+     ]
+    }
+   ],
+   "renderings": [
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I, forgot",
+    "I",
+    "I, forgot",
+    "I",
+    "I, forgot",
+    "I, forgot"
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false
+   ],
+   "aligned_rate": 0.15,
+   "none_rate": 0.0,
+   "translations": [
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella inside the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I left my umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot the umbrella on the train.",
+    "I forgot my umbrella on the train.",
+    "I forgot my umbrella on the train."
+   ]
+  },
+  {
+   "sid": "de_mir_ist_kalt",
+   "lang": "de",
+   "category": "construction",
+   "text": "Mir ist kalt, kannst du das Fenster zumachen?",
+   "span": {
+    "text": "Mir ist kalt",
+    "start": 0,
+    "end": 12,
+    "kind": "hot"
+   },
+   "H_bits": 0.5689955935892812,
+   "n_used": 20,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "it's",
+     "share": 0.9,
+     "members": [
+      "Is",
+      "It's"
+     ]
+    },
+    {
+     "rep": "i'm",
+     "share": 0.05,
+     "members": [
+      "I'm"
+     ]
+    },
+    {
+     "rep": "i'm cold",
+     "share": 0.05,
+     "members": [
+      "I'm cold"
+     ]
+    }
+   ],
+   "renderings": [
+    "It's",
+    "It's",
+    "It's",
+    "It's",
+    "It's",
+    "It's",
+    "I'm",
+    "It's",
+    "It's",
+    "I'm cold",
+    "It's",
+    "It's",
+    "It's",
+    "It's",
+    "It's",
+    "Is",
+    "It's",
+    "It's",
+    "It's",
+    "It's"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "It's cold in here, can you close the window?",
+    "It's cold in here, can you close the window?",
+    "It's cold for me, can you close the window?",
+    "It's cold in here, can you close the window?",
+    "It's cold for me, can you close the window?",
+    "It's cold, can you close the window?",
+    "I'm cold, can you close the window?",
+    "It's freezing, can you close the window?",
+    "It's cold here, can you close the window?",
+    "I'm cold, could you please close the window?",
+    "It's freezing, can you close the window?",
+    "It's cold, can you close the window?",
+    "It's cold in here, can you close the window?",
+    "It's cold in here, can you close the window?",
+    "It's cold in here, can you please close the window?",
+    "Is the window closed?",
+    "It's cold here, can you close the window?",
+    "It's freezing outside, can you please close the window?",
+    "It's cold in here, can you close the window?",
+    "It's cold in here, can you close the window?"
+   ]
+  },
+  {
+   "sid": "es_ser_estar",
+   "lang": "es",
+   "category": "construction",
+   "text": "La película es aburrida, y yo estoy aburrido.",
+   "span": {
+    "text": "es aburrida",
+    "start": 12,
+    "end": 23,
+    "kind": "hot"
+   },
+   "H_bits": 0.0,
+   "n_used": 19,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "the movie",
+     "share": 1.0,
+     "members": [
+      "The movie"
+     ]
+    }
+   ],
+   "renderings": [
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The and so",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie",
+    "The movie"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.95,
+   "none_rate": 0.0,
+   "translations": [
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and so am I.",
+    "The movie is boring, and I'm boring myself.",
+    "The movie is boring and so am I.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm boring too.",
+    "The movie is boring and I'm boring too.",
+    "The movie is boring, and I'm boring too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too."
+   ]
+  },
+  {
+   "sid": "es_ser_estar",
+   "lang": "es",
+   "category": "construction",
+   "text": "La película es aburrida, y yo estoy aburrido.",
+   "span": {
+    "text": "estoy aburrido",
+    "start": 30,
+    "end": 44,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 6,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "i'm boring too",
+     "share": 0.6666666666666666,
+     "members": [
+      "I'm boring myself.",
+      "I'm boring too."
+     ]
+    },
+    {
+     "rep": "so",
+     "share": 0.3333333333333333,
+     "members": [
+      "so"
+     ]
+    }
+   ],
+   "renderings": [
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "so",
+    "I'm boring myself.",
+    "so",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and",
+    "I'm boring too.",
+    "I'm boring too.",
+    "I'm boring too.",
+    "I'm, and",
+    "I'm, and",
+    "I'm, and"
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "aligned_rate": 0.3,
+   "none_rate": 0.0,
+   "translations": [
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and so am I.",
+    "The movie is boring, and I'm boring myself.",
+    "The movie is boring and so am I.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm boring too.",
+    "The movie is boring and I'm boring too.",
+    "The movie is boring, and I'm boring too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too.",
+    "The movie is boring, and I'm bored too."
+   ]
+  },
+  {
+   "sid": "fr_il_me_faut",
+   "lang": "fr",
+   "category": "construction",
+   "text": "Il me faut encore une heure pour finir.",
+   "span": {
+    "text": "Il me faut",
+    "start": 0,
+    "end": 10,
+    "kind": "hot"
+   },
+   "H_bits": 1.3527241956246545,
+   "n_used": 20,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "i",
+     "share": 0.6,
+     "members": [
+      "I"
+     ]
+    },
+    {
+     "rep": "i need",
+     "share": 0.25,
+     "members": [
+      "I need"
+     ]
+    },
+    {
+     "rep": "i still need",
+     "share": 0.15,
+     "members": [
+      "I still need"
+     ]
+    }
+   ],
+   "renderings": [
+    "I",
+    "I",
+    "I",
+    "I need",
+    "I still need",
+    "I need",
+    "I",
+    "I",
+    "I still need",
+    "I",
+    "I need",
+    "I",
+    "I need",
+    "I still need",
+    "I need",
+    "I",
+    "I",
+    "I",
+    "I",
+    "I"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "I still need another hour to finish.",
+    "I still need another hour to finish.",
+    "I still need another hour to finish.",
+    "I need one more hour to finish.",
+    "I still need one more hour to finish.",
+    "I need one more hour to finish.",
+    "I still need another hour to finish.",
+    "I still need another hour to finish.",
+    "I still need one more hour to finish.",
+    "I still need an hour to finish.",
+    "I need another hour to finish.",
+    "I still need another hour to finish.",
+    "I need another hour to finish.",
+    "I still need one more hour to finish.",
+    "I need one more hour to finish.",
+    "I still need another hour to finish.",
+    "I still need another hour to finish.",
+    "I still have another hour to finish.",
+    "I still need another hour to finish.",
+    "I still need another hour to finish."
+   ]
+  },
+  {
+   "sid": "pt_infinitivo_pessoal",
+   "lang": "pt",
+   "category": "construction",
+   "text": "Comprei o livro para lermos juntos.",
+   "span": {
+    "text": "lermos",
+    "start": 21,
+    "end": 27,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 9,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "together",
+     "share": 1.0,
+     "members": [
+      "together"
+     ]
+    }
+   ],
+   "renderings": [
+    "we, can",
+    "us, read",
+    "we, could",
+    "we, can",
+    "for, to",
+    "together",
+    "we, can",
+    "together",
+    "we, can",
+    "we, can",
+    "together",
+    "together",
+    "together",
+    "we, could",
+    "we, can",
+    "us, read",
+    "together",
+    "together",
+    "together",
+    "together"
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.45,
+   "none_rate": 0.0,
+   "translations": [
+    "I bought the book so we can read it together.",
+    "I bought the book for us to read together.",
+    "I bought the book so we could read it together.",
+    "I bought the book so we can read it together.",
+    "I bought a book for us to read together.",
+    "I bought the book to read together.",
+    "I bought the book so we can read it together.",
+    "I bought a book to read together.",
+    "I bought the book so we can read it together.",
+    "I bought the book so we can read it together.",
+    "I bought the book to read together.",
+    "I bought the book to read together.",
+    "I bought a book to read together.",
+    "I bought the book so we could read it together.",
+    "I bought the book so we can read it together.",
+    "I bought the book for us to read together.",
+    "I bought the book to read it together.",
+    "I bought the book to read together.",
+    "I bought a book to read together.",
+    "I bought the book to read together."
+   ]
+  },
+  {
+   "sid": "it_magari_wish",
+   "lang": "it",
+   "category": "construction",
+   "text": "Magari fosse già venerdì!",
+   "span": {
+    "text": "Magari fosse",
+    "start": 0,
+    "end": 12,
+    "kind": "hot"
+   },
+   "H_bits": 0.28639695711595625,
+   "n_used": 20,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "maybe",
+     "share": 0.95,
+     "members": [
+      "Maybe"
+     ]
+    },
+    {
+     "rep": "it might already be friday",
+     "share": 0.05,
+     "members": [
+      "It might already be Friday!"
+     ]
+    }
+   ],
+   "renderings": [
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "Maybe",
+    "It might already be Friday!"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Maybe it's already Friday.",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday.",
+    "Maybe it's already Friday.",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday.",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday.",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday.",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday already.",
+    "Maybe it already is Friday.",
+    "Maybe it would already be Friday.",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday!",
+    "Maybe it's already Friday.",
+    "It might already be Friday!"
+   ]
+  },
+  {
+   "sid": "es_tomar_el_pelo",
+   "lang": "es",
+   "category": "idiom",
+   "text": "No te creo, me estás tomando el pelo.",
+   "span": {
+    "text": "me estás tomando el pelo",
+    "start": 12,
+    "end": 36,
+    "kind": "hot"
+   },
+   "H_bits": 1.683240358011977,
+   "n_used": 19,
+   "n_clusters": 5,
+   "clusters": [
+    {
+     "rep": "you're",
+     "share": 0.5263157894736842,
+     "members": [
+      "you're"
+     ]
+    },
+    {
+     "rep": "you're just pulling my leg",
+     "share": 0.3157894736842105,
+     "members": [
+      "I don't believe you, you're kidding me.",
+      "You're just pulling my leg.",
+      "You're not believable, you're just joking with me.",
+      "You're not believable, you're just teasing me."
+     ]
+    },
+    {
+     "rep": "you're not taking me seriously",
+     "share": 0.05263157894736842,
+     "members": [
+      "You're not taking me seriously."
+     ]
+    },
+    {
+     "rep": "you're not convincing me, you're just kidding me",
+     "share": 0.05263157894736842,
+     "members": [
+      "You're not convincing me, you're just kidding me."
+     ]
+    },
+    {
+     "rep": "you're not seriously telling me that",
+     "share": 0.05263157894736842,
+     "members": [
+      "You're not seriously telling me that?"
+     ]
+    }
+   ],
+   "renderings": [
+    "You're not taking me seriously.",
+    "you're",
+    "I don't believe you, you're kidding me.",
+    "you're",
+    "You're just pulling my leg.",
+    "you're",
+    "you're",
+    "You're not convincing me, you're just kidding me.",
+    "You're just pulling my leg.",
+    "you're",
+    "you're",
+    "you're",
+    "You're not seriously telling me that?",
+    "I'm teasing you.",
+    "You're not believable, you're just teasing me.",
+    "you're",
+    "you're",
+    "you're",
+    "You're just pulling my leg.",
+    "You're not believable, you're just joking with me."
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.95,
+   "none_rate": 0.0,
+   "translations": [
+    "You're not taking me seriously.",
+    "You don't believe me, you're just pulling my leg.",
+    "I don't believe you, you're kidding me.",
+    "I don't believe you, you're just pulling my leg.",
+    "You're not believing me, you're just pulling my leg.",
+    "I don't believe you, you're just pulling my leg.",
+    "I don't believe you, you're just pulling my leg.",
+    "You're not convincing me, you're just kidding me.",
+    "You're not believable, you're just pulling my leg.",
+    "I don't believe you, you're just pulling my leg.",
+    "I don't believe you, you're just teasing me.",
+    "I don't believe you, you're just teasing me.",
+    "You're not seriously telling me that?",
+    "I don't believe you, you're teasing me.",
+    "You're not believable, you're just teasing me.",
+    "I don't believe you, you're just pulling my leg.",
+    "I don't believe you, you're just pulling my leg.",
+    "I don't believe you, you're just joking around.",
+    "You're not telling me the truth; you're just pulling my leg.",
+    "You're not believable, you're just joking with me."
+   ]
+  },
+  {
+   "sid": "it_in_bocca_al_lupo",
+   "lang": "it",
+   "category": "idiom",
+   "text": "Domani hai l'esame? In bocca al lupo!",
+   "span": {
+    "text": "In bocca al lupo",
+    "start": 20,
+    "end": 36,
+    "kind": "hot"
+   },
+   "H_bits": 0.5689955935892812,
+   "n_used": 20,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "good luck",
+     "share": 0.9,
+     "members": [
+      "Good luck!",
+      "Good luck."
+     ]
+    },
+    {
+     "rep": "break a leg",
+     "share": 0.05,
+     "members": [
+      "Break a leg."
+     ]
+    },
+    {
+     "rep": "break",
+     "share": 0.05,
+     "members": [
+      "Break"
+     ]
+    }
+   ],
+   "renderings": [
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Break a leg.",
+    "Good luck!",
+    "Good luck!",
+    "Good luck.",
+    "Good luck!",
+    "Good luck!",
+    "Good luck!",
+    "Good luck.",
+    "Break"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Are you taking the exam tomorrow? Good luck!",
+    "Are you taking an exam tomorrow? Good luck!",
+    "Will tomorrow be your exam day? Good luck!",
+    "Will you have an exam tomorrow? Good luck!",
+    "Are you taking the exam tomorrow? Good luck!",
+    "Will you have the exam tomorrow? Good luck!",
+    "Will you have the exam tomorrow? Good luck!",
+    "Will you pass the exam tomorrow? Good luck!",
+    "Are you taking the test tomorrow? Good luck!",
+    "Are you having an exam tomorrow? Good luck!",
+    "Are you preparing for the exam tomorrow? Good luck!",
+    "Are you having the exam tomorrow? Break a leg.",
+    "Will you have an exam tomorrow? Good luck!",
+    "Do you have the exam tomorrow? Good luck!",
+    "Will you have the exam tomorrow? Good luck.",
+    "Will you have an exam tomorrow? Good luck!",
+    "Are you going to have an exam tomorrow? Good luck!",
+    "Will you have a test tomorrow? Good luck!",
+    "Will you have an exam tomorrow? Good luck.",
+    "Are you taking the exam tomorrow? Break a leg!"
+   ]
+  },
+  {
+   "sid": "fr_cafard",
+   "lang": "fr",
+   "category": "idiom",
+   "text": "Depuis qu'il pleut, j'ai le cafard.",
+   "span": {
+    "text": "j'ai le cafard",
+    "start": 20,
+    "end": 34,
+    "kind": "hot"
+   },
+   "H_bits": 2.019973094021975,
+   "n_used": 20,
+   "n_clusters": 6,
+   "clusters": [
+    {
+     "rep": "i've been feeling",
+     "share": 0.45,
+     "members": [
+      "I'm feeling",
+      "I've been feeling"
+     ]
+    },
+    {
+     "rep": "i've had the blues",
+     "share": 0.3,
+     "members": [
+      "I'm feeling down.",
+      "I've had the blues"
+     ]
+    },
+    {
+     "rep": "i have the creeps",
+     "share": 0.1,
+     "members": [
+      "I have the creeps.",
+      "I have the vapors"
+     ]
+    },
+    {
+     "rep": "get the blues",
+     "share": 0.05,
+     "members": [
+      "get the blues"
+     ]
+    },
+    {
+     "rep": "i've been",
+     "share": 0.05,
+     "members": [
+      "I've been"
+     ]
+    },
+    {
+     "rep": "it's been exhausting me",
+     "share": 0.05,
+     "members": [
+      "it's been exhausting me"
+     ]
+    }
+   ],
+   "renderings": [
+    "I have the creeps.",
+    "I've been feeling",
+    "I've been feeling",
+    "I've been feeling",
+    "I've had the blues",
+    "get the blues",
+    "I'm feeling down.",
+    "I've been",
+    "I've been feeling",
+    "I'm feeling down.",
+    "I've had the blues",
+    "I'm feeling",
+    "I've been feeling",
+    "I've been feeling",
+    "it's been exhausting me",
+    "I have the vapors",
+    "I'm feeling down.",
+    "I've been feeling",
+    "I've had the blues",
+    "I've been feeling"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Since it's raining, I have the creeps.",
+    "I've been feeling down since it started raining.",
+    "I've been feeling down since it started raining.",
+    "I've been feeling down since it started raining.",
+    "I've had the blues all day since it started raining.",
+    "It's too rainy for me to get the blues.",
+    "Since it's raining, I'm feeling down.",
+    "I've been gloomy since it started raining.",
+    "I've been feeling down since it started raining.",
+    "Since it's raining, I'm feeling down.",
+    "I've had the blues since it started raining.",
+    "I'm feeling depressed since it's been raining.",
+    "Ever since it's been raining, I've been feeling miserable.",
+    "I've been feeling really down since it started raining.",
+    "It's been raining so much that it's been exhausting me.",
+    "Since it's been raining, I have the vapors, but more naturally it translates to: Since it's been raining, I feel sick to my stomach.",
+    "Since it's raining, I'm feeling down.",
+    "I've been feeling down since it's been raining.",
+    "I've had the blues all day ever since it started raining.",
+    "I've been feeling gloomy since it started raining."
+   ]
+  },
+  {
+   "sid": "de_tomaten",
+   "lang": "de",
+   "category": "idiom",
+   "text": "Hast du Tomaten auf den Augen? Die Ampel ist rot!",
+   "span": {
+    "text": "Tomaten auf den Augen",
+    "start": 8,
+    "end": 29,
+    "kind": "hot"
+   },
+   "H_bits": 2.9414460711655215,
+   "n_used": 20,
+   "n_clusters": 10,
+   "clusters": [
+    {
+     "rep": "are you wearing",
+     "share": 0.25,
+     "members": [
+      "Are you wearing"
+     ]
+    },
+    {
+     "rep": "are you wearing tomatoes on your eyes, because the traffic light is red",
+     "share": 0.2,
+     "members": [
+      "Are you wearing tomato stains on your eyes, by the way the traffic light is red?",
+      "Are you wearing tomatoes on your eyes, because the traffic light is red?"
+     ]
+    },
+    {
+     "rep": "are you wearing tomato sauce on your eyes, because the traffic light is red",
+     "share": 0.2,
+     "members": [
+      "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+      "Are you wearing tomato sauce on your eyes, the traffic light is red!"
+     ]
+    },
+    {
+     "rep": "are you wearing tomato sauce on your face, the light is red",
+     "share": 0.05,
+     "members": [
+      "Are you wearing tomato sauce on your face, the light is red?"
+     ]
+    },
+    {
+     "rep": "are you crying from tomato juice on your eyes, because the traffic light is red",
+     "share": 0.05,
+     "members": [
+      "Are you crying from tomato juice on your eyes, because the traffic light is red?"
+     ]
+    },
+    {
+     "rep": "are you wearing tomatoes on your eyes because the light is red",
+     "share": 0.05,
+     "members": [
+      "Are you wearing tomatoes on your eyes because the light is red?"
+     ]
+    },
+    {
+     "rep": "are",
+     "share": 0.05,
+     "members": [
+      "Are"
+     ]
+    },
+    {
+     "rep": "are you wearing tomato sauce on your eyes",
+     "share": 0.05,
+     "members": [
+      "Are you wearing tomato sauce on your eyes?"
+     ]
+    },
+    {
+     "rep": "do you have tomatoes on your eyes",
+     "share": 0.05,
+     "members": [
+      "Do you have tomatoes on your eyes?"
+     ]
+    },
+    {
+     "rep": "do you have tomatoes on your eyes, the timer has turned red",
+     "share": 0.05,
+     "members": [
+      "Do you have tomatoes on your eyes, the timer has turned red."
+     ]
+    }
+   ],
+   "renderings": [
+    "Are you wearing tomato sauce on your face, the light is red?",
+    "Are you wearing",
+    "Are you wearing tomatoes on your eyes, because the traffic light is red?",
+    "Are you wearing",
+    "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+    "Are you crying from tomato juice on your eyes, because the traffic light is red?",
+    "Are you wearing tomatoes on your eyes because the light is red?",
+    "Are",
+    "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+    "Are you wearing tomato sauce on your eyes?",
+    "Are you wearing",
+    "Are you wearing",
+    "Do you have tomatoes on your eyes?",
+    "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+    "Do you have tomatoes on your eyes, the timer has turned red.",
+    "Are you wearing tomato stains on your eyes, by the way the traffic light is red?",
+    "Are you wearing",
+    "Are you wearing tomatoes on your eyes, because the traffic light is red?",
+    "Are you wearing tomatoes on your eyes, because the traffic light is red?",
+    "Are you wearing tomato sauce on your eyes, the traffic light is red!"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "Are you wearing tomato sauce on your face, the light is red?",
+    "Are you wearing tomatoes on your eyes, the traffic light is red?",
+    "Are you wearing tomatoes on your eyes, because the traffic light is red?",
+    "Are you wearing tomatoes on your eyes, the traffic light is red?",
+    "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+    "Are you crying from tomato juice on your eyes, because the traffic light is red?",
+    "Are you wearing tomatoes on your eyes because the light is red?",
+    "Are you seeing tomatoes on her eyes? The red light is on.",
+    "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+    "Are you wearing tomato sauce on your eyes? The traffic light is red.",
+    "Are you wearing tomatoes on your eyes? The traffic light is red!",
+    "Are you wearing tomatoes on your eyes, the traffic light is red?",
+    "Do you have tomatoes on your eyes? The traffic light is red!",
+    "Are you wearing tomato sauce on your eyes, because the traffic light is red?",
+    "Do you have tomatoes on your eyes, the timer has turned red.",
+    "Are you wearing tomato stains on your eyes, by the way the traffic light is red?",
+    "Are you wearing tomatoes on your eyes, the traffic light is red?",
+    "Are you wearing tomatoes on your eyes, because the traffic light is red?",
+    "Are you wearing tomatoes on your eyes, because the traffic light is red?",
+    "Are you wearing tomato sauce on your eyes, the traffic light is red!"
+   ]
+  },
+  {
+   "sid": "pt_estou_com_saudades",
+   "lang": "pt",
+   "category": "idiom",
+   "text": "Estou com saudades de você.",
+   "span": {
+    "text": "Estou com saudades",
+    "start": 0,
+    "end": 18,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 2,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "i have",
+     "share": 1.0,
+     "members": [
+      "I have"
+     ]
+    }
+   ],
+   "renderings": [
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I have",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I have",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you.",
+    "I, you."
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "aligned_rate": 0.1,
+   "none_rate": 0.0,
+   "translations": [
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I have a longing for you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I have a strong longing for you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you.",
+    "I miss you."
+   ]
+  },
+  {
+   "sid": "es_en_las_nubes",
+   "lang": "es",
+   "category": "idiom",
+   "text": "Mi hijo siempre está en las nubes en clase.",
+   "span": {
+    "text": "está en las nubes",
+    "start": 16,
+    "end": 33,
+    "kind": "hot"
+   },
+   "H_bits": 1.8248169862168617,
+   "n_used": 19,
+   "n_clusters": 5,
+   "clusters": [
+    {
+     "rep": "daydreaming",
+     "share": 0.47368421052631576,
+     "members": [
+      "daydreaming"
+     ]
+    },
+    {
+     "rep": "is",
+     "share": 0.3157894736842105,
+     "members": [
+      "is"
+     ]
+    },
+    {
+     "rep": "cloud nine",
+     "share": 0.10526315789473684,
+     "members": [
+      "cloud nine"
+     ]
+    },
+    {
+     "rep": "tends",
+     "share": 0.05263157894736842,
+     "members": [
+      "tends"
+     ]
+    },
+    {
+     "rep": "dreaming",
+     "share": 0.05263157894736842,
+     "members": [
+      "dreaming"
+     ]
+    }
+   ],
+   "renderings": [
+    "tends",
+    "is",
+    "daydreaming",
+    "lost, in",
+    "is",
+    "is",
+    "daydreaming",
+    "dreaming",
+    "daydreaming",
+    "is",
+    "daydreaming",
+    "daydreaming",
+    "daydreaming",
+    "is",
+    "cloud nine",
+    "is",
+    "daydreaming",
+    "daydreaming",
+    "cloud nine",
+    "daydreaming"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.95,
+   "none_rate": 0.0,
+   "translations": [
+    "My son always tends to be in the clouds during class.",
+    "My son is always in the clouds in class.",
+    "My son is always daydreaming in class.",
+    "My son is always lost in thought in class.",
+    "My son is always in the clouds in class.",
+    "My son is always in the clouds in class.",
+    "My son is always daydreaming in class.",
+    "My son is always dreaming in class.",
+    "My son is always daydreaming in class.",
+    "My son is always in clouds in class.",
+    "My son is always daydreaming in class.",
+    "My son is always daydreaming in class.",
+    "My son is always daydreaming in class.",
+    "My son is always in the clouds in class.",
+    "My son is always in cloud nine in class.",
+    "My son is always in the clouds in class.",
+    "My son is always daydreaming in class.",
+    "My son is always daydreaming in class.",
+    "My son is always in cloud nine in class.",
+    "My son is always daydreaming in class."
+   ]
+  },
+  {
+   "sid": "it_in_gamba",
+   "lang": "it",
+   "category": "idiom",
+   "text": "La nuova collega è proprio in gamba.",
+   "span": {
+    "text": "in gamba",
+    "start": 27,
+    "end": 35,
+    "kind": "hot"
+   },
+   "H_bits": 1.5693078231812962,
+   "n_used": 17,
+   "n_clusters": 5,
+   "clusters": [
+    {
+     "rep": "very",
+     "share": 0.6470588235294118,
+     "members": [
+      "absolutely",
+      "extremely",
+      "really",
+      "very"
+     ]
+    },
+    {
+     "rep": "she's",
+     "share": 0.17647058823529413,
+     "members": [
+      "She's"
+     ]
+    },
+    {
+     "rep": "on the ball",
+     "share": 0.058823529411764705,
+     "members": [
+      "on the ball"
+     ]
+    },
+    {
+     "rep": "quite",
+     "share": 0.058823529411764705,
+     "members": [
+      "quite"
+     ]
+    },
+    {
+     "rep": "go-getter",
+     "share": 0.058823529411764705,
+     "members": [
+      "go-getter"
+     ]
+    }
+   ],
+   "renderings": [
+    "on the ball",
+    "She's",
+    "absolutely",
+    "extremely",
+    "really",
+    "very",
+    "absolutely",
+    "She's, really",
+    "very",
+    "really, handy",
+    "She's",
+    "quite",
+    "really, good",
+    "really",
+    "She's",
+    "extremely",
+    "absolutely",
+    "very",
+    "go-getter",
+    "very"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 0.85,
+   "none_rate": 0.0,
+   "translations": [
+    "The new colleague is absolutely on the ball.",
+    "She's really talented.",
+    "The new colleague is absolutely great.",
+    "The new colleague is extremely competent.",
+    "The new coworker is really sharp.",
+    "The new colleague is very talented.",
+    "The new colleague is absolutely on top of things.",
+    "She's really on top of things.",
+    "The new coworker is very capable.",
+    "The new colleague is really handy.",
+    "She's very competent.",
+    "The new colleague is quite skillful.",
+    "The new coworker is really good at her job.",
+    "The new colleague is really sharp.",
+    "She's brand new at work.",
+    "The new coworker is extremely talented.",
+    "The new colleague is absolutely brilliant.",
+    "The new colleague is very competent.",
+    "The new colleague is a real go-getter.",
+    "The new colleague is very capable."
+   ]
+  },
+  {
+   "sid": "fr_poser_un_lapin",
+   "lang": "fr",
+   "category": "idiom",
+   "text": "Elle m'a posé un lapin hier soir.",
+   "span": {
+    "text": "m'a posé un lapin",
+    "start": 5,
+    "end": 22,
+    "kind": "hot"
+   },
+   "H_bits": null,
+   "n_used": 9,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "for",
+     "share": 0.7777777777777778,
+     "members": [
+      "for"
+     ]
+    },
+    {
+     "rep": "about",
+     "share": 0.2222222222222222,
+     "members": [
+      "about"
+     ]
+    }
+   ],
+   "renderings": [
+    "for",
+    "She, a.",
+    "She, a, a",
+    "for",
+    "She, a",
+    "to, a",
+    "for",
+    "for",
+    "She, a.",
+    "for",
+    "She, a.",
+    "for",
+    "She, a, a",
+    "She, a, a",
+    "about",
+    "about",
+    "for",
+    "She, my",
+    "She, a.",
+    "She, a."
+   ],
+   "aligned": [
+    true,
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "aligned_rate": 0.45,
+   "none_rate": 0.0,
+   "translations": [
+    "She asked me for a rabbit last night.",
+    "She asked me a rabbit last night.",
+    "She asked me a rabbit yesterday evening.",
+    "She asked me for a rabbit last night.",
+    "She asked me a question about a rabbit last night.",
+    "She asked me to bring a rabbit last night.",
+    "She asked me for a rabbit last night.",
+    "She asked me for a rabbit last night.",
+    "She asked me a rabbit last night.",
+    "She asked me for rabbit yesterday.",
+    "She asked me a rabbit yesterday.",
+    "She asked me for help with a rabbit last night.",
+    "She asked me a rabbit yesterday evening.",
+    "She asked me a rabbit yesterday evening.",
+    "She asked me about a rabbit last night.",
+    "She asked me about a rabbit last night.",
+    "She asked me for a rabbit last night.",
+    "She took my rabbit yesterday evening.",
+    "She asked me a rabbit last night.",
+    "She asked me a rabbit last night."
+   ]
+  },
+  {
+   "sid": "es_tren",
+   "lang": "es",
+   "category": "control",
+   "text": "El tren sale a las ocho de la mañana.",
+   "span": {
+    "text": "tren",
+    "start": 3,
+    "end": 7,
+    "kind": "probe"
+   },
+   "H_bits": 0.0,
+   "n_used": 20,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "the train",
+     "share": 1.0,
+     "members": [
+      "The train"
+     ]
+    }
+   ],
+   "renderings": [
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train",
+    "The train"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "The train departs at eight in the morning.",
+    "The train departs at eight in the morning.",
+    "The train boards at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train departs at eight o'clock in the morning.",
+    "The train departs at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train departs at eight in the morning.",
+    "The train departs at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train departs at eight in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train departs at 8 am.",
+    "The train leaves at 8 in the morning.",
+    "The train leaves at eight in the morning.",
+    "The train departs at eight in the morning.",
+    "The train departs at eight in the morning."
+   ]
+  },
+  {
+   "sid": "es_casa",
+   "lang": "es",
+   "category": "control",
+   "text": "Mi hermana vive en una casa pequeña.",
+   "span": {
+    "text": "casa",
+    "start": 23,
+    "end": 27,
+    "kind": "probe"
+   },
+   "H_bits": null,
+   "n_used": 0,
+   "n_clusters": 0,
+   "clusters": [],
+   "renderings": [
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house",
+    "a, house"
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "aligned_rate": 0.0,
+   "none_rate": 0.0,
+   "translations": [
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house.",
+    "My sister lives in a small house."
+   ]
+  },
+  {
+   "sid": "de_brueder",
+   "lang": "de",
+   "category": "control",
+   "text": "Ich habe zwei Brüder und eine Schwester.",
+   "span": {
+    "text": "Brüder",
+    "start": 14,
+    "end": 20,
+    "kind": "probe"
+   },
+   "H_bits": 0.0,
+   "n_used": 20,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "brothers",
+     "share": 1.0,
+     "members": [
+      "brothers"
+     ]
+    }
+   ],
+   "renderings": [
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers",
+    "brothers"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and one sister.",
+    "I have two brothers and a sister.",
+    "I have two brothers and one sister."
+   ]
+  },
+  {
+   "sid": "de_tisch",
+   "lang": "de",
+   "category": "control",
+   "text": "Das Buch liegt auf dem Tisch in der Küche.",
+   "span": {
+    "text": "Tisch",
+    "start": 23,
+    "end": 28,
+    "kind": "probe"
+   },
+   "H_bits": 0.0,
+   "n_used": 20,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "table",
+     "share": 1.0,
+     "members": [
+      "table"
+     ]
+    }
+   ],
+   "renderings": [
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table",
+    "table"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is lying on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is sitting on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is lying on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is on the table in the kitchen.",
+    "The book is lying on the table in the kitchen.",
+    "The book is on the table in the kitchen."
+   ]
+  },
+  {
+   "sid": "it_negozio",
+   "lang": "it",
+   "category": "control",
+   "text": "Il negozio chiude alle sette di sera.",
+   "span": {
+    "text": "negozio",
+    "start": 3,
+    "end": 10,
+    "kind": "probe"
+   },
+   "H_bits": 0.0,
+   "n_used": 20,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "the store",
+     "share": 1.0,
+     "members": [
+      "The shop",
+      "The store"
+     ]
+    }
+   ],
+   "renderings": [
+    "The store",
+    "The shop",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store",
+    "The store"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "The store closes at seven in the evening.",
+    "The shop closes at 7 o'clock in the evening.",
+    "The store closes at 7 o'clock in the evening.",
+    "The store closes at seven o'clock in the evening.",
+    "The store closes at 7 pm.",
+    "The store closes at seven o'clock in the evening.",
+    "The store closes at seven o'clock.",
+    "The store closes at seven o'clock in the evening.",
+    "The store closes at seven in the evening.",
+    "The store closes at seven o'clock in the evening.",
+    "The store closes at seven o'clock.",
+    "The store closes at seven in the evening.",
+    "The store closes at seven in the evening.",
+    "The store closes at seven in the evening.",
+    "The store closes at seven o'clock in the evening.",
+    "The store closes at 7 o'clock in the evening.",
+    "The store closes at seven in the evening.",
+    "The store closes at seven o'clock in the evening.",
+    "The store closes at 7 o'clock in the evening.",
+    "The store closes at seven o'clock in the evening."
+   ]
+  },
+  {
+   "sid": "it_caffe",
+   "lang": "it",
+   "category": "control",
+   "text": "Mio padre beve un caffè ogni mattina.",
+   "span": {
+    "text": "caffè",
+    "start": 18,
+    "end": 23,
+    "kind": "probe"
+   },
+   "H_bits": 1.1411535278793055,
+   "n_used": 20,
+   "n_clusters": 3,
+   "clusters": [
+    {
+     "rep": "a",
+     "share": 0.65,
+     "members": [
+      "a"
+     ]
+    },
+    {
+     "rep": "a cup of",
+     "share": 0.3,
+     "members": [
+      "a cup",
+      "a cup of"
+     ]
+    },
+    {
+     "rep": "drinks",
+     "share": 0.05,
+     "members": [
+      "drinks"
+     ]
+    }
+   ],
+   "renderings": [
+    "a cup of",
+    "a cup of",
+    "a",
+    "a",
+    "a",
+    "a cup of",
+    "a",
+    "drinks",
+    "a",
+    "a",
+    "a cup",
+    "a cup of",
+    "a",
+    "a",
+    "a",
+    "a",
+    "a",
+    "a cup of",
+    "a",
+    "a"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "My father drinks a cup of coffee every morning.",
+    "My father drinks a cup of coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a cup of coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father has a cup of coffee every morning.",
+    "My father drinks a cup of coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a cup of coffee every morning.",
+    "My father drinks a coffee every morning.",
+    "My father drinks a coffee every morning."
+   ]
+  },
+  {
+   "sid": "pt_medico",
+   "lang": "pt",
+   "category": "control",
+   "text": "O médico chegou ao hospital às nove horas.",
+   "span": {
+    "text": "médico",
+    "start": 2,
+    "end": 8,
+    "kind": "probe"
+   },
+   "H_bits": 0.0,
+   "n_used": 20,
+   "n_clusters": 1,
+   "clusters": [
+    {
+     "rep": "the doctor",
+     "share": 1.0,
+     "members": [
+      "The doctor"
+     ]
+    }
+   ],
+   "renderings": [
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor",
+    "The doctor"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine in the morning.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at 9 o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock.",
+    "The doctor arrived at the hospital at nine o'clock."
+   ]
+  },
+  {
+   "sid": "pt_mercado",
+   "lang": "pt",
+   "category": "control",
+   "text": "Comprei pão e leite no mercado.",
+   "span": {
+    "text": "leite",
+    "start": 14,
+    "end": 19,
+    "kind": "probe"
+   },
+   "H_bits": null,
+   "n_used": 0,
+   "n_clusters": 0,
+   "clusters": [],
+   "renderings": [
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk",
+    "bought, milk"
+   ],
+   "aligned": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "aligned_rate": 0.0,
+   "none_rate": 0.0,
+   "translations": [
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market.",
+    "I bought bread and milk at the market."
+   ]
+  },
+  {
+   "sid": "fr_chat",
+   "lang": "fr",
+   "category": "control",
+   "text": "Le chat dort sur le canapé rouge.",
+   "span": {
+    "text": "canapé",
+    "start": 20,
+    "end": 26,
+    "kind": "probe"
+   },
+   "H_bits": 1.0,
+   "n_used": 20,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "sofa",
+     "share": 0.5,
+     "members": [
+      "sofa"
+     ]
+    },
+    {
+     "rep": "couch",
+     "share": 0.5,
+     "members": [
+      "couch"
+     ]
+    }
+   ],
+   "renderings": [
+    "sofa",
+    "couch",
+    "couch",
+    "sofa",
+    "sofa",
+    "couch",
+    "sofa",
+    "couch",
+    "couch",
+    "sofa",
+    "sofa",
+    "couch",
+    "sofa",
+    "couch",
+    "sofa",
+    "couch",
+    "sofa",
+    "sofa",
+    "couch",
+    "couch"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red couch.",
+    "The cat is sleeping on the red sofa.",
+    "The cat is sleeping on the red sofa.",
+    "The cat sleeps on the red couch.",
+    "The cat is sleeping on the red couch."
+   ]
+  },
+  {
+   "sid": "fr_musee",
+   "lang": "fr",
+   "category": "control",
+   "text": "Nous avons visité le musée avec nos enfants.",
+   "span": {
+    "text": "enfants",
+    "start": 36,
+    "end": 43,
+    "kind": "probe"
+   },
+   "H_bits": 0.4689955935892812,
+   "n_used": 20,
+   "n_clusters": 2,
+   "clusters": [
+    {
+     "rep": "our children",
+     "share": 0.9,
+     "members": [
+      "our children"
+     ]
+    },
+    {
+     "rep": "the",
+     "share": 0.1,
+     "members": [
+      "the"
+     ]
+    }
+   ],
+   "renderings": [
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "the",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "our children",
+    "the",
+    "our children",
+    "our children",
+    "our children",
+    "our children"
+   ],
+   "aligned": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "aligned_rate": 1.0,
+   "none_rate": 0.0,
+   "translations": [
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with the kids.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with the kids.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children.",
+    "We visited the museum with our children."
+   ]
+  },
+  {
+   "sid": "rom_ffora",
+   "lang": "rom",
+   "category": "dialect",
+   "text": "cominceranno a ddì: ffora a cchi ttoca.",
+   "span": {
+    "text": "ffora a cchi ttoca",
+    "start": 20,
+    "end": 38,
+    "kind": "hot"
+   },
+   "H_bits": 2.9689185639620974,
+   "n_used": 13,
+   "n_clusters": 9,
+   "clusters": [
+    {
+     "rep": "go out",
+     "share": 0.23076923076923078,
+     "members": [
+      "get out",
+      "go out"
+     ]
+    },
+    {
+     "rep": "come out",
+     "share": 0.23076923076923078,
+     "members": [
+      "come out"
+     ]
+    },
+    {
+     "rep": "get outside because",
+     "share": 0.07692307692307693,
+     "members": [
+      "get outside because"
+     ]
+    },
+    {
+     "rep": "go outside, whoever touches it",
+     "share": 0.07692307692307693,
+     "members": [
+      "go outside, whoever touches it."
+     ]
+    },
+    {
+     "rep": "stay",
+     "share": 0.07692307692307693,
+     "members": [
+      "stay"
+     ]
+    },
+    {
+     "rep": "come upstairs, touch this",
+     "share": 0.07692307692307693,
+     "members": [
+      "come upstairs, touch this."
+     ]
+    },
+    {
+     "rep": "when",
+     "share": 0.07692307692307693,
+     "members": [
+      "when"
+     ]
+    },
+    {
+     "rep": "if you",
+     "share": 0.07692307692307693,
+     "members": [
+      "if you"
+     ]
+    },
+    {
+     "rep": "(nothing)",
+     "share": 0.07692307692307693,
+     "members": [
+      ""
+     ]
+    }
+   ],
+   "renderings": [
+    "get outside because",
+    "go out",
+    "They, from, a, when",
+    "They, going, from, where, you, touch.",
+    "go outside, whoever touches it.",
+    "where, they, touch",
+    "They, when, I, them, outside",
+    "come out",
+    "stay",
+    "go out",
+    "They're, going, back, home, by, touching, goodbye.",
+    "come upstairs, touch this.",
+    "when",
+    "They, whoever, when",
+    "come out",
+    "They, when, I, it",
+    "if you",
+    "get out",
+    "come out",
+    ""
+   ],
+   "aligned": [
+    true,
+    true,
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false
+   ],
+   "aligned_rate": 0.6,
+   "none_rate": 0.05,
+   "translations": [
+    "They will begin around this time: get outside because a touch.",
+    "People in Rome will start from noon: go out when you touch.",
+    "They will start from now until when you touch something.",
+    "They will be going out from where you touch.",
+    "They will start from this point: go outside, whoever touches it.",
+    "They will go outside where they touch.",
+    "They will leave when I touch them outside.",
+    "They will start at dawn: come out and whoever touches it.",
+    "They will start today: stay out if you touch.",
+    "They will start immediately: go out and whoever touches.",
+    "They're going back home by touching goodbye.",
+    "They will start at my place: come upstairs, touch this.",
+    "They're coming out so when you happen to touch.",
+    "They will start until when whoever touches.",
+    "They will start on the day: come out whenever you touch.",
+    "They will start when I scratch it.",
+    "They are going outside if you touch it.",
+    "They will start from now onwards: get out as soon as you touch.",
+    "They start at dawn: come out and see who touches you.",
+    "People of Rome will start on the day and those who touch it."
+   ]
+  },
+  {
+   "sid": "rom_schertri",
+   "lang": "rom",
+   "category": "dialect",
+   "text": "de schertri da la terra a ppecorone,",
+   "span": {
+    "text": "schertri",
+    "start": 3,
+    "end": 11,
+    "kind": "hot"
+   },
+   "H_bits": 3.2776134368191157,
+   "n_used": 11,
+   "n_clusters": 10,
+   "clusters": [
+    {
+     "rep": "from",
+     "share": 0.18181818181818182,
+     "members": [
+      "From"
+     ]
+    },
+    {
+     "rep": "shepherds",
+     "share": 0.09090909090909091,
+     "members": [
+      "shepherds"
+     ]
+    },
+    {
+     "rep": "wooden",
+     "share": 0.09090909090909091,
+     "members": [
+      "wooden"
+     ]
+    },
+    {
+     "rep": "cars",
+     "share": 0.09090909090909091,
+     "members": [
+      "cars"
+     ]
+    },
+    {
+     "rep": "fruit",
+     "share": 0.09090909090909091,
+     "members": [
+      "Fruit"
+     ]
+    },
+    {
+     "rep": "both",
+     "share": 0.09090909090909091,
+     "members": [
+      "both"
+     ]
+    },
+    {
+     "rep": "(nothing)",
+     "share": 0.09090909090909091,
+     "members": [
+      ""
+     ]
+    },
+    {
+     "rep": "quantity",
+     "share": 0.09090909090909091,
+     "members": [
+      "quantity"
+     ]
+    },
+    {
+     "rep": "we",
+     "share": 0.09090909090909091,
+     "members": [
+      "We"
+     ]
+    },
+    {
+     "rep": "food",
+     "share": 0.09090909090909091,
+     "members": [
+      "food"
+     ]
+    }
+   ],
+   "renderings": [
+    "shepherds",
+    "Shepherds, their",
+    "People, to",
+    "wooden",
+    "water, grain",
+    "From",
+    "They, the",
+    "From",
+    "cars",
+    "Fruit",
+    "People, have, been, stealing",
+    "People, from",
+    "both",
+    "Things, livestock",
+    "",
+    "quantity",
+    "We",
+    "food",
+    "People, shepherds",
+    "They, the"
+   ],
+   "aligned": [
+    true,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "aligned_rate": 0.5,
+   "none_rate": 0.05,
+   "translations": [
+    "People come from the woods to the shepherds.",
+    "Shepherds sell their grain from the ground to the bulls.",
+    "People take vegetables from the ground to the goat owners.",
+    "From the earth brings the wooden sticks.",
+    "People take water and grain from the earth.",
+    "From the earth comes to the sheep,",
+    "They take the dairy from the land to the donkeys.",
+    "From the roof of the house to the sheep.",
+    "People take away cars from the road to give to oxen.",
+    "Fruit is taken from the earth to the goats.",
+    "People have been stealing from the earth to sheep.",
+    "People from the countryside come to Rome.",
+    "People harvest grain from the earth for both humans and sheep.",
+    "Things come from the earth to the livestock.",
+    "People take food from the earth to the sheep.",
+    "From the earth comes the schertria, or quantity of sheep.",
+    "We get this wool from the sheep.",
+    "The farmers bring food from the earth to the sheep.",
+    "People from the countryside were being chased by shepherds.",
+    "They had to cut the hay from the earth for the oxen."
+   ]
+  },
+  {
+   "sid": "rom_schertri",
+   "lang": "rom",
+   "category": "dialect",
+   "text": "de schertri da la terra a ppecorone,",
+   "span": {
+    "text": "a ppecorone",
+    "start": 24,
+    "end": 35,
+    "kind": "hot"
+   },
+   "H_bits": 2.7272170014624826,
+   "n_used": 16,
+   "n_clusters": 8,
+   "clusters": [
+    {
+     "rep": "sheep",
+     "share": 0.3125,
+     "members": [
+      "sheep"
+     ]
+    },
+    {
+     "rep": "(nothing)",
+     "share": 0.1875,
+     "members": [
+      ""
+     ]
+    },
+    {
+     "rep": "shepherds",
+     "share": 0.125,
+     "members": [
+      "shepherds"
+     ]
+    },
+    {
+     "rep": "oxen",
+     "share": 0.125,
+     "members": [
+      "oxen"
+     ]
+    },
+    {
+     "rep": "goat owners",
+     "share": 0.0625,
+     "members": [
+      "goat owners"
+     ]
+    },
+    {
+     "rep": "goats",
+     "share": 0.0625,
+     "members": [
+      "goats"
+     ]
+    },
+    {
+     "rep": "both humans and sheep",
+     "share": 0.0625,
+     "members": [
+      "both humans and sheep"
+     ]
+    },
+    {
+     "rep": "quantity",
+     "share": 0.0625,
+     "members": [
+      "quantity"
+     ]
+    }
+   ],
+   "renderings": [
+    "shepherds",
+    "",
+    "goat owners",
+    "",
+    "People, take, water, and, grain",
+    "sheep",
+    "They, the",
+    "sheep",
+    "oxen",
+    "goats",
+    "sheep",
+    "",
+    "both humans and sheep",
+    "Things, livestock",
+    "sheep",
+    "quantity",
+    "sheep",
+    "the, sheep",
+    "shepherds",
+    "oxen"
+   ],
+   "aligned": [
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "aligned_rate": 0.65,
+   "none_rate": 0.15,
+   "translations": [
+    "People come from the woods to the shepherds.",
+    "Shepherds sell their grain from the ground to the bulls.",
+    "People take vegetables from the ground to the goat owners.",
+    "From the earth brings the wooden sticks.",
+    "People take water and grain from the earth.",
+    "From the earth comes to the sheep,",
+    "They take the dairy from the land to the donkeys.",
+    "From the roof of the house to the sheep.",
+    "People take away cars from the road to give to oxen.",
+    "Fruit is taken from the earth to the goats.",
+    "People have been stealing from the earth to sheep.",
+    "People from the countryside come to Rome.",
+    "People harvest grain from the earth for both humans and sheep.",
+    "Things come from the earth to the livestock.",
+    "People take food from the earth to the sheep.",
+    "From the earth comes the schertria, or quantity of sheep.",
+    "We get this wool from the sheep.",
+    "The farmers bring food from the earth to the sheep.",
+    "People from the countryside were being chased by shepherds.",
+    "They had to cut the hay from the earth for the oxen."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+# English word set for the reverse direction (decomposed into pt/de/it/fr/es pools). Thread 1 only, so no
+# glosses or extra text.  Drafted by Claude Code (Opus 5.5), 18 Nov 2026; UNCHECKED.
+language: en
+templates:
+  - 'The word "{w}" means'
+  - 'What does "{w}" mean?'
+  - '"{w}" is an English word.'
+  - 'In English we say "{w}".'
+words:
+
+- {word: cosy, category: english_untranslatable, emotion: false, gloss_en: 'comfortably warm and snug', senses: [], source: TODO, notes: 'British spelling; cf. Gemütlichkeit, hygge.', exclude_from_pool: [],
+   contexts: ['The cottage was small but [[cosy]].', 'We spent a [[cosy]] evening by the fire.', 'She curled up in a [[cosy]] armchair with a book.', 'The pub has a [[cosy]] back room.', 'Winter is the season for [[cosy]] jumpers and soup.']}
+- {word: serendipity, category: english_untranslatable, emotion: false, gloss_en: 'the happy accident of finding something good without looking for it', senses: [], source: TODO, notes: 'Coined by Horace Walpole (1754).', exclude_from_pool: [],
+   contexts: ['Penicillin was discovered by [[serendipity]].', 'It was pure [[serendipity]] that we met on that train.', 'Good libraries encourage [[serendipity]].', 'The novel celebrates [[serendipity]] and chance.', 'Call it fate or [[serendipity]], the job came at the right time.']}
+- {word: awkward, category: english_untranslatable, emotion: true, gloss_en: 'socially uncomfortable or embarrassing; clumsy; difficult to handle', senses: [], source: TODO, notes: 'Social, physical and practical senses.', exclude_from_pool: [],
+   frames: ['I feel [[awkward]].', 'I am [[awkward]].'],
+   contexts: ['There was an [[awkward]] silence after his joke.', 'The box is an [[awkward]] shape to carry.', 'Meeting my ex at the party was [[awkward]].', 'He is a shy, [[awkward]] teenager.', 'You have put me in an [[awkward]] position.']}
+- {word: privacy, category: english_untranslatable, emotion: false, gloss_en: 'the state of being free from being observed or disturbed by others', senses: [], source: TODO, notes: 'Often borrowed as a loan in Italian and other languages.', exclude_from_pool: [],
+   contexts: ['Please respect our [[privacy]] at this difficult time.', 'The new app raises serious [[privacy]] concerns.', 'Teenagers need some [[privacy]].', 'There is no [[privacy]] in an open-plan office.', 'The curtains give us a little [[privacy]].']}
+- {word: wistful, category: english_untranslatable, emotion: true, gloss_en: 'having a gentle, sad longing, often for something past or unattainable', senses: [], source: TODO, notes: 'Reverse-direction counterpart to saudade / Sehnsucht.', exclude_from_pool: [],
+   frames: ['I feel [[wistful]].', 'I am [[wistful]].'],
+   contexts: ['She gave a [[wistful]] smile as the train pulled away.', 'Old photographs always make me [[wistful]].', 'There is a [[wistful]] tone to his late poems.', 'He spoke of his childhood in a [[wistful]] voice.', 'The song is [[wistful]] rather than sad.']}
+- {word: home, category: english_untranslatable, emotion: false, gloss_en: 'the place where one lives or belongs', senses: [], source: TODO, notes: 'Seed in the handoff; English home vs house vs Heimat.', exclude_from_pool: [],
+   contexts: ['After the trip it was good to be [[home]].', 'London has been her [[home]] for twenty years.', 'Make yourself at [[home]].', 'The old people''s [[home]] is on the hill.', 'He finally felt at [[home]] in the new country.']}
+- {word: sadness, category: emotion_plain, emotion: true, gloss_en: 'sadness', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   frames: ['I feel [[sadness]].', 'I am full of [[sadness]].'],
+   contexts: ['A deep [[sadness]] came over him.', 'There was [[sadness]] in her voice.', 'The film is full of [[sadness]].', 'She heard the news with [[sadness]].', 'The [[sadness]] passed with time.']}
+- {word: apron, category: english_ordinary, freq_match_for: cosy, emotion: false, gloss_en: 'apron', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   contexts: ['He tied an [[apron]] round his waist.', 'Her [[apron]] was covered in flour.', 'The butcher wiped his hands on his [[apron]].', 'Hang the [[apron]] on the hook.', 'I bought a new [[apron]] for the kitchen.']}
+- {word: thimble, category: english_ordinary, freq_match_for: serendipity, emotion: false, gloss_en: 'thimble', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   contexts: ['Without a [[thimble]] I always prick my finger.', 'She slipped the [[thimble]] onto her middle finger.', 'The sewing box held a silver [[thimble]].', 'I lost my [[thimble]] under the sofa.', 'My grandmother collected every kind of [[thimble]].']}
+- {word: brick, category: english_ordinary, freq_match_for: awkward, emotion: false, gloss_en: 'brick', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   contexts: ['The builder laid another [[brick]].', 'The house has red [[brick]] walls.', 'A [[brick]] broke during the work.', 'We used a [[brick]] to prop the door open.', 'The garden wall is made of old [[brick]].']}
+- {word: bread, category: english_ordinary, freq_match_for: privacy, emotion: false, gloss_en: 'bread', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   contexts: ['We bought fresh [[bread]] at the bakery.', 'The [[bread]] has gone stale.', 'Cut the [[bread]] into thick slices.', 'She bakes her own [[bread]].', 'Pass the [[bread]], please.']}
+- {word: ladle, category: english_ordinary, freq_match_for: wistful, emotion: false, gloss_en: 'ladle', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   contexts: ['Pass me the [[ladle]] for the soup.', 'Stir the sauce with a wooden [[ladle]].', 'The [[ladle]] fell into the pot.', 'He served one [[ladle]] of stew each.', 'The [[ladle]] hangs above the stove.']}
+- {word: table, category: english_ordinary, emotion: false, gloss_en: 'table', senses: [], source: TODO, notes: 'Handoff seed; furniture sense only; not frequency-matched.', exclude_from_pool: [],
+   contexts: ['Dinner is on the [[table]].', 'We bought a new kitchen [[table]].', 'The cat jumped onto the [[table]].', 'Please clear the [[table]].', 'The [[table]] is made of oak.']}
+- {word: money, category: english_ordinary, freq_match_for: home, emotion: false, gloss_en: 'money', senses: [], source: TODO, notes: '', exclude_from_pool: [],
+   contexts: ['I need to save more [[money]].', 'She lent me some [[money]] for the bus.', 'The [[money]] is in the drawer.', 'They spent all their [[money]] on the house.', 'He counted the [[money]] twice.']}
+- {word: rain, category: english_ordinary, emotion: false, gloss_en: 'rain', senses: [], source: TODO, notes: 'Handoff seed; not frequency-matched to a specific word.', exclude_from_pool: [],
+   contexts: ['The [[rain]] did not stop all day.', 'We got caught in the [[rain]].', 'Heavy [[rain]] is forecast for tomorrow.', 'The garden needs [[rain]].', 'I love the sound of [[rain]] on the roof.']}

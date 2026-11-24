@@ -1,0 +1,212 @@
+# Portuguese word set.  Field guide: data/README.md.  Everything here was drafted by Claude Code
+# (Opus 5.5) on 18 Nov 2026 and is UNCHECKED: glosses, senses, contexts, frames and extra text all need a
+# human pass.  `source: TODO` means no checkable citation yet -- none has been invented.
+language: pt
+templates:
+  - 'A palavra "{w}" quer dizer'
+  - 'O que significa "{w}"?'
+  - '"{w}" é uma palavra portuguesa.'
+  - 'Em português dizemos "{w}".'
+words:
+
+- word: saudade
+  category: untranslatable
+  emotion: true
+  gloss_en: an aching longing for someone or something absent, often loved and possibly never to return
+  senses:
+    - label: longing for an absent person or place
+      clarify: 'Aqui, "saudade" é a falta que se sente de uma pessoa ou de um lugar que está longe.'
+    - label: nostalgia for a past that is gone
+      clarify: 'Aqui, "saudade" é a lembrança melancólica de um tempo passado que não volta.'
+    - label: wistful yearning for what never was
+      clarify: 'Aqui, "saudade" é o desejo vago de algo que talvez nunca tenha existido.'
+  gloss_src: 'Saudade: sentimento de falta e desejo de alguém ou de algo ausente, misturado com a lembrança do que se viveu. Exemplo: "Quando emigrou, levou consigo a saudade da aldeia."'
+  source: TODO
+  notes: Seed example in the handoff; the canonical Portuguese untranslatable. Lead recipe card.
+  exclude_from_pool: []
+  frames:
+    - 'Sinto [[saudade]].'
+    - 'Estou cheio de [[saudade]].'
+  contexts:
+    - 'Desde que ela partiu para Lisboa, a [[saudade]] não me deixa dormir.'
+    - 'O fado canta a [[saudade]] de quem ficou no cais a ver o barco partir.'
+    - 'Tenho [[saudade]] dos verões na casa da minha avó.'
+    - 'Há uma [[saudade]] estranha de coisas que nunca aconteceram.'
+    - 'Mata a [[saudade]] e telefona à tua mãe.'
+  extra:
+    - 'Já passaram três anos. Escrevemos cartas, mas não é a mesma coisa.'
+    - 'Às sextas-feiras íamos todos à tasca da esquina. Ainda hoje passo lá à porta.'
+
+- word: cafuné
+  category: untranslatable
+  emotion: false
+  gloss_en: tenderly running one's fingers through someone's hair (Brazilian Portuguese)
+  senses:
+    - label: the act of stroking someone's hair affectionately
+      clarify: 'Aqui, "cafuné" é o gesto de passar os dedos devagar pelo cabelo de alguém, com carinho.'
+  gloss_src: 'Cafuné: carícia feita passando suavemente os dedos pelo cabelo ou couro cabeludo de alguém. Exemplo: "A mãe fazia cafuné no filho até ele adormecer."'
+  source: TODO
+  notes: Often listed as untranslatable; arguably a single clear reading with no one-word English equivalent (gap without multiplicity).
+  exclude_from_pool: []
+  contexts:
+    - 'Ela deitou a cabeça no meu colo e pediu um [[cafuné]].'
+    - 'Não há nada melhor do que um [[cafuné]] depois de um dia cansativo.'
+    - 'A avó fazia [[cafuné]] nos netos enquanto contava histórias.'
+    - 'O gato fecha os olhos quando recebe [[cafuné]] atrás das orelhas.'
+    - 'Adormeci no sofá com o [[cafuné]] da minha namorada.'
+  extra:
+    - 'Chegou a casa com dor de cabeça e deitou-se no sofá. Ninguém disse nada durante um bocado.'
+    - 'Era um domingo de chuva. Estávamos todos na sala, sem vontade de sair.'
+
+- word: jeitinho
+  category: untranslatable
+  emotion: false
+  gloss_en: (Brazilian) a clever, informal way round a rule or obstacle, often through charm or personal connections
+  senses:
+    - label: a resourceful workaround
+      clarify: 'Aqui, "jeitinho" é uma solução engenhosa e improvisada para um problema prático.'
+    - label: bending rules through favours or charm
+      clarify: 'Aqui, "jeitinho" é contornar uma regra com simpatia, favores ou conhecimentos pessoais.'
+  gloss_src: 'Jeitinho: maneira hábil e informal de resolver uma situação difícil, muitas vezes contornando regras com simpatia ou conhecimentos. Exemplo: "Não havia mesa livre, mas ele deu um jeitinho e conseguimos jantar."'
+  source: TODO
+  notes: Socio-cultural untranslatable; positive and negative readings coexist.
+  exclude_from_pool: []
+  contexts:
+    - 'O prazo já tinha acabado, mas o funcionário deu um [[jeitinho]] e aceitou o meu pedido.'
+    - 'Com um [[jeitinho]] a mala acabou por fechar.'
+    - 'Há quem diga que o [[jeitinho]] brasileiro é uma forma de sobrevivência.'
+    - 'Ele conseguiu o emprego à base de [[jeitinho]], não de mérito.'
+    - 'Dá um [[jeitinho]] e arranja-me dois bilhetes para o concerto.'
+  extra:
+    - 'A fila estava enorme e faltavam documentos. Eu já estava a perder a esperança.'
+    - 'Tínhamos roupa para uma semana e só uma mala pequena. Tentámos várias vezes.'
+
+- word: colher
+  category: ordinary
+  freq_match_for: saudade
+  emotion: false
+  gloss_en: spoon
+  senses:
+    - label: spoon
+      clarify: 'Aqui, "colher" é o utensílio de mesa usado para comer sopa.'
+  gloss_src: 'Colher: utensílio com uma parte côncava e um cabo, usado para comer ou mexer alimentos. Exemplo: "Comeu a sopa com uma colher de madeira."'
+  source: TODO
+  notes: Noun reading only (the verb "colher", to harvest, is avoided in all contexts).
+  exclude_from_pool: []
+  contexts:
+    - 'Passa-me a [[colher]], que a sopa está a arrefecer.'
+    - 'Mexi o café com a [[colher]] e queimei os dedos.'
+    - 'A criança deixou cair a [[colher]] no chão.'
+    - 'Junta uma [[colher]] de açúcar à massa.'
+    - 'Esta [[colher]] de prata era da minha bisavó.'
+  extra:
+    - 'O jantar estava na mesa e todos tinham fome. Faltava só um talher.'
+    - 'De manhã estou sempre com pressa. Bebo o café de pé, na cozinha.'
+
+- word: espremedor
+  category: ordinary
+  freq_match_for: cafuné
+  emotion: false
+  gloss_en: juicer, (citrus) squeezer
+  senses:
+    - label: juicer
+      clarify: 'Aqui, "espremedor" é o utensílio de cozinha para tirar o sumo das laranjas.'
+  gloss_src: 'Espremedor: utensílio de cozinha usado para extrair o sumo de frutas, sobretudo citrinos. Exemplo: "Espremeu três laranjas no espremedor."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Lava o [[espremedor]] depois de fazeres o sumo.'
+    - 'O [[espremedor]] elétrico avariou outra vez.'
+    - 'Comprei um [[espremedor]] de vidro na feira.'
+    - 'Com este [[espremedor]] faço sumo de laranja todas as manhãs.'
+    - 'O [[espremedor]] está na gaveta de baixo.'
+  extra:
+    - 'Comprámos uma caixa de laranjas no mercado. Eram tantas que não sabíamos o que fazer.'
+    - 'A cozinha ainda estava desarrumada da festa. Havia copos por todo o lado.'
+
+- word: tijolo
+  category: ordinary
+  freq_match_for: jeitinho
+  emotion: false
+  gloss_en: brick
+  senses:
+    - label: brick
+      clarify: 'Aqui, "tijolo" é o bloco de barro cozido usado na construção.'
+  gloss_src: 'Tijolo: bloco de barro cozido, em forma de paralelepípedo, usado para construir paredes. Exemplo: "A casa velha era toda de tijolo."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'O pedreiro assentou mais um [[tijolo]] na parede.'
+    - 'A casa tem paredes de [[tijolo]] à vista.'
+    - 'Partiu-se um [[tijolo]] durante as obras.'
+    - 'Usámos um [[tijolo]] para segurar a porta.'
+    - 'O muro do quintal é feito de [[tijolo]] vermelho.'
+  extra:
+    - 'As obras começaram em março. O barulho era insuportável.'
+    - 'Mudámos para uma casa antiga no centro. Tinha muito para arranjar.'
+
+- word: tristeza
+  category: emotion_plain
+  emotion: true
+  gloss_en: sadness
+  senses:
+    - label: sadness
+      clarify: ''
+  source: TODO
+  notes: Plain emotion control for saudade.
+  exclude_from_pool: []
+  frames:
+    - 'Sinto [[tristeza]].'
+    - 'Estou cheio de [[tristeza]].'
+  contexts:
+    - 'Uma grande [[tristeza]] tomou conta dele depois do funeral.'
+    - 'Falou da derrota sem [[tristeza]] nenhuma.'
+    - 'Havia [[tristeza]] nos olhos da menina.'
+    - 'A música encheu a sala de [[tristeza]].'
+    - 'Não consegui esconder a minha [[tristeza]].'
+
+- word: nostalgia
+  category: emotion_plain
+  emotion: true
+  gloss_en: nostalgia
+  senses:
+    - label: nostalgia
+      clarify: ''
+  source: TODO
+  notes: The closest English-cognate neighbour of saudade; exclude 'nostalgia' from the English pool when decomposing it (automatic cognate rule).
+  exclude_from_pool: []
+  frames:
+    - 'Sinto [[nostalgia]].'
+    - 'Estou cheio de [[nostalgia]].'
+  contexts:
+    - 'As fotografias antigas trazem-me muita [[nostalgia]].'
+    - 'Falava da infância com [[nostalgia]].'
+    - 'Há uma certa [[nostalgia]] nos discos dos anos oitenta.'
+    - 'A [[nostalgia]] vende bem na publicidade.'
+    - 'Voltar à escola deu-me uma [[nostalgia]] inesperada.'
+
+- word: manga
+  category: polysemous
+  emotion: false
+  gloss_en: (1) sleeve; (2) mango
+  senses:
+    - label: sleeve
+      clarify: 'Aqui, "manga" é a parte da roupa que cobre o braço.'
+    - label: mango (fruit)
+      clarify: 'Aqui, "manga" é o fruto tropical de polpa amarela e doce.'
+  gloss_src: 'Manga: (1) parte de uma peça de roupa que cobre o braço; (2) fruto tropical de casca verde ou avermelhada e polpa amarela. Exemplo: "Arregaçou as mangas"; "Comeu uma manga madura."'
+  source: TODO
+  notes: Homonym with clear English equivalents per sense.
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 0]
+  contexts:
+    - 'Arregaçou a [[manga]] da camisa e começou a trabalhar.'
+    - 'Esta [[manga]] está madura e muito doce.'
+    - 'A [[manga]] do casaco ficou presa na porta.'
+    - 'Fiz um batido de [[manga]] com iogurte.'
+    - 'Tem uma nódoa na [[manga]] esquerda.'
+  extra:
+    - 'Estava calor e havia muito trabalho no jardim. Ele tirou o casaco.'
+    - 'Fomos ao mercado de manhã cedo. A fruta tinha acabado de chegar.'

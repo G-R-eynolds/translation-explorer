@@ -1,0 +1,306 @@
+{
+ "note": "Minimal meaning edits: exactly one interpretive choice changed, all other words kept. Written by Claude (Opus 5.5) in session against runs/3b/samples_llama.json. 'cellar -> basement'-type synonym swaps are deliberately excluded.",
+ "edits": [
+  {
+   "line": 0,
+   "sample": "LI01",
+   "original": "Four angels with trumpets in their mouths",
+   "edited": "Four devils with trumpets in their mouths",
+   "change": "angels -> devils"
+  },
+  {
+   "line": 0,
+   "sample": "RH01",
+   "original": "Four angels with trumpets in their mouths",
+   "edited": "Four angels with swords in their mouths",
+   "change": "trumpets -> swords"
+  },
+  {
+   "line": 0,
+   "sample": "SC01",
+   "original": "Four angels with trumpets in their mouths",
+   "edited": "Forty angels with trumpets in their mouths",
+   "change": "four -> forty"
+  },
+  {
+   "line": 1,
+   "sample": "LI01",
+   "original": "would place one on each corner",
+   "edited": "would place one on each rooftop",
+   "change": "corner -> rooftop"
+  },
+  {
+   "line": 1,
+   "sample": "SC01",
+   "original": "if they set up one here and there",
+   "edited": "if they set up one in each grave",
+   "change": "here and there -> in each grave"
+  },
+  {
+   "line": 1,
+   "sample": "LI02",
+   "original": "will put themselves in one corner",
+   "edited": "will hide themselves in one corner",
+   "change": "put -> hide"
+  },
+  {
+   "line": 2,
+   "sample": "LI01",
+   "original": "then with that much fear from yours to mine",
+   "edited": "then with that much joy from yours to mine",
+   "change": "fear -> joy"
+  },
+  {
+   "line": 2,
+   "sample": "RH01",
+   "original": "Country: then with that much of their voice",
+   "edited": "Country: then with that much of their silence",
+   "change": "voice -> silence"
+  },
+  {
+   "line": 2,
+   "sample": "SC01",
+   "original": "and call: then with just that much spite",
+   "edited": "and call: then with just that much tenderness",
+   "change": "spite -> tenderness"
+  },
+  {
+   "line": 3,
+   "sample": "SC01",
+   "original": "they start to shout: out to the nearest town.",
+   "edited": "they start to shout: stay in the nearest town.",
+   "change": "out to -> stay in"
+  },
+  {
+   "line": 3,
+   "sample": "LO01",
+   "original": "they'll start to sing: out with the bad news.",
+   "edited": "they'll start to sing: out with the good news.",
+   "change": "bad news -> good news"
+  },
+  {
+   "line": 3,
+   "sample": "LO02",
+   "original": "They start to chant, get a move on now",
+   "edited": "They start to chant, stay where you are now",
+   "change": "get a move on -> stay where you are"
+  },
+  {
+   "line": 4,
+   "sample": "LI01",
+   "original": "Then a nursery rhyme would appear above",
+   "edited": "Then a long procession would appear above",
+   "change": "nursery rhyme -> long procession (the competing reading of filastrocca)"
+  },
+  {
+   "line": 4,
+   "sample": "RH01",
+   "original": "Then there will arise a nursery rhyme",
+   "edited": "Then there will arise a funeral march",
+   "change": "nursery rhyme -> funeral march"
+  },
+  {
+   "line": 4,
+   "sample": "LO01",
+   "original": "A nursery rhyme will suddenly appear",
+   "edited": "A nursery rhyme will suddenly fall silent",
+   "change": "appear -> fall silent"
+  },
+  {
+   "line": 5,
+   "sample": "LI01",
+   "original": "of jesters from the earth to shepherds,",
+   "edited": "of skeletons from the earth to shepherds,",
+   "change": "jesters -> skeletons (the correct reading of schertri)"
+  },
+  {
+   "line": 5,
+   "sample": "SC01",
+   "original": "from the earth to the shepherds, merry-makers,",
+   "edited": "from the sea to the shepherds, merry-makers,",
+   "change": "earth -> sea"
+  },
+  {
+   "line": 5,
+   "sample": "LO02",
+   "original": "From the earth to the herds of sheep,",
+   "edited": "From the earth like herds of sheep,",
+   "change": "destination -> simile (to -> like)"
+  },
+  {
+   "line": 6,
+   "sample": "LI01",
+   "original": "ripping off their figures of men,",
+   "edited": "ripping off their figures of beasts,",
+   "change": "men -> beasts"
+  },
+  {
+   "line": 6,
+   "sample": "LI02",
+   "original": "to bring back figures of people,",
+   "edited": "to bring back figures of angels,",
+   "change": "people -> angels"
+  },
+  {
+   "line": 6,
+   "sample": "SC01",
+   "original": "peopling the figure of a peasant,",
+   "edited": "peopling the figure of a king,",
+   "change": "peasant -> king"
+  },
+  {
+   "line": 7,
+   "sample": "LI01",
+   "original": "like cherubim around the body.",
+   "edited": "like chicks around the body.",
+   "change": "cherubim -> chicks"
+  },
+  {
+   "line": 7,
+   "sample": "LI02",
+   "original": "like cherubs around the lamb.",
+   "edited": "like cherubs around the hen.",
+   "change": "lamb -> hen"
+  },
+  {
+   "line": 7,
+   "sample": "SC01",
+   "original": "like a brood of pigs around the mare.",
+   "edited": "like a brood of chicks around the mare.",
+   "change": "pigs -> chicks"
+  },
+  {
+   "line": 8,
+   "sample": "LI01",
+   "original": "And that body will be blessed God,",
+   "edited": "And that body will be the Devil,",
+   "change": "blessed God -> the Devil"
+  },
+  {
+   "line": 8,
+   "sample": "LI02",
+   "original": "And that lamb will be blessed God,",
+   "edited": "And that lamb will be blessed Mary,",
+   "change": "God -> Mary"
+  },
+  {
+   "line": 8,
+   "sample": "LO01",
+   "original": "And that neck will be blessed by God,",
+   "edited": "And that neck will be cursed by God,",
+   "change": "blessed -> cursed"
+  },
+  {
+   "line": 9,
+   "sample": "LI01",
+   "original": "which makes two parts: white and black:",
+   "edited": "which makes three parts: white and black:",
+   "change": "two -> three"
+  },
+  {
+   "line": 9,
+   "sample": "LI02",
+   "original": "who will make two parts of it, white and black:",
+   "edited": "who will make two parts of it, rich and poor:",
+   "change": "white and black -> rich and poor"
+  },
+  {
+   "line": 9,
+   "sample": "SC01",
+   "original": "who will make two parts, white, and black;",
+   "edited": "who will join two parts, white, and black;",
+   "change": "make (divide into) -> join"
+  },
+  {
+   "line": 10,
+   "sample": "LI01",
+   "original": "one to go down into the cellar, one up on the roof.",
+   "edited": "one to go down into hell, one up on the roof.",
+   "change": "cellar -> hell"
+  },
+  {
+   "line": 10,
+   "sample": "LI02",
+   "original": "one to go into the cellar, one to go on the roof.",
+   "edited": "one to go into the cellar, one to go into heaven.",
+   "change": "roof -> heaven"
+  },
+  {
+   "line": 10,
+   "sample": "SC01",
+   "original": "one to go down to the cellar, one on the roof.",
+   "edited": "one to go down to the kitchen, one on the roof.",
+   "change": "cellar -> kitchen"
+  },
+  {
+   "line": 11,
+   "sample": "LI01",
+   "original": "The final exit will be a heavenly bell",
+   "edited": "The final exit will be a hellish bell",
+   "change": "heavenly -> hellish"
+  },
+  {
+   "line": 11,
+   "sample": "SC01",
+   "original": "And at the end will come a little trumpet",
+   "edited": "And at the beginning will come a little trumpet",
+   "change": "end -> beginning"
+  },
+  {
+   "line": 11,
+   "sample": "LO01",
+   "original": "At the end, an angel will sound the trumpet,",
+   "edited": "At the end, an angel will break the trumpet,",
+   "change": "sound -> break"
+  },
+  {
+   "line": 12,
+   "sample": "LI02",
+   "original": "of angels, and as they lie down to sleep,",
+   "edited": "of angels, and as they rise from sleep,",
+   "change": "lie down to sleep -> rise from sleep"
+  },
+  {
+   "line": 12,
+   "sample": "SC01",
+   "original": "of angels, and as they settle into bed,",
+   "edited": "of demons, and as they settle into bed,",
+   "change": "angels -> demons"
+  },
+  {
+   "line": 12,
+   "sample": "LO02",
+   "original": "As they settle down to sleep,",
+   "edited": "As they settle down to eat,",
+   "change": "sleep -> eat"
+  },
+  {
+   "line": 13,
+   "sample": "LI01",
+   "original": "will extinguish the lights, and good evening.",
+   "edited": "will light the lamps, and good evening.",
+   "change": "extinguish the lights -> light the lamps"
+  },
+  {
+   "line": 13,
+   "sample": "LI02",
+   "original": "they will put out the lights, and good evening.",
+   "edited": "they will put out the lights, and good morning.",
+   "change": "good evening -> good morning"
+  },
+  {
+   "line": 13,
+   "sample": "SC01",
+   "original": "they will snuff out the lights, and good evening.",
+   "edited": "they will snuff out the lights, and good riddance.",
+   "change": "good evening (leave-taking) -> good riddance (finality)"
+  },
+  {
+   "line": 13,
+   "sample": "LO01",
+   "original": "they'll snuff out the lights, and what a lovely evening.",
+   "edited": "they'll snuff out the stars, and what a lovely evening.",
+   "change": "lights -> stars"
+  }
+ ]
+}

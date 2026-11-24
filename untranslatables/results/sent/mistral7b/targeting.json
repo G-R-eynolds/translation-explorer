@@ -1,0 +1,1608 @@
+{
+ "model": "mistralai/Mistral-7B-Instruct-v0.3 (nf4)",
+ "chooser": "rt",
+ "layer": 20,
+ "tau": 3.98107,
+ "prompt": "Here is a {lang} sentence.\n\n{lang}: {source}\n\nIn at most 8 English words, what does the {lang} word \"{word}\" mean in this sentence? Do not repeat the {lang} word. Reply with the gloss only.",
+ "summary": {
+  "rt": {
+   "cut_targeted": [
+    -0.002320317426067887,
+    -0.009093209607138086,
+    0.004570864539646182
+   ],
+   "cut_random": [
+    -0.008108637524055625,
+    -0.017682493493956657,
+    0.00028531304531754956
+   ],
+   "targeted_minus_random": [
+    0.005788320097987739,
+    -0.003911683489298573,
+    0.017097449655273714
+   ],
+   "share_sentences_targeted_better": 0.5416666666666666
+  },
+  "cl": {
+   "cut_targeted": [
+    0.003755388296270802,
+    0.0026997026349272675,
+    0.004851053285099308
+   ],
+   "cut_random": [
+    0.003671349022661356,
+    0.0026656304807136655,
+    0.004781693820949893
+   ],
+   "targeted_minus_random": [
+    8.403927360944631e-05,
+    -0.0012848738113771152,
+    0.0012381289469660893
+   ],
+   "share_sentences_targeted_better": 0.5416666666666666
+  }
+ },
+ "added_length": {
+  "targeted": [
+   13.458333333333334,
+   11.583333333333334,
+   15.458333333333334
+  ],
+  "random": [
+   12.458333333333334,
+   10.736111111111112,
+   14.208333333333334
+  ]
+ },
+ "sentences": [
+  {
+   "sid": "es_duende",
+   "base": "I really like the duende.",
+   "targeted": [
+    "gusta"
+   ],
+   "random": [
+    [
+     "duende"
+    ],
+    [
+     "duende"
+    ],
+    [
+     "duende"
+    ]
+   ],
+   "base_scores": {
+    "text": "I really like the duende.",
+    "len": 7,
+    "d_rt": 0.03837381805464282,
+    "d_cl": 0.10721519485439807
+   },
+   "targeted_scores": {
+    "text": "I really like the duende. [Likes (or enjoys)]",
+    "len": 13,
+    "d_rt": 0.03993218038843587,
+    "d_cl": 0.10563836574311622
+   },
+   "random_scores": [
+    {
+     "text": "I really like the duende. [Likes much the spirit (or goblin)]",
+     "len": 17,
+     "d_rt": 0.07289855319992068,
+     "d_cl": 0.09979890149910062
+    },
+    {
+     "text": "I really like the duende. [Likes much the spirit (or goblin)]",
+     "len": 17,
+     "d_rt": 0.07289855319992068,
+     "d_cl": 0.09979890149910062
+    },
+    {
+     "text": "I really like the duende. [Likes much the spirit (or goblin)]",
+     "len": 17,
+     "d_rt": 0.07289855319992068,
+     "d_cl": 0.09979890149910062
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 10.0
+   },
+   "glosses": {
+    "gusta": "Likes (or enjoys)",
+    "duende": "Likes much the spirit (or goblin)"
+   }
+  },
+  {
+   "sid": "pt_saudade",
+   "base": "I miss my grandmother's house a lot.",
+   "targeted": [
+    "Sinto",
+    "casa"
+   ],
+   "random": [
+    [
+     "muita",
+     "avó"
+    ],
+    [
+     "muita",
+     "saudade"
+    ],
+    [
+     "muita",
+     "saudade"
+    ]
+   ],
+   "base_scores": {
+    "text": "I miss my grandmother's house a lot.",
+    "len": 9,
+    "d_rt": 0.39328944067005467,
+    "d_cl": 0.15524725995859515
+   },
+   "targeted_scores": {
+    "text": "I miss my grandmother's house a lot. [Feel (in this context, miss or mourn); House (in this sentence)]",
+    "len": 26,
+    "d_rt": 0.3866669988964971,
+    "d_cl": 0.15074495674156876
+   },
+   "random_scores": [
+    {
+     "text": "I miss my grandmother's house a lot. [Much (or a lot of); Grandmother]",
+     "len": 20,
+     "d_rt": 0.41778095378130126,
+     "d_cl": 0.15107001120241892
+    },
+    {
+     "text": "I miss my grandmother's house a lot. [Much (or a lot of); Longing (for home of grandmother)]",
+     "len": 25,
+     "d_rt": 0.3582250548273748,
+     "d_cl": 0.14922079367924787
+    },
+    {
+     "text": "I miss my grandmother's house a lot. [Much (or a lot of); Longing (for home of grandmother)]",
+     "len": 25,
+     "d_rt": 0.3582250548273748,
+     "d_cl": 0.14922079367924787
+    }
+   ],
+   "added_len": {
+    "targeted": 17,
+    "random": 14.333333333333332
+   },
+   "glosses": {
+    "Sinto": "Feel (in this context, miss or mourn)",
+    "casa": "House (in this sentence)",
+    "muita": "Much (or a lot of)",
+    "avó": "Grandmother",
+    "saudade": "Longing (for home of grandmother)"
+   }
+  },
+  {
+   "sid": "es_sobremesa",
+   "base": "We stayed for after-dinner chat until it grew dark.",
+   "targeted": [
+    "sobremesa",
+    "de"
+   ],
+   "random": [
+    [
+     "anocheció",
+     "quedamos"
+    ],
+    [
+     "quedamos",
+     "anocheció"
+    ],
+    [
+     "quedamos",
+     "anocheció"
+    ]
+   ],
+   "base_scores": {
+    "text": "We stayed for after-dinner chat until it grew dark.",
+    "len": 12,
+    "d_rt": 0.39891065147833155,
+    "d_cl": 0.15602195268034358
+   },
+   "targeted_scores": {
+    "text": "We stayed for after-dinner chat until it grew dark. [After-dinner chat; With]",
+    "len": 20,
+    "d_rt": 0.37769094735790837,
+    "d_cl": 0.1539418093422424
+   },
+   "random_scores": [
+    {
+     "text": "We stayed for after-dinner chat until it grew dark. [\"…\" means \"it grew dark\" or \"it became; Remained (or stayed)]",
+     "len": 31,
+     "d_rt": 0.39638655365930897,
+     "d_cl": 0.1505846245901077
+    },
+    {
+     "text": "We stayed for after-dinner chat until it grew dark. [Remained (or stayed); \"…\" means \"it grew dark\" or \"it became]",
+     "len": 32,
+     "d_rt": 0.41173989642168096,
+     "d_cl": 0.15023451851130082
+    },
+    {
+     "text": "We stayed for after-dinner chat until it grew dark. [Remained (or stayed); \"…\" means \"it grew dark\" or \"it became]",
+     "len": 32,
+     "d_rt": 0.41173989642168096,
+     "d_cl": 0.15023451851130082
+    }
+   ],
+   "added_len": {
+    "targeted": 8,
+    "random": 19.666666666666668
+   },
+   "glosses": {
+    "sobremesa": "After-dinner chat",
+    "de": "With",
+    "anocheció": "\"…\" means \"it grew dark\" or \"it became",
+    "quedamos": "Remained (or stayed)"
+   }
+  },
+  {
+   "sid": "de_fernweh",
+   "base": "Every autumn, I get the travel bug.",
+   "targeted": [
+    "packt",
+    "mich"
+   ],
+   "random": [
+    [
+     "Herbst",
+     "Fernweh"
+    ],
+    [
+     "Herbst",
+     "Fernweh"
+    ],
+    [
+     "Herbst",
+     "Fernweh"
+    ]
+   ],
+   "base_scores": {
+    "text": "Every autumn, I get the travel bug.",
+    "len": 9,
+    "d_rt": 0.46695386613210355,
+    "d_cl": 0.17447077735801833
+   },
+   "targeted_scores": {
+    "text": "Every autumn, I get the travel bug. [Captures (or grips); \"mich\" means \"me\" in this sentence]",
+    "len": 28,
+    "d_rt": 0.45989992694856263,
+    "d_cl": 0.16473514544453724
+   },
+   "random_scores": [
+    {
+     "text": "Every autumn, I get the travel bug. [Autumn (season); Longing for far-off places]",
+     "len": 22,
+     "d_rt": 0.46117194805261236,
+     "d_cl": 0.16688345211502462
+    },
+    {
+     "text": "Every autumn, I get the travel bug. [Autumn (season); Longing for far-off places]",
+     "len": 22,
+     "d_rt": 0.46117194805261236,
+     "d_cl": 0.16688345211502462
+    },
+    {
+     "text": "Every autumn, I get the travel bug. [Autumn (season); Longing for far-off places]",
+     "len": 22,
+     "d_rt": 0.46117194805261236,
+     "d_cl": 0.16688345211502462
+    }
+   ],
+   "added_len": {
+    "targeted": 19,
+    "random": 13.0
+   },
+   "glosses": {
+    "packt": "Captures (or grips)",
+    "mich": "\"mich\" means \"me\" in this sentence",
+    "Herbst": "Autumn (season)",
+    "Fernweh": "Longing for far-off places"
+   }
+  },
+  {
+   "sid": "it_magari_forse",
+   "base": "Perhaps I'll pass by you tonight, see you. (Informal)\n\nor\n\nPerhaps I'll stop by you tonight, let's see. (Formal)",
+   "targeted": [
+    "Magari",
+    "vediamo"
+   ],
+   "random": [
+    [
+     "stasera",
+     "passo"
+    ],
+    [
+     "stasera",
+     "passo"
+    ],
+    [
+     "passo",
+     "stasera"
+    ]
+   ],
+   "base_scores": {
+    "text": "Perhaps I'll pass by you tonight, see you. (Informal)\n\nor\n\nPerhaps I'll stop by you tonight, let's see. (Formal)",
+    "len": 33,
+    "d_rt": 0.40002971616652816,
+    "d_cl": 0.14838920221959537
+   },
+   "targeted_scores": {
+    "text": "Perhaps I'll pass by you tonight, see you. (Informal)\n\nor\n\nPerhaps I'll stop by you tonight, let's see. (Formal) [Wishfully (or Hopefully); See you]",
+    "len": 44,
+    "d_rt": 0.3955003490425213,
+    "d_cl": 0.14747678129485556
+   },
+   "random_scores": [
+    {
+     "text": "Perhaps I'll pass by you tonight, see you. (Informal)\n\nor\n\nPerhaps I'll stop by you tonight, let's see. (Formal) [This evening; Walk (or pass)]",
+     "len": 42,
+     "d_rt": 0.3633872262134616,
+     "d_cl": 0.14740350421639697
+    },
+    {
+     "text": "Perhaps I'll pass by you tonight, see you. (Informal)\n\nor\n\nPerhaps I'll stop by you tonight, let's see. (Formal) [This evening; Walk (or pass)]",
+     "len": 42,
+     "d_rt": 0.3633872262134616,
+     "d_cl": 0.14740350421639697
+    },
+    {
+     "text": "Perhaps I'll pass by you tonight, see you. (Informal)\n\nor\n\nPerhaps I'll stop by you tonight, let's see. (Formal) [Walk (or pass); This evening]",
+     "len": 42,
+     "d_rt": 0.37009896261872005,
+     "d_cl": 0.14742593800801967
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 9.0
+   },
+   "glosses": {
+    "Magari": "Wishfully (or Hopefully)",
+    "vediamo": "See you",
+    "stasera": "This evening",
+    "passo": "Walk (or pass)"
+   }
+  },
+  {
+   "sid": "pt_jeitinho",
+   "base": "He found a way and managed to get the document on the same day.",
+   "targeted": [
+    "jeitinho",
+    "deu"
+   ],
+   "random": [
+    [
+     "documento",
+     "um"
+    ],
+    [
+     "documento",
+     "um"
+    ],
+    [
+     "conseguiu",
+     "documento"
+    ]
+   ],
+   "base_scores": {
+    "text": "He found a way and managed to get the document on the same day.",
+    "len": 15,
+    "d_rt": 0.30570592714273814,
+    "d_cl": 0.15573285572605977
+   },
+   "targeted_scores": {
+    "text": "He found a way and managed to get the document on the same day. [Shortcut: Workaround, trick, or clever way; Gave]",
+    "len": 30,
+    "d_rt": 0.3311987393996295,
+    "d_cl": 0.14952662992245053
+   },
+   "random_scores": [
+    {
+     "text": "He found a way and managed to get the document on the same day. [Important document; One (in this context, it refers to 'a]",
+     "len": 31,
+     "d_rt": 0.31038419481783114,
+     "d_cl": 0.15146420013714817
+    },
+    {
+     "text": "He found a way and managed to get the document on the same day. [Important document; One (in this context, it refers to 'a]",
+     "len": 31,
+     "d_rt": 0.31038419481783114,
+     "d_cl": 0.15146420013714817
+    },
+    {
+     "text": "He found a way and managed to get the document on the same day. [Obtained or managed to get; Important document]",
+     "len": 27,
+     "d_rt": 0.30758732129621513,
+     "d_cl": 0.15211416255392454
+    }
+   ],
+   "added_len": {
+    "targeted": 15,
+    "random": 14.666666666666668
+   },
+   "glosses": {
+    "jeitinho": "Shortcut: Workaround, trick, or clever way",
+    "deu": "Gave",
+    "documento": "Important document",
+    "um": "One (in this context, it refers to 'a",
+    "conseguiu": "Obtained or managed to get"
+   }
+  },
+  {
+   "sid": "pt_cafune",
+   "base": "She was combing her son's hair until he fell asleep.",
+   "targeted": [
+    "cafuné",
+    "fazia"
+   ],
+   "random": [
+    [
+     "filho",
+     "dormir"
+    ],
+    [
+     "filho",
+     "dormir"
+    ],
+    [
+     "filho",
+     "dormir"
+    ]
+   ],
+   "base_scores": {
+    "text": "She was combing her son's hair until he fell asleep.",
+    "len": 13,
+    "d_rt": 0.5032895478863812,
+    "d_cl": 0.15168183280825598
+   },
+   "targeted_scores": {
+    "text": "She was combing her son's hair until he fell asleep. [Hair stroking (to put child to sleep); Makes (or did in this context)]",
+    "len": 32,
+    "d_rt": 0.5155008021074183,
+    "d_cl": 0.14701648683628238
+   },
+   "random_scores": [
+    {
+     "text": "She was combing her son's hair until he fell asleep. [Son (male); Sleep (or sleeps)]",
+     "len": 23,
+     "d_rt": 0.5022456370314557,
+     "d_cl": 0.14957725292641172
+    },
+    {
+     "text": "She was combing her son's hair until he fell asleep. [Son (male); Sleep (or sleeps)]",
+     "len": 23,
+     "d_rt": 0.5022456370314557,
+     "d_cl": 0.14957725292641172
+    },
+    {
+     "text": "She was combing her son's hair until he fell asleep. [Son (male); Sleep (or sleeps)]",
+     "len": 23,
+     "d_rt": 0.5022456370314557,
+     "d_cl": 0.14957725292641172
+    }
+   ],
+   "added_len": {
+    "targeted": 19,
+    "random": 10.0
+   },
+   "glosses": {
+    "cafuné": "Hair stroking (to put child to sleep)",
+    "fazia": "Makes (or did in this context)",
+    "filho": "Son (male)",
+    "dormir": "Sleep (or sleeps)"
+   }
+  },
+  {
+   "sid": "de_gemuetlichkeit",
+   "base": "A wonderful coziness reigned in the little cottage.",
+   "targeted": [
+    "Hütte",
+    "wunderbare"
+   ],
+   "random": [
+    [
+     "Gemütlichkeit",
+     "herrschte"
+    ],
+    [
+     "herrschte",
+     "Gemütlichkeit"
+    ],
+    [
+     "Gemütlichkeit",
+     "herrschte"
+    ]
+   ],
+   "base_scores": {
+    "text": "A wonderful coziness reigned in the little cottage.",
+    "len": 11,
+    "d_rt": 0.07804640667318008,
+    "d_cl": 0.16435655497149176
+   },
+   "targeted_scores": {
+    "text": "A wonderful coziness reigned in the little cottage. [Cozy cabin; Wonderful (atmosphere)]",
+    "len": 22,
+    "d_rt": 0.07029092172540194,
+    "d_cl": 0.16067118332687258
+   },
+   "random_scores": [
+    {
+     "text": "A wonderful coziness reigned in the little cottage. [Cozy atmosphere; Ruled (or Reigned)]",
+     "len": 23,
+     "d_rt": 0.07124971168878017,
+     "d_cl": 0.16110963750960872
+    },
+    {
+     "text": "A wonderful coziness reigned in the little cottage. [Ruled (or Reigned); Cozy atmosphere]",
+     "len": 23,
+     "d_rt": 0.0756202316441736,
+     "d_cl": 0.1611085989414798
+    },
+    {
+     "text": "A wonderful coziness reigned in the little cottage. [Cozy atmosphere; Ruled (or Reigned)]",
+     "len": 23,
+     "d_rt": 0.07124971168878017,
+     "d_cl": 0.16110963750960872
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 12.0
+   },
+   "glosses": {
+    "Hütte": "Cozy cabin",
+    "wunderbare": "Wonderful (atmosphere)",
+    "Gemütlichkeit": "Cozy atmosphere",
+    "herrschte": "Ruled (or Reigned)"
+   }
+  },
+  {
+   "sid": "fr_depaysement",
+   "base": "In Tokyo, I felt a profound homesickness.",
+   "targeted": [
+    "dépaysement",
+    "ressenti"
+   ],
+   "random": [
+    [
+     "j'ai",
+     "profond"
+    ],
+    [
+     "profond",
+     "j'ai"
+    ],
+    [
+     "j'ai",
+     "profond"
+    ]
+   ],
+   "base_scores": {
+    "text": "In Tokyo, I felt a profound homesickness.",
+    "len": 10,
+    "d_rt": 0.22136947896119985,
+    "d_cl": 0.13636678572772662
+   },
+   "targeted_scores": {
+    "text": "In Tokyo, I felt a profound homesickness. [Cultural shock or homesickness; Felt deeply (or Experienced deeply)]",
+    "len": 26,
+    "d_rt": 0.19377436925779537,
+    "d_cl": 0.13305416232153403
+   },
+   "random_scores": [
+    {
+     "text": "In Tokyo, I felt a profound homesickness. [I have; Deep (in this sentence, it refers to a]",
+     "len": 25,
+     "d_rt": 0.2173978200145069,
+     "d_cl": 0.13389890357814535
+    },
+    {
+     "text": "In Tokyo, I felt a profound homesickness. [Deep (in this sentence, it refers to a; I have]",
+     "len": 25,
+     "d_rt": 0.21589542362157899,
+     "d_cl": 0.13387682629304537
+    },
+    {
+     "text": "In Tokyo, I felt a profound homesickness. [I have; Deep (in this sentence, it refers to a]",
+     "len": 25,
+     "d_rt": 0.2173978200145069,
+     "d_cl": 0.13389890357814535
+    }
+   ],
+   "added_len": {
+    "targeted": 16,
+    "random": 15.0
+   },
+   "glosses": {
+    "dépaysement": "Cultural shock or homesickness",
+    "ressenti": "Felt deeply (or Experienced deeply)",
+    "j'ai": "I have",
+    "profond": "Deep (in this sentence, it refers to a"
+   }
+  },
+  {
+   "sid": "es_gustar",
+   "base": "My sister likes horror movies.",
+   "targeted": [
+    "hermana",
+    "terror"
+   ],
+   "random": [
+    [
+     "películas",
+     "gustan"
+    ],
+    [
+     "gustan",
+     "películas"
+    ],
+    [
+     "películas",
+     "le"
+    ]
+   ],
+   "base_scores": {
+    "text": "My sister likes horror movies.",
+    "len": 6,
+    "d_rt": 0.20193775507723088,
+    "d_cl": 0.15117971945179096
+   },
+   "targeted_scores": {
+    "text": "My sister likes horror movies. [Sister; Scary films]",
+    "len": 14,
+    "d_rt": 0.22914574494926057,
+    "d_cl": 0.14923459034369005
+   },
+   "random_scores": [
+    {
+     "text": "My sister likes horror movies. [Movies (of terror); Enjoy (in this context, referring to movies)]",
+     "len": 22,
+     "d_rt": 0.25215306178614955,
+     "d_cl": 0.1474463986082187
+    },
+    {
+     "text": "My sister likes horror movies. [Enjoy (in this context, referring to movies); Movies (of terror)]",
+     "len": 22,
+     "d_rt": 0.22166454872263094,
+     "d_cl": 0.14793084303159276
+    },
+    {
+     "text": "My sister likes horror movies. [Movies (of terror); To (her)]",
+     "len": 16,
+     "d_rt": 0.2337355696060211,
+     "d_cl": 0.14711648429609717
+    }
+   ],
+   "added_len": {
+    "targeted": 8,
+    "random": 14.0
+   },
+   "glosses": {
+    "hermana": "Sister",
+    "terror": "Scary films",
+    "películas": "Movies (of terror)",
+    "gustan": "Enjoy (in this context, referring to movies)",
+    "le": "To (her)"
+   }
+  },
+  {
+   "sid": "es_se_me_olvido",
+   "base": "I forgot my umbrella on the train.",
+   "targeted": [
+    "Se",
+    "me"
+   ],
+   "random": [
+    [
+     "tren",
+     "paraguas"
+    ],
+    [
+     "tren",
+     "olvidó"
+    ],
+    [
+     "tren",
+     "paraguas"
+    ]
+   ],
+   "base_scores": {
+    "text": "I forgot my umbrella on the train.",
+    "len": 8,
+    "d_rt": 0.30883867691162964,
+    "d_cl": 0.15211828981064562
+   },
+   "targeted_scores": {
+    "text": "I forgot my umbrella on the train. [Reflexive pronoun (subject); Forgotten (by me)]",
+    "len": 22,
+    "d_rt": 0.28754508215283037,
+    "d_cl": 0.146042795006349
+   },
+   "random_scores": [
+    {
+     "text": "I forgot my umbrella on the train. [Train; Umbrella]",
+     "len": 14,
+     "d_rt": 0.323972620242781,
+     "d_cl": 0.14977678173018372
+    },
+    {
+     "text": "I forgot my umbrella on the train. [Train; Forgot]",
+     "len": 13,
+     "d_rt": 0.34327079496961993,
+     "d_cl": 0.14975148972503954
+    },
+    {
+     "text": "I forgot my umbrella on the train. [Train; Umbrella]",
+     "len": 14,
+     "d_rt": 0.323972620242781,
+     "d_cl": 0.14977678173018372
+    }
+   ],
+   "added_len": {
+    "targeted": 14,
+    "random": 5.666666666666666
+   },
+   "glosses": {
+    "Se": "Reflexive pronoun (subject)",
+    "me": "Forgotten (by me)",
+    "tren": "Train",
+    "paraguas": "Umbrella",
+    "olvidó": "Forgot"
+   }
+  },
+  {
+   "sid": "de_mir_ist_kalt",
+   "base": "Are you cold too? Can you close the window?",
+   "targeted": [
+    "Mir",
+    "zumachen"
+   ],
+   "random": [
+    [
+     "ist",
+     "kalt"
+    ],
+    [
+     "kalt",
+     "ist"
+    ],
+    [
+     "Fenster",
+     "ist"
+    ]
+   ],
+   "base_scores": {
+    "text": "Are you cold too? Can you close the window?",
+    "len": 11,
+    "d_rt": 0.5187637428882812,
+    "d_cl": 0.1671529163266298
+   },
+   "targeted_scores": {
+    "text": "Are you cold too? Can you close the window? [Me (dative case); Close/Shut (the window)]",
+    "len": 25,
+    "d_rt": 0.5055070618923915,
+    "d_cl": 0.16342079347566077
+   },
+   "random_scores": [
+    {
+     "text": "Are you cold too? Can you close the window? [Is (verb, 3rd person singular present); Cold (or \"cold\" in this context)]",
+     "len": 33,
+     "d_rt": 0.6032866304380525,
+     "d_cl": 0.1629726299388257
+    },
+    {
+     "text": "Are you cold too? Can you close the window? [Cold (or \"cold\" in this context); Is (verb, 3rd person singular present)]",
+     "len": 33,
+     "d_rt": 0.6101148948102838,
+     "d_cl": 0.16183282781660946
+    },
+    {
+     "text": "Are you cold too? Can you close the window? [Window (opening); Is (verb, 3rd person singular present)]",
+     "len": 27,
+     "d_rt": 0.5772262569794974,
+     "d_cl": 0.16376067909538994
+    }
+   ],
+   "added_len": {
+    "targeted": 14,
+    "random": 20.0
+   },
+   "glosses": {
+    "Mir": "Me (dative case)",
+    "zumachen": "Close/Shut (the window)",
+    "ist": "Is (verb, 3rd person singular present)",
+    "kalt": "Cold (or \"cold\" in this context)",
+    "Fenster": "Window (opening)"
+   }
+  },
+  {
+   "sid": "es_ser_estar",
+   "base": "The movie is boring, and I am bored.",
+   "targeted": [
+    "película",
+    "es"
+   ],
+   "random": [
+    [
+     "aburrida",
+     "estoy"
+    ],
+    [
+     "aburrida",
+     "estoy"
+    ],
+    [
+     "estoy",
+     "aburrido"
+    ]
+   ],
+   "base_scores": {
+    "text": "The movie is boring, and I am bored.",
+    "len": 10,
+    "d_rt": 0.02135578792573449,
+    "d_cl": 0.118172442960686
+   },
+   "targeted_scores": {
+    "text": "The movie is boring, and I am bored. [Movie (or film); \"es\" means \"is\" in this sentence]",
+    "len": 27,
+    "d_rt": 0.018627128258526724,
+    "d_cl": 0.11685212241759185
+   },
+   "random_scores": [
+    {
+     "text": "The movie is boring, and I am bored. [Boring (feminine); I am (in this sentence, it refers to]",
+     "len": 29,
+     "d_rt": 0.02791384376537955,
+     "d_cl": 0.11671324186150077
+    },
+    {
+     "text": "The movie is boring, and I am bored. [Boring (feminine); I am (in this sentence, it refers to]",
+     "len": 29,
+     "d_rt": 0.02791384376537955,
+     "d_cl": 0.11671324186150077
+    },
+    {
+     "text": "The movie is boring, and I am bored. [I am (in this sentence, it refers to; Bored (I am) and movie (is) = Bored]",
+     "len": 37,
+     "d_rt": 0.03695405543191898,
+     "d_cl": 0.11617042173010456
+    }
+   ],
+   "added_len": {
+    "targeted": 17,
+    "random": 21.666666666666668
+   },
+   "glosses": {
+    "película": "Movie (or film)",
+    "es": "\"es\" means \"is\" in this sentence",
+    "aburrida": "Boring (feminine)",
+    "estoy": "I am (in this sentence, it refers to",
+    "aburrido": "Bored (I am) and movie (is) = Bored"
+   }
+  },
+  {
+   "sid": "fr_il_me_faut",
+   "base": "I need one more hour to finish.",
+   "targeted": [
+    "Il",
+    "finir"
+   ],
+   "random": [
+    [
+     "heure",
+     "me"
+    ],
+    [
+     "heure",
+     "me"
+    ],
+    [
+     "me",
+     "faut"
+    ]
+   ],
+   "base_scores": {
+    "text": "I need one more hour to finish.",
+    "len": 8,
+    "d_rt": 0.17643310450215577,
+    "d_cl": 0.15860847875153247
+   },
+   "targeted_scores": {
+    "text": "I need one more hour to finish. [Subject (I); To complete]",
+    "len": 16,
+    "d_rt": 0.18837628711571885,
+    "d_cl": 0.15602167138202952
+   },
+   "random_scores": [
+    {
+     "text": "I need one more hour to finish. [Hour; To (me)]",
+     "len": 15,
+     "d_rt": 0.15845806281494532,
+     "d_cl": 0.1453246641591252
+    },
+    {
+     "text": "I need one more hour to finish. [Hour; To (me)]",
+     "len": 15,
+     "d_rt": 0.15845806281494532,
+     "d_cl": 0.1453246641591252
+    },
+    {
+     "text": "I need one more hour to finish. [To (me); Required (or Need)]",
+     "len": 18,
+     "d_rt": 0.17695621364718325,
+     "d_cl": 0.14732775791166508
+    }
+   ],
+   "added_len": {
+    "targeted": 8,
+    "random": 8.0
+   },
+   "glosses": {
+    "Il": "Subject (I)",
+    "finir": "To complete",
+    "heure": "Hour",
+    "me": "To (me)",
+    "faut": "Required (or Need)"
+   }
+  },
+  {
+   "sid": "pt_infinitivo_pessoal",
+   "base": "I bought the book to read together.",
+   "targeted": [
+    "lermos",
+    "Comprei"
+   ],
+   "random": [
+    [
+     "livro",
+     "juntos"
+    ],
+    [
+     "juntos",
+     "livro"
+    ],
+    [
+     "juntos",
+     "livro"
+    ]
+   ],
+   "base_scores": {
+    "text": "I bought the book to read together.",
+    "len": 8,
+    "d_rt": 0.11753483143899111,
+    "d_cl": 0.12143058816396696
+   },
+   "targeted_scores": {
+    "text": "I bought the book to read together. [Read together; Bought]",
+    "len": 14,
+    "d_rt": 0.10453630788063174,
+    "d_cl": 0.12135326143212977
+   },
+   "random_scores": [
+    {
+     "text": "I bought the book to read together. [Book (noun); Together]",
+     "len": 15,
+     "d_rt": 0.1351393749091779,
+     "d_cl": 0.12138785210463869
+    },
+    {
+     "text": "I bought the book to read together. [Together; Book (noun)]",
+     "len": 15,
+     "d_rt": 0.12424031245833014,
+     "d_cl": 0.12139478158177765
+    },
+    {
+     "text": "I bought the book to read together. [Together; Book (noun)]",
+     "len": 15,
+     "d_rt": 0.12424031245833014,
+     "d_cl": 0.12139478158177765
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 7.0
+   },
+   "glosses": {
+    "lermos": "Read together",
+    "Comprei": "Bought",
+    "livro": "Book (noun)",
+    "juntos": "Together"
+   }
+  },
+  {
+   "sid": "es_tomar_el_pelo",
+   "base": "I don't believe you, you're pulling my leg.",
+   "targeted": [
+    "tomando",
+    "pelo"
+   ],
+   "random": [
+    [
+     "el",
+     "me"
+    ],
+    [
+     "me",
+     "estás"
+    ],
+    [
+     "me",
+     "estás"
+    ]
+   ],
+   "base_scores": {
+    "text": "I don't believe you, you're pulling my leg.",
+    "len": 12,
+    "d_rt": 0.3128835913057491,
+    "d_cl": 0.15141824298389103
+   },
+   "targeted_scores": {
+    "text": "I don't believe you, you're pulling my leg. [Taking (or pulling someone's leg); Hair (taken literally or figuratively)]",
+    "len": 29,
+    "d_rt": 0.318139289836796,
+    "d_cl": 0.14616913318315863
+   },
+   "random_scores": [
+    {
+     "text": "I don't believe you, you're pulling my leg. [Hair (in this context); Takes (it) (reflexive)]",
+     "len": 28,
+     "d_rt": 0.2917690668887398,
+     "d_cl": 0.14768984948044128
+    },
+    {
+     "text": "I don't believe you, you're pulling my leg. [Takes (it) (reflexive); Taking (you)]",
+     "len": 27,
+     "d_rt": 0.3237844525342636,
+     "d_cl": 0.14775324142335977
+    },
+    {
+     "text": "I don't believe you, you're pulling my leg. [Takes (it) (reflexive); Taking (you)]",
+     "len": 27,
+     "d_rt": 0.3237844525342636,
+     "d_cl": 0.14775324142335977
+    }
+   ],
+   "added_len": {
+    "targeted": 17,
+    "random": 15.333333333333332
+   },
+   "glosses": {
+    "tomando": "Taking (or pulling someone's leg)",
+    "pelo": "Hair (taken literally or figuratively)",
+    "el": "Hair (in this context)",
+    "me": "Takes (it) (reflexive)",
+    "estás": "Taking (you)"
+   }
+  },
+  {
+   "sid": "it_in_bocca_al_lupo",
+   "base": "Tomorrow do you have an exam? Good luck!",
+   "targeted": [
+    "l'esame",
+    "In"
+   ],
+   "random": [
+    [
+     "lupo",
+     "Domani"
+    ],
+    [
+     "Domani",
+     "bocca"
+    ],
+    [
+     "Domani",
+     "al"
+    ]
+   ],
+   "base_scores": {
+    "text": "Tomorrow do you have an exam? Good luck!",
+    "len": 10,
+    "d_rt": 0.21412635353135187,
+    "d_cl": 0.16038015852873172
+   },
+   "targeted_scores": {
+    "text": "Tomorrow do you have an exam? Good luck! [Exam (today); In: Tomorrow (in this context)]",
+    "len": 23,
+    "d_rt": 0.22178618025896946,
+    "d_cl": 0.15232962462548533
+   },
+   "random_scores": [
+    {
+     "text": "Tomorrow do you have an exam? Good luck! [Wolf (in this context, idiomatically, good luck); Tomorrow]",
+     "len": 26,
+     "d_rt": 0.2149389069709728,
+     "d_cl": 0.15528376834354968
+    },
+    {
+     "text": "Tomorrow do you have an exam? Good luck! [Tomorrow; Mouth]",
+     "len": 15,
+     "d_rt": 0.21366649110649322,
+     "d_cl": 0.15802546566162287
+    },
+    {
+     "text": "Tomorrow do you have an exam? Good luck! [Tomorrow; On (to)]",
+     "len": 17,
+     "d_rt": 0.21400749076157705,
+     "d_cl": 0.1575636691561075
+    }
+   ],
+   "added_len": {
+    "targeted": 13,
+    "random": 9.333333333333332
+   },
+   "glosses": {
+    "l'esame": "Exam (today)",
+    "In": "In: Tomorrow (in this context)",
+    "lupo": "Wolf (in this context, idiomatically, good luck)",
+    "Domani": "Tomorrow",
+    "bocca": "Mouth",
+    "al": "On (to)"
+   }
+  },
+  {
+   "sid": "fr_cafard",
+   "base": "Since it's raining, I feel gloomy.",
+   "targeted": [
+    "cafard",
+    "le"
+   ],
+   "random": [
+    [
+     "qu'il",
+     "j'ai"
+    ],
+    [
+     "j'ai",
+     "pleut"
+    ],
+    [
+     "qu'il",
+     "pleut"
+    ]
+   ],
+   "base_scores": {
+    "text": "Since it's raining, I feel gloomy.",
+    "len": 10,
+    "d_rt": 0.3679918335669218,
+    "d_cl": 0.1656769064213138
+   },
+   "targeted_scores": {
+    "text": "Since it's raining, I feel gloomy. [Moody/gloomy/grumpy; It means \"the\" in English]",
+    "len": 27,
+    "d_rt": 0.3686206837453808,
+    "d_cl": 0.16105832762999236
+   },
+   "random_scores": [
+    {
+     "text": "Since it's raining, I feel gloomy. [Since it rains; Have (informal)]",
+     "len": 20,
+     "d_rt": 0.3327152837564459,
+     "d_cl": 0.15989846181332246
+    },
+    {
+     "text": "Since it's raining, I feel gloomy. [Have (informal); It is raining]",
+     "len": 20,
+     "d_rt": 0.34099941170589465,
+     "d_cl": 0.16046294610721
+    },
+    {
+     "text": "Since it's raining, I feel gloomy. [Since it rains; It is raining]",
+     "len": 19,
+     "d_rt": 0.3633837467134805,
+     "d_cl": 0.16025761162620494
+    }
+   ],
+   "added_len": {
+    "targeted": 17,
+    "random": 9.666666666666668
+   },
+   "glosses": {
+    "cafard": "Moody/gloomy/grumpy",
+    "le": "It means \"the\" in English",
+    "qu'il": "Since it rains",
+    "j'ai": "Have (informal)",
+    "pleut": "It is raining"
+   }
+  },
+  {
+   "sid": "de_tomaten",
+   "base": "Do you have tomatoes on your eyes? The traffic light is red!",
+   "targeted": [
+    "den",
+    "auf"
+   ],
+   "random": [
+    [
+     "Augen",
+     "rot"
+    ],
+    [
+     "Tomaten",
+     "Ampel"
+    ],
+    [
+     "rot",
+     "Ampel"
+    ]
+   ],
+   "base_scores": {
+    "text": "Do you have tomatoes on your eyes? The traffic light is red!",
+    "len": 14,
+    "d_rt": 0.0835353056695728,
+    "d_cl": 0.1178573842621296
+   },
+   "targeted_scores": {
+    "text": "Do you have tomatoes on your eyes? The traffic light is red! [On (in this context); On (eyes)]",
+    "len": 25,
+    "d_rt": 0.08167135271524992,
+    "d_cl": 0.11684139376083713
+   },
+   "random_scores": [
+    {
+     "text": "Do you have tomatoes on your eyes? The traffic light is red! [Eyes; Red (color)]",
+     "len": 22,
+     "d_rt": 0.09805853790669494,
+     "d_cl": 0.1170478726227211
+    },
+    {
+     "text": "Do you have tomatoes on your eyes? The traffic light is red! [Tomatoes; Traffic light (or signal)]",
+     "len": 24,
+     "d_rt": 0.09783296322393804,
+     "d_cl": 0.11482299230960782
+    },
+    {
+     "text": "Do you have tomatoes on your eyes? The traffic light is red! [Red (color); Traffic light (or signal)]",
+     "len": 25,
+     "d_rt": 0.09093175684422761,
+     "d_cl": 0.11723137855058412
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 9.666666666666668
+   },
+   "glosses": {
+    "den": "On (in this context)",
+    "auf": "On (eyes)",
+    "Augen": "Eyes",
+    "rot": "Red (color)",
+    "Tomaten": "Tomatoes",
+    "Ampel": "Traffic light (or signal)"
+   }
+  },
+  {
+   "sid": "es_en_las_nubes",
+   "base": "My son is always in the clouds in class. (This idiomatic expression means that my son is always daydreaming or not paying attention in class.)",
+   "targeted": [
+    "clase",
+    "está"
+   ],
+   "random": [
+    [
+     "las",
+     "hijo"
+    ],
+    [
+     "en",
+     "hijo"
+    ],
+    [
+     "las",
+     "nubes"
+    ]
+   ],
+   "base_scores": {
+    "text": "My son is always in the clouds in class. (This idiomatic expression means that my son is always daydreaming or not paying attention in class.)",
+    "len": 31,
+    "d_rt": 0.054897913377281074,
+    "d_cl": 0.1358744678651804
+   },
+   "targeted_scores": {
+    "text": "My son is always in the clouds in class. (This idiomatic expression means that my son is always daydreaming or not paying attention in class.) [Class (or classroom); is (present continuous)]",
+    "len": 42,
+    "d_rt": 0.07816835300580159,
+    "d_cl": 0.13529874996208283
+   },
+   "random_scores": [
+    {
+     "text": "My son is always in the clouds in class. (This idiomatic expression means that my son is always daydreaming or not paying attention in class.) [clouds (in this context); Son (He/She is)]",
+     "len": 46,
+     "d_rt": 0.06453016921021992,
+     "d_cl": 0.1347289247499259
+    },
+    {
+     "text": "My son is always in the clouds in class. (This idiomatic expression means that my son is always daydreaming or not paying attention in class.) [In class; Son (He/She is)]",
+     "len": 42,
+     "d_rt": 0.06544296261867645,
+     "d_cl": 0.13465995496552413
+    },
+    {
+     "text": "My son is always in the clouds in class. (This idiomatic expression means that my son is always daydreaming or not paying attention in class.) [clouds (in this context); Clouds (in class) means the student is always]",
+     "len": 51,
+     "d_rt": 0.07132816933354222,
+     "d_cl": 0.13503663455126375
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 15.333333333333336
+   },
+   "glosses": {
+    "clase": "Class (or classroom)",
+    "está": "is (present continuous)",
+    "las": "clouds (in this context)",
+    "hijo": "Son (He/She is)",
+    "en": "In class",
+    "nubes": "Clouds (in class) means the student is always"
+   }
+  },
+  {
+   "sid": "it_in_gamba",
+   "base": "The new colleague is quite agile.",
+   "targeted": [
+    "in",
+    "gamba"
+   ],
+   "random": [
+    [
+     "collega",
+     "nuova"
+    ],
+    [
+     "nuova",
+     "collega"
+    ],
+    [
+     "collega",
+     "nuova"
+    ]
+   ],
+   "base_scores": {
+    "text": "The new colleague is quite agile.",
+    "len": 7,
+    "d_rt": 0.489021666249544,
+    "d_cl": 0.14835119586244944
+   },
+   "targeted_scores": {
+    "text": "The new colleague is quite agile. [Leg: In this sentence, \"in\" means \"on\" or; Leg: The Italian word \"…\" in this sentence]",
+    "len": 34,
+    "d_rt": 0.5180638745915882,
+    "d_cl": 0.14284826641192314
+   },
+   "random_scores": [
+    {
+     "text": "The new colleague is quite agile. [Co-worker; New]",
+     "len": 13,
+     "d_rt": 0.511583802283165,
+     "d_cl": 0.14712601021663016
+    },
+    {
+     "text": "The new colleague is quite agile. [New; Co-worker]",
+     "len": 13,
+     "d_rt": 0.5147164831445872,
+     "d_cl": 0.14694884238977574
+    },
+    {
+     "text": "The new colleague is quite agile. [Co-worker; New]",
+     "len": 13,
+     "d_rt": 0.511583802283165,
+     "d_cl": 0.14712601021663016
+    }
+   ],
+   "added_len": {
+    "targeted": 27,
+    "random": 6.0
+   },
+   "glosses": {
+    "in": "Leg: In this sentence, \"in\" means \"on\" or",
+    "gamba": "Leg: The Italian word \"…\" in this sentence",
+    "collega": "Co-worker",
+    "nuova": "New"
+   }
+  },
+  {
+   "sid": "fr_poser_un_lapin",
+   "base": "She put a rabbit on me yesterday evening.",
+   "targeted": [
+    "posé",
+    "hier"
+   ],
+   "random": [
+    [
+     "un",
+     "m'a"
+    ],
+    [
+     "soir",
+     "un"
+    ],
+    [
+     "soir",
+     "lapin"
+    ]
+   ],
+   "base_scores": {
+    "text": "She put a rabbit on me yesterday evening.",
+    "len": 9,
+    "d_rt": 0.06911129387998541,
+    "d_cl": 0.1514297171027651
+   },
+   "targeted_scores": {
+    "text": "She put a rabbit on me yesterday evening. [Placed (or Set); Yesterday]",
+    "len": 18,
+    "d_rt": 0.08803232626754787,
+    "d_cl": 0.14989306015363504
+   },
+   "random_scores": [
+    {
+     "text": "She put a rabbit on me yesterday evening. [A (article, masculine singular); She gave (me)]",
+     "len": 22,
+     "d_rt": 0.10182971812269406,
+     "d_cl": 0.1501004274720072
+    },
+    {
+     "text": "She put a rabbit on me yesterday evening. [Evening; A (article, masculine singular)]",
+     "len": 20,
+     "d_rt": 0.08973234745938222,
+     "d_cl": 0.15035694649540807
+    },
+    {
+     "text": "She put a rabbit on me yesterday evening. [Evening; Rabbit]",
+     "len": 15,
+     "d_rt": 0.08022466638320618,
+     "d_cl": 0.1506545194541048
+    }
+   ],
+   "added_len": {
+    "targeted": 9,
+    "random": 10.0
+   },
+   "glosses": {
+    "posé": "Placed (or Set)",
+    "hier": "Yesterday",
+    "un": "A (article, masculine singular)",
+    "m'a": "She gave (me)",
+    "soir": "Evening",
+    "lapin": "Rabbit"
+   }
+  },
+  {
+   "sid": "rom_ffora",
+   "base": "Commencersont à parler : sortez ceux qui touchent. (French)\n\nThey will start to speak: let those who are touched come out. (English)",
+   "targeted": [
+    "ddì",
+    "ttoca"
+   ],
+   "random": [
+    [
+     "a",
+     "ffora"
+    ],
+    [
+     "cominceranno",
+     "cchi"
+    ],
+    [
+     "cominceranno",
+     "a"
+    ]
+   ],
+   "base_scores": {
+    "text": "Commencersont à parler : sortez ceux qui touchent. (French)\n\nThey will start to speak: let those who are touched come out. (English)",
+    "len": 33,
+    "d_rt": 0.5253837495948747,
+    "d_cl": 0.14654565061971378
+   },
+   "targeted_scores": {
+    "text": "Commencersont à parler : sortez ceux qui touchent. (French)\n\nThey will start to speak: let those who are touched come out. (English) [Start (to speak); Touches (or is touched by)]",
+    "len": 47,
+    "d_rt": 0.5122128518655388,
+    "d_cl": 0.14436017025895148
+   },
+   "random_scores": [
+    {
+     "text": "Commencersont à parler : sortez ceux qui touchent. (French)\n\nThey will start to speak: let those who are touched come out. (English) [Approach; \"…\" in this sentence likely means \"outside\" or]",
+     "len": 49,
+     "d_rt": 0.5173247385536951,
+     "d_cl": 0.14473142285679658
+    },
+    {
+     "text": "Commencersont à parler : sortez ceux qui touchent. (French)\n\nThey will start to speak: let those who are touched come out. (English) [\"…\" means \"they will start\" in this sentence; touches (or \"touched\" in past tense)]",
+     "len": 56,
+     "d_rt": 0.5366355333356322,
+     "d_cl": 0.14420988553134095
+    },
+    {
+     "text": "Commencersont à parler : sortez ceux qui touchent. (French)\n\nThey will start to speak: let those who are touched come out. (English) [\"…\" means \"they will start\" in this sentence; Approach]",
+     "len": 47,
+     "d_rt": 0.5189075508071188,
+     "d_cl": 0.14517657548194884
+    }
+   ],
+   "added_len": {
+    "targeted": 14,
+    "random": 17.666666666666664
+   },
+   "glosses": {
+    "ddì": "Start (to speak)",
+    "ttoca": "Touches (or is touched by)",
+    "a": "Approach",
+    "ffora": "\"…\" in this sentence likely means \"outside\" or",
+    "cominceranno": "\"…\" means \"they will start\" in this sentence",
+    "cchi": "touches (or \"touched\" in past tense)"
+   }
+  },
+  {
+   "sid": "rom_schertri",
+   "base": "From the earth to the cheese, [it] travels.",
+   "targeted": [
+    "ppecorone",
+    "schertri"
+   ],
+   "random": [
+    [
+     "terra",
+     "de"
+    ],
+    [
+     "de",
+     "terra"
+    ],
+    [
+     "terra",
+     "de"
+    ]
+   ],
+   "base_scores": {
+    "text": "From the earth to the cheese, [it] travels.",
+    "len": 12,
+    "d_rt": 0.8146101085010397,
+    "d_cl": 0.17809554637453315
+   },
+   "targeted_scores": {
+    "text": "From the earth to the cheese, [it] travels. [Cheese (or Cheesy); Harvested (from the earth)]",
+    "len": 27,
+    "d_rt": 0.84719442615073,
+    "d_cl": 0.16911532166296858
+   },
+   "random_scores": [
+    {
+     "text": "From the earth to the cheese, [it] travels. [Earth (or ground); From (or \"of\")]",
+     "len": 24,
+     "d_rt": 0.8459103304270138,
+     "d_cl": 0.17275292302099382
+    },
+    {
+     "text": "From the earth to the cheese, [it] travels. [From (or \"of\"); Earth (or ground)]",
+     "len": 24,
+     "d_rt": 0.8327156898484692,
+     "d_cl": 0.17309431740062167
+    },
+    {
+     "text": "From the earth to the cheese, [it] travels. [Earth (or ground); From (or \"of\")]",
+     "len": 24,
+     "d_rt": 0.8459103304270138,
+     "d_cl": 0.17275292302099382
+    }
+   ],
+   "added_len": {
+    "targeted": 15,
+    "random": 12.0
+   },
+   "glosses": {
+    "ppecorone": "Cheese (or Cheesy)",
+    "schertri": "Harvested (from the earth)",
+    "terra": "Earth (or ground)",
+    "de": "From (or \"of\")"
+   }
+  }
+ ]
+}

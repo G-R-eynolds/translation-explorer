@@ -1,0 +1,89 @@
+# E1: built-in blind spots (HANDOFF_blind_spots.md §4.1).  Drafted by Claude Code (Opus 5.5), 23 Nov 2026.
+# UNCHECKED: stop point 1.  Please check the Spanish (natural? the distinction really carried only where stated?).
+#
+# Schema (validated by `python -m blind material`):
+#   id       b_<type>_<n>
+#   type     gender_adj | profession | plural_you | formal_you | ser_estar | lexical | aspect
+#   text     the Spanish sentence as shown to the model
+#   flip     [from, to]: the word(s) that carry the distinction and what they become on the other side of it.
+#            Used only to pre-count steering flips (§5 E1 test 4); the final count is made by reading the texts.
+#            Matching is case-insensitive on whole words. Absent for the lexical controls.
+#   hot      span(s) carrying the distinction (substrings of text), for the per-token heat maps
+#   note     why the item is built the way it is
+#
+# Rules followed: the gendered word refers to the speaker or the addressee, never to a third person (English would
+# then keep the gender through he/she/my sister); no other word in the sentence gives the distinction away.
+# Expected (per type, PREDICTIONS.md): dropped into / kept into
+#   gender_adj  en / it pt fr        profession  en fr / it pt      plural_you  en / it fr pt
+#   formal_you  en / it fr pt        ser_estar   none (control)     lexical     none (control)
+#   aspect      en? / it fr pt (exploratory)
+
+types:
+  gender_adj: {dropped: [en], kept: [it, pt, fr], role: test}
+  profession: {dropped: [en, fr], kept: [it, pt], role: test}
+  plural_you: {dropped: [en], kept: [it, fr, pt], role: test}
+  formal_you: {dropped: [en], kept: [it, fr, pt], role: test}
+  ser_estar: {dropped: [], kept: [en, it, fr, pt], role: control}
+  lexical: {dropped: [], kept: [en, it, fr, pt], role: control}
+  aspect: {dropped: [en], kept: [it, fr, pt], role: exploratory}
+
+items:
+# ---------------------------------------------------------------- speaker / addressee gender on adjectives
+- {id: b_gender_adj_1, type: gender_adj, text: "Estoy cansada después de tanto trabajar.", flip: [cansada, cansado], hot: [cansada]}
+- {id: b_gender_adj_2, type: gender_adj, text: "¿Estás lista para salir?", flip: [lista, listo], hot: [lista]}
+- {id: b_gender_adj_3, type: gender_adj, text: "Me siento muy orgullosa de mi hija.", flip: [orgullosa, orgulloso], hot: [orgullosa]}
+- {id: b_gender_adj_4, type: gender_adj, text: "Hoy estoy contento porque por fin ha salido el sol.", flip: [contento, contenta], hot: [contento]}
+- {id: b_gender_adj_5, type: gender_adj, text: "¿Estás seguro de que has apagado el horno?", flip: [seguro, segura], hot: [seguro]}
+- {id: b_gender_adj_6, type: gender_adj, text: "Cuando llegué a casa estaba agotada.", flip: [agotada, agotado], hot: [agotada]}
+
+# ---------------------------------------------------------------- gender on a profession noun (1st/2nd person)
+# Chosen so that French uses an epicene or masculine-default noun (médecin, psychologue, photographe, biologiste,
+# philologue, architecte) while Italian and Portuguese mark the feminine (medica/dottoressa, psicologa, fotografa ...).
+- {id: b_profession_1, type: profession, text: "Soy médica y esta semana trabajo de noche.", flip: [médica, médico], hot: [médica]}
+- {id: b_profession_2, type: profession, text: "Soy psicóloga desde hace diez años.", flip: [psicóloga, psicólogo], hot: [psicóloga]}
+- {id: b_profession_3, type: profession, text: "¿Eres fotógrafa profesional?", flip: [fotógrafa, fotógrafo], hot: [fotógrafa]}
+- {id: b_profession_4, type: profession, text: "Soy bióloga marina y estudio las ballenas.", flip: [bióloga, biólogo], hot: [bióloga]}
+- {id: b_profession_5, type: profession, text: "Soy filóloga y doy clases en la universidad.", flip: [filóloga, filólogo], hot: [filóloga]}
+- {id: b_profession_6, type: profession, text: "Desde muy joven quise ser arquitecta, y lo conseguí.", flip: [arquitecta, arquitecto], hot: [arquitecta]}
+
+# ---------------------------------------------------------------- plural vs singular "you" (vosotros, Spain)
+- {id: b_plural_you_1, type: plural_you, text: "¿Queréis café?", flip: [queréis, quieres], hot: [Queréis]}
+- {id: b_plural_you_2, type: plural_you, text: "¿Habéis visto mis llaves?", flip: [habéis, has], hot: [Habéis]}
+- {id: b_plural_you_3, type: plural_you, text: "Os espero en la estación a las siete.", flip: [os, te], hot: [Os]}
+- {id: b_plural_you_4, type: plural_you, text: "¿Venís a cenar esta noche?", flip: [venís, vienes], hot: [Venís]}
+- {id: b_plural_you_5, type: plural_you, text: "Sois muy amables por ayudarme.", flip: [sois, eres], hot: [Sois],
+   note: "amables is number-marked too (amable), so the plural is carried twice"}
+- {id: b_plural_you_6, type: plural_you, text: "Si tenéis hambre, hay pasta en la nevera.", flip: [tenéis, tienes], hot: [tenéis]}
+
+# ---------------------------------------------------------------- formal vs informal "you"
+- {id: b_formal_you_1, type: formal_you, text: "¿Usted quiere café?", flip: [usted, quieres], hot: [Usted]}
+- {id: b_formal_you_2, type: formal_you, text: "¿Puede usted ayudarme con la maleta?", flip: [puede, puedes], hot: [Puede usted]}
+- {id: b_formal_you_3, type: formal_you, text: "Siéntese, por favor, enseguida le atiendo.", flip: [siéntese, siéntate], hot: [Siéntese, le]}
+- {id: b_formal_you_4, type: formal_you, text: "¿Cómo se llama usted?", flip: [usted, llamas], hot: [se llama usted]}
+- {id: b_formal_you_5, type: formal_you, text: "Le agradezco mucho su paciencia.", flip: [su, tu], hot: [Le, su]}
+- {id: b_formal_you_6, type: formal_you, text: "Disculpe, ¿sabe usted dónde está la estación?", flip: [disculpe, disculpa], hot: [Disculpe, sabe usted]}
+
+# ---------------------------------------------------------------- ser vs estar (negative control: English keeps it lexically)
+- {id: b_ser_estar_1, type: ser_estar, text: "Juan está aburrido.", flip: [está, es], hot: [está aburrido], note: "bored vs boring"}
+- {id: b_ser_estar_2, type: ser_estar, text: "La película es aburrida.", flip: [es, está], hot: [es aburrida], note: "boring vs bored"}
+- {id: b_ser_estar_3, type: ser_estar, text: "Marta es muy lista.", flip: [es, está], hot: [es muy lista], note: "clever vs ready"}
+- {id: b_ser_estar_4, type: ser_estar, text: "Los plátanos todavía están verdes.", flip: [están, son], hot: [están verdes], note: "unripe vs green"}
+- {id: b_ser_estar_5, type: ser_estar, text: "Mi vecino es muy rico.", flip: [es, está], hot: [es muy rico], note: "wealthy vs tasty"}
+- {id: b_ser_estar_6, type: ser_estar, text: "El niño ya está despierto.", flip: [está, es], hot: [está despierto], note: "awake vs bright/sharp"}
+
+# ---------------------------------------------------------------- lexical, nothing special (negative control)
+- {id: b_lexical_1, type: lexical, text: "El autobús pasa cada veinte minutos.", hot: [autobús]}
+- {id: b_lexical_2, type: lexical, text: "Mañana vamos al mercado a comprar tomates.", hot: [tomates]}
+- {id: b_lexical_3, type: lexical, text: "El museo cierra los lunes.", hot: [museo]}
+- {id: b_lexical_4, type: lexical, text: "Llueve mucho en otoño.", hot: [otoño]}
+- {id: b_lexical_5, type: lexical, text: "Hay tres libros encima de la mesa.", hot: [libros]}
+- {id: b_lexical_6, type: lexical, text: "Mi padre trabaja en una fábrica de zapatos.", hot: [zapatos]}
+
+# ---------------------------------------------------------------- aspect: imperfect vs preterite (exploratory)
+# No gendered nouns about the speaker (so not "Cuando era niño").
+- {id: b_aspect_1, type: aspect, text: "Cuando tenía diez años, jugaba al fútbol todos los días.", flip: [jugaba, jugué], hot: [jugaba]}
+- {id: b_aspect_2, type: aspect, text: "Mientras leía, sonó el teléfono.", flip: [leía, leí], hot: [leía]}
+- {id: b_aspect_3, type: aspect, text: "Mi abuelo fumaba en pipa.", flip: [fumaba, fumó], hot: [fumaba]}
+- {id: b_aspect_4, type: aspect, text: "Llovía cuando salimos del cine.", flip: [llovía, llovió], hot: [Llovía]}
+- {id: b_aspect_5, type: aspect, text: "En aquella época vivíamos en Madrid.", flip: [vivíamos, vivimos], hot: [vivíamos]}
+- {id: b_aspect_6, type: aspect, text: "Antes la gente escribía cartas a mano.", flip: [escribía, escribió], hot: [escribía]}

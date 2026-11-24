@@ -1,0 +1,39 @@
+[project]
+name = "translation-lattice"
+version = "0.1.0"
+description = "Translation lattices from a local Llama, with 'differs by meaning' measured from model probabilities and hidden states."
+requires-python = ">=3.12,<3.13"
+# Pins follow ~/Documents/Fourth Year/Dissertation/code so the desktop's uv cache is reused.
+dependencies = [
+    "torch==2.14.1",
+    "transformers==5.18.0",
+    "tokenizers==0.23.2",
+    "huggingface-hub==1.33.0",
+    "accelerate==1.15.0",
+    "safetensors==0.8.0",
+    "numpy==2.5.3",
+    "scipy",
+    "scikit-learn",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+    "concept-erasure",
+    "sentencepiece",
+    "protobuf",
+]
+
+[project.optional-dependencies]
+quant = ["bitsandbytes==0.50.2"]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu130", marker = "sys_platform == 'linux'" }]
+
+[tool.ruff]
+line-length = 110

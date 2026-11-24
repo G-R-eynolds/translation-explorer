@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="936pt" height="633.6pt" viewBox="0 0 936 633.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-21T12:07:43.317666</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 633.6 
+L 936 633.6 
+L 936 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="patch_2">
+   <path d="M 243.36 223.2 
+L 499.725474 223.2 
+L 499.725474 192.96 
+L 243.36 192.96 
+z
+" style="fill: #c4562f; opacity: 0.565789; stroke: #c4562f; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_3">
+   <path d="M 503.469474 223.2 
+L 759.834947 223.2 
+L 759.834947 192.96 
+L 503.469474 192.96 
+z
+" style="fill: #c4562f; opacity: 0.565789; stroke: #c4562f; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_4">
+   <path d="M 763.578947 223.2 
+L 792.348632 223.2 
+L 792.348632 192.96 
+L 763.578947 192.96 
+z
+" style="fill: #c4562f; opacity: 0.289474; stroke: #c4562f; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_5">
+   <path d="M 885.258947 223.2 
+L 914.028632 223.2 
+L 914.028632 192.96 
+L 885.258947 192.96 
+z
+" style="fill: #c4562f; opacity: 0.289474; stroke: #c4562f; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_6">
+   <path d="M 1006.938947 223.2 
+L 1035.708632 223.2 
+L 1035.708632 192.96 
+L 1006.938947 192.96 
+z
+" style="fill: #c4562f; opacity: 0.289474; stroke: #c4562f; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_7">
+   <path d="M 243.36 331.2 
+L 857.376 331.2 
+L 857.376 300.96 
+L 243.36 300.96 
+z
+" style="fill: #c4562f; stroke: #c4562f; stroke-linejoin: miter"/>
+  </g>
+  <g id="text_1">
+   <text style="font-style: italic; font-size: 30px; font-family: 'DejaVu Serif'; text-anchor: start; fill: #1f1f1e" x="28.08" y="94.795313" transform="rotate(-0 28.08 94.795313)">Me gusta mucho el duende.</text>
+  </g>
+  <g id="text_2">
+   <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="28.08" y="144.597656" transform="rotate(-0 28.08 144.597656)">standard translation:  I really like the duende.</text>
+  </g>
+  <g id="text_3">
+   <text style="font-style: italic; font-size: 20px; font-family: 'DejaVu Serif'; text-anchor: start; fill: #c4562f" x="28.08" y="202.396875" transform="rotate(-0 28.08 202.396875)">duende</text>
+  </g>
+  <g id="text_4">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="28.08" y="225.038437" transform="rotate(-0 28.08 225.038437)">5 senses in 19 usable translations</text>
+  </g>
+  <g id="text_5">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="243.36" y="238.757422" transform="rotate(-0 243.36 238.757422)">gnome  42%</text>
+  </g>
+  <g id="text_6">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="503.469474" y="238.758281" transform="rotate(-0 503.469474 238.758281)">duende  42%</text>
+  </g>
+  <g id="text_7">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="763.578947" y="238.758281" transform="rotate(-0 763.578947 238.758281)">(nothing)  5%</text>
+  </g>
+  <g id="text_8">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="885.258947" y="238.758281" transform="rotate(-0 885.258947 238.758281)">elf  5%</text>
+  </g>
+  <g id="text_9">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="1006.938947" y="238.758281" transform="rotate(-0 1006.938947 238.758281)">goblin  5%</text>
+  </g>
+  <g id="text_10">
+   <text style="font-style: italic; font-size: 20px; font-family: 'DejaVu Serif'; text-anchor: start; fill: #c4562f" x="28.08" y="310.395312" transform="rotate(-0 28.08 310.395312)">gusta</text>
+  </g>
+  <g id="text_11">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="28.08" y="333.038437" transform="rotate(-0 28.08 333.038437)">1 sense in 2 usable translations</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="243.36" y="346.758281" transform="rotate(-0 243.36 346.758281)">(nothing)  100%</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="28.08" y="411.558281" transform="rotate(-0 28.08 411.558281)">best short gloss</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="243.36" y="412.698047" transform="rotate(-0 243.36 412.698047)">I love the goblin. [Me - I; gusta mucho - love a lot; el duende - the goblin]</text>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6b6a66" x="28.08" y="505.158281" transform="rotate(-0 28.08 505.158281)">a coined term</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #1f1f1e" transform="translate(243.36 507.549268)">Term: Duendophile = A person who has a strong affinity or appreciation for duendes.</text>
+   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #1f1f1e" transform="translate(243.36 522.552686)">Duendophile: I really like the duende.</text>
+  </g>
+  <g id="text_17">
+   <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f1f1e" x="11.232" y="21.6615" transform="rotate(-0 11.232 21.6615)">Opening up a sentence instead of substituting word for word</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #6b6a66" transform="translate(11.232 609.05014)">How to read this: under the standard translation, each hard part is expanded into the different English senses the model gives it across repeated tries (the bar widths</text>
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #6b6a66" transform="translate(11.232 622.253148)">are the shares), followed by the model's best short gloss and a term it coined. A prototype of a translation that shows its range rather than hiding it.</text>
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+cache/
+logs/
+remote/remote.env
+*.npy
+!results/explorer/g3_4b_pt/samples/*.npy
+*.npz
+*.safetensors
+.pytest_cache/
+.venv-cpu/
+results/sent/qwen05/
+results/sent/figures/qwen05/
+results/internals/qwen05/

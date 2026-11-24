@@ -1,0 +1,226 @@
+{
+ "duende": {
+  "B0": "I like much the goblin.",
+  "B1": "I love the elf.",
+  "B2": "I really like the *duende*.",
+  "B3": "I like very much the goblin [mythical creature].",
+  "B5": "I love the duende very much.\n\n \nNote: The translation loses cultural nuance and poetic connotation.",
+  "B6": "The translation is: I really like the elf.\n\nThis sentence expresses a strong affection for a mythical creature, evoking a sense of enchantment and fantasy. The phrase \"really like\" conveys a deep appreciation, while the subject, a mystical being, adds a touch of whimsy and wonder, suggesting a romantic or dreamy tone. The simple sentence structure belies a richness of emotion and imagination, inviting the reader to step into a world of magic and awe."
+ },
+ "sobremesa": {
+  "B0": "After of eat we remained two hours of after-lunch.",
+  "B1": "After lunch, we lingered at the table for two hours.",
+  "B2": "After eating, we stayed two hours of *sobremesa*.",
+  "B3": "After eating we stayed two hours of overtime [work after hours].",
+  "B5": "We stayed two hours after lunch. \n\nNote: The translation loses the cultural reference to a traditional post-meal break.",
+  "B6": "The translation is: \"After eating, we stayed two hours overtime.\"\n\nThe phrase \"overtime\" here refers to staying beyond the normal or expected time, in this case, after a meal. It implies a leisurely or relaxed atmosphere, where people choose to linger and continue socializing rather than rushing off. The use of this phrase suggests a sense of camaraderie and enjoyment, emphasizing the pleasant nature of the gathering."
+ },
+ "madrugada": {
+  "B0": "Arrived to house of dawn, dead of sleep.",
+  "B1": "We arrived home in the early hours, dead tired.",
+  "B2": "We arrived home in the *madrugada*, dead with sleep.",
+  "B3": "We arrived home at dawn [early morning], dead from sleep [extremely tired].",
+  "B5": "We arrived home in the early hours, dead tired.\n\n \nNote: The translation loses the nuance of the original idiomatic expression.",
+  "B6": "We arrived home in the early hours, extremely sleepy.\n\nThe sentence describes a state of exhaustion, emphasizing the late hour of arrival and the intense sleepiness felt by the individuals. The phrase \"in the early hours\" suggests a time shortly after midnight, implying a long and tiring night. The expression \"extremely sleepy\" conveys a strong desire to rest, highlighting the physical and mental state of the people arriving home."
+ },
+ "estrenar": {
+  "B0": "Today premiere the shoes that to me gave",
+  "B1": "I'm wearing the shoes you gave me for the first time today.",
+  "B2": "Today I'm wearing the shoes that you gave me.",
+  "B3": "Today I wear [formal debut] the shoes you gave [as gift] me.",
+  "B5": "I'm wearing the shoes you gave me.\n\nNote: The translation loses the nuance of \"estreno\", implying first-time use.",
+  "B6": "The translation is: \"Today I'm wearing the shoes you gave me.\"\n\nThe sentence conveys a sense of gratitude and appreciation, implying a close relationship between the speaker and the gift-giver. The use of the verb \"estrenar\" suggests that the shoes are being worn for the first time, adding a sense of excitement and novelty to the act. The phrase as a whole has a warm and intimate tone, highlighting the emotional value of the gift and the connection between the people involved."
+ },
+ "verguenza": {
+  "B0": "Felt shame alien during all his speech.",
+  "B1": "I felt secondhand embarrassment throughout his entire speech.",
+  "B2": "I felt *vergüenza ajena* throughout their entire speech.",
+  "B3": "I felt secondhand embarrassment [feeling shame for someone] during their entire speech.",
+  "B5": "I felt second-hand embarrassment throughout their speech.\n\n \nNote: The translation loses the nuance of the original phrase's cultural reference.",
+  "B6": "The translation is: \"I felt second-hand embarrassment throughout their speech.\"\n\nThis sentence conveys a feeling of vicarious shame or embarrassment on behalf of someone else, often due to their awkward or embarrassing behavior. The phrase implies a sense of discomfort or cringe-worthiness, where the speaker is empathetically experiencing embarrassment for the person giving the speech, rather than feeling embarrassed about something they themselves did."
+ },
+ "tertulia": {
+  "B0": "The Thursdays go to the chat of the coffee of the corner.",
+  "B1": "We go to the coffee shop on the corner's discussion group on Thursdays.",
+  "B2": "On Thursdays we go to the *tertulia* of the café on the corner.",
+  "B3": "On Thursdays we go to the social gathering [informal discussion group] of the corner coffee shop.",
+  "B5": "We go to the coffee shop's gathering on Thursdays.\n\n \nNote: The translation loses the nuance of a traditional social gathering.",
+  "B6": "The translation is: \"On Thursdays, we go to the cafe's gathering at the corner.\"\n\nThis sentence refers to a regular social event where people meet to discuss various topics. The gathering is held at a specific cafe located on a corner, implying a familiar and cozy setting. The use of \"we\" suggests a sense of community and shared experience, while the specific day of the week adds a sense of routine and tradition to the event."
+ },
+ "olvido": {
+  "B0": "Myself to forgot the key in the car.",
+  "B1": "I left the key in the car.",
+  "B2": "I forgot the key in the *llave* in the car.",
+  "B3": "I forgot the key [car door opener] in the car.",
+  "B5": "I forgot the key in the car.\n\n \nNote: Nuance of the speaker's responsibility is lost in translation.",
+  "B6": "The translation is: I forgot the key in the car.\n\nThis sentence implies a situation where the speaker unintentionally left something behind, conveying a sense of carelessness or distraction. The phrase suggests that the key was in the speaker's possession but was forgotten in a specific location, the car, indicating a separation from the speaker. The tone is informal and conversational, implying a common, everyday mistake."
+ },
+ "estar_aburrido": {
+  "B0": "Juan is bored in the meeting.",
+  "B1": "Juan is bored at the meeting.",
+  "B2": "Juan is bored at the *reunión*.",
+  "B3": "Juan is bored [feeling listless] in the meeting [gathering of people].",
+  "B5": "John is bored at the meeting.\n\n \nNote: The translation loses the original sentence's use of a culturally specific formal/informal tone.",
+  "B6": "The translation is: John is bored at the meeting.\n\nThis sentence conveys a sense of disengagement and lack of interest. The feeling of boredom implies that the meeting is unstimulating or unproductive for John, and he may be struggling to stay focused. The phrase suggests a negative emotional state, and the use of the present tense emphasizes the current and ongoing nature of John's boredom, implying that it is a persistent feeling throughout the meeting."
+ },
+ "ser_aburrido": {
+  "B0": "Juan is boring in the meetings.",
+  "B1": "Juan is bored in meetings.",
+  "B2": "Juan is bored in the *reuniones*.",
+  "B3": "Juan is bored [feeling uninterested] in the meetings [gatherings of people].",
+  "B5": "John is bored in meetings.\n\n \nNote: Nuance of the subject's personality is lost in translation.",
+  "B6": "The translation is: John is bored in meetings.\n\nThis sentence conveys a sense of monotony and disengagement. The key phrase implies a lack of interest or stimulation, suggesting that the meetings are uneventful or uninspiring for John. The tone is somewhat negative, implying that John's experience is dull and unfulfilling, which may impact his motivation or participation in these gatherings."
+ },
+ "ojala": {
+  "B0": "Hopefully rains tomorrow for the afternoon.",
+  "B1": "I hope it rains tomorrow afternoon.",
+  "B2": "I hope it rains tomorrow afternoon, *ojalá*.",
+  "B3": "I hope it rains tomorrow by the afternoon [informal wish].",
+  "B5": "I hope it rains tomorrow afternoon.\n\n \nNote: The translation loses the subtlety of the original's hopeful tone.",
+  "B6": "The translation is: \"I hope it rains tomorrow afternoon.\"\n\nThis sentence expresses a desire for rain, which may have positive connotations such as relief from heat or help for crops. The speaker's hope is specific to a certain time, indicating a sense of anticipation or planning. The use of a polite or gentle tone suggests that the speaker is not demanding, but rather wishing for a favorable outcome."
+ },
+ "pelo": {
+  "B0": "Believe that to me are taking the hair.",
+  "B1": "I think you're pulling my leg.",
+  "B2": "I think you're pulling my leg, or rather, I think you're *tomando el pelo*.",
+  "B3": "I think you are pulling my leg [teasing me].",
+  "B5": "I think you're pulling my leg.\n\n \nNote: Idiomatic expression loses its literal hair-pulling connotation.",
+  "B6": "The translation is: \"I think you're pulling my leg.\"\n\nThis phrase is an idiom that suggests someone is being deceived or teased. The expression implies a lighthearted and playful tone, rather than a serious accusation. The speaker is questioning the truth or sincerity of the other person's words or actions, and is likely seeking clarification or confirmation. The phrase is often used in informal settings and can convey a sense of humor or skepticism."
+ },
+ "nubes": {
+  "B0": "My sister always is in the clouds.",
+  "B1": "My sister is always daydreaming.",
+  "B2": "My sister is always in the clouds, or more idiomatically, my sister always has her head in the clouds, but a more literal translation would be: My sister is always in the *nubes*.",
+  "B3": "My sister is always in the clouds [daydreaming state].",
+  "B5": "My sister is always daydreaming.\n\n \nNote: The translation loses the idiomatic expression's poetic connotation.",
+  "B6": "The translation is: \"My sister is always in the clouds.\"\n\nThis sentence uses a figurative expression to convey that the speaker's sister is detached from reality, lost in thought, or dreamy. The phrase \"in the clouds\" suggests a state of being distracted, preoccupied, or having one's head in a fantasy world, rather than being grounded or focused on the present moment. This idiomatic expression adds a layer of nuance to the sentence, implying the sister's personality or behavior."
+ },
+ "pelos": {
+  "B0": "My grandmother not has hairs on the tongue.",
+  "B1": "My grandmother speaks her mind.",
+  "B2": "My grandmother doesn't have *pelos* on her tongue.",
+  "B3": "My grandmother does not have hair [idiomatic expression] on the tongue [body part].",
+  "B5": "My grandmother doesn't mince words.\n\nNote: Idiomatic expression loses its literal, humorous implication.",
+  "B6": "The translation is: \"My grandmother doesn't have hair on her tongue.\"\n\nThis phrase is an idiom that means someone speaks their mind freely and honestly, without hesitation or fear of offending others. The idea is that they are not \"hairy-tongued\", or restrained in their speech, but rather bold and straightforward in their expression. This phrase highlights the importance of direct communication and the value of speaking one's truth, as embodied by the speaker's grandmother."
+ },
+ "tren": {
+  "B0": "The train leaves at the eight of the morning.",
+  "B1": "The train leaves at eight in the morning.",
+  "B2": "The train leaves at eight in the morning.",
+  "B3": "The train leaves at eight in the morning [formal time telling].",
+  "B5": "The train leaves at eight in the morning.\n\n \nNote: The translation loses the cultural implication of using a 12-hour clock.",
+  "B6": "The train leaves at eight in the morning.\n\nThis sentence conveys a specific time and action, implying a scheduled departure. The phrase \"at eight\" indicates a precise moment, and \"in the morning\" provides additional context to avoid ambiguity. The sentence's meaning relies on understanding the relationship between time, action, and context, allowing the reader to grasp the train's scheduled departure time."
+ },
+ "hermano": {
+  "B0": "My brother lives in a floor small.",
+  "B1": "My brother lives in a small apartment.",
+  "B2": "My brother lives in a small *piso*.",
+  "B3": "My brother lives in an apartment [small residential unit] that is small.",
+  "B5": "My brother lives in a small apartment.\n\n \nNote: The translation loses the distinction between a US and UK English equivalent.",
+  "B6": "The translation is: \"My brother lives in a small apartment.\"\n\nThis sentence conveys a simple yet informative statement about the speaker's brother. The key phrase \"small apartment\" implies a compact living space, which may have connotations of coziness or modesty. The sentence's grammar is straightforward, using a present-tense verb to describe the brother's current living situation, and the possessive adjective to establish a familial relationship between the speaker and the brother."
+ },
+ "pan": {
+  "B0": "Bought bread and milk in the store.",
+  "B1": "I bought bread and milk at the store.",
+  "B2": "I bought bread and milk at the *tienda*.",
+  "B3": "I bought bread [type of bread] and milk in the store [small shop].",
+  "B5": "I bought bread and milk at the store.\n\n \nNote: The translation loses the distinction between \"pan\" (bread) and other types of baked goods.",
+  "B6": "The translation is: I bought bread and milk at the store.\n\nThis sentence describes a simple everyday action, with the subject performing the action of purchasing basic food items. The phrase implies a routine or casual trip to a local shop, and the items bought suggest a focus on essential groceries. The sentence structure is straightforward, with a clear subject-verb-object sequence, making it easy to follow and understand."
+ },
+ "reunion": {
+  "B0": "The meeting starts at the ten on point.",
+  "B1": "The meeting starts at 10 sharp.",
+  "B2": "The meeting starts at ten sharp, *punto*.",
+  "B3": "The meeting starts at ten sharp [exactly on time].",
+  "B5": "The meeting starts at ten sharp.\n\n \nNote: The translation loses the nuance of \"en punto\", implying exactness.",
+  "B6": "The meeting starts at ten sharp.\n\nThis sentence conveys a sense of punctuality and precision, implying that the meeting will begin exactly at 10:00, without delay. The phrase \"sharp\" emphasizes the importance of starting on time, leaving no room for tardiness. The tone is formal and authoritative, suggesting a structured and organized event. The language used is direct and to the point, indicating that the meeting's start time is non-negotiable."
+ },
+ "gatos": {
+  "B0": "Have two cats black and a dog.",
+  "B1": "I have two black cats and a dog.",
+  "B2": "I have two black *gatos* and a dog.",
+  "B3": "I have two black cats [domesticated felines] and a dog [common household pet].",
+  "B5": "I have two black cats and a dog.\n\nNote: The translation loses the original sentence's informal tone.",
+  "B6": "The translation is: I have two black cats and a dog.\n\nThis sentence describes the speaker's pets, using simple yet specific language to convey ownership and describe the animals. The use of numbers and adjectives provides clarity, while the straightforward sentence structure makes the message easy to understand, giving a glimpse into the speaker's personal life and their companions."
+ },
+ "invierno": {
+  "B0": "In winter makes much cold in the north.",
+  "B1": "It gets very cold in the north during the winter.",
+  "B2": "In winter it is very cold in the north.",
+  "B3": "In winter it is very cold in the north.",
+  "B5": "It is very cold in the north during winter.\n\n \nNote: The translation loses regional nuance and cultural context.",
+  "B6": "The translation is: \"It's very cold in the north during winter.\"\n\nThis sentence conveys a sense of seasonal climate, emphasizing the harsh weather conditions in a specific region. The phrase \"it's very cold\" is a common expression used to describe extreme low temperatures, while \"in the north\" refers to a geographical area known for its colder climate during winter months. The sentence's simple structure effectively conveys a clear and relatable idea, making it easy to understand the original message."
+ },
+ "saudade": {
+  "B0": "Have much longing of my grandmother.",
+  "B1": "I miss my grandmother so much.",
+  "B2": "I have a lot of longing for my *avó*.",
+  "B3": "I miss my grandmother [grandmother figure] very much.",
+  "B5": "I miss my grandmother very much.\n\n \nNote: The translation loses the nuance of a deep emotional longing.",
+  "B6": "The translation is: \"I miss my grandmother very much.\"\n\nThis sentence conveys a deep sense of longing and nostalgia for a beloved family member. The speaker's emotional state is one of intense yearning, implying a strong bond with their grandmother. The phrase suggests a sense of loss or separation, and the tone is melancholic and affectionate, evoking a sense of warmth and fondness for the grandmother."
+ },
+ "magari": {
+  "B0": "Maybe was true",
+  "B1": "I wish that were true!",
+  "B2": "If only it were true!",
+  "B3": "If only it were true, hopefully [expression of wish]!",
+  "B5": "If only it were true!\n\nNote: The translation loses the speaker's emotional tone and colloquialism.",
+  "B6": "The translation is: \"If only it were true!\"\n\nThis phrase is an expression of wishful thinking, conveying a sense of longing and skepticism. The speaker is responding to something they've heard, and their tone is one of wistful doubt. The phrase implies that the speaker doubts the truth of what they've been told, but would be happy if it were true. The grammar and connotations suggest a sense of resignation and yearning, highlighting the gap between reality and desire."
+ },
+ "fernweh": {
+  "B0": "In the winter have I always homesickness.",
+  "B1": "In the winter, I always get wanderlust.",
+  "B2": "In the winter, I always have *Fernweh*.",
+  "B3": "In winter I always have wanderlust [strong desire travel].",
+  "B5": "In the winter, I always have wanderlust.\n\n \nNote: The translation loses the original's poetic tone.",
+  "B6": "The translation is: \"In winter, I always have wanderlust.\"\n\nThis sentence expresses a longing to travel, evoking a sense of restlessness and discontent with one's current surroundings during the winter season. The key concept here implies a strong desire to escape and explore new places, often associated with feelings of boredom, confinement, or monotony. The sentence structure suggests a recurring, seasonal pattern, emphasizing the speaker's emotional state during this time of year."
+ },
+ "hi_pasand": {
+  "B0": "Me to tea very like is.",
+  "B1": "I love tea.",
+  "B2": "I like *चाय* very much.",
+  "B3": "I like tea very much [strong preference].",
+  "B5": "I love tea very much.\n\n \nNote: Nuance of affection is lost in translation.",
+  "B6": "The translation of the sentence is: \"I like tea very much.\"\n\nThis sentence conveys a strong affection for tea, with the speaker expressing their fondness in a simple yet emphatic manner. The phrase \"very much\" amplifies the speaker's liking, indicating a deep appreciation for the beverage. The sentence's tone is informal and conversational, suggesting a casual expression of personal taste. Overall, the sentence is a straightforward declaration of the speaker's fondness for tea, leaving no ambiguity about their feelings."
+ },
+ "hi_jugaad": {
+  "B0": "He cleverly from old cart fixed gave.",
+  "B1": "He managed to fix the old vehicle with makeshift repairs.",
+  "B2": "He fixed the old vehicle with *जुगाड़*.",
+  "B3": "He fixed the old vehicle with improvisation [makeshift repair].",
+  "B5": "He fixed the old vehicle with makeshift repairs.\n\n \nNote: Translation loses nuance of informal, resourceful fix.",
+  "B6": "The translation of the sentence is: \"He fixed the old vehicle with makeshift repairs.\"\n\nThe sentence describes a situation where someone has managed to repair an old vehicle using temporary or improvised methods. The phrase \"makeshift repairs\" implies a sense of resourcefulness and urgency, suggesting that the repair was done quickly and perhaps not in a professional or permanent manner. This phrase conveys a sense of improvisation and temporary solution, rather than a thorough or lasting fix."
+ },
+ "hi_mann": {
+  "B0": "Today study in my mind not attaching.",
+  "B1": "I'm not in the mood for studying today.",
+  "B2": "Today, my mind is not in my studies, I am not feeling like studying, my *man* is not in it.",
+  "B3": "Today my mind is not in studies [formal education].",
+  "B5": "I'm not feeling like studying today.\n\n \nNote: The translation loses the informal, conversational tone of the original sentence.",
+  "B6": "The translation of the sentence is: \"Today, my mind is not focusing on studies.\"\n\nThis sentence conveys a sense of distraction or lack of interest in academic pursuits. The phrase \"my mind is not focusing\" implies a struggle to concentrate or engage with the subject matter, suggesting a mental state of disconnection or disinterest. The use of \"today\" indicates a specific time frame, implying that this is a temporary or perhaps unusual state, rather than a chronic issue. Overall, the sentence expresses a common experience of many students who face difficulties in staying motivated or focused on their studies."
+ },
+ "hi_apnapan": {
+  "B0": "This house in me much familiarity feels is.",
+  "B1": "I feel very much at home in this house.",
+  "B2": "I feel a lot of *अपनापन* in this house.",
+  "B3": "I feel a lot of closeness [sense of belonging] in this house.",
+  "B5": "I feel a strong sense of belonging in this house.\n\n \nNote: The translation loses the nuance of emotional intimacy.",
+  "B6": "The translation of the sentence is: \"I feel a strong sense of belonging in this house.\"\n\nThis sentence conveys a feeling of comfort and familiarity. The key phrase implies a deep emotional connection to the house, suggesting that the speaker feels at home and at ease. The tone is positive and affectionate, indicating a strong attachment to the place. The language used is simple, yet evocative, conveying a sense of warmth and security."
+ },
+ "hi_train": {
+  "B0": "Train morning eight o'clock moves is.",
+  "B1": "The train leaves at eight in the morning.",
+  "B2": "The train leaves at eight o'clock in the morning.",
+  "B3": "The train leaves at eight o'clock [morning time] in the morning.",
+  "B5": "The train leaves at eight in the morning.\n\n \nNote: Nuance of the train's departure time is lost in translation.",
+  "B6": "The translation of the sentence is: \"The train leaves at eight in the morning.\"\n\nThis sentence conveys a specific time and action, with the subject being the train and the action being its departure. The phrase \"at eight in the morning\" specifies the exact time, implying a scheduled event. The overall meaning is a statement of fact, likely providing information about a train's schedule, and is a simple and direct way to convey this information."
+ },
+ "hi_bhai": {
+  "B0": "My brother Delhi in lives.",
+  "B1": "My brother lives in Delhi.",
+  "B2": "My brother lives in Delhi.",
+  "B3": "My brother lives in Delhi [capital city].",
+  "B5": "My brother lives in Delhi.\n\n \nNote: The translation loses the familial intimacy conveyed by the original sentence.",
+  "B6": "The translation of the sentence is: \"My brother lives in Delhi.\"\n\nThis sentence conveys a simple statement about the speaker's brother's residence. The phrase \"lives in\" implies a permanent or long-term stay, rather than a temporary visit. The sentence assumes a familial relationship between the speaker and the person living in Delhi, establishing a sense of closeness and familiarity. The city of Delhi is specified as the location, providing a clear geographical context for the statement."
+ }
+}

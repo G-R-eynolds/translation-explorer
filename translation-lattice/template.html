@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translation lattice: Belli, Er giorno der giudizzio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf8f4; --panel:#ffffff; --ink:#1f1d1a; --muted:#6f6a62; --rule:#e4dfd6;
+  --spine:#efe6d4; --node:#ffffff; --node-br:#cfc7b8; --cons:#f1eee8;
+  --literal:#3b6fd4; --rhymed:#8a4fc6; --scots:#1f9a7a; --london:#d9772b;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#17161a; --panel:#1f1e23; --ink:#ece8e1; --muted:#9b958c; --rule:#34323a;
+  --spine:#3a3326; --node:#24232a; --node-br:#4a4752; --cons:#2a2930;
+  --literal:#6d97ee; --rhymed:#b07fe6; --scots:#46c29f; --london:#f0965a;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,sans-serif}
+header{padding:28px 32px 8px;max-width:1400px;margin:0 auto}
+h1{font:500 30px/1.15 "EB Garamond",Georgia,serif;margin:0 0 4px}
+h1 em{font-style:italic}
+.sub{color:var(--muted);max-width:820px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px;align-items:center}
+.chip{border:1px solid var(--rule);background:var(--panel);border-radius:999px;padding:4px 11px 4px 8px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink)}
+.chip i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chip.off{opacity:.35}
+.chip.spine i{border-radius:2px;background:var(--spine);border:1px solid var(--node-br)}
+.hint{color:var(--muted);font-size:12px;margin-left:6px}
+main{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;max-width:1400px;margin:0 auto;padding:8px 32px 40px}
+@media (max-width:1000px){main{grid-template-columns:1fr}}
+#viz{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:8px 4px;overflow:hidden}
+svg{width:100%;height:auto;display:block}
+.src{font:italic 16px "EB Garamond",Georgia,serif;fill:var(--ink)}
+.lnum{font:500 10.5px Inter;fill:var(--muted)}
+.badge{font:600 10px Inter;fill:var(--muted);letter-spacing:.04em}
+.node rect{fill:var(--node);stroke:var(--node-br);stroke-width:1;cursor:pointer;transition:stroke .15s}
+.node.cons rect{fill:var(--cons);stroke:none}
+.node text{font:500 11px Inter;fill:var(--ink);pointer-events:none}
+.node .w{fill:var(--muted);font-weight:400}
+.node:hover rect,.node.sel rect{stroke:var(--ink);stroke-width:1.6}
+.path{fill:none;stroke-width:1.6;opacity:.6;transition:opacity .15s,stroke-width .15s}
+.path.dim{opacity:.06}
+.path.hot{opacity:1;stroke-width:3}
+.spineband{fill:none;stroke:var(--spine);stroke-width:30;stroke-linecap:round;stroke-linejoin:round}
+.spineband.off{display:none}
+aside{position:sticky;top:12px;align-self:start;background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;max-height:calc(100vh - 24px);overflow:auto}
+aside h2{font:500 20px/1.2 "EB Garamond",serif;margin:0 0 6px}
+aside h3{font:600 11px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+aside p{margin:6px 0}
+.srcq{font:italic 17px "EB Garamond",serif;border-left:3px solid var(--rule);padding-left:10px;margin:8px 0}
+.var{display:flex;gap:8px;padding:6px 0;border-top:1px solid var(--rule);cursor:default}
+.var:first-of-type{border-top:none}
+.var b{font:600 10.5px Inter;min-width:24px;padding-top:2px}
+.var span{font:16px/1.35 "EB Garamond",serif}
+.reading p{font:16px/1.45 "EB Garamond",serif;margin:0}
+.reading p.br{background:linear-gradient(transparent 60%,var(--spine) 60%)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+td,th{padding:3px 4px;text-align:right;border-bottom:1px solid var(--rule)}
+th{color:var(--muted);font-weight:500}
+td:first-child,th:first-child{text-align:left}
+button.back{border:1px solid var(--rule);background:transparent;color:var(--muted);border-radius:6px;padding:3px 9px;cursor:pointer;font-size:12px}
+.small{font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>A translation lattice for Belli’s <em>Er giorno der giudizzio</em> (1831)</h1>
+  <div class="sub"><span id="nsamp">Twelve</span> line-for-line English translations, sampled under four stances, are clustered line by line by <b>meaning</b> rather than wording. Where the samples agree, the lattice narrows to one band. Where they disagree in meaning, it branches. Each coloured thread is one translation. The shaded band is the central “most likely” route. Click any node to see its variants and why the line branches.</div>
+  <div class="legend" id="legend"></div>
+</header>
+<main>
+  <div id="viz"></div>
+  <aside id="panel"></aside>
+</main>
+<script>
+const DATA = /*__DATA__*/null;
+const STANCE_COL = s => `var(--${s})`;
+const svgNS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs={}, parent) => { const e=document.createElementNS(svgNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); parent&&parent.appendChild(e); return e; };
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const N = DATA.source.lines.length;
+const W = 1000, SRC_W = 330, X0 = 370, X1 = W - 20, ROW = 66, TOP = 34, NH = 28;
+const H = TOP + ROW * (N - 1) + 24;
+const byLine = Array.from({length:N}, (_,i) => DATA.nodes.filter(n => n.line === i));
+const stat = i => DATA.stats.find(s => s.line === i);
+const ids = Object.keys(DATA.paths);
+{ const e = document.getElementById("nsamp"); if (e && ids.length !== 12) e.textContent = String(ids.length); }
+const stanceOf = {}; DATA.nodes.forEach(n => n.variants.forEach(v => stanceOf[v.id] = v.stance));
+const hidden = new Set(); let showSpine = true; let selected = null;
+
+// ---- layout nodes ----
+const pos = {};
+byLine.forEach((ns, i) => {
+  const y = TOP + i * ROW, span = X1 - X0, gap = 14;
+  if (ns.length === 1) { pos[ns[0].key] = {x: X0 + span*0.12, w: span*0.76, y}; return; }
+  const total = ns.reduce((a,n) => a + n.weight, 0);
+  const avail = span - gap * (ns.length - 1);
+  const need = n => (short(n.gloss) + ` ${n.weight}/${ids.length}`).length * 6.1 + 22;
+  let ws = ns.map(n => Math.max(need(n), avail * n.weight / total));
+  const scale = avail / ws.reduce((a,b)=>a+b,0); ws = ws.map(w => w*scale);
+  // order: put the modal (spine) node in the centre
+  // nodes arrive largest first; place the largest in the centre, the rest alternating outwards
+  const order = []; ns.forEach((_, k) => k % 2 ? order.push(k) : order.unshift(k));
+  let x = X0; const placed = [];
+  order.forEach(k => { if (ns[k]) placed.push(k); });
+  placed.forEach(k => { pos[ns[k].key] = {x, w: ws[k], y}; x += ws[k] + gap; });
+});
+// slot of each translation inside each node, so threads fan out instead of overlapping
+const slot = {};
+DATA.nodes.forEach(n => { const p = pos[n.key];
+  n.variants.forEach((v, j) => { slot[n.key+"|"+v.id] = p.x + p.w * (n.variants.length===1 ? .5 : .12 + .76 * j / (n.variants.length-1)); });
+});
+
+function short(g){ g = g.replace(/\s*\(.*\)\s*$/,""); return g.length > 28 ? g.slice(0,27)+"…" : g; }
+
+// ---- draw ----
+const svg = el("svg", {viewBox:`0 0 ${W} ${H}`, role:"img", "aria-label":"Translation lattice"}, document.getElementById("viz"));
+// spine band
+const sp = DATA.spine.map(k => [pos[k].x + pos[k].w/2, pos[k].y]);
+const spineEl = el("path", {class:"spineband", d: curve(sp)}, svg);
+// source text + badges
+DATA.source.lines.forEach((t, i) => {
+  const y = TOP + i*ROW;
+  el("text", {x:8, y:y+4, class:"lnum"}, svg).textContent = i+1;
+  el("text", {x:28, y:y+5, class:"src"}, svg).textContent = t;
+  const s = stat(i);
+  if (s.meaning_clusters > 1) el("text", {x:X0-6, y:y-18, class:"badge", "text-anchor":"start"}, svg)
+     .textContent = `BRANCH · ${s.meaning_clusters} READINGS · ${s.semantic_entropy_bits.toFixed(2)} BITS`;
+});
+// threads
+const gPaths = el("g", {}, svg); const pathEls = {};
+ids.forEach(id => {
+  const pts = DATA.paths[id].map(k => [slot[k+"|"+id], pos[k].y]);
+  pathEls[id] = el("path", {class:"path", d: curve(pts), stroke: STANCE_COL(stanceOf[id])}, gPaths);
+});
+// nodes
+const gNodes = el("g", {}, svg); const nodeEls = {};
+DATA.nodes.forEach(n => {
+  const p = pos[n.key], cons = byLine[n.line].length === 1;
+  const g = el("g", {class:"node"+(cons?" cons":""), tabindex:0}, gNodes);
+  el("rect", {x:p.x, y:p.y-NH/2, width:p.w, height:NH, rx:7}, g);
+  const t = el("text", {x:p.x+p.w/2, y:p.y+4, "text-anchor":"middle"}, g);
+  t.textContent = short(n.gloss) + " ";
+  const w = el("tspan", {class:"w"}, t); w.textContent = `${n.weight}/${ids.length}`;
+  g.addEventListener("click", () => select(n.key));
+  g.addEventListener("keydown", e => { if (e.key==="Enter") select(n.key); });
+  g.addEventListener("mouseenter", () => hot(n.variants.map(v=>v.id)));
+  g.addEventListener("mouseleave", () => hot(null));
+  nodeEls[n.key] = g;
+});
+
+function curve(pts){
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i=1;i<pts.length;i++){ const [x0,y0]=pts[i-1],[x1,y1]=pts[i], my=(y0+y1)/2; d += ` C${x0},${my} ${x1},${my} ${x1},${y1}`; }
+  return d;
+}
+function hot(list){
+  ids.forEach(id => {
+    const e = pathEls[id], off = hidden.has(stanceOf[id]);
+    e.classList.toggle("dim", off || (list && !list.includes(id)));
+    e.classList.toggle("hot", !!list && list.includes(id) && !off);
+  });
+}
+
+// ---- legend ----
+const leg = document.getElementById("legend");
+Object.entries(DATA.stances).forEach(([s, desc]) => {
+  const c = document.createElement("button"); c.className = "chip"; c.title = desc;
+  c.innerHTML = `<i style="background:${STANCE_COL(s)}"></i>${s}`;
+  c.onclick = () => { hidden.has(s) ? hidden.delete(s) : hidden.add(s); c.classList.toggle("off"); hot(null); };
+  leg.appendChild(c);
+});
+const sc = document.createElement("button"); sc.className = "chip spine"; sc.innerHTML = "<i></i>central route";
+sc.onclick = () => { showSpine = !showSpine; spineEl.classList.toggle("off", !showSpine); sc.classList.toggle("off"); };
+leg.appendChild(sc);
+const h = document.createElement("span"); h.className="hint"; h.textContent = "Click a stance to hide it. Hover a node to trace its translations."; leg.appendChild(h);
+
+// ---- panel ----
+const panel = document.getElementById("panel");
+function centralReading(){
+  return DATA.spine.map((k,i) => {
+    const n = DATA.nodes.find(n => n.key===k);
+    const v = n.variants.find(v => v.id===DATA.spine_voice) || n.variants[0];
+    return {text: v.text, branch: byLine[i].length>1};
+  });
+}
+function home(){
+  selected = null; Object.values(nodeEls).forEach(g => g.classList.remove("sel"));
+  const rows = DATA.stats.filter(s => s.meaning_clusters>1);
+  panel.innerHTML = `
+    <h2>Reading the map</h2>
+    <p>${byLine.filter(n=>n.length>1).length} of ${N} lines branch in meaning. The rest converge, even though every line has many different wordings.</p>
+    <h3>Central route</h3>
+    <div class="reading">${centralReading().map(r=>`<p class="${r.branch?'br':''}">${esc(r.text)}</p>`).join("")}</div>
+    <p class="small">The modal reading at each line, voiced by sample ${DATA.spine_voice}. Highlighted lines are branch points.</p>
+    <h3>Wording vs meaning</h3>
+    <table><tr><th>line</th><th>wordings</th><th>readings</th><th>bits</th><th>lex≈meaning</th><th>lex≈stance</th></tr>
+    ${DATA.stats.map(s=>`<tr><td>${s.line+1}</td><td>${s.surface_variants}</td><td>${s.meaning_clusters}</td><td>${s.semantic_entropy_bits.toFixed(2)}</td><td>${s.lexical_vs_meaning_ARI??"–"}</td><td>${s.lexical_vs_stance_ARI??"–"}</td></tr>`).join("")}</table>
+    <p class="small">“lex≈” columns: adjusted Rand agreement between a word-overlap clustering of each line and (a) the meaning clusters or (b) the stance labels. Values near 0 mean word overlap tracks neither; see results.md for the validated comparison.</p>
+    <h3>Provenance</h3>
+    <p class="small">Samples: ${esc(DATA.sampler)}<br>Clusters: ${esc(DATA.clusterer)}<br>Source: ${esc(DATA.source.note)}</p>`;
+}
+function select(key){
+  selected = key; const n = DATA.nodes.find(n=>n.key===key);
+  Object.entries(nodeEls).forEach(([k,g]) => g.classList.toggle("sel", k===key));
+  const siblings = byLine[n.line];
+  panel.innerHTML = `
+    <button class="back" id="back">← overview</button>
+    <h3>Line ${n.line+1}</h3>
+    <div class="srcq">${esc(DATA.source.lines[n.line])}</div>
+    ${DATA.notes[n.line] ? `<p>${esc(DATA.notes[n.line])}</p>` : `<p class="small">All samples agree in meaning here. Only the wording differs.</p>`}
+    ${siblings.map(s => `
+      <h3 style="color:${s.key===key?'var(--ink)':'var(--muted)'}">${esc(s.gloss)} · ${s.weight}/${ids.length}</h3>
+      ${s.variants.map(v=>`<div class="var" data-id="${v.id}"><b style="color:${STANCE_COL(v.stance)}">${v.id}</b><span>${esc(v.text)}</span></div>`).join("")}`).join("")}`;
+  document.getElementById("back").onclick = home;
+  panel.querySelectorAll(".var").forEach(d => {
+    d.onmouseenter = () => hot([d.dataset.id]); d.onmouseleave = () => hot(null);
+  });
+  panel.scrollTop = 0;
+}
+home();
+</script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+# Curated multi-reference Spanish->English parallel dataset for global translational
+# tone/practice axes and diversity-preserving multi-reference adapter training.
+# Public-domain poetic lines (Bécquer d. 1870, Rosalía de Castro d. 1885, Machado d. 1939,
+# Lorca d. 1936) and culturally dense Spanish prose.
+
+axes:
+  literal_vs_idiomatic:
+    neg: "literal / close to Spanish syntax"
+    pos: "idiomatic / natural English"
+  plain_vs_poetic:
+    neg: "plain / everyday prose"
+    pos: "poetic / heightened literary"
+  foreignising_vs_domesticating:
+    neg: "foreignising (keep cultural terms)"
+    pos: "domesticating (assimilate to English)"
+  concise_vs_glossed:
+    neg: "concise / bare translation"
+    pos: "thick / glossed translation"
+
+items:
+  - id: duende_flamenco
+    source: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
+    translations:
+      - text: "When Camarón sings, he has duende; I like duende very much."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "When Camarón sings, he has real soul; I love that raw spark."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.5
+      - text: "When Camarón lifts his voice, a dark fire possesses him; how deeply I ache for that untameable spirit."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.5
+          concise_vs_glossed: 0.2
+      - text: "When Camarón sings, he has duende—that dark, earthbound intensity of flamenco—and I love that duende deeply."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.4
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "When Camarón sings, he channels a fierce, almost uncanny passion (what flamenco calls duende); it moves me deeply."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.3
+          concise_vs_glossed: 0.8
+
+  - id: sobremesa_domingo
+    source: "La sobremesa del domingo se alargó hasta el anochecer entre risas y café."
+    translations:
+      - text: "The sobremesa of Sunday lengthened itself until nightfall among laughs and coffee."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.4
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "We lingered at the table all Sunday afternoon, talking over coffee and laughing until dark."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.3
+      - text: "Sunday's sobremesa drifted unhurriedly into twilight, buoyed by laughter and the scent of coffee."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: -0.7
+          concise_vs_glossed: -0.2
+      - text: "Sunday's sobremesa—the unhurried ritual of lingering at the table after a meal—stretched on into dusk with coffee and laughter."
+        coords:
+          literal_vs_idiomatic: 0.4
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "Sunday's after-dinner conversation ran on till dusk over coffee and laughter."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.7
+
+  - id: madrugada_silencio
+    source: "Nos sorprendió la madrugada caminando por las calles vacías de la ciudad."
+    translations:
+      - text: "The madrugada surprised us walking through the empty streets of the city."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.5
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "Before we knew it, it was the small hours of the morning and we were still wandering the empty city streets."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: 0.1
+      - text: "The hushed hours before dawn stole upon us as we wandered the deserted avenues of the city."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: -0.1
+      - text: "La madrugada—those deep, quiet hours between midnight and daybreak—caught us still walking the empty city streets."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "Early morning caught us walking the empty city streets."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.9
+
+  - id: querencia_tierra
+    source: "Con los años volvió a su querencia, aquel pequeño pueblo entre los olivos."
+    translations:
+      - text: "With the years he returned to his querencia, that small village among the olive trees."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "Over the years, he went back home to that little village in the olive groves."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: "As the years gathered, he drifted back to his heart's true anchorage, a quiet hamlet cradled among silver olives."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: 0.2
+      - text: "With the passing years he returned to his querencia—the place where one feels instinctively safe and grounded—that little village among the olive trees."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "Years later he came back to his beloved home village among the olive trees."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.8
+
+  - id: desvelado_noche
+    source: "Pasé toda la noche desvelado, escuchando la lluvia contra los cristales."
+    translations:
+      - text: "I passed all the night desvelado, listening to the rain against the windowpanes."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.4
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: -0.8
+      - text: "I lay awake all night listening to the rain on the windows."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+      - text: "Sleep eluded me the whole night through as I kept vigil with the rain tapping at the glass."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: 0.1
+      - text: "I spent the entire night desvelado—wide awake and stripped of sleep—listening to the rain drum against the windowpanes."
+        coords:
+          literal_vs_idiomatic: 0.4
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.7
+          concise_vs_glossed: 0.9
+      - text: "I couldn't sleep a wink all night, just listening to the rain hit the glass."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.5
+
+  - id: estrenar_abrigo
+    source: "Hoy voy a estrenar el abrigo nuevo que me regaló mi abuela."
+    translations:
+      - text: "Today I am going to estrenar the new coat that my grandmother gifted me."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "Today I'm wearing the new coat my grandmother gave me for the first time."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.5
+      - text: "Today I shall christen the fresh coat my grandmother placed upon my shoulders."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: -0.2
+      - text: "Today I get to estrenar—to wear with the small thrill of a first outing—the new coat my grandmother gave me."
+        coords:
+          literal_vs_idiomatic: 0.4
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "I'm finally breaking in the new coat Grandma got me today."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+
+  - id: verguenza_ajena
+    source: "Al oír aquel discurso tan torpe, sentí una profunda vergüenza ajena."
+    translations:
+      - text: "Upon hearing that speech so clumsy, I felt a profound alien shame."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: -0.7
+          concise_vs_glossed: -0.8
+      - text: "Listening to such a clumsy speech, I felt intense secondhand embarrassment."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.6
+      - text: "As that stumbling address unfolded, a keen vicarious shame flushed through me."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.8
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: -0.2
+      - text: "Hearing such a clumsy speech, I felt a deep vergüenza ajena—that acute embarrassment one suffers on someone else's behalf."
+        coords:
+          literal_vs_idiomatic: 0.4
+          plain_vs_poetic: 0.1
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 0.9
+      - text: "I cringed so hard listening to that awkward speech."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.9
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.9
+
+  - id: becquer_golondrinas
+    source: "Volverán las oscuras golondrinas en tu balcón sus nidos a colgar."
+    translations:
+      - text: "Will return the dark swallows on your balcony their nests to hang."
+        coords:
+          literal_vs_idiomatic: -1.0
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: -0.9
+      - text: "The dark swallows will come back to build their nests on your balcony."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.8
+      - text: "Once more the dusky swallows shall return to hang their cradles from your balcony."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 1.0
+          foreignising_vs_domesticating: 0.5
+          concise_vs_glossed: -0.2
+      - text: "The dark swallows will return to hang their nests upon your balcony, repeating nature's seasonal cycle as in Bécquer's inverted lyric syntax."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.1
+          foreignising_vs_domesticating: -0.6
+          concise_vs_glossed: 0.9
+      - text: "Dark swallows will return again to hang their nests upon your balcony."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: 0.6
+          foreignising_vs_domesticating: 0.4
+          concise_vs_glossed: -0.6
+
+  - id: machado_caminante
+    source: "Caminante, no hay camino, se hace camino al andar."
+    translations:
+      - text: "Walker, there is no road, road makes itself on walking."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: -0.9
+      - text: "Traveler, there is no path; you make the path by walking."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.4
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.7
+      - text: "Wayfarer, there is no road laid down before you; the road is woven step by step as you go."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: 0.3
+      - text: "Caminante—wandering traveler—there is no pre-existing road (camino); the path comes into being only through the act of walking."
+        coords:
+          literal_vs_idiomatic: 0.2
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "Traveler, there's no road—you forge it as you go."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+
+  - id: lorca_verde
+    source: "Verde que te quiero verde. Verde viento. Verdes ramas."
+    translations:
+      - text: "Green that I want you green. Green wind. Green branches."
+        coords:
+          literal_vs_idiomatic: -1.0
+          plain_vs_poetic: 0.1
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.9
+      - text: "Green, how I love you green. Green wind. Green boughs."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.4
+          concise_vs_glossed: -0.8
+      - text: "I want everything green: the wind is green and the branches are green."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.9
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.4
+      - text: "Verde que te quiero verde—green, how fiercely I desire and love you green (carrying Lorca's double sense of querer)—green wind, green boughs."
+        coords:
+          literal_vs_idiomatic: 0.1
+          plain_vs_poetic: 0.5
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 1.0
+      - text: "O green, how deeply I yearn for you in green—emerald wind, verdant boughs."
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 1.0
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: 0.1
+
+  - id: siesta_patio
+    source: "En agosto, después de comer, el pueblo entero se rendía a la siesta tras las persianas."
+    translations:
+      - text: "In August, after eating, the whole village surrendered itself to the siesta behind the persianas."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "In August, after lunch, the whole town took an afternoon nap behind closed blinds."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: "Each August, once the midday meal was done, the entire village yielded to the hushed spell of the siesta behind shuttered windows."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: -0.4
+          concise_vs_glossed: 0.2
+      - text: "In August, after the main midday meal, the whole town gave itself over to the siesta—the traditional hot-afternoon rest—behind slatted wooden persianas."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.1
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "Every August after lunch, the whole town went down for a nap behind drawn blinds."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.6
+
+  - id: tertulia_cafe
+    source: "Cada jueves se reunían en el café antiguo para mantener viva la tertulia."
+    translations:
+      - text: "Each Thursday they gathered themselves in the old café to maintain alive the tertulia."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.5
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "Every Thursday they met up at the old coffee shop to keep their weekly discussion group going."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.4
+      - text: "Thursday by Thursday they convened within the timeworn café to keep the flame of their tertulia alight."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: -0.6
+          concise_vs_glossed: -0.1
+      - text: "Every Thursday they gathered at the old café to keep alive the tertulia—the traditional Spanish literary and conversational salon."
+        coords:
+          literal_vs_idiomatic: 0.4
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "They met at the old café every Thursday for their regular chat."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.9
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.9
+
+  - id: tutear_maestro
+    source: "Después de tantos años de amistad, todavía no me atrevo a tutear al maestro."
+    translations:
+      - text: "After so many years of friendship, still I do not dare to tutear the master."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.5
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "Even after all these years of friendship, I still can't bring myself to be on first-name terms with my teacher."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.3
+      - text: "Though years of fellowship have passed between us, I still shrink from addressing the master with the familiar tongue."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.3
+          concise_vs_glossed: 0.1
+      - text: "After so many years of friendship, I still cannot bring myself to tutear the maestro—to switch from formal usted to the informal tú."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.1
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 0.9
+      - text: "After all these years as friends, I still feel awkward speaking casually to my old teacher."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.6
+
+  - id: tocayo_plaza
+    source: "Me encontré con mi tocayo en la plaza y estuvimos charlando un buen rato."
+    translations:
+      - text: "I encountered myself with my tocayo in the plaza and we were chatting a good while."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "I ran into a guy with the same name as me in the square and we talked for a long time."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.4
+      - text: "In the sunlit square I chanced upon my namesake, and we lingered in unhurried converse."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: -0.1
+      - text: "I bumped into my tocayo—a fellow who shares my first name—out in the plaza, and we stood chatting for a good long while."
+        coords:
+          literal_vs_idiomatic: 0.5
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "I met my namesake in the square and we chatted awhile."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.9
+
+  - id: friolero_invierno
+    source: "Mi hermano es muy friolero y enciende la estufa en cuanto llega el otoño."
+    translations:
+      - text: "My brother is very friolero and lights the stove as soon as arrives the autumn."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "My brother gets cold really easily and turns on the heater the minute fall starts."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.5
+      - text: "My brother shivers at the merest breath of chill and kindles the hearth at autumn's first arrival."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: 0.1
+      - text: "My brother is deeply friolero—always quick to feel the cold—so he switches on the heater the very moment autumn arrives."
+        coords:
+          literal_vs_idiomatic: 0.4
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "My brother hates the cold and puts the heat on in early autumn."
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.9
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+
+  - id: rosalia_fuentes
+    source: "Dicen que no hablan las plantas, ni las fuentes, ni los pájaros; lo dicen, pero no es cierto."
+    translations:
+      - text: "They say that do not speak the plants, nor the fountains, nor the birds; they say it, but it is not certain."
+        coords:
+          literal_vs_idiomatic: -1.0
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: -0.9
+      - text: "People say plants, springs, and birds don't talk; they say that, but it isn't true."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+      - text: "They claim that neither blossom, spring, nor singing bird has speech; so they say, yet it is false."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 1.0
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: -0.2
+      - text: "They say that plants, fountains (fuentes—natural springs of Galicia), and birds do not speak; so people claim, yet Rosalía insists it is untrue."
+        coords:
+          literal_vs_idiomatic: 0.2
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: "They say plants, fountains, and birds have no voice; they say so, but it is not true."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.5
+          foreignising_vs_domesticating: 0.4
+          concise_vs_glossed: -0.6

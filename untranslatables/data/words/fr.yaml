@@ -1,0 +1,318 @@
+# French word set.  Drafted by Claude Code (Opus 5.5), 18 Nov 2026; UNCHECKED.  See data/README.md.
+language: fr
+templates:
+  - 'Le mot « {w} » signifie'
+  - 'Que veut dire « {w} » ?'
+  - '« {w} » est un mot français.'
+  - 'En français, on dit « {w} ».'
+words:
+
+- word: dépaysement
+  category: untranslatable
+  emotion: true
+  gloss_en: the disorientation (pleasant or not) of being out of one's usual surroundings, especially abroad
+  senses:
+    - label: unsettling disorientation, culture shock
+      clarify: 'Ici, « dépaysement » désigne le malaise de celui qui ne retrouve plus ses repères.'
+    - label: refreshing change of scene
+      clarify: 'Ici, « dépaysement » désigne le plaisir d''un changement complet de décor et d''habitudes.'
+  gloss_src: 'Dépaysement : sentiment d''être hors de son cadre habituel, qui peut être agréable (changement de décor) ou déstabilisant (perte de repères). Exemple : « Pour le dépaysement, rien ne vaut un voyage en Islande. »'
+  source: TODO
+  notes: Valence flips between senses -- a clean multiplicity case.
+  exclude_from_pool: []
+  frames:
+    - 'Je ressens du [[dépaysement]].'
+    - 'Je suis en plein [[dépaysement]].'
+  contexts:
+    - 'Pour le [[dépaysement]], rien ne vaut une semaine au Japon.'
+    - 'Les premiers mois à Paris, il a souffert d''un profond [[dépaysement]].'
+    - 'Ce petit village offre un [[dépaysement]] total à deux heures de la ville.'
+    - 'Le [[dépaysement]] de l''exil se lit dans ses poèmes.'
+    - 'Les touristes viennent chercher le [[dépaysement]] et trouvent des chaînes de magasins.'
+  extra:
+    - 'Après deux ans de bureau sans vacances, ils ont tout lâché pour un mois. Ils voulaient voir autre chose.'
+    - 'Il avait quitté son pays à dix-neuf ans. Il ne parlait pas encore la langue.'
+
+- word: flâner
+  category: untranslatable
+  emotion: false
+  gloss_en: to stroll aimlessly, savouring the city (cf. the flâneur)
+  senses:
+    - label: to stroll idly for pleasure
+      clarify: 'Ici, « flâner » veut dire se promener sans but, pour le plaisir.'
+    - label: to dawdle, waste time
+      clarify: 'Ici, « flâner » veut dire traîner, perdre son temps au lieu de travailler.'
+  gloss_src: 'Flâner : se promener sans but précis, en prenant son temps et en observant ce qui se passe autour de soi. Exemple : « Le dimanche, nous aimons flâner sur les quais de la Seine. »'
+  source: TODO
+  notes: Verb. Control is the verb 'tricoter'.
+  exclude_from_pool: []
+  contexts:
+    - 'Le dimanche, j''aime [[flâner]] le long des quais.'
+    - 'Baudelaire passait des heures à [[flâner]] dans les passages couverts.'
+    - 'Arrête de [[flâner]] et viens m''aider !'
+    - 'Nous avons passé l''après-midi à [[flâner]] dans les ruelles du Marais.'
+    - 'Il n''y a pas de meilleure façon de découvrir une ville que de [[flâner]].'
+  extra:
+    - 'Il faisait beau et nous n''avions rien de prévu. La ville était calme.'
+    - 'Le poète venait d''arriver à Paris. Tout l''étonnait.'
+
+- word: retrouvailles
+  category: untranslatable
+  emotion: false
+  gloss_en: the joy of reuniting with someone after a long separation; a reunion
+  senses:
+    - label: the emotional act of reunion
+      clarify: 'Ici, « retrouvailles » désigne la joie de se revoir après une longue séparation.'
+    - label: a reunion event or gathering
+      clarify: 'Ici, « retrouvailles » désigne une rencontre organisée entre personnes qui ne s''étaient pas vues depuis longtemps.'
+  gloss_src: 'Retrouvailles : le fait de se retrouver après une séparation, et l''émotion qui l''accompagne. Exemple : « Les retrouvailles à l''aéroport furent pleines de larmes. »'
+  source: TODO
+  notes: Plural-only noun.
+  exclude_from_pool: []
+  contexts:
+    - 'Les [[retrouvailles]] à l''aéroport furent pleines de larmes.'
+    - 'Après dix ans, leurs [[retrouvailles]] furent un peu maladroites.'
+    - 'Le groupe prépare ses [[retrouvailles]] sur scène pour l''été prochain.'
+    - 'On a fêté nos [[retrouvailles]] autour d''un bon dîner.'
+    - 'Ces [[retrouvailles]] avec la mer m''ont fait un bien fou.'
+  extra:
+    - 'Elle avait passé trois ans en mission à l''étranger. Ses enfants avaient beaucoup grandi.'
+    - 'Nous étions inséparables au lycée. Puis la vie nous avait éloignés.'
+
+- word: esprit de l'escalier
+  category: untranslatable
+  emotion: false
+  gloss_en: thinking of the perfect retort only after the moment has passed (Diderot)
+  senses:
+    - label: the too-late witty reply
+      clarify: 'Ici, « l''esprit de l''escalier » désigne la répartie qu''on trouve trop tard, une fois la conversation finie.'
+  gloss_src: 'Esprit de l''escalier : le fait de trouver la bonne réponse ou la remarque spirituelle seulement après coup, quand l''occasion est passée (expression venue de Diderot). Exemple : « J''ai eu l''esprit de l''escalier : la réplique parfaite m''est venue dans le métro. »'
+  source: TODO
+  notes: Multi-word expression; the span covers all its tokens.
+  exclude_from_pool: []
+  contexts:
+    - 'J''ai eu l''[[esprit de l''escalier]] : la réplique parfaite m''est venue dans le métro.'
+    - 'Diderot a donné son nom à l''[[esprit de l''escalier]].'
+    - 'Souffrant d''[[esprit de l''escalier]], il rejouait toutes ses disputes la nuit.'
+    - 'C''est l''[[esprit de l''escalier]] qui fait les meilleurs romanciers.'
+    - 'Encore un cas d''[[esprit de l''escalier]] : je n''ai rien su répondre.'
+  extra:
+    - 'En réunion, un collègue s''est moqué de mon projet devant tout le monde. Je suis resté muet.'
+    - 'Le philosophe raconte une soirée mondaine où on l''avait déstabilisé.'
+
+- word: bouilloire
+  category: ordinary
+  freq_match_for: dépaysement
+  emotion: false
+  gloss_en: kettle
+  senses:
+    - label: kettle
+      clarify: 'Ici, « bouilloire » désigne l''appareil qui sert à faire bouillir de l''eau.'
+  gloss_src: 'Bouilloire : récipient, souvent électrique, qui sert à faire bouillir de l''eau. Exemple : « Il mit la bouilloire en marche pour le thé. »'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'La [[bouilloire]] siffle, l''eau est prête.'
+    - 'J''ai acheté une nouvelle [[bouilloire]] électrique.'
+    - 'Il y a du calcaire au fond de la [[bouilloire]].'
+    - 'Remplis la [[bouilloire]] et fais-nous un thé.'
+    - 'La [[bouilloire]] est tombée en panne ce matin.'
+  extra:
+    - 'Il faisait froid dans la cuisine. Personne n''était encore réveillé.'
+    - 'Les invités arrivaient à quatre heures. Les gâteaux étaient déjà sur la table.'
+
+- word: tricoter
+  category: ordinary
+  freq_match_for: flâner
+  emotion: false
+  gloss_en: to knit
+  senses:
+    - label: to knit
+      clarify: 'Ici, « tricoter » veut dire fabriquer un vêtement avec de la laine et des aiguilles.'
+  gloss_src: 'Tricoter : fabriquer une étoffe ou un vêtement en entrelaçant des mailles de fil avec des aiguilles. Exemple : « Elle tricote une écharpe pour son petit-fils. »'
+  source: TODO
+  notes: Verb, POS-matched control for 'flâner'.
+  exclude_from_pool: []
+  contexts:
+    - 'Ma grand-mère aime [[tricoter]] devant la télévision.'
+    - 'Elle a appris à [[tricoter]] pendant le confinement.'
+    - 'Il faut trois semaines pour [[tricoter]] un pull.'
+    - 'Tu sais [[tricoter]] des chaussettes ?'
+    - 'Le soir, elle se met à [[tricoter]] en écoutant la radio.'
+  extra:
+    - 'L''hiver approchait et les enfants grandissaient vite. Il fallait de nouveaux vêtements chauds.'
+    - 'Le salon était tranquille. On n''entendait que le cliquetis des aiguilles.'
+
+- word: oreiller
+  category: ordinary
+  freq_match_for: retrouvailles
+  emotion: false
+  gloss_en: pillow
+  senses:
+    - label: pillow
+      clarify: 'Ici, « oreiller » désigne le coussin sur lequel on pose la tête pour dormir.'
+  gloss_src: 'Oreiller : coussin sur lequel on appuie la tête dans un lit. Exemple : « Il a mis une taie propre sur l''oreiller. »'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'J''ai besoin d''un [[oreiller]] plus ferme.'
+    - 'Le chat dort sur mon [[oreiller]].'
+    - 'Elle a caché la lettre sous son [[oreiller]].'
+    - 'Cet [[oreiller]] en plumes est très doux.'
+    - 'Change la taie de l''[[oreiller]], s''il te plaît.'
+  extra:
+    - 'Je dors mal depuis une semaine. J''ai mal au cou le matin.'
+    - 'La chambre d''amis était prête. Il ne manquait plus que les draps.'
+
+- word: poubelle
+  category: ordinary
+  freq_match_for: esprit de l'escalier
+  emotion: false
+  gloss_en: rubbish bin, trash can
+  senses:
+    - label: bin
+      clarify: 'Ici, « poubelle » désigne le récipient où l''on jette les déchets.'
+  gloss_src: 'Poubelle : récipient destiné à recevoir les ordures ménagères. Exemple : « N''oublie pas de sortir la poubelle mardi soir. »'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'N''oublie pas de sortir la [[poubelle]] ce soir.'
+    - 'Il a jeté le journal à la [[poubelle]].'
+    - 'La [[poubelle]] de la cuisine est pleine.'
+    - 'Le chien a renversé la [[poubelle]].'
+    - 'Il faut une [[poubelle]] pour le verre.'
+  extra:
+    - 'Le camion passe tôt le mercredi. Les voisins se plaignent du bruit.'
+    - 'Après la fête, l''appartement était dans un état terrible.'
+
+- word: colère
+  category: emotion_plain
+  emotion: true
+  gloss_en: anger
+  senses:
+    - label: anger
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Je ressens de la [[colère]].'
+    - 'Je suis en [[colère]].'
+  contexts:
+    - 'Il est rouge de [[colère]].'
+    - 'Sa [[colère]] est retombée après une heure.'
+    - 'Elle a claqué la porte de [[colère]].'
+    - 'La [[colère]] des agriculteurs ne faiblit pas.'
+    - 'Il a parlé sans [[colère]], mais avec fermeté.'
+
+- word: tristesse
+  category: emotion_plain
+  emotion: true
+  gloss_en: sadness
+  senses:
+    - label: sadness
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Je ressens de la [[tristesse]].'
+    - 'Je suis plein de [[tristesse]].'
+  contexts:
+    - 'Une grande [[tristesse]] l''envahit.'
+    - 'Il y avait de la [[tristesse]] dans sa voix.'
+    - 'Le film est d''une [[tristesse]] infinie.'
+    - 'Elle a appris la nouvelle avec [[tristesse]].'
+    - 'La [[tristesse]] passera avec le temps.'
+
+- word: temps
+  category: polysemous
+  emotion: false
+  gloss_en: (1) time; (2) weather; (3) tense (grammar)
+  senses:
+    - label: time
+      clarify: 'Ici, « temps » désigne la durée, le fait que les heures passent.'
+    - label: weather
+      clarify: 'Ici, « temps » désigne l''état de l''atmosphère : soleil, pluie, vent.'
+  gloss_src: 'Temps : (1) durée mesurable, écoulement des heures et des jours ; (2) état de l''atmosphère à un moment donné. Exemple : « Je n''ai pas le temps » ; « Quel temps fait-il ? »'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 1]
+  contexts:
+    - 'Je n''ai pas le [[temps]] de lire.'
+    - 'Quel [[temps]] fait-il à Marseille ?'
+    - 'Le [[temps]] passe trop vite.'
+    - 'Avec ce [[temps]], on reste à la maison.'
+    - 'Le [[temps]] devrait s''améliorer demain.'
+  extra:
+    - 'Je travaille tard tous les soirs. Le week-end, je fais le ménage.'
+    - 'Il pleut depuis trois jours. Les rivières débordent.'
+
+- word: avocat
+  category: polysemous
+  emotion: false
+  gloss_en: (1) lawyer; (2) avocado
+  senses:
+    - label: lawyer
+      clarify: 'Ici, « avocat » désigne la personne qui défend quelqu''un devant un tribunal.'
+    - label: avocado
+      clarify: 'Ici, « avocat » désigne le fruit à la chair verte et au gros noyau.'
+  gloss_src: 'Avocat : (1) personne dont le métier est de conseiller et de défendre des clients en justice ; (2) fruit tropical à la chair verte et onctueuse, avec un gros noyau. Exemple : « Il a pris un avocat » ; « une salade d''avocat ».'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 0]
+  contexts:
+    - 'Son [[avocat]] a demandé un report du procès.'
+    - 'Coupe l''[[avocat]] en deux et retire le noyau.'
+    - 'Elle est [[avocat]] dans un grand cabinet parisien.'
+    - 'Cet [[avocat]] n''est pas encore mûr.'
+    - 'L''[[avocat]] de la défense a plaidé pendant deux heures.'
+  extra:
+    - 'Il avait reçu une convocation au tribunal. Il ne savait pas quoi faire.'
+    - 'Nous préparions un guacamole pour la fête. Il manquait un ingrédient.'
+
+- word: ennui
+  category: loanword
+  loan_en: ennui
+  emotion: true
+  gloss_en: boredom; (also) worry, trouble; English 'ennui' = listless world-weariness
+  senses:
+    - label: boredom
+      clarify: ''
+    - label: a problem, trouble (often plural)
+      clarify: ''
+  source: TODO
+  notes: French core sense (boredom; 'des ennuis' = trouble) differs from the literary English loan.
+  exclude_from_pool: []
+  frames:
+    - 'Je ressens de l''[[ennui]].'
+    - 'Je suis plein d''[[ennui]].'
+  contexts:
+    - 'Les enfants meurent d''[[ennui]] pendant les longs trajets.'
+    - 'Il a eu un [[ennui]] avec sa voiture.'
+    - 'L''[[ennui]] du dimanche après-midi est légendaire.'
+    - 'Baudelaire fait de l''[[ennui]] un thème central.'
+    - 'Le seul [[ennui]], c''est qu''il pleut.'
+
+- word: déjà vu
+  category: loanword
+  loan_en: deja vu
+  emotion: false
+  gloss_en: the feeling of having already experienced the present situation
+  senses:
+    - label: feeling of having lived this before
+      clarify: ''
+  source: TODO
+  notes: Multi-word; English pool needs the loan 'deja vu' added for the with-loan condition.
+  exclude_from_pool: []
+  contexts:
+    - 'J''ai eu une impression de [[déjà vu]] en entrant dans la pièce.'
+    - 'Ce débat politique donne un sentiment de [[déjà vu]].'
+    - 'Le [[déjà vu]] reste mal expliqué par la science.'
+    - 'Encore un remake : quelle impression de [[déjà vu]] !'
+    - 'Elle a ressenti un étrange [[déjà vu]] dans cette rue.'

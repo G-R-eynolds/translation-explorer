@@ -1,0 +1,293 @@
+{
+ "checked_by": "Claude (Opus 5.5), in session: every non-identical restyled line (252) was read against its original",
+ "rule": "drop if the restyle adds, removes or changes any interpretive content (who/what/where, idiom reading), or is misaligned; synonym/register/dialect changes kept (e.g. cellar->basement, jesters->jokers, blessed God->blessed the Lord)",
+ "n_checked": 252,
+ "n_dropped": 57,
+ "drop": [
+  {
+   "restyle": "LI01~london",
+   "line": 3,
+   "reason": "'towards you' -> 'look at you'"
+  },
+  {
+   "restyle": "LI01~london",
+   "line": 8,
+   "reason": "'blessed God' -> 'God's the name'"
+  },
+  {
+   "restyle": "LI01~london",
+   "line": 13,
+   "reason": "'good evening' -> 'that's a wrap' (a different reading of bbona sera)"
+  },
+  {
+   "restyle": "LI01~formal",
+   "line": 1,
+   "reason": "'each corner' -> 'each cardinal point' (cosmic reading)"
+  },
+  {
+   "restyle": "LI01~formal",
+   "line": 8,
+   "reason": "'blessed God' -> 'consecrated by God'"
+  },
+  {
+   "restyle": "LI02~london",
+   "line": 1,
+   "reason": "adds 'get the vibe right'"
+  },
+  {
+   "restyle": "LI02~london",
+   "line": 3,
+   "reason": "'start to blow' -> 'get the crowd going'"
+  },
+  {
+   "restyle": "LI02~london",
+   "line": 12,
+   "reason": "adds 'it's time to wind down'"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 0,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 1,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 2,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 3,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 4,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 5,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 6,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 7,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 8,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 9,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 10,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 11,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 12,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "LI02~formal",
+   "line": 13,
+   "reason": "whole restyle shifted by one line"
+  },
+  {
+   "restyle": "RH01~london",
+   "line": 13,
+   "reason": "'good evening' -> 'good kip' (sleep)"
+  },
+  {
+   "restyle": "RH02~london",
+   "line": 12,
+   "reason": "'good evening' -> 'time for bed'"
+  },
+  {
+   "restyle": "RH02~formal",
+   "line": 0,
+   "reason": "'in their mouths' -> 'will assume a hymn'"
+  },
+  {
+   "restyle": "RH02~formal",
+   "line": 1,
+   "reason": "'put themselves into' -> 'compose'"
+  },
+  {
+   "restyle": "RH02~formal",
+   "line": 10,
+   "reason": "pulls 'of angels' up from the next line"
+  },
+  {
+   "restyle": "RH02~formal",
+   "line": 11,
+   "reason": "loses 'of angels'"
+  },
+  {
+   "restyle": "RH02~plain",
+   "line": 1,
+   "reason": "'put themselves into a canticle' -> 'compose a hymn'"
+  },
+  {
+   "restyle": "SC01~london",
+   "line": 3,
+   "reason": "'town' -> 'estate'"
+  },
+  {
+   "restyle": "SC01~london",
+   "line": 7,
+   "reason": "'brood of pigs around the mare' -> 'mob of kids around the mummy'"
+  },
+  {
+   "restyle": "SC01~london",
+   "line": 8,
+   "reason": "'mare' -> 'mummy'"
+  },
+  {
+   "restyle": "SC01~london",
+   "line": 10,
+   "reason": "'cellar' -> 'gaff' (home)"
+  },
+  {
+   "restyle": "SC01~london",
+   "line": 13,
+   "reason": "'good evening' -> 'that's a good 'un'"
+  },
+  {
+   "restyle": "SC01~formal",
+   "line": 0,
+   "reason": "adds 'stood at their posts', loses mouths"
+  },
+  {
+   "restyle": "SC01~formal",
+   "line": 2,
+   "reason": "line content shifted"
+  },
+  {
+   "restyle": "SC01~formal",
+   "line": 3,
+   "reason": "merges two lines"
+  },
+  {
+   "restyle": "SC01~formal",
+   "line": 8,
+   "reason": "adds 'a symbol of divine favor'"
+  },
+  {
+   "restyle": "SC01~formal",
+   "line": 9,
+   "reason": "'two parts' -> 'divide the world into two realms'"
+  },
+  {
+   "restyle": "SC01~formal",
+   "line": 12,
+   "reason": "loses 'of angels'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 2,
+   "reason": "'hooves' -> 'kicks'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 3,
+   "reason": "'walk: out to touch the earth' -> 'stroll ... feel for the streets'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 5,
+   "reason": "'shepherd children on the mountains' -> 'little nippers on the hills'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 7,
+   "reason": "'Lady' -> 'Mummy'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 8,
+   "reason": "'Lady will be blessed' -> 'Mummy will be proper sorted'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 9,
+   "reason": "'white and fair' -> 'posh and fly'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 10,
+   "reason": "'cellar ... above' -> 'flat ... stay upstairs'"
+  },
+  {
+   "restyle": "SC02~london",
+   "line": 13,
+   "reason": "'good evening' -> 'bedtime'"
+  },
+  {
+   "restyle": "SC02~formal",
+   "line": 0,
+   "reason": "loses 'in their mouths', adds 'stood in array'"
+  },
+  {
+   "restyle": "SC02~formal",
+   "line": 8,
+   "reason": "'blessed' -> 'consecrated'"
+  },
+  {
+   "restyle": "SC02~formal",
+   "line": 12,
+   "reason": "'like falling asleep' -> 'will strike, like the stillness of sleep'"
+  },
+  {
+   "restyle": "SC02~formal",
+   "line": 13,
+   "reason": "'good evening' -> 'the day's end'"
+  },
+  {
+   "restyle": "LO01~formal",
+   "line": 0,
+   "reason": "adds 'shall play a melody' (from next line)"
+  },
+  {
+   "restyle": "LO01~formal",
+   "line": 1,
+   "reason": "content moved to previous line"
+  },
+  {
+   "restyle": "LO01~formal",
+   "line": 5,
+   "reason": "'lambing sheep' -> 'tending flocks'"
+  },
+  {
+   "restyle": "LO02~formal",
+   "line": 10,
+   "reason": "'roof' -> 'loft'"
+  },
+  {
+   "restyle": "LO02~formal",
+   "line": 13,
+   "reason": "'it's a good evening' -> 'the evening is serene'"
+  }
+ ]
+}

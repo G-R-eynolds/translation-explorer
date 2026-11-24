@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+results/*.npz
+logs/
+remote/remote.env
+*.pt
+*.safetensors

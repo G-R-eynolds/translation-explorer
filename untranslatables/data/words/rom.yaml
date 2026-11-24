@@ -1,0 +1,123 @@
+# Romanesco items for thread 2 (the 'model doesn't know it' row of the 2x2).
+# Contexts: the matching line of Belli, "Er giorno der giudizzio" (1831), copied verbatim from
+# ../translation-lattice/data/source.json.  Lines 1-6 were checked against a web edition; lines 7-14 are NOT
+# yet checked against a print edition (flagged per item).  Items need 5 contexts: the other 4 must come
+# from Belli's sonnets in an edition you own -- TODO_USER.  Do not let anyone "fix" the dialect spelling.
+# gloss_src: Italian definitions drafted by Claude as PLACEHOLDERS; replace with Belli's own footnotes.
+language: rom
+templates:
+  - 'La parola romanesca "{w}" significa'
+  - 'Che cosa vuol dire "{w}" in romanesco?'
+  - '"{w}" è una parola romanesca.'
+  - 'A Roma se dice "{w}".'
+words:
+
+- word: schertri
+  category: dialect_known_gloss
+  emotion: false
+  gloss_en: skeletons (cf. Italian scheletri)
+  senses:
+    - label: skeletons
+      clarify: 'Qui "schertri" vuol dire gli scheletri dei morti.'
+  gloss_src: 'PLACEHOLDER (replace with Belli''s footnote): "schertri", in romanesco, sono gli scheletri, le ossa dei morti. Esempio: "I schertri usciranno dalle tombe."'
+  source: TODO_USER (Belli footnote)
+  notes: Both models misread it as 'jesters' (scherzi) in the lattice run.
+  exclude_from_pool: []
+  contexts:
+    - 'de [[schertri]] da la terra a ppecorone,'
+  context_source: ['Belli, Er giorno der giudizzio, line 6 (checked against a web edition)']
+  extra:
+    - 'Allora vierà ssù una filastrocca'
+
+- word: bbiocca
+  category: dialect_known_gloss
+  emotion: false
+  gloss_en: broody hen (a hen sitting on eggs, with her chicks)
+  senses:
+    - label: broody hen
+      clarify: 'Qui "bbiocca" vuol dire la chioccia, la gallina che cova le uova e guida i pulcini.'
+  gloss_src: 'PLACEHOLDER (replace with Belli''s footnote): "bbiocca" è la chioccia, la gallina che cova e poi raccoglie intorno a sé i pulcini. Esempio: "I pulcini corrono sotto la bbiocca."'
+  source: TODO_USER (Belli footnote)
+  notes: Misread as mouth/belly/box by both models. Linked to Italian 'abbiocco'.
+  exclude_from_pool: []
+  contexts:
+    - 'come purcini attorno de la [[bbiocca]].'
+    - 'E sta [[bbiocca]] sarà Ddio bbenedetto,'
+  context_source: ['Belli, line 8 (UNVERIFIED against print)', 'Belli, line 9 (UNVERIFIED against print)']
+  extra:
+    - 'pe rripijjà ffigura de perzone,'
+    - 'come purcini attorno de la bbiocca.'
+
+- word: purcini
+  category: dialect_known_gloss
+  emotion: false
+  gloss_en: chicks (cf. Italian pulcini)
+  senses:
+    - label: chicks
+      clarify: 'Qui "purcini" vuol dire i pulcini, i piccoli della gallina.'
+  gloss_src: 'PLACEHOLDER (replace with Belli''s footnote): "purcini" sono i pulcini, i piccoli appena nati della gallina. Esempio: "I purcini seguono la madre."'
+  source: TODO_USER (Belli footnote)
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'come [[purcini]] attorno de la bbiocca.'
+  context_source: ['Belli, line 8 (UNVERIFIED against print)']
+  extra:
+    - 'pe rripijjà ffigura de perzone,'
+
+- word: bbona sera
+  category: dialect_untranslatable
+  emotion: false
+  gloss_en: '"good evening / good night"; also idiomatic "and that''s that, it''s all over"'
+  senses:
+    - label: good night (leave-taking)
+      clarify: 'Qui "e bbona sera" è il saluto della sera, come quando ci si congeda per andare a dormire.'
+    - label: and that's that, it's all over
+      clarify: 'Qui "e bbona sera" vuol dire "e tutto è finito, non c''è più niente da fare".'
+  gloss_src: 'PLACEHOLDER (replace with Belli''s footnote): "bbona sera" è il saluto della sera; in romanesco si dice anche per chiudere un discorso: "e basta, è finita". Esempio: "Pagò il conto e bbona sera."'
+  source: TODO_USER (Belli footnote)
+  notes: Key item. The lattice run's samples never found the 'that's that' reading.
+  exclude_from_pool: []
+  contexts:
+    - 'smorzeranno li lumi, e [[bbona sera]].'
+  context_source: ['Belli, line 14 (UNVERIFIED against print)']
+  extra:
+    - 'd''angioli, e, ccome si ss''annassi a lletto,'
+
+- word: a ppecorone
+  category: dialect_untranslatable
+  emotion: false
+  gloss_en: on all fours, on hands and knees (from pecora, sheep)
+  senses:
+    - label: on all fours
+      clarify: 'Qui "a ppecorone" vuol dire carponi, camminando sulle mani e sulle ginocchia.'
+    - label: like sheep, in a flock (etymological)
+      clarify: 'Qui "a ppecorone" fa pensare alle pecore, come un gregge che avanza a testa bassa.'
+  gloss_src: 'PLACEHOLDER (replace with Belli''s footnote): "a ppecorone" vuol dire carponi, a quattro zampe, come le pecore. Esempio: "Il bambino girava per casa a ppecorone."'
+  source: TODO_USER (Belli footnote)
+  notes: The logit lens showed the 'pecora' pull (sheep / pasture) at layer 22 in the 3B.
+  exclude_from_pool: []
+  contexts:
+    - 'de schertri da la terra [[a ppecorone]],'
+  context_source: ['Belli, line 6 (checked against a web edition)']
+  extra:
+    - 'Allora vierà ssù una filastrocca'
+
+- word: ffora a cchi ttoca
+  category: dialect_untranslatable
+  emotion: false
+  gloss_en: '"out, whoever''s turn it is!" -- a call like "next!", or a summons to come out'
+  senses:
+    - label: next! / whose turn is it (queue)
+      clarify: 'Qui "ffora a cchi ttoca" è il grido con cui si chiama il prossimo, come in una fila: "avanti il prossimo".'
+    - label: come out, you who are called (summons)
+      clarify: 'Qui "ffora a cchi ttoca" è un ordine solenne: escano quelli che sono chiamati.'
+  gloss_src: 'PLACEHOLDER (replace with Belli''s footnote): "fora a chi tocca" vuol dire "fuori chi è di turno", il grido con cui si chiama qualcuno a uscire o a presentarsi. Esempio: "Il sergente gridò: fora a chi tocca!"'
+  source: TODO_USER (Belli footnote)
+  notes: The lattice's hand clusters had 3 readings; the 3B never reached them.
+  exclude_from_pool: []
+  contexts:
+    - 'cominceranno a ddì: [[ffora a cchi ttoca]].'
+  context_source: ['Belli, line 4 (checked against a web edition)']
+  extra:
+    - 'a ssonà: poi co ttanto de voscione'

@@ -1,0 +1,55 @@
+{
+  "clusterer": "Claude Opus 5.5 acting as meaning-equivalence judge (same role an API call plays in pipeline.py). Variants that differ only in wording share a cluster.",
+  "lines": [
+    {"line": 0, "note": "'Angioloni' is the augmentative of angelo: it adds size, but also an affectionate, comic deflation of the Apocalypse. Dignified versions lose that irreverence.",
+     "clusters": [
+      {"id": "big", "gloss": "big / hulking angels (augmentative kept as size, comic)", "members": ["L1","L2","L3","R3","S1","S2","S3","C1","C2","C3"]},
+      {"id": "mighty", "gloss": "mighty / towering angels (augmentative turned into grandeur)", "members": ["R1","R2"]}]},
+    {"line": 1, "note": "'Cantone' is an everyday word for a street corner. Is the Last Judgement staged at the 'four corners of the earth' or on a Roman street?",
+     "clusters": [
+      {"id": "corner", "gloss": "one at each corner (left unspecified)", "members": ["L1","L2","R1","S1","C1","C3"]},
+      {"id": "cosmic", "gloss": "the four corners of the world (biblical, cosmic)", "members": ["L3","R2","S3"]},
+      {"id": "street", "gloss": "street corners / the square (civic, local)", "members": ["R3","S2","C2"]}]},
+    {"line": 2, "note": "", "clusters": [
+      {"id": "blow", "gloss": "they blow, then call out in a huge voice", "members": ["L1","L2","L3","R1","R2","R3","S1","S2","S3","C1","C2","C3"]}]},
+    {"line": 3, "note": "'Fora a chi tocca' is a call from games and queues: 'out with whoever's turn it is'. This register choice decides whether the Judgement is a turn-taking game, a waiting room, or Scripture.",
+     "clusters": [
+      {"id": "turn", "gloss": "'Out, whoever's turn it is!' (turn-taking, game)", "members": ["L1","R1","R3","S1","C1","C3"]},
+      {"id": "next", "gloss": "'Next!' (queue, waiting room)", "members": ["L2","S2","C2"]},
+      {"id": "summons", "gloss": "'Arise, you who are called' (solemn summons)", "members": ["L3","R2","S3"]}]},
+    {"line": 4, "note": "'Filastrocca' means a nursery or counting rhyme, and by extension a long string of things. Keeping both senses at once is the hard part.",
+     "clusters": [
+      {"id": "string", "gloss": "a long string / line (sequence only)", "members": ["L1","R1","S3","C1","C3"]},
+      {"id": "rhyme", "gloss": "a nursery-rhyme / litany procession (sing-song kept)", "members": ["L3","R2","R3","S2","C2"]},
+      {"id": "rigmarole", "gloss": "a rigmarole (tedious long sequence)", "members": ["L2","S1"]}]},
+    {"line": 5, "note": "'A pecorone' comes from pecora, 'sheep', and carries an earthy, even crude posture. Almost every sample flattens it to 'on all fours'.",
+     "clusters": [
+      {"id": "allfours", "gloss": "on all fours / hands and knees", "members": ["L1","L2","R1","R2","R3","S1","S2","S3","C1","C2","C3"]},
+      {"id": "sheep", "gloss": "on all fours like sheep (etymology kept)", "members": ["L3"]}]},
+    {"line": 6, "note": "", "clusters": [
+      {"id": "shape", "gloss": "to take back human shape", "members": ["L1","L2","L3","R1","R2","R3","S1","S2","S3","C1","C2","C3"]}]},
+    {"line": 7, "note": "", "clusters": [
+      {"id": "chicks", "gloss": "like chicks round the (broody) hen", "members": ["L1","L2","L3","R1","R2","R3","S1","S2","S3","C1","C2","C3"]}]},
+    {"line": 8, "note": "'Dio benedetto' is both a reverent title and an everyday exclamation ('God bless him!'). The sonnet's irreverence turns on the two senses together.",
+     "clusters": [
+      {"id": "exclaim", "gloss": "'God, bless Him' (colloquial exclamation)", "members": ["L2","R3","S1","C1","C2","C3"]},
+      {"id": "epithet", "gloss": "'God the Blessed' (reverent title)", "members": ["L1","L3","R1","R2","S2","S3"]}]},
+    {"line": 9, "note": "", "clusters": [
+      {"id": "split", "gloss": "who splits them in two, white and black", "members": ["L1","L2","L3","R1","R2","R3","S1","S2","S3","C1","C2","C3"]}]},
+    {"line": 10, "note": "Belli's speaker maps hell and heaven onto a Roman house: cellar and roof. Almost all samples keep the domestic joke; one abstracts it away.",
+     "clusters": [
+      {"id": "house", "gloss": "one to the cellar, one to the roof (domestic)", "members": ["L1","L2","L3","R1","R3","S1","S2","S3","C1","C2","C3"]},
+      {"id": "abstract", "gloss": "vaults below / the height (cosmic gloss)", "members": ["R2"]}]},
+    {"line": 11, "note": "A 'sonagliera' is a harness of bells for a horse: the angels as a jingling carriage team. Most samples keep the sound but lose the object.",
+     "clusters": [
+      {"id": "jingle", "gloss": "a jingling troop / crowd (sound kept, object lost)", "members": ["L1","L3","R1","R2","S2","S3","C1","C2","C3"]},
+      {"id": "harness", "gloss": "a bell-harness / cart (object kept)", "members": ["L2","R3","S1"]}]},
+    {"line": 12, "note": "", "clusters": [
+      {"id": "bed", "gloss": "of angels, as if going to bed", "members": ["L1","L2","L3","R1","R2","R3","S1","S2","S3","C1","C2","C3"]}]},
+    {"line": 13, "note": "'E bbona sera' is both 'good night' and 'and that's the end of it'. The universe ends with a shrug. This is the biggest interpretive fork in the poem.",
+     "clusters": [
+      {"id": "goodnight", "gloss": "'and good night' (literal leave-taking)", "members": ["L1","L3","R1","S1","S3","C1","C3"]},
+      {"id": "thatsthat", "gloss": "'and that's that' (idiomatic finality)", "members": ["L2","R3","S2","C2"]},
+      {"id": "amen", "gloss": "'all is dark. Amen.' (solemn closure)", "members": ["R2"]}]}
+  ]
+}

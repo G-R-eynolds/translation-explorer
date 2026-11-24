@@ -1,0 +1,135 @@
+# Sense minimal pairs for the interchange interventions of ../HANDOFF_internals.md §5.3.
+# Drafted by Claude Code (Opus 5.5), 21 Nov 2026.  UNCHECKED (stop point 1): please check them, and the Hindi pair with
+# a Hindi speaker.
+#
+# Each pair: two contexts (ctx[0], ctx[1]) in which the [[marked]] word has sense A and sense B.  The word's state from
+# ctx[1] is patched (private part, shared part, or whole state) into the run on ctx[0], and we measure
+#   English: log p(en[1]) - log p(en[0])   (translations of ctx[0] with sense B vs sense A), teacher-forced in the
+#            translation prompt;
+#   source:  log p(gloss[1]) - log p(gloss[0]) after "En esta frase, '<word>' significa:" (Hindi: "इस वाक्य में ...").
+# same_frame: true = the two contexts differ only in the cue (article, copula, pronoun), so the reverse direction is
+# also run (ctx[1] patched with ctx[0]).  For gender pairs the cue is the article: N1 predicts gender is mostly
+# private, yet the English needs it, so whether patching the private part flips the English is the interesting test.
+# tu/usted and aap/tum are the positive control for "dropped": the English 'you' should not care, the source should.
+
+pairs:
+- id: duende
+  lang: es
+  type: sense
+  same_frame: false
+  ctx: ["Esa cantaora tiene [[duende]].", "En el cuento, el [[duende]] vive debajo del puente."]
+  en: ["That singer has soul.", "That singer has a goblin."]
+  gloss: ["el encanto misterioso que hace que el arte conmueva", "un ser fantástico pequeño y travieso"]
+
+- id: cura
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["El [[cura]] llegó tarde.", "La [[cura]] llegó tarde."]
+  en: ["The priest arrived late.", "The cure arrived late."]
+  gloss: ["el sacerdote", "el remedio para una enfermedad"]
+
+- id: capital
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["El [[capital]] creció mucho este año.", "La [[capital]] creció mucho este año."]
+  en: ["The invested money grew a lot this year.", "The capital city grew a lot this year."]
+  gloss: ["el dinero invertido", "la ciudad principal de un país"]
+
+- id: orden
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["Me sorprendió el [[orden]] del general.", "Me sorprendió la [[orden]] del general."]
+  en: ["The general's tidiness surprised me.", "The general's command surprised me."]
+  gloss: ["la organización, el estar todo en su sitio", "el mandato que hay que obedecer"]
+
+- id: frente
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["Le dio un golpe en el [[frente]].", "Le dio un golpe en la [[frente]]."]
+  en: ["He hit it on the front.", "He hit him on the forehead."]
+  gloss: ["la parte delantera de algo", "la parte de la cara encima de los ojos"]
+
+- id: cometa
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["Los niños miraban el [[cometa]] en el cielo.", "Los niños miraban la [[cometa]] en el cielo."]
+  en: ["The children watched the comet in the sky.", "The children watched the kite in the sky."]
+  gloss: ["un astro con una cola luminosa", "un juguete de papel que vuela con el viento"]
+
+- id: corte
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["Nos sorprendió el [[corte]].", "Nos sorprendió la [[corte]]."]
+  en: ["The cut surprised us.", "The court surprised us."]
+  gloss: ["la herida o el tajo", "el tribunal o la familia real"]
+
+- id: papa
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["Me gusta el [[papa]].", "Me gusta la [[papa]]."]
+  en: ["I like the pope.", "I like the potato."]
+  gloss: ["el jefe de la Iglesia católica", "la patata"]
+
+- id: pendiente
+  lang: es
+  type: gender
+  same_frame: true
+  ctx: ["Mira el [[pendiente]].", "Mira la [[pendiente]]."]
+  en: ["Look at the earring.", "Look at the slope."]
+  gloss: ["el adorno que se lleva en la oreja", "la cuesta, el terreno inclinado"]
+
+- id: aburrido
+  lang: es
+  type: copula
+  same_frame: true
+  ctx: ["Mi hermano es [[aburrido]].", "Mi hermano está [[aburrido]]."]
+  en: ["My brother is boring.", "My brother is bored."]
+  gloss: ["que aburre a los demás", "que siente aburrimiento ahora"]
+
+- id: listo
+  lang: es
+  type: copula
+  same_frame: true
+  ctx: ["El niño es [[listo]].", "El niño está [[listo]]."]
+  en: ["The boy is clever.", "The boy is ready."]
+  gloss: ["inteligente", "preparado"]
+
+- id: malo
+  lang: es
+  type: copula
+  same_frame: true
+  ctx: ["Juan es [[malo]].", "Juan está [[malo]]."]
+  en: ["Juan is bad.", "Juan is ill."]
+  gloss: ["mala persona", "enfermo"]
+
+- id: ti_usted_para
+  lang: es
+  type: address
+  same_frame: true
+  ctx: ["Esto es para [[ti]].", "Esto es para [[usted]]."]
+  en: ["This is for you.", "This is for you, sir."]
+  gloss: ["la persona a quien hablo con confianza", "la persona a quien trato con respeto"]
+
+- id: ti_usted_gracias
+  lang: es
+  type: address
+  same_frame: true
+  ctx: ["Gracias a [[ti]] lo conseguí.", "Gracias a [[usted]] lo conseguí."]
+  en: ["Thanks to you, I made it.", "Thanks to you, sir, I made it."]
+  gloss: ["la persona a quien hablo con confianza", "la persona a quien trato con respeto"]
+
+- id: tum_aap
+  lang: hi
+  type: address
+  same_frame: true
+  draft: true
+  ctx: ["यह किताब [[तुम्हारे]] लिए है।", "यह किताब [[आपके]] लिए है।"]
+  en: ["This book is for you.", "This book is for you, sir."]
+  gloss: ["अनौपचारिक संबोधन, अपनापन", "औपचारिक संबोधन, आदर"]

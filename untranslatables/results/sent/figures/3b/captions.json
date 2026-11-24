@@ -1,0 +1,139 @@
+{
+ "model": "meta-llama/Llama-3.2-3B-Instruct (bf16)",
+ "fonts": {
+  "sans": "DejaVu Sans",
+  "serif": "DejaVu Serif"
+ },
+ "fig1_where_a_sentence_resists": {
+  "title": "In 'me gusta mucho el duende', the most meaning is lost on 'duende'",
+  "how_to_read": "How to read this: the redder a word's background, the less of it can be rebuilt from the standard English translation. The bar under a word shows the same thing measured inside the model (all dark = nothing carried). Dotted boxes: words that carry almost no information of their own.",
+  "claim": {
+   "statistic": "word leftover amount (information weight x share not carried), round trip, greedy standard translation",
+   "es_duende": [
+    [
+     "es_duende",
+     "gusta",
+     1.0797999799251556,
+     0.114
+    ],
+    [
+     "es_duende",
+     "mucho",
+     0.15009999834001064,
+     0.1184
+    ],
+    [
+     "es_duende",
+     "el",
+     0.05380000174045571,
+     0.1268
+    ],
+    [
+     "es_duende",
+     "duende",
+     8.444499547593296,
+     0.22514284782593244
+    ]
+   ]
+  },
+  "png": "fig1_where_a_sentence_resists.png"
+ },
+ "fig2_how_much_english": {
+  "title": "How much English it takes before the meaning gets across",
+  "how_to_read": "How to read this: each line is one sentence. Moving right means allowing a longer English text (from a word-for-word gloss to a full paragraph of commentary); lower means more of the meaning carried. The dashed line is how close an easy sentence gets with an ordinary translation.",
+  "claim": {
+   "rt": {
+    "es_duende": {
+     "U": 0.41503749927884376,
+     "censored": false
+    },
+    "es_tomar_el_pelo": {
+     "U": 3.4391116342577015,
+     "censored": true
+    },
+    "it_mi_manchi": {
+     "U": 0.0,
+     "censored": false
+    },
+    "es_tren": {
+     "U": 0.0,
+     "censored": false
+    }
+   },
+   "cl": {
+    "es_duende": {
+     "U": 0.0,
+     "censored": false
+    },
+    "es_tomar_el_pelo": {
+     "U": 1.584962500721156,
+     "censored": false
+    },
+    "it_mi_manchi": {
+     "U": 2.6322682154995127,
+     "censored": false
+    },
+    "es_tren": {
+     "U": 0.0,
+     "censored": false
+    }
+   }
+  },
+  "png": "fig2_how_much_english.png"
+ },
+ "fig3_opening_up_a_sentence": {
+  "title": "Opening up a sentence instead of substituting word for word",
+  "how_to_read": "How to read this: under the standard translation, each hard part is expanded into the different English senses the model gives it across repeated tries (the bar widths are the shares), followed by the model's best short gloss and a term it coined. A prototype of a translation that shows its range rather than hiding it.",
+  "claim": {
+   "statistic": "spread clusters (NLI), lowest-distortion inline gloss, greedy coinage",
+   "sid": "es_duende"
+  },
+  "png": "fig3_opening_up_a_sentence.png"
+ },
+ "fig4_commentary_where_the_map_says": {
+  "title": "Glossing the marked words did not reliably beat glossing random words",
+  "how_to_read": "How to read this: starting from the same standard translation, the model added short bracketed glosses either to the words the heat map marked or to random words (same number of glosses). Taller = more of the lost meaning recovered. Lines show the 95% range.",
+  "claim": {
+   "statistic": "targeted minus random cut, bootstrap 95% CI",
+   "rt": [
+    0.006918116319027691,
+    -0.005138887834674959,
+    0.019308947739403434
+   ],
+   "cl": [
+    0.000916936697416243,
+    -0.0004774390963542508,
+    0.0023192145688518944
+   ],
+   "added_tokens": {
+    "targeted": 9.916666666666666,
+    "random": 7.819444444444444
+   }
+  },
+  "png": "fig4_commentary_where_the_map_says.png"
+ },
+ "fig5_ranking": {
+  "title": "Doublings of length needed, average by kind of sentence: plain 0.2, untranslatable word 1.7, construction 1.0, idiom 0.6, dialect 2.5",
+  "how_to_read": "How to read this: each bar is one sentence; its length is how many times the English had to double in length (from the standard translation) before the original could be rebuilt as well as an easy sentence's can. Hatched: it never got there, even with a paragraph of commentary.",
+  "claim": {
+   "statistic": "U (rt), mean by category",
+   "means": {
+    "untranslatable_in_context": 1.6881279194952656,
+    "construction": 1.0115946426149816,
+    "idiom": 0.5953102129148713,
+    "control": 0.22016338611696504,
+    "dialect": 2.466263974246313
+   }
+  },
+  "png": "fig5_ranking.png"
+ },
+ "fig6_two_measures": {
+  "title": "The two ways of measuring only partly agree (rank correlation 0.24)",
+  "how_to_read": "How to read this: each dot is a sentence, placed by how much meaning the English loses on average over all lengths of English, measured two ways. Dots near the diagonal: the two measures agree. Hollow dots never got across by at least one measure.",
+  "claim": {
+   "statistic": "Spearman of A (round trip vs concept layer)",
+   "rho": 0.2363977485928706
+  },
+  "png": "fig6_two_measures.png"
+ }
+}

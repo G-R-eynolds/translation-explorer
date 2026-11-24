@@ -1,0 +1,171 @@
+<title>Duende, Five Ways</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter+Tight:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; three figures, each a single idea, captions in plain words. */
+:root {
+  --paper: #f7f6f3;
+  --ink: #1d1b1f;
+  --muted: #67636b;
+  --rule: #dedbe0;
+  --wine: #8a2343;        /* the reading being followed / steered */
+  --wine-soft: #e9d3da;
+  --stem: #3b3740;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17161a; --ink: #ecebef; --muted: #a29ea8; --rule: #34313a;
+    --wine: #e07d9c; --wine-soft: #4a2533; --stem: #c9c5cf; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #17161a; --ink: #ecebef; --muted: #a29ea8; --rule: #34313a;
+  --wine: #e07d9c; --wine-soft: #4a2533; --stem: #c9c5cf; color-scheme: dark;
+}
+body { background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); }
+.page {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 48px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 40px;
+}
+header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 600 clamp(32px, 6vw, 46px)/1.1 var(--serif); margin: 0; text-wrap: balance; }
+h1 em { color: var(--wine); font-weight: 500; }
+h2 { font: 600 22px/1.25 var(--serif); margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 65ch; }
+.lede { font: 400 19px/1.55 var(--serif); }
+.es { font-family: var(--serif); font-style: italic; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.quote { font: italic 400 clamp(20px, 3.6vw, 26px)/1.4 var(--serif); border-left: 3px solid var(--wine); padding-left: 16px; }
+.quote small { display: block; font: 400 14px/1.5 var(--sans); font-style: normal; color: var(--muted); margin-top: 4px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.scroll { overflow-x: auto; }
+figcaption { font-size: 14px; color: var(--muted); max-width: 65ch; }
+svg text { font-family: var(--sans); fill: var(--ink); }
+svg .serif { font-family: var(--serif); font-style: italic; }
+svg .muted { fill: var(--muted); }
+.steer { display: grid; gap: 18px; }
+.row { display: grid; grid-template-columns: 9.5rem 1fr; gap: 6px 16px; align-items: center; }
+.row .name { font: italic 500 19px/1.2 var(--serif); }
+.track { position: relative; height: 26px; background: var(--rule); border-radius: 3px; }
+.track .alone { position: absolute; top: 0; bottom: 0; left: 0; background: var(--muted); opacity: .45; border-radius: 3px; }
+.track .nudged { position: absolute; top: 5px; bottom: 5px; left: 0; background: var(--wine); border-radius: 2px; }
+.nums { grid-column: 2; display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.nums b { color: var(--ink); font-weight: 600; }
+.nums .w { color: var(--wine); }
+.example { grid-column: 2; font: italic 16px/1.45 var(--serif); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13px; color: var(--muted); }
+.key { display: inline-block; width: 22px; height: 10px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--rule); border-radius: 999px; padding: 4px 12px; font: italic 16px var(--serif); }
+.chip span { font: 13px var(--sans); color: var(--muted); font-style: normal; margin-left: 6px; font-variant-numeric: tabular-nums; }
+.notes { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 14px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
+.notes p { max-width: 70ch; }
+@media (max-width: 520px) {
+  .row { grid-template-columns: 1fr; }
+  .nums, .example { grid-column: 1; }
+}
+</style>
+
+<div class="page">
+  <header>
+    <div class="eyebrow">An experiment with a translation model · 24 November 2026</div>
+    <h1>Duende, <em>five ways</em></h1>
+    <p class="lede">We asked a language model to translate one sentence into English 64 times. It does not hold one translation in mind. It holds several readings of <span class="es">duende</span>, and we can find the exact point where they part and push it down the one we choose.</p>
+  </header>
+
+  <section>
+    <div class="quote">Cuando canta Camarón, tiene duende; me gusta mucho el duende.
+      <small>“When Camarón sings, he has duende; I really like the duende.”</small></div>
+    <p>The context makes clear which <span class="es">duende</span> is meant: Lorca's, the dark power of a great performance, not the goblin of folk tales.</p>
+  </section>
+
+  <section>
+    <h2>The model weighs five readings, and they part at one word</h2>
+    <figure>
+      <div class="scroll">
+        <svg viewBox="0 0 720 340" width="100%" style="min-width:600px" role="img" aria-label="Branching diagram: from 'When Camarón sings, he has', five readings: magic or a fairy 28%, spirit or soul 26%, duende kept or a flame 18%, possessed or a gift 16%, charm or charisma 12%.">
+          <text x="0" y="176" font-size="17" class="serif">When Camarón sings, he has …</text>
+          <!-- branches from (250,170); stroke width = share × 60 -->
+          <g fill="none" stroke-linecap="round" stroke="var(--stem)">
+            <path d="M250 170 C 330 170, 330 42, 420 42" stroke-width="16.8"/>
+            <path d="M250 170 C 330 170, 330 106, 420 106" stroke-width="15.6"/>
+            <path d="M250 170 C 330 170, 330 170, 420 170" stroke-width="10.8"/>
+            <path d="M250 170 C 330 170, 330 234, 420 234" stroke-width="9.6"/>
+            <path d="M250 170 C 330 170, 330 298, 420 298" stroke-width="7.2"/>
+          </g>
+          <circle cx="250" cy="170" r="6" fill="var(--ink)"/>
+          <g font-size="17">
+            <text x="434" y="40" class="serif">magic · a fairy · a genie</text>
+            <text x="434" y="60" font-size="13" class="muted">28% of translations</text>
+            <text x="434" y="104" class="serif">spirit · soul</text>
+            <text x="434" y="124" font-size="13" class="muted">26%</text>
+            <text x="434" y="168" class="serif">duende kept · a flame · a spark</text>
+            <text x="434" y="188" font-size="13" class="muted">18%</text>
+            <text x="434" y="232" class="serif">possessed · a gift · rhythm</text>
+            <text x="434" y="252" font-size="13" class="muted">16%</text>
+            <text x="434" y="296" class="serif">charm · charisma · whimsy</text>
+            <text x="434" y="316" font-size="13" class="muted">12%</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Each branch is one reading. Its thickness is how often the model chose it among 57 translations (the 7 least likely of the 64 were set aside). The model agrees on everything up to “he has”; the interpretation is decided at the next word.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>At that word, we can steer it into the reading we choose</h2>
+    <p>At the branching point we nudge the model's internal state in the direction of one reading and let it carry on. The direction is not chosen by hand: it is worked out from the model's own translations of that reading. The rest of the sentence follows the choice by itself.</p>
+    <figure>
+      <div class="legend"><span><span class="key" style="background:var(--muted);opacity:.45"></span>left to itself</span><span><span class="key" style="background:var(--wine)"></span>nudged towards the reading</span></div>
+      <div class="steer">
+        <div class="row">
+          <div class="name">magic</div>
+          <div class="track"><div class="alone" style="width:25%"></div><div class="nudged" style="width:84%"></div></div>
+          <div class="nums"><span>left to itself <b>25%</b></span><span>nudged <b class="w">84%</b></span></div>
+          <div class="example">“When Camarón sings, he has magic; I like magic very much.”</div>
+        </div>
+        <div class="row">
+          <div class="name">spirit</div>
+          <div class="track"><div class="alone" style="width:63%"></div><div class="nudged" style="width:91%"></div></div>
+          <div class="nums"><span>left to itself <b>63%</b></span><span>nudged <b class="w">91%</b></span></div>
+          <div class="example">“When Camarón sings, he has a spirit; I like the spirit very much.”</div>
+        </div>
+        <div class="row">
+          <div class="name">duende</div>
+          <div class="track"><div class="alone" style="width:13%"></div><div class="nudged" style="width:78%"></div></div>
+          <div class="nums"><span>left to itself <b>13%</b></span><span>nudged <b class="w">78%</b></span></div>
+          <div class="example">“When Camarón sings, he has a touch of the devil; I like the touch of the devil.”</div>
+        </div>
+      </div>
+      <figcaption>How often the continuation lands in each reading, from the branching point. “Left to itself” is 8 free continuations; “nudged” pools 108 continuations at several nudge strengths, counting one only if it lands in the reading and reads fluently. The last example was not among the model's 64 original translations. Nudged towards Lorca's reading, it produced “a touch of the devil” on its own.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Without the context, there is only a goblin</h2>
+    <div class="quote">Me gusta mucho el duende.
+      <small>The same 64 translations, with no context.</small></div>
+    <div class="chips">
+      <span class="chip">the elf<span>32%</span></span>
+      <span class="chip">the gnome<span>18%</span></span>
+      <span class="chip">the dwarf<span>16%</span></span>
+      <span class="chip">the fairy<span>12%</span></span>
+      <span class="chip">the goblin<span>12%</span></span>
+      <span class="chip">“it”<span>11%</span></span>
+    </div>
+    <p>Alone, the sentence never reaches the artistic sense. The model still varies, but only between small creatures, which is a choice of word, not of interpretation. With Camarón in the sentence, the same word opens onto spirit, possession, charm and the dark power Lorca meant. The interpretation lives in the context more than in the word.</p>
+  </section>
+
+  <div class="notes">
+    <p><b>What was used.</b> A small open model, Gemma 3 with 4 billion parameters, in its raw form before any chat training. It translated each sentence 64 times. The translations were grouped into readings automatically, by meaning; we read the groups and named them only from what the translations say.</p>
+    <p><b>What it does and does not show.</b> These are the readings this model weighs, not every reading a person could give. Steering shows we can reach a reading reliably. It does not say which reading is right. A first try on a poem, Bécquer's <span class="es">Rima XXI</span>, did not work yet: in a poem the choices are spread across many words, not decided at one.</p>
+    <p><b>Where this is going.</b> A tool in which you watch a translation being written, see where it could branch, and choose the branch.</p>
+  </div>
+</div>

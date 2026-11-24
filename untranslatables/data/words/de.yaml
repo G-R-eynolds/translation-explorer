@@ -1,0 +1,387 @@
+# German word set.  Drafted by Claude Code (Opus 5.5), 18 Nov 2026; UNCHECKED.  See data/README.md.
+language: de
+templates:
+  - 'Das Wort „{w}“ bedeutet'
+  - 'Was bedeutet „{w}“?'
+  - '„{w}“ ist ein deutsches Wort.'
+  - 'Auf Deutsch sagt man „{w}“.'
+words:
+
+- word: Sehnsucht
+  category: untranslatable
+  emotion: true
+  gloss_en: an intense, often bittersweet yearning for something distant, lost or unattainable
+  senses:
+    - label: longing for a person or place
+      clarify: 'Hier ist „Sehnsucht“ das starke Verlangen nach einem Menschen oder Ort, der fern ist.'
+    - label: yearning for the unattainable or infinite (Romantic)
+      clarify: 'Hier ist „Sehnsucht“ ein unbestimmtes Verlangen nach etwas Unerreichbarem, Fernem oder Unendlichem.'
+  gloss_src: 'Sehnsucht: inniges, oft schmerzliches Verlangen nach jemandem oder etwas, das fern oder unerreichbar ist. Beispiel: „Die Sehnsucht nach dem Meer ließ ihn nicht los.“'
+  source: TODO
+  notes: Romantic key term; the second sense is the Cassin-type one.
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Sehnsucht]].'
+    - 'Ich bin voller [[Sehnsucht]].'
+  contexts:
+    - 'Nach drei Monaten im Ausland packte sie die [[Sehnsucht]] nach ihrer Familie.'
+    - 'In den Gedichten der Romantik ist die [[Sehnsucht]] nach dem Unendlichen allgegenwärtig.'
+    - 'Er schaute dem Zug mit [[Sehnsucht]] hinterher.'
+    - 'Diese [[Sehnsucht]] nach etwas, das ich nicht benennen kann, kommt jeden Herbst wieder.'
+    - 'Die [[Sehnsucht]] nach Ruhe trieb ihn aufs Land.'
+  extra:
+    - 'Das Praktikum in Kanada war spannend. Doch an den Wochenenden war die Wohnung sehr still.'
+    - 'Novalis schrieb von der blauen Blume. Seine Figuren sind immer unterwegs.'
+
+- word: Heimat
+  category: untranslatable
+  emotion: false
+  gloss_en: home(land) as a place of belonging, identity and emotional attachment, not just residence
+  senses:
+    - label: homeland, place of origin
+      clarify: 'Hier ist „Heimat“ der Ort oder das Land, aus dem man stammt.'
+    - label: sense of belonging and identity
+      clarify: 'Hier ist „Heimat“ das Gefühl, irgendwo dazuzugehören und geborgen zu sein, unabhängig vom Ort.'
+  gloss_src: 'Heimat: Ort, Gegend oder Land, wo man aufgewachsen ist oder sich zugehörig und geborgen fühlt. Beispiel: „Nach vielen Jahren im Ausland kehrte sie in ihre Heimat zurück.“'
+  source: TODO
+  notes: Politically loaded in German (Heimatministerium, Heimatfilm); English home/homeland each miss part.
+  exclude_from_pool: []
+  contexts:
+    - 'Nach dem Krieg verloren viele Menschen ihre [[Heimat]].'
+    - 'Für mich ist Musik eine Art [[Heimat]].'
+    - 'Er spricht noch immer den Dialekt seiner [[Heimat]].'
+    - 'Berlin ist längst ihre zweite [[Heimat]] geworden.'
+    - 'Der Film erzählt von [[Heimat]], Abschied und Rückkehr.'
+  extra:
+    - 'Sie kam als Kind aus Schlesien. Die Familie musste alles zurücklassen.'
+    - 'Ich bin oft umgezogen und habe nirgends lange gewohnt. Freunde kamen und gingen.'
+
+- word: Fernweh
+  category: untranslatable
+  emotion: true
+  gloss_en: an ache to be far away, a longing for distant places one has not been to (opposite of homesickness)
+  senses:
+    - label: longing to travel to faraway places
+      clarify: 'Hier ist „Fernweh“ der starke Wunsch, in die Ferne zu reisen.'
+  gloss_src: 'Fernweh: Sehnsucht nach fernen Ländern und danach, zu reisen; Gegenteil von Heimweh. Beispiel: „Beim Anblick der Flugzeuge bekam er Fernweh.“'
+  source: TODO
+  notes: Gap word with one fairly clear reading; contrast with Sehnsucht.
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Fernweh]].'
+    - 'Ich habe [[Fernweh]].'
+  contexts:
+    - 'Im grauen November packt mich jedes Jahr das [[Fernweh]].'
+    - 'Die Reisekataloge verstärkten nur ihr [[Fernweh]].'
+    - 'Er litt nicht an Heimweh, sondern an [[Fernweh]].'
+    - 'Das [[Fernweh]] trieb sie nach dem Abitur nach Südamerika.'
+    - 'Am Hafen bekomme ich immer [[Fernweh]].'
+
+- word: Weltschmerz
+  category: untranslatable
+  emotion: true
+  gloss_en: world-weariness; sorrow at the gap between the world as it is and as it should be
+  senses:
+    - label: melancholy about the state of the world
+      clarify: 'Hier ist „Weltschmerz“ die Traurigkeit über die Unvollkommenheit der Welt.'
+    - label: vague world-weary malaise (mood)
+      clarify: 'Hier ist „Weltschmerz“ eine diffuse, müde Lustlosigkeit ohne bestimmten Grund.'
+  gloss_src: 'Weltschmerz: tiefe Traurigkeit über die Unzulänglichkeit der Welt und das eigene Leiden daran. Beispiel: „Nach den Nachrichten überkam ihn ein Anflug von Weltschmerz.“'
+  source: TODO
+  notes: Also borrowed into English (rare), so a partial loan.
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Weltschmerz]].'
+    - 'Ich bin voller [[Weltschmerz]].'
+  contexts:
+    - 'Die Gedichte Heines sind voller [[Weltschmerz]].'
+    - 'Nach den Abendnachrichten überkam ihn ein Anflug von [[Weltschmerz]].'
+    - 'Mit sechzehn hatte ich einen ausgeprägten [[Weltschmerz]].'
+    - 'Der [[Weltschmerz]] der Romantiker ist heute fast ein Klischee.'
+    - 'Gegen [[Weltschmerz]] hilft manchmal ein Spaziergang.'
+  extra:
+    - 'Er las über Kriege, Hunger und Klimakatastrophen. Dann klappte er den Laptop zu.'
+    - 'Sie saß am Fenster und schaute in den Regen. Nichts schien einen Sinn zu haben.'
+
+- word: Gemütlichkeit
+  category: untranslatable
+  emotion: false
+  gloss_en: cosy, unhurried warmth and conviviality; a state of comfortable belonging
+  senses:
+    - label: physical cosiness of a place
+      clarify: 'Hier ist „Gemütlichkeit“ die warme, behagliche Atmosphäre eines Ortes.'
+    - label: relaxed sociability, good company
+      clarify: 'Hier ist „Gemütlichkeit“ das entspannte, gesellige Beisammensein ohne Eile.'
+  gloss_src: 'Gemütlichkeit: Zustand von Behaglichkeit, Wärme und entspannter Geselligkeit. Beispiel: „Kerzen und ein Kachelofen sorgten für Gemütlichkeit.“'
+  source: TODO
+  notes: English 'cosiness' covers the first sense only; compare with English 'cosy' in the reverse direction.
+  exclude_from_pool: []
+  contexts:
+    - 'Der Kachelofen sorgt im Winter für [[Gemütlichkeit]].'
+    - 'In dieser Kneipe herrscht echte [[Gemütlichkeit]].'
+    - 'Bei aller [[Gemütlichkeit]] müssen wir heute noch arbeiten.'
+    - 'Die Wiener Kaffeehäuser sind berühmt für ihre [[Gemütlichkeit]].'
+    - 'Weihnachtsmärkte verkaufen vor allem [[Gemütlichkeit]].'
+  extra:
+    - 'Draußen lag Schnee. Wir hatten den ganzen Nachmittag nichts vor.'
+    - 'Die Freunde kamen gegen sieben. Niemand schaute auf die Uhr.'
+
+- word: Teppich
+  category: ordinary
+  freq_match_for: Sehnsucht
+  emotion: false
+  gloss_en: carpet, rug
+  senses:
+    - label: carpet
+      clarify: 'Hier ist „Teppich“ der Bodenbelag aus Stoff im Wohnzimmer.'
+  gloss_src: 'Teppich: gewebter oder geknüpfter Bodenbelag aus Wolle oder Kunstfaser. Beispiel: „Der Hund schläft auf dem Teppich.“'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Der Hund liegt am liebsten auf dem [[Teppich]] vor dem Sofa.'
+    - 'Wir haben einen neuen [[Teppich]] für das Wohnzimmer gekauft.'
+    - 'Auf dem hellen [[Teppich]] sieht man jeden Fleck.'
+    - 'Der alte [[Teppich]] stammt aus Persien.'
+    - 'Bitte zieh die Schuhe aus, bevor du auf den [[Teppich]] gehst.'
+  extra:
+    - 'Wir sind letzte Woche umgezogen. Das Wohnzimmer wirkt noch kahl.'
+    - 'Die Kinder haben den ganzen Nachmittag gespielt. Überall liegen Bauklötze.'
+
+- word: Brücke
+  category: ordinary
+  freq_match_for: Heimat
+  emotion: false
+  gloss_en: bridge
+  senses:
+    - label: bridge (structure)
+      clarify: 'Hier ist „Brücke“ das Bauwerk über einen Fluss.'
+  gloss_src: 'Brücke: Bauwerk, das über einen Fluss, eine Straße oder ein Tal führt. Beispiel: „Die alte Brücke wird renoviert.“'
+  source: TODO
+  notes: Literal sense only in contexts (dental bridge avoided).
+  exclude_from_pool: []
+  contexts:
+    - 'Die alte [[Brücke]] über den Rhein wird gesperrt.'
+    - 'Wir trafen uns auf der [[Brücke]] am Marktplatz.'
+    - 'Unter der [[Brücke]] fließt ein kleiner Bach.'
+    - 'Die neue [[Brücke]] wurde im Mai eröffnet.'
+    - 'Von der [[Brücke]] aus sieht man den Dom.'
+  extra:
+    - 'Der Fluss hatte nach dem Regen Hochwasser. Die Feuerwehr war im Einsatz.'
+    - 'Wir gingen am Ufer spazieren. Es war ein klarer Abend.'
+
+- word: Gießkanne
+  category: ordinary
+  freq_match_for: Fernweh
+  emotion: false
+  gloss_en: watering can
+  senses:
+    - label: watering can
+      clarify: 'Hier ist „Gießkanne“ das Gefäß zum Gießen von Pflanzen.'
+  gloss_src: 'Gießkanne: Gefäß mit Henkel und langem Ausguss zum Gießen von Pflanzen. Beispiel: „Sie füllte die Gießkanne am Wasserhahn.“'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Die [[Gießkanne]] steht neben der Gartentür.'
+    - 'Füll bitte die [[Gießkanne]] und gieß die Tomaten.'
+    - 'Die grüne [[Gießkanne]] hat ein Loch.'
+    - 'Das Kind spielte mit einer kleinen [[Gießkanne]] im Sand.'
+    - 'Im Sommer trage ich die [[Gießkanne]] jeden Abend durch den Garten.'
+  extra:
+    - 'Es hatte seit Wochen nicht geregnet. Die Blumen ließen die Köpfe hängen.'
+    - 'Oma hat einen kleinen Schrebergarten. Wir helfen ihr am Wochenende.'
+
+- word: Kleiderbügel
+  category: ordinary
+  freq_match_for: Weltschmerz
+  emotion: false
+  gloss_en: coat hanger
+  senses:
+    - label: clothes hanger
+      clarify: 'Hier ist „Kleiderbügel“ der Bügel, an den man Kleidung im Schrank hängt.'
+  gloss_src: 'Kleiderbügel: gebogener Halter aus Holz, Draht oder Kunststoff, an dem man Kleidung aufhängt. Beispiel: „Er hängte das Hemd auf einen Kleiderbügel.“'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Häng die Jacke auf einen [[Kleiderbügel]].'
+    - 'Im Schrank sind keine [[Kleiderbügel]] mehr frei.'
+    - 'Der [[Kleiderbügel]] aus Draht ist verbogen.'
+    - 'Sie kaufte zehn hölzerne [[Kleiderbügel]].'
+    - 'Das Kleid rutschte vom [[Kleiderbügel]].'
+  extra:
+    - 'Ich habe endlich den Kleiderschrank aufgeräumt. Es hat den ganzen Sonntag gedauert.'
+    - 'Morgen ist die Hochzeit. Der Anzug ist frisch aus der Reinigung.'
+
+- word: Wasserhahn
+  category: ordinary
+  freq_match_for: Gemütlichkeit
+  emotion: false
+  gloss_en: tap, faucet
+  senses:
+    - label: tap
+      clarify: 'Hier ist „Wasserhahn“ die Armatur am Waschbecken, aus der Wasser fließt.'
+  gloss_src: 'Wasserhahn: Vorrichtung an einer Leitung, mit der man Wasser fließen lässt oder abstellt. Beispiel: „Der Wasserhahn in der Küche tropft.“'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Der [[Wasserhahn]] in der Küche tropft schon seit Tagen.'
+    - 'Dreh bitte den [[Wasserhahn]] zu.'
+    - 'Wir haben einen neuen [[Wasserhahn]] im Bad montiert.'
+    - 'Aus dem [[Wasserhahn]] kam nur braunes Wasser.'
+    - 'Das Kind kommt noch nicht an den [[Wasserhahn]] heran.'
+  extra:
+    - 'Nachts hörte ich ein leises Geräusch. Es kam aus der Küche.'
+    - 'Der Klempner kam erst am Freitag. Bis dahin mussten wir improvisieren.'
+
+- word: Freude
+  category: emotion_plain
+  emotion: true
+  gloss_en: joy
+  senses:
+    - label: joy
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Freude]].'
+    - 'Ich bin voller [[Freude]].'
+  contexts:
+    - 'Die [[Freude]] über den Sieg war riesig.'
+    - 'Zu meiner großen [[Freude]] kam sie doch noch.'
+    - 'Er strahlte vor [[Freude]].'
+    - 'Kinder machen viel [[Freude]], aber auch viel Arbeit.'
+    - 'Diese Nachricht hat mir den Tag mit [[Freude]] erfüllt.'
+
+- word: Traurigkeit
+  category: emotion_plain
+  emotion: true
+  gloss_en: sadness
+  senses:
+    - label: sadness
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Traurigkeit]].'
+    - 'Ich bin voller [[Traurigkeit]].'
+  contexts:
+    - 'Eine tiefe [[Traurigkeit]] lag über dem Dorf.'
+    - 'In ihrer Stimme lag [[Traurigkeit]].'
+    - 'Die [[Traurigkeit]] verging nach ein paar Wochen.'
+    - 'Er konnte seine [[Traurigkeit]] nicht verbergen.'
+    - 'Die Musik war voller [[Traurigkeit]].'
+
+- word: Schloss
+  category: polysemous
+  emotion: false
+  gloss_en: (1) castle, palace; (2) lock
+  senses:
+    - label: castle
+      clarify: 'Hier ist „Schloss“ ein großes, prächtiges Gebäude, in dem früher Adelige wohnten.'
+    - label: lock
+      clarify: 'Hier ist „Schloss“ die Vorrichtung an einer Tür, die man mit einem Schlüssel öffnet.'
+  gloss_src: 'Schloss: (1) großes, repräsentatives Wohngebäude eines Fürsten oder Adligen; (2) Vorrichtung zum Verschließen einer Tür, die man mit einem Schlüssel bedient. Beispiel: „Das Schloss Neuschwanstein“; „Der Schlüssel steckt im Schloss.“'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 1]
+  contexts:
+    - 'Das [[Schloss]] liegt hoch über dem Tal.'
+    - 'Der Schlüssel klemmt im [[Schloss]].'
+    - 'Im Sommer finden Konzerte im [[Schloss]] statt.'
+    - 'Wir müssen das [[Schloss]] an der Haustür austauschen.'
+    - 'Das [[Schloss]] am Fahrrad ist aufgebrochen worden.'
+  extra:
+    - 'Wir machten einen Ausflug nach Bayern. Die Landschaft war wunderschön.'
+    - 'Ich kam spät nach Hause und war sehr müde. Die Tür ging nicht auf.'
+
+- word: Kiefer
+  category: polysemous
+  emotion: false
+  gloss_en: (1) jaw (der Kiefer); (2) pine (die Kiefer)
+  senses:
+    - label: jaw
+      clarify: 'Hier ist „Kiefer“ der Knochen im Gesicht, in dem die Zähne sitzen.'
+    - label: pine tree
+      clarify: 'Hier ist „Kiefer“ ein Nadelbaum mit langen Nadeln.'
+  gloss_src: 'Kiefer: (1) der Kiefer: Knochen des Gesichts, der die Zähne trägt; (2) die Kiefer: Nadelbaum mit langen, paarweise stehenden Nadeln. Beispiel: „Er hat sich den Kiefer gebrochen“; „Im Wald stehen alte Kiefern.“'
+  source: TODO
+  notes: Gender disambiguates in some contexts (der/die); contexts mix both.
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 1]
+  contexts:
+    - 'Nach dem Sturz tat ihm der [[Kiefer]] weh.'
+    - 'Am Strand wächst eine einzelne [[Kiefer]].'
+    - 'Der Zahnarzt röntgte meinen [[Kiefer]].'
+    - 'Die Möbel sind aus massiver [[Kiefer]].'
+    - 'Der Wald besteht hauptsächlich aus [[Kiefer]] und Birke.'
+  extra:
+    - 'Beim Fußballspiel gab es einen Zusammenstoß. Der Torwart blieb liegen.'
+    - 'Wir wanderten durch die Heide. Der Boden war sandig.'
+
+- word: Schadenfreude
+  category: loanword
+  loan_en: schadenfreude
+  emotion: true
+  gloss_en: pleasure at another's misfortune
+  senses:
+    - label: pleasure at another's misfortune
+      clarify: ''
+  source: TODO
+  notes: Borrowed into English; loanword sub-test runs with and without 'schadenfreude' in the English pool.
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Schadenfreude]].'
+    - 'Ich bin voller [[Schadenfreude]].'
+  contexts:
+    - 'Als der Angeber ins Wasser fiel, spürte ich ein wenig [[Schadenfreude]].'
+    - 'Ihre [[Schadenfreude]] war kaum zu übersehen.'
+    - '[[Schadenfreude]] ist die schönste Freude, sagt man.'
+    - 'Ohne jede [[Schadenfreude]] gratulierte er dem Verlierer.'
+    - 'Die Zuschauer reagierten mit [[Schadenfreude]].'
+
+- word: Angst
+  category: loanword
+  loan_en: angst
+  emotion: true
+  gloss_en: fear, anxiety (English 'angst' = existential dread)
+  senses:
+    - label: fear
+      clarify: ''
+    - label: existential anxiety
+      clarify: ''
+  source: TODO
+  notes: English loan has shifted meaning (existential angst), a good loanword test.
+  exclude_from_pool: []
+  frames:
+    - 'Ich fühle [[Angst]].'
+    - 'Ich habe [[Angst]].'
+  contexts:
+    - 'Das Kind hat [[Angst]] vor dem Hund.'
+    - 'Die [[Angst]] vor der Zukunft lähmte ihn.'
+    - 'Hab keine [[Angst]], ich bin bei dir.'
+    - 'Aus [[Angst]] sagte sie nichts.'
+    - 'Die [[Angst]] vor dem Fliegen hat er nie überwunden.'
+
+- word: Zeitgeist
+  category: loanword
+  loan_en: zeitgeist
+  emotion: false
+  gloss_en: the spirit of the age
+  senses:
+    - label: spirit of the times
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Der Roman trifft genau den [[Zeitgeist]] der Neunziger.'
+    - 'Mode ist ein Spiegel des [[Zeitgeist]]es.'
+    - 'Gegen den [[Zeitgeist]] zu schreiben, erfordert Mut.'
+    - 'Der [[Zeitgeist]] hat sich seit der Pandemie verändert.'
+    - 'Seine Musik war dem [[Zeitgeist]] voraus.'

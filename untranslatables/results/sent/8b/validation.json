@@ -1,0 +1,829 @@
+{
+ "model": "meta-llama/Llama-3.1-8B-Instruct (nf4)",
+ "delta": 0.5,
+ "eps_ot": 0.05,
+ "stop": [],
+ "layer_choice": {
+  "layer": 7,
+  "tau": 3.16228,
+  "neighbours": [
+   6,
+   8
+  ],
+  "detour_band": [
+   21,
+   22,
+   23,
+   24,
+   25
+  ],
+  "detour_source": "proportional to the 3B's 18-22 (no latent_lang.json for this model)",
+  "per_layer": [
+   {
+    "layer": 1,
+    "tau": 5.01187,
+    "matched_mean": 0.13018769471864228,
+    "mismatched_mean": 0.1500417163817802,
+    "separation": 1.4969723121053133,
+    "spelling_median": 0.08588718437755069,
+    "matched_median": 0.13145595921862233,
+    "auroc": 0.8533333333333334,
+    "auroc_ci": [
+     0.7812916666666666,
+     0.9101898148148148
+    ],
+    "auroc_spell_vs_matched": 0.12,
+    "spelling_wins": true
+   },
+   {
+    "layer": 2,
+    "tau": 5.01187,
+    "matched_mean": 0.1263423121769747,
+    "mismatched_mean": 0.1501403287165612,
+    "separation": 1.631394642643698,
+    "spelling_median": 0.10116408952533948,
+    "matched_median": 0.12960113672404883,
+    "auroc": 0.8825925925925926,
+    "auroc_ci": [
+     0.8188888888888889,
+     0.9327777777777778
+    ],
+    "auroc_spell_vs_matched": 0.22,
+    "spelling_wins": true
+   },
+   {
+    "layer": 3,
+    "tau": 3.98107,
+    "matched_mean": 0.14157997869963032,
+    "mismatched_mean": 0.18575248039078976,
+    "separation": 2.2025573867726114,
+    "spelling_median": 0.13253203613485057,
+    "matched_median": 0.1458790164848213,
+    "auroc": 0.9722222222222222,
+    "auroc_ci": [
+     0.9466666666666667,
+     0.9888888888888889
+    ],
+    "auroc_spell_vs_matched": 0.37833333333333335,
+    "spelling_wins": true
+   },
+   {
+    "layer": 4,
+    "tau": 3.98107,
+    "matched_mean": 0.13070725161087549,
+    "mismatched_mean": 0.18023232974441358,
+    "separation": 2.6713201702497473,
+    "spelling_median": 0.14067545491600447,
+    "matched_median": 0.13271735582760003,
+    "auroc": 0.9711111111111111,
+    "auroc_ci": [
+     0.9438842592592592,
+     0.9896296296296296
+    ],
+    "auroc_spell_vs_matched": 0.6,
+    "spelling_wins": false
+   },
+   {
+    "layer": 5,
+    "tau": 3.16228,
+    "matched_mean": 0.14965036362391024,
+    "mismatched_mean": 0.2202148373915459,
+    "separation": 3.2321919370721073,
+    "spelling_median": 0.17561840786027072,
+    "matched_median": 0.14383159053894004,
+    "auroc": 0.9944444444444445,
+    "auroc_ci": [
+     0.9851851851851852,
+     0.9990740740740741
+    ],
+    "auroc_spell_vs_matched": 0.7966666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 6,
+    "tau": 3.16228,
+    "matched_mean": 0.14509221303093298,
+    "mismatched_mean": 0.22101052733851298,
+    "separation": 3.4787752563573324,
+    "spelling_median": 0.18278644024899704,
+    "matched_median": 0.13733464792618436,
+    "auroc": 0.9977777777777778,
+    "auroc_ci": [
+     0.9925925925925926,
+     1.0
+    ],
+    "auroc_spell_vs_matched": 0.8316666666666667,
+    "spelling_wins": false
+   },
+   {
+    "layer": 7,
+    "tau": 3.16228,
+    "matched_mean": 0.14043077504266938,
+    "mismatched_mean": 0.21899296702233575,
+    "separation": 3.6681358480722017,
+    "spelling_median": 0.18663614084469038,
+    "matched_median": 0.13394748644189228,
+    "auroc": 0.9988888888888889,
+    "auroc_ci": [
+     0.9955555555555555,
+     1.0
+    ],
+    "auroc_spell_vs_matched": 0.9383333333333334,
+    "spelling_wins": false
+   },
+   {
+    "layer": 8,
+    "tau": 3.16228,
+    "matched_mean": 0.13103036218695183,
+    "mismatched_mean": 0.21109695283548993,
+    "separation": 3.702339587271304,
+    "spelling_median": 0.1841830165949503,
+    "matched_median": 0.12391171027487877,
+    "auroc": 0.9933333333333333,
+    "auroc_ci": [
+     0.9833333333333333,
+     0.9985185185185185
+    ],
+    "auroc_spell_vs_matched": 0.94,
+    "spelling_wins": false
+   },
+   {
+    "layer": 9,
+    "tau": 3.16228,
+    "matched_mean": 0.1314826195605384,
+    "mismatched_mean": 0.21087294043994576,
+    "separation": 3.6245403608730196,
+    "spelling_median": 0.18615596074357804,
+    "matched_median": 0.1248145401397725,
+    "auroc": 0.99,
+    "auroc_ci": [
+     0.9777777777777777,
+     0.9972268518518518
+    ],
+    "auroc_spell_vs_matched": 0.9383333333333334,
+    "spelling_wins": false
+   },
+   {
+    "layer": 10,
+    "tau": 3.16228,
+    "matched_mean": 0.13195295456144385,
+    "mismatched_mean": 0.20916473319487652,
+    "separation": 3.4583941732779167,
+    "spelling_median": 0.18886018463543697,
+    "matched_median": 0.12265650625337153,
+    "auroc": 0.99,
+    "auroc_ci": [
+     0.9777777777777777,
+     0.9974074074074074
+    ],
+    "auroc_spell_vs_matched": 0.9483333333333334,
+    "spelling_wins": false
+   },
+   {
+    "layer": 11,
+    "tau": 3.16228,
+    "matched_mean": 0.13323816771014232,
+    "mismatched_mean": 0.20971606755681485,
+    "separation": 3.3258245113024376,
+    "spelling_median": 0.18664299327476025,
+    "matched_median": 0.12346316222545728,
+    "auroc": 0.9807407407407407,
+    "auroc_ci": [
+     0.9611064814814815,
+     0.9938935185185185
+    ],
+    "auroc_spell_vs_matched": 0.9366666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 12,
+    "tau": 3.16228,
+    "matched_mean": 0.1327727836832033,
+    "mismatched_mean": 0.20748265588025924,
+    "separation": 3.283003768961272,
+    "spelling_median": 0.18646322790673117,
+    "matched_median": 0.12264460392716292,
+    "auroc": 0.9751851851851852,
+    "auroc_ci": [
+     0.9501851851851851,
+     0.9918518518518519
+    ],
+    "auroc_spell_vs_matched": 0.9366666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 13,
+    "tau": 3.16228,
+    "matched_mean": 0.13246090361855994,
+    "mismatched_mean": 0.2098699425032944,
+    "separation": 3.3487329509470736,
+    "spelling_median": 0.18618117601306766,
+    "matched_median": 0.1243997102639319,
+    "auroc": 0.9822222222222222,
+    "auroc_ci": [
+     0.9633240740740742,
+     0.9948148148148148
+    ],
+    "auroc_spell_vs_matched": 0.9366666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 14,
+    "tau": 3.16228,
+    "matched_mean": 0.13372407385011706,
+    "mismatched_mean": 0.21112489961331374,
+    "separation": 3.416026651849129,
+    "spelling_median": 0.18326853043895952,
+    "matched_median": 0.12568913263953452,
+    "auroc": 0.9877777777777778,
+    "auroc_ci": [
+     0.9740740740740741,
+     0.9966666666666667
+    ],
+    "auroc_spell_vs_matched": 0.9166666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 15,
+    "tau": 3.16228,
+    "matched_mean": 0.13480173015762295,
+    "mismatched_mean": 0.21408602129850635,
+    "separation": 3.3537889975559874,
+    "spelling_median": 0.18183009504851044,
+    "matched_median": 0.1260242089867168,
+    "auroc": 0.99,
+    "auroc_ci": [
+     0.9777777777777777,
+     0.9974074074074074
+    ],
+    "auroc_spell_vs_matched": 0.8833333333333333,
+    "spelling_wins": false
+   },
+   {
+    "layer": 16,
+    "tau": 3.16228,
+    "matched_mean": 0.13714991868587414,
+    "mismatched_mean": 0.2172560393275736,
+    "separation": 3.4348447699927225,
+    "spelling_median": 0.1755050855688357,
+    "matched_median": 0.12850536897196652,
+    "auroc": 0.9944444444444445,
+    "auroc_ci": [
+     0.9857407407407407,
+     0.9990740740740741
+    ],
+    "auroc_spell_vs_matched": 0.8233333333333334,
+    "spelling_wins": false
+   },
+   {
+    "layer": 17,
+    "tau": 3.16228,
+    "matched_mean": 0.13926082334864037,
+    "mismatched_mean": 0.21858690309324744,
+    "separation": 3.358678273693969,
+    "spelling_median": 0.1699396016781942,
+    "matched_median": 0.12933041369165507,
+    "auroc": 0.9922222222222222,
+    "auroc_ci": [
+     0.9814814814814815,
+     0.9981527777777777
+    ],
+    "auroc_spell_vs_matched": 0.7933333333333333,
+    "spelling_wins": false
+   },
+   {
+    "layer": 18,
+    "tau": 3.16228,
+    "matched_mean": 0.14322368148479056,
+    "mismatched_mean": 0.2207162344964515,
+    "separation": 3.2501276939949792,
+    "spelling_median": 0.16743514535263104,
+    "matched_median": 0.13201068758253193,
+    "auroc": 0.9933333333333333,
+    "auroc_ci": [
+     0.9833333333333333,
+     0.9985185185185185
+    ],
+    "auroc_spell_vs_matched": 0.7333333333333333,
+    "spelling_wins": false
+   },
+   {
+    "layer": 19,
+    "tau": 3.16228,
+    "matched_mean": 0.1452663968478797,
+    "mismatched_mean": 0.22225554927039898,
+    "separation": 3.2356579681217776,
+    "spelling_median": 0.16390905570574077,
+    "matched_median": 0.13074856893279146,
+    "auroc": 0.9922222222222222,
+    "auroc_ci": [
+     0.9814814814814815,
+     0.9981527777777777
+    ],
+    "auroc_spell_vs_matched": 0.6766666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 20,
+    "tau": 3.16228,
+    "matched_mean": 0.14992745595376977,
+    "mismatched_mean": 0.22373693577961312,
+    "separation": 3.194773546467043,
+    "spelling_median": 0.16304207926779057,
+    "matched_median": 0.13478959167778926,
+    "auroc": 0.9933333333333333,
+    "auroc_ci": [
+     0.9833333333333333,
+     0.9985185185185185
+    ],
+    "auroc_spell_vs_matched": 0.6383333333333333,
+    "spelling_wins": false
+   },
+   {
+    "layer": 21,
+    "tau": 3.98107,
+    "matched_mean": 0.12536572654586153,
+    "mismatched_mean": 0.18411124154772615,
+    "separation": 3.106857076334211,
+    "spelling_median": 0.13295800453352635,
+    "matched_median": 0.11418647845118024,
+    "auroc": 0.9942592592592593,
+    "auroc_ci": [
+     0.985,
+     0.9990740740740741
+    ],
+    "auroc_spell_vs_matched": 0.6133333333333333,
+    "spelling_wins": false
+   },
+   {
+    "layer": 22,
+    "tau": 3.98107,
+    "matched_mean": 0.12792880552730182,
+    "mismatched_mean": 0.1848425044187109,
+    "separation": 3.202802190544881,
+    "spelling_median": 0.13371855829632878,
+    "matched_median": 0.11691336511906485,
+    "auroc": 0.9942592592592593,
+    "auroc_ci": [
+     0.985,
+     0.9990740740740741
+    ],
+    "auroc_spell_vs_matched": 0.57,
+    "spelling_wins": false
+   },
+   {
+    "layer": 23,
+    "tau": 3.98107,
+    "matched_mean": 0.13019168127708466,
+    "mismatched_mean": 0.1860989868778341,
+    "separation": 3.210511172814106,
+    "spelling_median": 0.13446994515820618,
+    "matched_median": 0.119490073911941,
+    "auroc": 0.9942592592592593,
+    "auroc_ci": [
+     0.985,
+     0.9990740740740741
+    ],
+    "auroc_spell_vs_matched": 0.5516666666666666,
+    "spelling_wins": false
+   },
+   {
+    "layer": 24,
+    "tau": 3.98107,
+    "matched_mean": 0.13373790594334892,
+    "mismatched_mean": 0.1867835764037362,
+    "separation": 3.156908645603589,
+    "spelling_median": 0.13592348221430256,
+    "matched_median": 0.1244525942783257,
+    "auroc": 0.9931481481481481,
+    "auroc_ci": [
+     0.9827777777777778,
+     0.9988888888888889
+    ],
+    "auroc_spell_vs_matched": 0.53,
+    "spelling_wins": false
+   },
+   {
+    "layer": 25,
+    "tau": 3.98107,
+    "matched_mean": 0.13932540346607442,
+    "mismatched_mean": 0.18777551927849598,
+    "separation": 3.1121885942833254,
+    "spelling_median": 0.1388735559608523,
+    "matched_median": 0.13072956563837712,
+    "auroc": 0.9931481481481481,
+    "auroc_ci": [
+     0.9827777777777778,
+     0.9988888888888889
+    ],
+    "auroc_spell_vs_matched": 0.46,
+    "spelling_wins": false
+   },
+   {
+    "layer": 26,
+    "tau": 3.98107,
+    "matched_mean": 0.1429103194234474,
+    "mismatched_mean": 0.18811940772908037,
+    "separation": 3.0784455783604217,
+    "spelling_median": 0.14078999880826706,
+    "matched_median": 0.1351287831726185,
+    "auroc": 0.9931481481481481,
+    "auroc_ci": [
+     0.9827777777777778,
+     0.9988888888888889
+    ],
+    "auroc_spell_vs_matched": 0.44333333333333336,
+    "spelling_wins": false
+   },
+   {
+    "layer": 27,
+    "tau": 3.98107,
+    "matched_mean": 0.1481821675019208,
+    "mismatched_mean": 0.18912294579108455,
+    "separation": 2.9778268537897863,
+    "spelling_median": 0.14237858653437632,
+    "matched_median": 0.1411426503048132,
+    "auroc": 0.9887037037037038,
+    "auroc_ci": [
+     0.9744444444444444,
+     0.9972222222222222
+    ],
+    "auroc_spell_vs_matched": 0.4066666666666667,
+    "spelling_wins": false
+   },
+   {
+    "layer": 28,
+    "tau": 5.01187,
+    "matched_mean": 0.12490810059189711,
+    "mismatched_mean": 0.15446809238359266,
+    "separation": 2.815144640141306,
+    "spelling_median": 0.11727907137188151,
+    "matched_median": 0.11931301514585951,
+    "auroc": 0.9864814814814815,
+    "auroc_ci": [
+     0.9709166666666668,
+     0.9962962962962963
+    ],
+    "auroc_spell_vs_matched": 0.35,
+    "spelling_wins": true
+   },
+   {
+    "layer": 29,
+    "tau": 5.01187,
+    "matched_mean": 0.12960532099602518,
+    "mismatched_mean": 0.15529869952864603,
+    "separation": 2.7085291310365522,
+    "spelling_median": 0.1187868772480716,
+    "matched_median": 0.12488204634217179,
+    "auroc": 0.9774074074074074,
+    "auroc_ci": [
+     0.9538888888888889,
+     0.9922222222222222
+    ],
+    "auroc_spell_vs_matched": 0.32,
+    "spelling_wins": true
+   },
+   {
+    "layer": 30,
+    "tau": 5.01187,
+    "matched_mean": 0.13376263668515387,
+    "mismatched_mean": 0.15612577660503257,
+    "separation": 2.713068426285491,
+    "spelling_median": 0.12051893706734731,
+    "matched_median": 0.13006974713793623,
+    "auroc": 0.9829629629629629,
+    "auroc_ci": [
+     0.9640740740740741,
+     0.9948148148148148
+    ],
+    "auroc_spell_vs_matched": 0.285,
+    "spelling_wins": true
+   },
+   {
+    "layer": 31,
+    "tau": 5.01187,
+    "matched_mean": 0.1377420723459986,
+    "mismatched_mean": 0.15661987805363548,
+    "separation": 2.6123249832872135,
+    "spelling_median": 0.12215847768092124,
+    "matched_median": 0.13492177716930315,
+    "auroc": 0.9746296296296296,
+    "auroc_ci": [
+     0.951662037037037,
+     0.9905555555555555
+    ],
+    "auroc_spell_vs_matched": 0.21833333333333332,
+    "spelling_wins": true
+   },
+   {
+    "layer": 32,
+    "tau": 5.01187,
+    "matched_mean": 0.133565935673064,
+    "mismatched_mean": 0.15076806726992903,
+    "separation": 2.137600499537152,
+    "spelling_median": 0.12585273776718717,
+    "matched_median": 0.1339263591514314,
+    "auroc": 0.9438888888888889,
+    "auroc_ci": [
+     0.9022175925925926,
+     0.9742638888888888
+    ],
+    "auroc_spell_vs_matched": 0.33666666666666667,
+    "spelling_wins": true
+   }
+  ],
+  "rule": "argmax AUROC(mismatched vs matched controls) to 2 d.p., ties broken by the standardised mean difference; layers where the spelling control's median d <= the matched median are excluded"
+ },
+ "warnings": [],
+ "epsilon": {
+  "rt": 0.13969436392951323,
+  "cl": 0.17778991399822872,
+  "rule": "90% quantile of d(control, B1) over 60 B1 candidates"
+ },
+ "ladder": {
+  "rt": {
+   "profile": {
+    "B0": {
+     "practice": "word-for-word",
+     "best_mean": 0.15028554859775958,
+     "greedy_mean": 0.21385265666926628,
+     "median_len": 10.5
+    },
+    "B1": {
+     "practice": "standard translation",
+     "best_mean": 0.2428095638138558,
+     "greedy_mean": 0.3012761000742314,
+     "median_len": 10.5
+    },
+    "B2": {
+     "practice": "keep the word",
+     "best_mean": 0.12394987204777713,
+     "greedy_mean": 0.19614396321819755,
+     "median_len": 12.0
+    },
+    "B3": {
+     "practice": "inline gloss",
+     "best_mean": 0.14965433995308922,
+     "greedy_mean": 0.2605762502015143,
+     "median_len": 11.25
+    },
+    "B4": {
+     "practice": "alternatives",
+     "best_mean": 0.21975075014122017,
+     "greedy_mean": 0.2905813476431378,
+     "median_len": 11.0
+    },
+    "B5": {
+     "practice": "footnote",
+     "best_mean": 0.10770022649500317,
+     "greedy_mean": 0.18682178312636594,
+     "median_len": 63.25
+    },
+    "B6": {
+     "practice": "thick translation",
+     "best_mean": 0.060465693358908605,
+     "greedy_mean": 0.12291266694891907,
+     "median_len": 132.25
+    },
+    "B7": {
+     "practice": "coinage",
+     "best_mean": 0.27105694281649784,
+     "greedy_mean": 0.4187970873017388,
+     "median_len": 40.5
+    }
+   },
+   "B6_minus_B1": [
+    -0.1823438704549472,
+    -0.23115693194695833,
+    -0.13795265375924531
+   ],
+   "length_vs_d_spearman": -0.5988131309566295,
+   "passed": true
+  },
+  "cl": {
+   "profile": {
+    "B0": {
+     "practice": "word-for-word",
+     "best_mean": 0.14880313902402265,
+     "greedy_mean": 0.16596786259259771,
+     "median_len": 10.5
+    },
+    "B1": {
+     "practice": "standard translation",
+     "best_mean": 0.17529804018516496,
+     "greedy_mean": 0.17954500864302375,
+     "median_len": 10.5
+    },
+    "B2": {
+     "practice": "keep the word",
+     "best_mean": 0.1537387615608738,
+     "greedy_mean": 0.16002952204819573,
+     "median_len": 12.0
+    },
+    "B3": {
+     "practice": "inline gloss",
+     "best_mean": 0.15361101409626834,
+     "greedy_mean": 0.17583708861061995,
+     "median_len": 11.25
+    },
+    "B4": {
+     "practice": "alternatives",
+     "best_mean": 0.16847915041366082,
+     "greedy_mean": 0.17811608624266678,
+     "median_len": 11.0
+    },
+    "B5": {
+     "practice": "footnote",
+     "best_mean": 0.15005142037837071,
+     "greedy_mean": 0.16407997891923218,
+     "median_len": 63.25
+    },
+    "B6": {
+     "practice": "thick translation",
+     "best_mean": 0.13014389578222627,
+     "greedy_mean": 0.15090431419464906,
+     "median_len": 132.25
+    },
+    "B7": {
+     "practice": "coinage",
+     "best_mean": 0.16492922142057928,
+     "greedy_mean": 0.18250882078429315,
+     "median_len": 40.5
+    }
+   },
+   "B6_minus_B1": [
+    -0.04515414440293866,
+    -0.05376247387171147,
+    -0.03629846316464182
+   ],
+   "length_vs_d_spearman": -0.47905050476530353,
+   "passed": true
+  }
+ },
+ "heatmap": {
+  "rt": {
+   "auroc_hot_vs_other_content": [
+    0.7260127931769722,
+    0.6368503464818763,
+    0.811577158848614
+   ],
+   "n_hot": 67,
+   "n_other": 56,
+   "mean_hot": 0.48826724247065884,
+   "mean_other": 0.1866038548127365
+  },
+  "cl": {
+   "auroc_hot_vs_other_content": [
+    0.6974946695095949,
+    0.601512526652452,
+    0.7894456289978679
+   ],
+   "n_hot": 67,
+   "n_other": 56,
+   "mean_hot": 0.19947382170477249,
+   "mean_other": 0.16314094276476301
+  }
+ },
+ "fathers_sentence": {
+  "rt": {
+   "leftover": {
+    "duende": 0.4994866998998995,
+    "gusta": 0.22570281837644746,
+    "mucho": 0.012682515207581457
+   },
+   "weight": {
+    "duende": 15.779999675229192,
+    "gusta": 4.108499765396118,
+    "mucho": 5.211900025606155
+   },
+   "order_holds": true
+  },
+  "cl": {
+   "leftover": {
+    "duende": 0.21480463879079495,
+    "gusta": 0.143,
+    "mucho": 0.1423
+   },
+   "weight": {
+    "duende": 15.779999675229192,
+    "gusta": 4.108499765396118,
+    "mucho": 5.211900025606155
+   },
+   "order_holds": true
+  }
+ },
+ "agreement": {
+  "A": {
+   "spearman": 0.5144465290806755,
+   "n": 40
+  },
+  "U": {
+   "spearman": 0.15543013634868416,
+   "n": 40
+  },
+  "token_leftover_B1": {
+   "spearman": 0.41347193932120635,
+   "n": 335
+  },
+  "note": "U uses the censoring bound for censored sentences; A has no threshold"
+ },
+ "detour": {
+  "layers": [
+   21,
+   22,
+   23,
+   24,
+   25
+  ],
+  "by_category": {
+   "construction": {
+    "n": 8,
+    "concept_layer": 0.1717974312384306,
+    "detour": 0.15281319046605785,
+    "detour_minus_concept": [
+     -0.01898424077237276,
+     -0.02726192433004378,
+     -0.010203946481265042
+    ]
+   },
+   "control": {
+    "n": 10,
+    "concept_layer": 0.14021779217708777,
+    "detour": 0.13125340397862703,
+    "detour_minus_concept": [
+     -0.008964388198460755,
+     -0.014659730645949018,
+     -0.0026972741543748076
+    ]
+   },
+   "dialect": {
+    "n": 2,
+    "concept_layer": 0.217400445877394,
+    "detour": 0.17415998203807642,
+    "detour_minus_concept": [
+     -0.04324046383931755,
+     -0.048376319409590585,
+     -0.03810460826904452
+    ]
+   },
+   "idiom": {
+    "n": 8,
+    "concept_layer": 0.17915275599591593,
+    "detour": 0.1571168274991897,
+    "detour_minus_concept": [
+     -0.022035928496726222,
+     -0.03159620816536647,
+     -0.01230956989055093
+    ]
+   },
+   "untranslatable_in_context": {
+    "n": 12,
+    "concept_layer": 0.17866232247176275,
+    "detour": 0.15762319257072074,
+    "detour_minus_concept": [
+     -0.02103912990104202,
+     -0.027122829983941422,
+     -0.015435400544138776
+    ]
+   }
+  },
+  "note": "d_CL of the greedy B1, each layer with its own control-calibrated tau; negative = the English translation looks closer in the detour layers"
+ },
+ "spelling_check": {
+  "rt": {
+   "B2_gain": 0.10513213685603383,
+   "B2_gain_masked": -0.0534934481532595,
+   "B3_gain": 0.04069984987271705,
+   "share_surviving_masking": -0.5088210869956208
+  },
+  "cl": {
+   "B2_gain": 0.019515486594828026,
+   "B2_gain_masked": -0.0008184523788498645,
+   "B3_gain": 0.00370792003240381,
+   "share_surviving_masking": -0.041938609876464465
+  }
+ },
+ "second_backtranslators": {
+  "3b": {
+   "model": "meta-llama/Llama-3.2-3B-Instruct (bf16)",
+   "A_vs_main": {
+    "spearman": 0.7547842401500938,
+    "n": 40
+   }
+  },
+  "aya8b": {
+   "model": "CohereForAI/aya-23-8B (nf4)",
+   "A_vs_main": {
+    "spearman": 0.7012524047303651,
+    "n": 40
+   }
+  },
+  "qwen7b": {
+   "model": "Qwen/Qwen2.5-7B-Instruct (nf4)",
+   "A_vs_main": {
+    "spearman": 0.7054409005628518,
+    "n": 40
+   }
+  }
+ }
+}

@@ -1,0 +1,1608 @@
+{
+ "model": "CohereForAI/aya-23-8B (nf4)",
+ "chooser": "rt",
+ "layer": 16,
+ "tau": 1.99526,
+ "prompt": "Here is a {lang} sentence.\n\n{lang}: {source}\n\nIn at most 8 English words, what does the {lang} word \"{word}\" mean in this sentence? Do not repeat the {lang} word. Reply with the gloss only.",
+ "summary": {
+  "rt": {
+   "cut_targeted": [
+    0.006537064510548329,
+    -0.0018340039069025397,
+    0.014787693070462423
+   ],
+   "cut_random": [
+    0.0022910460576181283,
+    -0.0024620595316718653,
+    0.00707515806574937
+   ],
+   "targeted_minus_random": [
+    0.004246018452930201,
+    -0.00425002149706565,
+    0.012382873262635288
+   ],
+   "share_sentences_targeted_better": 0.5833333333333334
+  },
+  "cl": {
+   "cut_targeted": [
+    0.004534529188776413,
+    0.001992630126068186,
+    0.00837262382002891
+   ],
+   "cut_random": [
+    0.002391926232497069,
+    0.0012907963900206639,
+    0.003820792622574574
+   ],
+   "targeted_minus_random": [
+    0.0021426029562793443,
+    0.00026312871746993097,
+    0.005334893830895409
+   ],
+   "share_sentences_targeted_better": 0.625
+  }
+ },
+ "added_length": {
+  "targeted": [
+   6.833333333333333,
+   6.041666666666667,
+   7.666666666666667
+  ],
+  "random": [
+   6.4444444444444455,
+   5.861111111111111,
+   7.097222222222221
+  ]
+ },
+ "sentences": [
+  {
+   "sid": "es_duende",
+   "base": "I like the duende a lot.",
+   "targeted": [
+    "gusta"
+   ],
+   "random": [
+    [
+     "duende"
+    ],
+    [
+     "duende"
+    ],
+    [
+     "duende"
+    ]
+   ],
+   "base_scores": {
+    "text": "I like the duende a lot.",
+    "len": 8,
+    "d_rt": 0.00015214351401486876,
+    "d_cl": 0.13229874216103557
+   },
+   "targeted_scores": {
+    "text": "I like the duende a lot. [like]",
+    "len": 11,
+    "d_rt": 0.0065742057592881355,
+    "d_cl": 0.1321860544303886
+   },
+   "random_scores": [
+    {
+     "text": "I like the duende a lot. [spirit, energy]",
+     "len": 13,
+     "d_rt": 0.016887942882758165,
+     "d_cl": 0.1321892821973494
+    },
+    {
+     "text": "I like the duende a lot. [spirit, energy]",
+     "len": 13,
+     "d_rt": 0.016887942882758165,
+     "d_cl": 0.1321892821973494
+    },
+    {
+     "text": "I like the duende a lot. [spirit, energy]",
+     "len": 13,
+     "d_rt": 0.016887942882758165,
+     "d_cl": 0.1321892821973494
+    }
+   ],
+   "added_len": {
+    "targeted": 3,
+    "random": 5.0
+   },
+   "glosses": {
+    "gusta": "like",
+    "duende": "spirit, energy"
+   }
+  },
+  {
+   "sid": "pt_saudade",
+   "base": "I miss my grandmother's house a lot.",
+   "targeted": [
+    "saudade",
+    "muita"
+   ],
+   "random": [
+    [
+     "Sinto",
+     "avó"
+    ],
+    [
+     "Sinto",
+     "casa"
+    ],
+    [
+     "Sinto",
+     "casa"
+    ]
+   ],
+   "base_scores": {
+    "text": "I miss my grandmother's house a lot.",
+    "len": 9,
+    "d_rt": 0.08939783161935025,
+    "d_cl": 0.2310597558489317
+   },
+   "targeted_scores": {
+    "text": "I miss my grandmother's house a lot. [nostalgia; much]",
+    "len": 16,
+    "d_rt": 0.07426817698439411,
+    "d_cl": 0.22448636061860666
+   },
+   "random_scores": [
+    {
+     "text": "I miss my grandmother's house a lot. [I miss my grandmother's house; grandmother]",
+     "len": 19,
+     "d_rt": 0.10828874447690355,
+     "d_cl": 0.22689952703857114
+    },
+    {
+     "text": "I miss my grandmother's house a lot. [I miss my grandmother's house; home]",
+     "len": 19,
+     "d_rt": 0.0995995890409003,
+     "d_cl": 0.22625317139478066
+    },
+    {
+     "text": "I miss my grandmother's house a lot. [I miss my grandmother's house; home]",
+     "len": 19,
+     "d_rt": 0.0995995890409003,
+     "d_cl": 0.22625317139478066
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 10.0
+   },
+   "glosses": {
+    "saudade": "nostalgia",
+    "muita": "much",
+    "Sinto": "I miss my grandmother's house",
+    "avó": "grandmother",
+    "casa": "home"
+   }
+  },
+  {
+   "sid": "es_sobremesa",
+   "base": "We stayed for the afternoon until it got dark.",
+   "targeted": [
+    "sobremesa",
+    "de"
+   ],
+   "random": [
+    [
+     "anocheció",
+     "quedamos"
+    ],
+    [
+     "quedamos",
+     "anocheció"
+    ],
+    [
+     "quedamos",
+     "anocheció"
+    ]
+   ],
+   "base_scores": {
+    "text": "We stayed for the afternoon until it got dark.",
+    "len": 10,
+    "d_rt": 0.3707191673770778,
+    "d_cl": 0.2573579676177642
+   },
+   "targeted_scores": {
+    "text": "We stayed for the afternoon until it got dark. [Meal after lunch; of]",
+    "len": 17,
+    "d_rt": 0.34267351240885574,
+    "d_cl": 0.25027789487543267
+   },
+   "random_scores": [
+    {
+     "text": "We stayed for the afternoon until it got dark. [Se oscureció; …: stayed]",
+     "len": 20,
+     "d_rt": 0.38205748646068416,
+     "d_cl": 0.24827952691672667
+    },
+    {
+     "text": "We stayed for the afternoon until it got dark. […: stayed; Se oscureció]",
+     "len": 19,
+     "d_rt": 0.3819262619391752,
+     "d_cl": 0.24923185457827202
+    },
+    {
+     "text": "We stayed for the afternoon until it got dark. […: stayed; Se oscureció]",
+     "len": 19,
+     "d_rt": 0.3819262619391752,
+     "d_cl": 0.24923185457827202
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 9.333333333333332
+   },
+   "glosses": {
+    "sobremesa": "Meal after lunch",
+    "de": "of",
+    "anocheció": "Se oscureció",
+    "quedamos": "…: stayed"
+   }
+  },
+  {
+   "sid": "de_fernweh",
+   "base": "Every fall I get the wanderlust.",
+   "targeted": [
+    "packt",
+    "Fernweh"
+   ],
+   "random": [
+    [
+     "Herbst",
+     "mich"
+    ],
+    [
+     "Herbst",
+     "mich"
+    ],
+    [
+     "Herbst",
+     "mich"
+    ]
+   ],
+   "base_scores": {
+    "text": "Every fall I get the wanderlust.",
+    "len": 8,
+    "d_rt": 0.1789859983551712,
+    "d_cl": 0.23968098522750547
+   },
+   "targeted_scores": {
+    "text": "Every fall I get the wanderlust. [is affected by; longing for faraway places]",
+    "len": 19,
+    "d_rt": 0.14455620329468274,
+    "d_cl": 0.23615671192038487
+   },
+   "random_scores": [
+    {
+     "text": "Every fall I get the wanderlust. [autumn; I]",
+     "len": 14,
+     "d_rt": 0.15790131813990457,
+     "d_cl": 0.23807746479870745
+    },
+    {
+     "text": "Every fall I get the wanderlust. [autumn; I]",
+     "len": 14,
+     "d_rt": 0.15790131813990457,
+     "d_cl": 0.23807746479870745
+    },
+    {
+     "text": "Every fall I get the wanderlust. [autumn; I]",
+     "len": 14,
+     "d_rt": 0.15790131813990457,
+     "d_cl": 0.23807746479870745
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 6.0
+   },
+   "glosses": {
+    "packt": "is affected by",
+    "Fernweh": "longing for faraway places",
+    "Herbst": "autumn",
+    "mich": "I"
+   }
+  },
+  {
+   "sid": "it_magari_forse",
+   "base": "Maybe I'll drop by tonight, we'll see.",
+   "targeted": [
+    "passo",
+    "Magari"
+   ],
+   "random": [
+    [
+     "vediamo",
+     "stasera"
+    ],
+    [
+     "vediamo",
+     "stasera"
+    ],
+    [
+     "stasera",
+     "vediamo"
+    ]
+   ],
+   "base_scores": {
+    "text": "Maybe I'll drop by tonight, we'll see.",
+    "len": 11,
+    "d_rt": 0.3157806714385647,
+    "d_cl": 0.2270138741630373
+   },
+   "targeted_scores": {
+    "text": "Maybe I'll drop by tonight, we'll see. [come; Perhaps I'll drop by tonight]",
+    "len": 21,
+    "d_rt": 0.3429086732763981,
+    "d_cl": 0.22540599671960224
+   },
+   "random_scores": [
+    {
+     "text": "Maybe I'll drop by tonight, we'll see. [let's see; Tonight]",
+     "len": 18,
+     "d_rt": 0.3165234928425991,
+     "d_cl": 0.22592895831489712
+    },
+    {
+     "text": "Maybe I'll drop by tonight, we'll see. [let's see; Tonight]",
+     "len": 18,
+     "d_rt": 0.3165234928425991,
+     "d_cl": 0.22592895831489712
+    },
+    {
+     "text": "Maybe I'll drop by tonight, we'll see. [Tonight; let's see]",
+     "len": 18,
+     "d_rt": 0.32284979472450703,
+     "d_cl": 0.22531240652785314
+    }
+   ],
+   "added_len": {
+    "targeted": 10,
+    "random": 7.0
+   },
+   "glosses": {
+    "passo": "come",
+    "Magari": "Perhaps I'll drop by tonight",
+    "vediamo": "let's see",
+    "stasera": "Tonight"
+   }
+  },
+  {
+   "sid": "pt_jeitinho",
+   "base": "He gave me a hand and got the document the same day.",
+   "targeted": [
+    "deu",
+    "jeitinho"
+   ],
+   "random": [
+    [
+     "documento",
+     "um"
+    ],
+    [
+     "documento",
+     "um"
+    ],
+    [
+     "conseguiu",
+     "documento"
+    ]
+   ],
+   "base_scores": {
+    "text": "He gave me a hand and got the document the same day.",
+    "len": 13,
+    "d_rt": 0.26488030510235383,
+    "d_cl": 0.21393914731616054
+   },
+   "targeted_scores": {
+    "text": "He gave me a hand and got the document the same day. [gave; way out]",
+    "len": 20,
+    "d_rt": 0.23488543864544545,
+    "d_cl": 0.21318598240685402
+   },
+   "random_scores": [
+    {
+     "text": "He gave me a hand and got the document the same day. [paper; a]",
+     "len": 18,
+     "d_rt": 0.2766031517340108,
+     "d_cl": 0.21355136223483526
+    },
+    {
+     "text": "He gave me a hand and got the document the same day. [paper; a]",
+     "len": 18,
+     "d_rt": 0.2766031517340108,
+     "d_cl": 0.21360863831908689
+    },
+    {
+     "text": "He gave me a hand and got the document the same day. [managed to get; paper]",
+     "len": 20,
+     "d_rt": 0.2515088880338988,
+     "d_cl": 0.2119065921517677
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 5.666666666666668
+   },
+   "glosses": {
+    "deu": "gave",
+    "jeitinho": "way out",
+    "documento": "paper",
+    "um": "a",
+    "conseguiu": "managed to get"
+   }
+  },
+  {
+   "sid": "pt_cafune",
+   "base": "She rocked her son to sleep.",
+   "targeted": [
+    "cafuné",
+    "fazia"
+   ],
+   "random": [
+    [
+     "filho",
+     "dormir"
+    ],
+    [
+     "filho",
+     "dormir"
+    ],
+    [
+     "filho",
+     "dormir"
+    ]
+   ],
+   "base_scores": {
+    "text": "She rocked her son to sleep.",
+    "len": 7,
+    "d_rt": 0.6080982365723114,
+    "d_cl": 0.26264245340043807
+   },
+   "targeted_scores": {
+    "text": "She rocked her son to sleep. [Head massage; make]",
+    "len": 13,
+    "d_rt": 0.6109919106548665,
+    "d_cl": 0.2540333882920444
+   },
+   "random_scores": [
+    {
+     "text": "She rocked her son to sleep. [child; to sleep]",
+     "len": 13,
+     "d_rt": 0.6013676587050742,
+     "d_cl": 0.25995938757959086
+    },
+    {
+     "text": "She rocked her son to sleep. [child; to sleep]",
+     "len": 13,
+     "d_rt": 0.6013676587050742,
+     "d_cl": 0.25995938757959086
+    },
+    {
+     "text": "She rocked her son to sleep. [child; to sleep]",
+     "len": 13,
+     "d_rt": 0.6013676587050742,
+     "d_cl": 0.25995938757959086
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 6.0
+   },
+   "glosses": {
+    "cafuné": "Head massage",
+    "fazia": "make",
+    "filho": "child",
+    "dormir": "to sleep"
+   }
+  },
+  {
+   "sid": "de_gemuetlichkeit",
+   "base": "In the little cabin there was a wonderful homey feeling.",
+   "targeted": [
+    "Gemütlichkeit",
+    "herrschte"
+   ],
+   "random": [
+    [
+     "wunderbare",
+     "Hütte"
+    ],
+    [
+     "Hütte",
+     "wunderbare"
+    ],
+    [
+     "wunderbare",
+     "Hütte"
+    ]
+   ],
+   "base_scores": {
+    "text": "In the little cabin there was a wonderful homey feeling.",
+    "len": 12,
+    "d_rt": 0.12674673663986896,
+    "d_cl": 0.19276043978327967
+   },
+   "targeted_scores": {
+    "text": "In the little cabin there was a wonderful homey feeling. [coziness; was]",
+    "len": 19,
+    "d_rt": 0.09436165484352631,
+    "d_cl": 0.19252545910395455
+   },
+   "random_scores": [
+    {
+     "text": "In the little cabin there was a wonderful homey feeling. [wonderful; cabin]",
+     "len": 19,
+     "d_rt": 0.1291959761944357,
+     "d_cl": 0.19253312950794238
+    },
+    {
+     "text": "In the little cabin there was a wonderful homey feeling. [cabin; wonderful]",
+     "len": 18,
+     "d_rt": 0.12326450253261168,
+     "d_cl": 0.19242531875066643
+    },
+    {
+     "text": "In the little cabin there was a wonderful homey feeling. [wonderful; cabin]",
+     "len": 19,
+     "d_rt": 0.1291959761944357,
+     "d_cl": 0.19253312950794238
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 6.666666666666668
+   },
+   "glosses": {
+    "Gemütlichkeit": "coziness",
+    "herrschte": "was",
+    "wunderbare": "wonderful",
+    "Hütte": "cabin"
+   }
+  },
+  {
+   "sid": "fr_depaysement",
+   "base": "In Tokyo, I felt a deep sense of disorientation.",
+   "targeted": [
+    "dépaysement",
+    "profond"
+   ],
+   "random": [
+    [
+     "j'ai",
+     "ressenti"
+    ],
+    [
+     "ressenti",
+     "j'ai"
+    ],
+    [
+     "j'ai",
+     "ressenti"
+    ]
+   ],
+   "base_scores": {
+    "text": "In Tokyo, I felt a deep sense of disorientation.",
+    "len": 12,
+    "d_rt": 0.27647124132582823,
+    "d_cl": 0.16122998706579433
+   },
+   "targeted_scores": {
+    "text": "In Tokyo, I felt a deep sense of disorientation. [disorientation; deep]",
+    "len": 18,
+    "d_rt": 0.2765101025448749,
+    "d_cl": 0.16115847514603088
+   },
+   "random_scores": [
+    {
+     "text": "In Tokyo, I felt a deep sense of disorientation. [I; felt]",
+     "len": 17,
+     "d_rt": 0.28409029388177226,
+     "d_cl": 0.16118372359406263
+    },
+    {
+     "text": "In Tokyo, I felt a deep sense of disorientation. [felt; I]",
+     "len": 17,
+     "d_rt": 0.27787481010911846,
+     "d_cl": 0.16120339318614704
+    },
+    {
+     "text": "In Tokyo, I felt a deep sense of disorientation. [I; felt]",
+     "len": 17,
+     "d_rt": 0.28409029388177226,
+     "d_cl": 0.16118372359406263
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 5.0
+   },
+   "glosses": {
+    "dépaysement": "disorientation",
+    "profond": "deep",
+    "j'ai": "I",
+    "ressenti": "felt"
+   }
+  },
+  {
+   "sid": "es_gustar",
+   "base": "My sister likes horror movies.",
+   "targeted": [
+    "hermana",
+    "le"
+   ],
+   "random": [
+    [
+     "terror",
+     "películas"
+    ],
+    [
+     "películas",
+     "terror"
+    ],
+    [
+     "terror",
+     "gustan"
+    ]
+   ],
+   "base_scores": {
+    "text": "My sister likes horror movies.",
+    "len": 6,
+    "d_rt": 0.0,
+    "d_cl": 0.18591654699327334
+   },
+   "targeted_scores": {
+    "text": "My sister likes horror movies. […; to like]",
+    "len": 11,
+    "d_rt": 0.0009276236045294256,
+    "d_cl": 0.18190126176908586
+   },
+   "random_scores": [
+    {
+     "text": "My sister likes horror movies. [fright, terror, terror; movies]",
+     "len": 16,
+     "d_rt": 0.0015982997770874747,
+     "d_cl": 0.1829945247288652
+    },
+    {
+     "text": "My sister likes horror movies. [movies; fright, terror, terror]",
+     "len": 15,
+     "d_rt": 0.0007229367710010524,
+     "d_cl": 0.18377309292028202
+    },
+    {
+     "text": "My sister likes horror movies. [fright, terror, terror; like]",
+     "len": 16,
+     "d_rt": 0.0019249278177052994,
+     "d_cl": 0.1827181208937965
+    }
+   ],
+   "added_len": {
+    "targeted": 5,
+    "random": 9.666666666666666
+   },
+   "glosses": {
+    "hermana": "…",
+    "le": "to like",
+    "terror": "fright, terror, terror",
+    "películas": "movies",
+    "gustan": "like"
+   }
+  },
+  {
+   "sid": "es_se_me_olvido",
+   "base": "I forgot my umbrella on the train.",
+   "targeted": [
+    "Se",
+    "olvidó"
+   ],
+   "random": [
+    [
+     "tren",
+     "paraguas"
+    ],
+    [
+     "tren",
+     "me"
+    ],
+    [
+     "tren",
+     "paraguas"
+    ]
+   ],
+   "base_scores": {
+    "text": "I forgot my umbrella on the train.",
+    "len": 8,
+    "d_rt": 0.06901570162147981,
+    "d_cl": 0.1811202320244594
+   },
+   "targeted_scores": {
+    "text": "I forgot my umbrella on the train. [I; forgot]",
+    "len": 13,
+    "d_rt": 0.06084088980197578,
+    "d_cl": 0.18068839670856487
+   },
+   "random_scores": [
+    {
+     "text": "I forgot my umbrella on the train. [train; umbrella]",
+     "len": 13,
+     "d_rt": 0.05503463534317382,
+     "d_cl": 0.18080590105103886
+    },
+    {
+     "text": "I forgot my umbrella on the train. [train; I]",
+     "len": 13,
+     "d_rt": 0.03975807453453523,
+     "d_cl": 0.18080879088372104
+    },
+    {
+     "text": "I forgot my umbrella on the train. [train; umbrella]",
+     "len": 13,
+     "d_rt": 0.05503463534317382,
+     "d_cl": 0.18080590105103886
+    }
+   ],
+   "added_len": {
+    "targeted": 5,
+    "random": 5.0
+   },
+   "glosses": {
+    "Se": "I",
+    "olvidó": "forgot",
+    "tren": "train",
+    "paraguas": "umbrella",
+    "me": "I"
+   }
+  },
+  {
+   "sid": "de_mir_ist_kalt",
+   "base": "I'm cold, can you close the window?",
+   "targeted": [
+    "Mir",
+    "zumachen"
+   ],
+   "random": [
+    [
+     "ist",
+     "kalt"
+    ],
+    [
+     "kalt",
+     "ist"
+    ],
+    [
+     "Fenster",
+     "ist"
+    ]
+   ],
+   "base_scores": {
+    "text": "I'm cold, can you close the window?",
+    "len": 10,
+    "d_rt": 0.19138730642121646,
+    "d_cl": 0.19390853005449177
+   },
+   "targeted_scores": {
+    "text": "I'm cold, can you close the window? [I; close]",
+    "len": 15,
+    "d_rt": 0.1443526747272598,
+    "d_cl": 0.19289369829559744
+   },
+   "random_scores": [
+    {
+     "text": "I'm cold, can you close the window? [is; cold]",
+     "len": 15,
+     "d_rt": 0.1553018070311953,
+     "d_cl": 0.19258141714135094
+    },
+    {
+     "text": "I'm cold, can you close the window? [cold; is]",
+     "len": 15,
+     "d_rt": 0.17564859730000637,
+     "d_cl": 0.19280567293790576
+    },
+    {
+     "text": "I'm cold, can you close the window? [window; is]",
+     "len": 15,
+     "d_rt": 0.18096837488414438,
+     "d_cl": 0.19299147090358623
+    }
+   ],
+   "added_len": {
+    "targeted": 5,
+    "random": 5.0
+   },
+   "glosses": {
+    "Mir": "I",
+    "zumachen": "close",
+    "ist": "is",
+    "kalt": "cold",
+    "Fenster": "window"
+   }
+  },
+  {
+   "sid": "es_ser_estar",
+   "base": "The movie is boring, and I am bored.",
+   "targeted": [
+    "estoy",
+    "es"
+   ],
+   "random": [
+    [
+     "película",
+     "aburrida"
+    ],
+    [
+     "película",
+     "aburrida"
+    ],
+    [
+     "aburrida",
+     "aburrido"
+    ]
+   ],
+   "base_scores": {
+    "text": "The movie is boring, and I am bored.",
+    "len": 10,
+    "d_rt": 0.008981759960345654,
+    "d_cl": 0.1751998884164242
+   },
+   "targeted_scores": {
+    "text": "The movie is boring, and I am bored. [I am; is]",
+    "len": 16,
+    "d_rt": 0.005098469211006867,
+    "d_cl": 0.1749057653171773
+   },
+   "random_scores": [
+    {
+     "text": "The movie is boring, and I am bored. [movie; boring, dull]",
+     "len": 17,
+     "d_rt": 0.014146270298390108,
+     "d_cl": 0.17481432631637145
+    },
+    {
+     "text": "The movie is boring, and I am bored. [movie; boring, dull]",
+     "len": 17,
+     "d_rt": 0.014146270298390108,
+     "d_cl": 0.17481432631637145
+    },
+    {
+     "text": "The movie is boring, and I am bored. [boring, dull; boring, dull]",
+     "len": 20,
+     "d_rt": 0.011375793962428127,
+     "d_cl": 0.1749826014475277
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 8.0
+   },
+   "glosses": {
+    "estoy": "I am",
+    "es": "is",
+    "película": "movie",
+    "aburrida": "boring, dull",
+    "aburrido": "boring, dull"
+   }
+  },
+  {
+   "sid": "fr_il_me_faut",
+   "base": "I still need another hour to finish.",
+   "targeted": [
+    "Il",
+    "finir"
+   ],
+   "random": [
+    [
+     "heure",
+     "me"
+    ],
+    [
+     "heure",
+     "me"
+    ],
+    [
+     "me",
+     "faut"
+    ]
+   ],
+   "base_scores": {
+    "text": "I still need another hour to finish.",
+    "len": 8,
+    "d_rt": 0.07297065240995,
+    "d_cl": 0.18456181852066245
+   },
+   "targeted_scores": {
+    "text": "I still need another hour to finish. [the; conclude]",
+    "len": 13,
+    "d_rt": 0.07976737124128847,
+    "d_cl": 0.18454175349484367
+   },
+   "random_scores": [
+    {
+     "text": "I still need another hour to finish. [hour; I]",
+     "len": 13,
+     "d_rt": 0.056501010041061964,
+     "d_cl": 0.18460426380948428
+    },
+    {
+     "text": "I still need another hour to finish. [hour; I]",
+     "len": 13,
+     "d_rt": 0.056501010041061964,
+     "d_cl": 0.18460426380948428
+    },
+    {
+     "text": "I still need another hour to finish. [I; must]",
+     "len": 13,
+     "d_rt": 0.05671901062383065,
+     "d_cl": 0.18439920228876308
+    }
+   ],
+   "added_len": {
+    "targeted": 5,
+    "random": 5.0
+   },
+   "glosses": {
+    "Il": "the",
+    "finir": "conclude",
+    "heure": "hour",
+    "me": "I",
+    "faut": "must"
+   }
+  },
+  {
+   "sid": "pt_infinitivo_pessoal",
+   "base": "I bought the book so we could read it together.",
+   "targeted": [
+    "lermos",
+    "Comprei"
+   ],
+   "random": [
+    [
+     "livro",
+     "juntos"
+    ],
+    [
+     "juntos",
+     "livro"
+    ],
+    [
+     "juntos",
+     "livro"
+    ]
+   ],
+   "base_scores": {
+    "text": "I bought the book so we could read it together.",
+    "len": 11,
+    "d_rt": 0.11761350466481257,
+    "d_cl": 0.19085513606493615
+   },
+   "targeted_scores": {
+    "text": "I bought the book so we could read it together. [read; I bought the book to read together]",
+    "len": 22,
+    "d_rt": 0.09406265884062469,
+    "d_cl": 0.1882121538691974
+   },
+   "random_scores": [
+    {
+     "text": "I bought the book so we could read it together. [book; together]",
+     "len": 16,
+     "d_rt": 0.10536843686813045,
+     "d_cl": 0.19033663697080594
+    },
+    {
+     "text": "I bought the book so we could read it together. [together; book]",
+     "len": 17,
+     "d_rt": 0.10788590660923081,
+     "d_cl": 0.19044678207009116
+    },
+    {
+     "text": "I bought the book so we could read it together. [together; book]",
+     "len": 17,
+     "d_rt": 0.10788590660923081,
+     "d_cl": 0.19044678207009116
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 5.666666666666668
+   },
+   "glosses": {
+    "lermos": "read",
+    "Comprei": "I bought the book to read together",
+    "livro": "book",
+    "juntos": "together"
+   }
+  },
+  {
+   "sid": "es_tomar_el_pelo",
+   "base": "I don't believe you, you're pulling my leg.",
+   "targeted": [
+    "tomando",
+    "me"
+   ],
+   "random": [
+    [
+     "pelo",
+     "estás"
+    ],
+    [
+     "estás",
+     "el"
+    ],
+    [
+     "estás",
+     "el"
+    ]
+   ],
+   "base_scores": {
+    "text": "I don't believe you, you're pulling my leg.",
+    "len": 12,
+    "d_rt": 0.0239055457337896,
+    "d_cl": 0.20863407655795946
+   },
+   "targeted_scores": {
+    "text": "I don't believe you, you're pulling my leg. [taking, holding; I, me]",
+    "len": 21,
+    "d_rt": 0.029803430368382747,
+    "d_cl": 0.20817061039037033
+   },
+   "random_scores": [
+    {
+     "text": "I don't believe you, you're pulling my leg. [hair; you're lying to me]",
+     "len": 21,
+     "d_rt": 0.026417537481765833,
+     "d_cl": 0.2075179623531348
+    },
+    {
+     "text": "I don't believe you, you're pulling my leg. [you're lying to me; the]",
+     "len": 21,
+     "d_rt": 0.02300137869025363,
+     "d_cl": 0.2074170486405868
+    },
+    {
+     "text": "I don't believe you, you're pulling my leg. [you're lying to me; the]",
+     "len": 21,
+     "d_rt": 0.02300137869025363,
+     "d_cl": 0.2074170486405868
+    }
+   ],
+   "added_len": {
+    "targeted": 9,
+    "random": 9.0
+   },
+   "glosses": {
+    "tomando": "taking, holding",
+    "me": "I, me",
+    "pelo": "hair",
+    "estás": "you're lying to me",
+    "el": "the"
+   }
+  },
+  {
+   "sid": "it_in_bocca_al_lupo",
+   "base": "Are you taking the exam tomorrow? Good luck!",
+   "targeted": [
+    "Domani",
+    "In"
+   ],
+   "random": [
+    [
+     "lupo",
+     "l'esame"
+    ],
+    [
+     "l'esame",
+     "bocca"
+    ],
+    [
+     "l'esame",
+     "al"
+    ]
+   ],
+   "base_scores": {
+    "text": "Are you taking the exam tomorrow? Good luck!",
+    "len": 10,
+    "d_rt": 0.297430825462729,
+    "d_cl": 0.23898780571606734
+   },
+   "targeted_scores": {
+    "text": "Are you taking the exam tomorrow? Good luck! [Tomorrow; in the future]",
+    "len": 17,
+    "d_rt": 0.28432996146823,
+    "d_cl": 0.23534414218128574
+   },
+   "random_scores": [
+    {
+     "text": "Are you taking the exam tomorrow? Good luck! [wolf; test]",
+     "len": 15,
+     "d_rt": 0.28945512794907946,
+     "d_cl": 0.2379812513035792
+    },
+    {
+     "text": "Are you taking the exam tomorrow? Good luck! [test; Mouth]",
+     "len": 15,
+     "d_rt": 0.29205997809082396,
+     "d_cl": 0.2377081664719326
+    },
+    {
+     "text": "Are you taking the exam tomorrow? Good luck! [test; to]",
+     "len": 15,
+     "d_rt": 0.29302952966229073,
+     "d_cl": 0.23800750646397054
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 5.0
+   },
+   "glosses": {
+    "Domani": "Tomorrow",
+    "In": "in the future",
+    "lupo": "wolf",
+    "l'esame": "test",
+    "bocca": "Mouth",
+    "al": "to"
+   }
+  },
+  {
+   "sid": "fr_cafard",
+   "base": "Since it's raining, I'm depressed.",
+   "targeted": [
+    "cafard",
+    "j'ai"
+   ],
+   "random": [
+    [
+     "qu'il",
+     "le"
+    ],
+    [
+     "le",
+     "pleut"
+    ],
+    [
+     "qu'il",
+     "pleut"
+    ]
+   ],
+   "base_scores": {
+    "text": "Since it's raining, I'm depressed.",
+    "len": 9,
+    "d_rt": 0.35388495930906105,
+    "d_cl": 0.23133230881493616
+   },
+   "targeted_scores": {
+    "text": "Since it's raining, I'm depressed. [depression; I have]",
+    "len": 16,
+    "d_rt": 0.3469918792600152,
+    "d_cl": 0.22701256602012893
+   },
+   "random_scores": [
+    {
+     "text": "Since it's raining, I'm depressed. [who; the]",
+     "len": 14,
+     "d_rt": 0.33064791265826954,
+     "d_cl": 0.22893698523668066
+    },
+    {
+     "text": "Since it's raining, I'm depressed. [the; It's raining]",
+     "len": 16,
+     "d_rt": 0.33390899567065874,
+     "d_cl": 0.22778297412050783
+    },
+    {
+     "text": "Since it's raining, I'm depressed. [who; It's raining]",
+     "len": 16,
+     "d_rt": 0.3425379455932913,
+     "d_cl": 0.22790353529707152
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 6.333333333333334
+   },
+   "glosses": {
+    "cafard": "depression",
+    "j'ai": "I have",
+    "qu'il": "who",
+    "le": "the",
+    "pleut": "It's raining"
+   }
+  },
+  {
+   "sid": "de_tomaten",
+   "base": "Are you blind? The light is red!",
+   "targeted": [
+    "Tomaten",
+    "auf"
+   ],
+   "random": [
+    [
+     "Augen",
+     "rot"
+    ],
+    [
+     "den",
+     "Ampel"
+    ],
+    [
+     "rot",
+     "Ampel"
+    ]
+   ],
+   "base_scores": {
+    "text": "Are you blind? The light is red!",
+    "len": 9,
+    "d_rt": 0.3363846523556089,
+    "d_cl": 0.27524044394765557
+   },
+   "targeted_scores": {
+    "text": "Are you blind? The light is red! [tomatoes; on]",
+    "len": 15,
+    "d_rt": 0.36900609733700857,
+    "d_cl": 0.23553948674833378
+   },
+   "random_scores": [
+    {
+     "text": "Are you blind? The light is red! [eyes; red]",
+     "len": 14,
+     "d_rt": 0.3387680398628651,
+     "d_cl": 0.2708918269275933
+    },
+    {
+     "text": "Are you blind? The light is red! [of; Traffic light]",
+     "len": 15,
+     "d_rt": 0.32870332142533804,
+     "d_cl": 0.27139178669593245
+    },
+    {
+     "text": "Are you blind? The light is red! [red; Traffic light]",
+     "len": 15,
+     "d_rt": 0.33314313219331093,
+     "d_cl": 0.2706542672174996
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 5.666666666666666
+   },
+   "glosses": {
+    "Tomaten": "tomatoes",
+    "auf": "on",
+    "Augen": "eyes",
+    "rot": "red",
+    "den": "of",
+    "Ampel": "Traffic light"
+   }
+  },
+  {
+   "sid": "es_en_las_nubes",
+   "base": "My son is always in the clouds in class.",
+   "targeted": [
+    "las",
+    "está"
+   ],
+   "random": [
+    [
+     "nubes",
+     "hijo"
+    ],
+    [
+     "en",
+     "hijo"
+    ],
+    [
+     "nubes",
+     "clase"
+    ]
+   ],
+   "base_scores": {
+    "text": "My son is always in the clouds in class.",
+    "len": 10,
+    "d_rt": 0.020184513455303154,
+    "d_cl": 0.11553429109111861
+   },
+   "targeted_scores": {
+    "text": "My son is always in the clouds in class. [the, the; is]",
+    "len": 17,
+    "d_rt": 0.022275901847142822,
+    "d_cl": 0.1155331070481384
+   },
+   "random_scores": [
+    {
+     "text": "My son is always in the clouds in class. [clouds; child]",
+     "len": 16,
+     "d_rt": 0.01723304150962219,
+     "d_cl": 0.115533518918581
+    },
+    {
+     "text": "My son is always in the clouds in class. [in, on, at; child]",
+     "len": 19,
+     "d_rt": 0.018294421421052736,
+     "d_cl": 0.11563124347085342
+    },
+    {
+     "text": "My son is always in the clouds in class. [clouds; class]",
+     "len": 16,
+     "d_rt": 0.015413533472622132,
+     "d_cl": 0.11553362442054113
+    }
+   ],
+   "added_len": {
+    "targeted": 7,
+    "random": 7.0
+   },
+   "glosses": {
+    "las": "the, the",
+    "está": "is",
+    "nubes": "clouds",
+    "hijo": "child",
+    "en": "in, on, at",
+    "clase": "class"
+   }
+  },
+  {
+   "sid": "it_in_gamba",
+   "base": "The new colleague is just great.",
+   "targeted": [
+    "in",
+    "gamba"
+   ],
+   "random": [
+    [
+     "collega",
+     "nuova"
+    ],
+    [
+     "nuova",
+     "collega"
+    ],
+    [
+     "collega",
+     "nuova"
+    ]
+   ],
+   "base_scores": {
+    "text": "The new colleague is just great.",
+    "len": 7,
+    "d_rt": 0.17510842785109842,
+    "d_cl": 0.16480609506754273
+   },
+   "targeted_scores": {
+    "text": "The new colleague is just great. [in: in, in, in; leg]",
+    "len": 18,
+    "d_rt": 0.20968404708941857,
+    "d_cl": 0.1647695982015256
+   },
+   "random_scores": [
+    {
+     "text": "The new colleague is just great. [colleague; new]",
+     "len": 13,
+     "d_rt": 0.1903872280967744,
+     "d_cl": 0.16484600178558026
+    },
+    {
+     "text": "The new colleague is just great. [new; colleague]",
+     "len": 12,
+     "d_rt": 0.18486317931946578,
+     "d_cl": 0.1648402621184766
+    },
+    {
+     "text": "The new colleague is just great. [colleague; new]",
+     "len": 13,
+     "d_rt": 0.1903872280967744,
+     "d_cl": 0.16484600178558026
+    }
+   ],
+   "added_len": {
+    "targeted": 11,
+    "random": 5.666666666666666
+   },
+   "glosses": {
+    "in": "in: in, in, in",
+    "gamba": "leg",
+    "collega": "colleague",
+    "nuova": "new"
+   }
+  },
+  {
+   "sid": "fr_poser_un_lapin",
+   "base": "She gave me a rabbit last night.",
+   "targeted": [
+    "posé",
+    "hier"
+   ],
+   "random": [
+    [
+     "un",
+     "m'a"
+    ],
+    [
+     "soir",
+     "un"
+    ],
+    [
+     "soir",
+     "lapin"
+    ]
+   ],
+   "base_scores": {
+    "text": "She gave me a rabbit last night.",
+    "len": 8,
+    "d_rt": 0.19452013705791732,
+    "d_cl": 0.21819371303964477
+   },
+   "targeted_scores": {
+    "text": "She gave me a rabbit last night. [lay; yesterday]",
+    "len": 13,
+    "d_rt": 0.1832854146538845,
+    "d_cl": 0.21660168145176228
+   },
+   "random_scores": [
+    {
+     "text": "She gave me a rabbit last night. [one; me]",
+     "len": 13,
+     "d_rt": 0.19112810889715612,
+     "d_cl": 0.21699949082151276
+    },
+    {
+     "text": "She gave me a rabbit last night. [evening; one]",
+     "len": 14,
+     "d_rt": 0.18866943728121224,
+     "d_cl": 0.21608714483867422
+    },
+    {
+     "text": "She gave me a rabbit last night. [evening; bunny]",
+     "len": 14,
+     "d_rt": 0.1883123813767585,
+     "d_cl": 0.21630101228666146
+    }
+   ],
+   "added_len": {
+    "targeted": 5,
+    "random": 5.666666666666666
+   },
+   "glosses": {
+    "posé": "lay",
+    "hier": "yesterday",
+    "un": "one",
+    "m'a": "me",
+    "soir": "evening",
+    "lapin": "bunny"
+   }
+  },
+  {
+   "sid": "rom_ffora",
+   "base": "They will begin to say: \"It's getting hot.\"",
+   "targeted": [
+    "ffora",
+    "ttoca"
+   ],
+   "random": [
+    [
+     "a",
+     "ddì"
+    ],
+    [
+     "cominceranno",
+     "cchi"
+    ],
+    [
+     "cominceranno",
+     "a"
+    ]
+   ],
+   "base_scores": {
+    "text": "They will begin to say: \"It's getting hot.\"",
+    "len": 12,
+    "d_rt": 0.7256259593816302,
+    "d_cl": 0.3072303668347675
+   },
+   "targeted_scores": {
+    "text": "They will begin to say: \"It's getting hot.\" [For; touch]",
+    "len": 17,
+    "d_rt": 0.708827384535273,
+    "d_cl": 0.2938475363309257
+   },
+   "random_scores": [
+    {
+     "text": "They will begin to say: \"It's getting hot.\" [to; day]",
+     "len": 17,
+     "d_rt": 0.719477032958746,
+     "d_cl": 0.29283649770672227
+    },
+    {
+     "text": "They will begin to say: \"It's getting hot.\" [They will begin; they]",
+     "len": 19,
+     "d_rt": 0.754261393752358,
+     "d_cl": 0.29489343026383824
+    },
+    {
+     "text": "They will begin to say: \"It's getting hot.\" [They will begin; to]",
+     "len": 19,
+     "d_rt": 0.7639526137731437,
+     "d_cl": 0.2936549857993274
+    }
+   ],
+   "added_len": {
+    "targeted": 5,
+    "random": 6.333333333333332
+   },
+   "glosses": {
+    "ffora": "For",
+    "ttoca": "touch",
+    "a": "to",
+    "ddì": "day",
+    "cominceranno": "They will begin",
+    "cchi": "they"
+   }
+  },
+  {
+   "sid": "rom_schertri",
+   "base": "the earth is full of fools.",
+   "targeted": [
+    "schertri",
+    "ppecorone"
+   ],
+   "random": [
+    [
+     "terra",
+     "de"
+    ],
+    [
+     "de",
+     "terra"
+    ],
+    [
+     "terra",
+     "de"
+    ]
+   ],
+   "base_scores": {
+    "text": "the earth is full of fools.",
+    "len": 7,
+    "d_rt": 0.8470490237103673,
+    "d_cl": 0.2896426758000294
+   },
+   "targeted_scores": {
+    "text": "the earth is full of fools. [kill; old man]",
+    "len": 13,
+    "d_rt": 0.8414220706883183,
+    "d_cl": 0.2809404996570456
+   },
+   "random_scores": [
+    {
+     "text": "the earth is full of fools. [land; of]",
+     "len": 12,
+     "d_rt": 0.8302683014388376,
+     "d_cl": 0.2816442017118665
+    },
+    {
+     "text": "the earth is full of fools. [of; land]",
+     "len": 12,
+     "d_rt": 0.8266256861289847,
+     "d_cl": 0.2824602575917172
+    },
+    {
+     "text": "the earth is full of fools. [land; of]",
+     "len": 12,
+     "d_rt": 0.8302683014388376,
+     "d_cl": 0.2816442017118665
+    }
+   ],
+   "added_len": {
+    "targeted": 6,
+    "random": 5.0
+   },
+   "glosses": {
+    "schertri": "kill",
+    "ppecorone": "old man",
+    "terra": "land",
+    "de": "of"
+   }
+  }
+ ]
+}

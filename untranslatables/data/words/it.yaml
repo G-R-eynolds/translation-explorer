@@ -1,0 +1,277 @@
+# Italian word set.  Drafted by Claude Code (Opus 5.5), 18 Nov 2026; UNCHECKED.  See data/README.md.
+language: it
+templates:
+  - 'La parola "{w}" significa'
+  - 'Che cosa significa "{w}"?'
+  - '"{w}" è una parola italiana.'
+  - 'In italiano si dice "{w}".'
+words:
+
+- word: sprezzatura
+  category: untranslatable
+  emotion: false
+  gloss_en: studied nonchalance; making difficult things look effortless (Castiglione)
+  senses:
+    - label: effortless grace that hides effort
+      clarify: 'Qui "sprezzatura" è la grazia disinvolta di chi fa sembrare facile una cosa difficile.'
+    - label: affected nonchalance, studied carelessness (style)
+      clarify: 'Qui "sprezzatura" è una trascuratezza studiata nell''abbigliamento o nei modi, fatta apposta per sembrare naturale.'
+  gloss_src: 'Sprezzatura: disinvoltura elegante che nasconde lo sforzo e l''artificio, termine reso celebre da Castiglione nel "Cortegiano". Esempio: "Suonava il pianoforte con una sprezzatura che incantava tutti."'
+  source: TODO
+  notes: Very low frequency (Zipf 1.5); familiarity gate likely to matter.
+  exclude_from_pool: []
+  contexts:
+    - 'Castiglione raccomanda al cortigiano una certa [[sprezzatura]] in ogni cosa.'
+    - 'Portava la giacca sbottonata con calcolata [[sprezzatura]].'
+    - 'Risolse il problema con una [[sprezzatura]] che ci lasciò senza parole.'
+    - 'La moda maschile italiana ha fatto della [[sprezzatura]] un marchio.'
+    - 'Dietro quella [[sprezzatura]] c''erano anni di esercizio.'
+  extra:
+    - 'Il libro descrive il gentiluomo ideale della corte di Urbino. Deve saper fare tutto, ma senza mostrarlo.'
+    - 'Al matrimonio tutti erano vestiti in modo impeccabile. Lui invece aveva la cravatta un po'' allentata.'
+
+- word: magari
+  category: untranslatable
+  emotion: false
+  gloss_en: (interj.) if only!; (adv.) maybe, perhaps; even
+  senses:
+    - label: if only! (wish)
+      clarify: 'Qui "magari" esprime un desiderio forte, come per dire che si vorrebbe tanto che fosse vero.'
+    - label: maybe, perhaps
+      clarify: 'Qui "magari" indica una possibilità: forse, può darsi.'
+    - label: even, possibly (concessive)
+      clarify: 'Qui "magari" significa "perfino, addirittura", in senso ipotetico.'
+  gloss_src: 'Magari: (1) esclamazione che esprime un desiderio; (2) avverbio che indica una possibilità; (3) avverbio con valore di "perfino, addirittura". Esempio: "Vinceremo?" "Magari!"; "Magari domani piove."'
+  source: TODO
+  notes: Function-word untranslatable; high frequency. Ordinary control is the adverb 'domani' (POS-matched).
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 2, 1, 0]
+  contexts:
+    - '"Hai vinto alla lotteria?" "[[Magari]]!"'
+    - '[[Magari]] domani piove e non possiamo andare al mare.'
+    - 'Sarebbe capace di uscire [[magari]] anche con la febbre.'
+    - 'Passa a trovarci, [[magari]] sabato.'
+    - '[[Magari]] fossi ancora giovane!'
+  extra:
+    - 'Parlavamo dei soldi che non bastano mai. Lui ha fatto una battuta sulla fortuna.'
+    - 'Le previsioni non sono sicure. Il cielo è nuvoloso da stamattina.'
+
+- word: menefreghismo
+  category: untranslatable
+  emotion: false
+  gloss_en: a defiant 'I don't give a damn' attitude, studied indifference (from 'me ne frego')
+  senses:
+    - label: personal indifference, not caring
+      clarify: 'Qui "menefreghismo" è l''atteggiamento di chi se ne infischia delle regole e degli altri.'
+    - label: the Fascist-era motto 'me ne frego' as attitude
+      clarify: 'Qui "menefreghismo" indica il motto e l''atteggiamento sprezzante esaltato dal fascismo.'
+  gloss_src: 'Menefreghismo: atteggiamento di chi ostenta indifferenza verso doveri, regole o conseguenze ("me ne frego"). Esempio: "Il menefreghismo di certi automobilisti è pericoloso."'
+  source: TODO
+  notes: Historically loaded (Fascist slogan).
+  exclude_from_pool: []
+  contexts:
+    - 'Il [[menefreghismo]] di certi automobilisti mette tutti in pericolo.'
+    - 'Lo accusano di [[menefreghismo]] verso i problemi della città.'
+    - 'Il [[menefreghismo]] fu esaltato dalla propaganda del Ventennio.'
+    - 'Quel [[menefreghismo]] è solo una maschera per la sua timidezza.'
+    - 'In ufficio regna un [[menefreghismo]] generale.'
+  extra:
+    - 'Le strisce pedonali sono appena state ridipinte. Eppure nessuno si ferma.'
+    - 'Il quartiere è pieno di rifiuti da settimane. Il sindaco non ha detto nulla.'
+
+- word: abbiocco
+  category: untranslatable
+  emotion: false
+  gloss_en: (colloquial, central Italy) the drowsiness that comes after a big meal
+  senses:
+    - label: post-meal drowsiness
+      clarify: 'Qui "abbiocco" è la sonnolenza che viene dopo aver mangiato molto.'
+  gloss_src: 'Abbiocco: (regionale, colloquiale) improvvisa sonnolenza, specialmente dopo un pasto abbondante. Esempio: "Dopo la pasta al forno mi è venuto l''abbiocco."'
+  source: TODO
+  notes: Etymologically from 'biocca' (broody hen) -- links to Belli's 'bbiocca'. Regional, low frequency.
+  exclude_from_pool: []
+  contexts:
+    - 'Dopo il pranzo della domenica arriva puntuale l''[[abbiocco]].'
+    - 'Ho avuto un [[abbiocco]] davanti alla televisione.'
+    - 'Per combattere l''[[abbiocco]] bevo un caffè.'
+    - 'Alle tre del pomeriggio in ufficio è [[abbiocco]] generale.'
+    - 'L''[[abbiocco]] mi ha preso proprio durante la riunione.'
+  extra:
+    - 'La nonna aveva cucinato lasagne, arrosto e patate. Abbiamo finito con il tiramisù.'
+    - 'Il treno era caldo e silenzioso. Avevo appena mangiato un panino.'
+
+- word: annaffiatoio
+  category: ordinary
+  freq_match_for: sprezzatura
+  emotion: false
+  gloss_en: watering can
+  senses:
+    - label: watering can
+      clarify: 'Qui "annaffiatoio" è il recipiente per bagnare le piante.'
+  gloss_src: 'Annaffiatoio: recipiente con manico e lungo beccuccio usato per bagnare le piante. Esempio: "Riempì l''annaffiatoio alla fontana."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'L''[[annaffiatoio]] è rimasto vicino alla porta del giardino.'
+    - 'Riempi l''[[annaffiatoio]] e bagna i gerani.'
+    - 'Il bambino gioca con un [[annaffiatoio]] di plastica.'
+    - 'L''[[annaffiatoio]] di rame era di mio nonno.'
+    - 'Ho comprato un [[annaffiatoio]] più grande.'
+  extra:
+    - 'Non piove da due settimane. Le piante sul balcone soffrono.'
+    - 'Il nonno passa le mattine nell''orto. Conosce ogni pianta per nome.'
+
+- word: domani
+  category: ordinary
+  freq_match_for: magari
+  emotion: false
+  gloss_en: tomorrow
+  senses:
+    - label: tomorrow
+      clarify: 'Qui "domani" indica il giorno dopo oggi.'
+  gloss_src: 'Domani: nel giorno che segue quello di oggi. Esempio: "Domani vado al mare."'
+  source: TODO
+  notes: POS-matched control for 'magari' (adverb).
+  exclude_from_pool: []
+  contexts:
+    - '[[Domani]] parto per Milano.'
+    - 'Ci vediamo [[domani]] alle otto.'
+    - 'Il negozio [[domani]] è chiuso.'
+    - 'Lo finirò [[domani]] mattina.'
+    - 'Che tempo farà [[domani]]?'
+  extra:
+    - 'Ho appena prenotato il treno. Devo ancora fare la valigia.'
+    - 'Oggi non ho avuto tempo. È stata una giornata lunghissima.'
+
+- word: mestolo
+  category: ordinary
+  freq_match_for: menefreghismo
+  emotion: false
+  gloss_en: ladle
+  senses:
+    - label: ladle
+      clarify: 'Qui "mestolo" è il grande cucchiaio per servire la minestra.'
+  gloss_src: 'Mestolo: grosso cucchiaio dal manico lungo, usato per mescolare o servire minestre e sughi. Esempio: "Servì il brodo con il mestolo."'
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  contexts:
+    - 'Passami il [[mestolo]] per il brodo.'
+    - 'Mescola il sugo con il [[mestolo]] di legno.'
+    - 'Il [[mestolo]] è caduto nella pentola.'
+    - 'Ha versato un [[mestolo]] di minestra nel piatto.'
+    - 'Il [[mestolo]] è appeso sopra i fornelli.'
+  extra:
+    - 'La minestra bolliva da un''ora. Tutta la casa profumava.'
+    - 'Eravamo in dieci a tavola. La nonna serviva tutti.'
+
+- word: ditale
+  category: ordinary
+  freq_match_for: abbiocco
+  emotion: false
+  gloss_en: thimble
+  senses:
+    - label: thimble
+      clarify: 'Qui "ditale" è il piccolo cappuccio di metallo che si mette sul dito per cucire.'
+  gloss_src: 'Ditale: piccolo cappuccio di metallo o plastica che protegge il dito quando si cuce. Esempio: "Senza ditale si punse con l''ago."'
+  source: TODO
+  notes: Also a pasta shape (ditali) -- contexts use the sewing sense.
+  exclude_from_pool: []
+  contexts:
+    - 'Senza [[ditale]] mi pungo sempre con l''ago.'
+    - 'La sarta infilò il [[ditale]] sul dito medio.'
+    - 'Nel cestino da cucito c''era un [[ditale]] d''argento.'
+    - 'Ho perso il [[ditale]] sotto il divano.'
+    - 'Mia nonna colleziona ogni tipo di [[ditale]].'
+  extra:
+    - 'Si era strappato l''orlo dei pantaloni. Bisognava ricucirlo prima della festa.'
+    - 'La nonna cuciva sempre la sera, vicino alla finestra.'
+
+- word: gioia
+  category: emotion_plain
+  emotion: true
+  gloss_en: joy
+  senses:
+    - label: joy
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Provo [[gioia]].'
+    - 'Sono pieno di [[gioia]].'
+  contexts:
+    - 'Saltava di [[gioia]] per la notizia.'
+    - 'La nascita della bambina ha portato tanta [[gioia]].'
+    - 'Era una [[gioia]] vederli insieme.'
+    - 'Con grande [[gioia]] annunciamo il matrimonio.'
+    - 'La [[gioia]] dei tifosi esplose al fischio finale.'
+
+- word: rabbia
+  category: emotion_plain
+  emotion: true
+  gloss_en: anger, rage
+  senses:
+    - label: anger
+      clarify: ''
+  source: TODO
+  notes: ''
+  exclude_from_pool: []
+  frames:
+    - 'Provo [[rabbia]].'
+    - 'Sono pieno di [[rabbia]].'
+  contexts:
+    - 'Tremava di [[rabbia]].'
+    - 'La [[rabbia]] gli passò dopo un''ora.'
+    - 'Ha sbattuto la porta per la [[rabbia]].'
+    - 'Non riusciva a controllare la [[rabbia]].'
+    - 'C''era [[rabbia]] nelle sue parole.'
+
+- word: tempo
+  category: polysemous
+  emotion: false
+  gloss_en: (1) time; (2) weather; (3) tempo (music), half (sport)
+  senses:
+    - label: time
+      clarify: 'Qui "tempo" indica la durata, lo scorrere delle ore e dei giorni.'
+    - label: weather
+      clarify: 'Qui "tempo" indica le condizioni atmosferiche: sole, pioggia, vento.'
+  gloss_src: 'Tempo: (1) la durata in cui si svolgono i fatti, lo scorrere delle ore; (2) le condizioni dell''atmosfera in un certo momento. Esempio: "Non ho tempo"; "Che brutto tempo oggi!"'
+  source: TODO
+  notes: Also used in distinctions.yaml (English splits time/weather; Spanish 'tiempo' merges like Italian).
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 1]
+  contexts:
+    - 'Non ho [[tempo]] per leggere il giornale.'
+    - 'Con questo [[tempo]] è meglio restare a casa.'
+    - 'Il [[tempo]] passa in fretta quando ci si diverte.'
+    - 'Domani il [[tempo]] dovrebbe migliorare.'
+    - 'Che [[tempo]] fa a Napoli?'
+  extra:
+    - 'Lavoro dieci ore al giorno e la sera sono stanco. Il fine settimana pulisco casa.'
+    - 'Piove da tre giorni senza sosta. Il fiume si è ingrossato.'
+
+- word: pesca
+  category: polysemous
+  emotion: false
+  gloss_en: (1) peach (pèsca); (2) fishing (pésca)
+  senses:
+    - label: peach
+      clarify: 'Qui "pesca" è il frutto dalla buccia vellutata.'
+    - label: fishing
+      clarify: 'Qui "pesca" è l''attività di prendere pesci.'
+  gloss_src: 'Pesca: (1) frutto dalla buccia vellutata e polpa succosa, con un nocciolo; (2) l''attività di catturare pesci. Esempio: "Una pesca matura"; "Andare a pesca."'
+  source: TODO
+  notes: Homographs, distinguished in speech by vowel quality.
+  exclude_from_pool: []
+  sense_of_context: [0, 1, 0, 1, 1]
+  contexts:
+    - 'Questa [[pesca]] è dolcissima.'
+    - 'Mio padre va a [[pesca]] ogni domenica.'
+    - 'Ho fatto una torta alla [[pesca]].'
+    - 'La [[pesca]] del tonno è regolata da leggi severe.'
+    - 'La [[pesca]] con la canna richiede pazienza.'
+  extra:
+    - 'Al mercato c''era frutta di stagione. Il profumo arrivava fino in strada.'
+    - 'Il lago era calmo all''alba. Sul pontile c''erano già due barche.'

@@ -1,0 +1,55 @@
+{
+ "layer": 40,
+ "probes": {
+  "grammatical gender": {
+   "n": 4237,
+   "shared_share": 0.23973673582077026,
+   "expected": 0.06103515625,
+   "acc": {
+    "all": 0.9180934644527007,
+    "shared only": 0.766811727484875,
+    "private only": 0.8078190783726911
+   }
+  },
+  "number": {
+   "n": 6141,
+   "shared_share": 0.4244039058685303,
+   "expected": 0.06103515625,
+   "acc": {
+    "all": 0.9217465332963275,
+    "shared only": 0.8905383273694081,
+    "private only": 0.6933674150728343
+   }
+  },
+  "subjunctive vs indicative": {
+   "n": 1670,
+   "shared_share": 0.09947392344474792,
+   "expected": 0.06103515625,
+   "acc": {
+    "all": 0.7012117984317473,
+    "shared only": 0.8456329314334429,
+    "private only": 0.6463339329042654
+   }
+  },
+  "imperfect vs preterite": {
+   "n": 229,
+   "shared_share": 0.07611307501792908,
+   "expected": 0.06103515625,
+   "acc": {
+    "all": 0.8391666666666666,
+    "shared only": 0.7637634408602151,
+    "private only": 0.8104166666666666
+   }
+  },
+  "noun vs verb (sanity)": {
+   "n": 5727,
+   "shared_share": 0.6458617448806763,
+   "expected": 0.06103515625,
+   "acc": {
+    "all": 0.9734146246445128,
+    "shared only": 0.9782841878601355,
+    "private only": 0.6445949748369983
+   }
+  }
+ }
+}

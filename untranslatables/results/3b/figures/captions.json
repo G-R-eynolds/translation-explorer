@@ -1,0 +1,57 @@
+{
+ "fig01_recipe_cards_lead": {
+  "finding": "Inside this model, 'saudade' leaves 74% that five English words can't reach; 'tristeza' leaves 55%",
+  "how_to_read": "Each bar is one word rebuilt from the English words the model finds closest inside its 'concept space'. Coloured blocks are the English ingredients, widest = most important. Solid blocks appear in nearly every context the word was read in; striped blocks only in some. Grey is what is left over: the part of the word that English could not rebuild.",
+  "file": "3b/figures/fig01_recipe_cards_lead.png"
+ },
+ "fig01_recipe_cards_all": {
+  "finding": "Recipe cards for 21 words: leftovers range from 55% to 80%",
+  "how_to_read": "As in the first figure, for every untranslatable: coloured blocks are English ingredients (solid = in nearly every context, striped = only in some); grey is what English could not rebuild.",
+  "file": "3b/figures/fig01_recipe_cards_all.png"
+ },
+ "fig02_how_many_english_words": {
+  "finding": "Untranslatables need more English words to rebuild than ordinary words",
+  "how_to_read": "Each line follows a typical word of one kind as more English words are added. Higher means more of the word has been rebuilt. The grey band is what random words of the same language reach; above it means better than chance.",
+  "file": "3b/figures/fig02_how_many_english_words.png"
+ },
+ "fig04_leftover_ranking": {
+  "finding": "Untranslatables leave more behind than ordinary words",
+  "how_to_read": "Each bar is one word; taller means more of it could not be rebuilt from English. Bars are grouped by kind of word. Striped bars are words the model did not seem to know, so they should be read with caution. The grey band is what random words reach.",
+  "file": "3b/figures/fig04_leftover_ranking.png"
+ },
+ "fig05_what_the_model_would_say": {
+  "finding": "When the word's inner state is planted in an English prompt, the model says these words",
+  "how_to_read": "For each word we copy the model's inner representation of it into a prompt asking for an English word, and let it answer 50 times. Bars show how often each English answer came out. The recipe's top ingredients are listed for comparison.",
+  "file": "3b/figures/fig05_what_the_model_would_say.png"
+ },
+ "fig06_into_english_vs_others": {
+  "finding": "Many untranslatables are harder to rebuild from English than from other languages",
+  "how_to_read": "Each row is one untranslatable; each dot is one language it was rebuilt from (en = English, es = Spanish, ...). Further right means more is left over. A word can be hard to carry into one language and easy into another.",
+  "file": "3b/figures/fig06_into_english_vs_others.png"
+ },
+ "fig03_neighbourhood": {
+  "finding": "Each untranslatable sits between its English ingredients rather than on any one of them",
+  "how_to_read": "A flattened sketch of a small part of the model's concept space (a 2-D projection of many dimensions, so distances are only roughly right). The star is the word; labelled dots are its English ingredients; grey dots are other nearby English words.",
+  "file": "3b/figures/fig03_neighbourhood.png"
+ },
+ "fig07_does_it_think_in_english": {
+  "finding": "Midway through, the models' working answer is partly English even when translating French into Spanish",
+  "how_to_read": "We ask each model to translate single words between two non-English languages and peek at its working answer layer by layer. Higher means the in-between answer is more English. Aya, built to be less English-centred, is highlighted in blue.",
+  "file": "figures/fig07_does_it_think_in_english.png"
+ },
+ "fig08_which_way_does_it_lean": {
+  "finding": "English's main directions cover other languages better than the reverse",
+  "how_to_read": "For each language and model: how much of that language's word cloud is captured by English's 50 main directions (black), and how much of English's cloud by that language's (grey). A black dot to the right of the grey one means the space is built more around English.",
+  "file": "figures/fig08_which_way_does_it_lean.png"
+ },
+ "fig09_lost_through_english": {
+  "finding": "Distinctions English lacks are not lost more often (Llama-3.2-3B-Instruct)",
+  "how_to_read": "Translating between two languages that both make a distinction English does not (savoir/connaître, ser/estar; blue) versus distinctions English also makes (look/see; grey). Taller bars mean more wrong choices.",
+  "file": "figures/fig09_lost_through_english.png"
+ },
+ "fig10_push_away_from_english": {
+  "finding": "Pushing the model away from English changes what survives translation",
+  "how_to_read": "We nudge the model's inner state toward English (right) or away from it (left). Left: wrong choices on distinctions English lacks. Right: how much of the untranslatables is left over. Grey columns mark pushes strong enough to make the model's output degrade, which should not be trusted.",
+  "file": "3b/figures/fig10_push_away_from_english.png"
+ }
+}

@@ -1,0 +1,54 @@
+[project]
+name = "untranslatables"
+version = "0.1.0"
+description = "Untranslatables inside multilingual LLMs: concept-space recipes, English bias, ignorance vs multiplicity."
+requires-python = ">=3.12,<3.13"
+# Pins follow ../translation-lattice (same desktop uv cache).
+dependencies = [
+    "torch==2.14.1",
+    "transformers==5.18.0",
+    "tokenizers==0.23.2",
+    "huggingface-hub==1.33.0",
+    "accelerate==1.15.0",
+    "safetensors==0.8.0",
+    "numpy==2.5.3",
+    "scipy",
+    "scikit-learn",
+    "matplotlib>=3.9",
+    "pyyaml>=6.0",
+    "wordfreq",
+    "stopwordsiso",
+    "concept-erasure",
+    "pot",                 # sentence experiments: unbalanced OT (reference + tests)
+    # internals (HANDOFF_internals.md)
+    "sae-lens",
+    "datasets",
+    "pyarrow",
+    "pandas",
+    "spacy",
+    "stanza",
+    "es_core_news_md @ https://github.com/explosion/spacy-models/releases/download/es_core_news_md-3.8.0/es_core_news_md-3.8.0-py3-none-any.whl",
+    "sentencepiece",
+    "protobuf",
+]
+
+[project.optional-dependencies]
+quant = ["bitsandbytes==0.50.2"]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu130", marker = "sys_platform == 'linux'" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
