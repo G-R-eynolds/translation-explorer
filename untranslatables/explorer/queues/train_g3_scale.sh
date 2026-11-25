@@ -17,12 +17,13 @@ fi
 
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
-# Default mid-upper LoRA layers scaled to model depth (48 layers for 12B, 62 layers for 27B)
+# Default mid-upper LoRA layers scaled to model depth (48L=12B, 62L=27B, 80L=72B)
 if [[ -z "${LORA_LAYERS:-}" ]]; then
   case "$MODEL" in
-    g3_27b*) LORA_LAYERS="22,31,40,48" ;;
-    g3_12b*) LORA_LAYERS="16,24,32,38" ;;
-    *)       LORA_LAYERS="12,17,22,27" ;;
+    qwen72b*) LORA_LAYERS="30,40,50,60" ;;
+    g3_27b*)  LORA_LAYERS="22,31,40,48" ;;
+    g3_12b*)  LORA_LAYERS="16,24,32,38" ;;
+    *)        LORA_LAYERS="12,17,22,27" ;;
   esac
 fi
 
@@ -50,6 +51,13 @@ python -m explorer.fork_head \
   --model "$MODEL" --prompt-style doc --from-texts \
   --epochs "${FORK_EPOCHS:-80}" \
   --out "$OUT/fork_head.pt"
+
+if [[ "${RUN_PHASE1:-0}" == "1" ]]; then
+  echo "=== [5/5] Phase 1: 9-text reading & steering benchmark (EXPLORER_FAST=1) + mapgrid + report ==="
+  EXPLORER_FAST=1 python -m explorer run --model "$MODEL" --n 64
+  python -m explorer.mapgrid --model "$MODEL" --text duende_flamenco --n 15
+  python -m explorer report --model "$MODEL"
+fi
 
 echo "===== Done! Launch live server with: ====="
 echo "python -m explorer serve --mode live --model $MODEL \\"

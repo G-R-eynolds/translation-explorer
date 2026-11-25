@@ -34,6 +34,7 @@ MODELS = {
     "g3_12b_pt_bf16": dict(hf_id="google/gemma-3-12b-pt", quant=None, family="gemma3", base=True),
     "g3_27b_pt": dict(hf_id="google/gemma-3-27b-pt", quant="nf4", family="gemma3", base=True),
     "g3_27b_pt_8bit": dict(hf_id="google/gemma-3-27b-pt", quant="int8", family="gemma3", base=True),
+    "qwen72b_base": dict(hf_id="Qwen/Qwen2.5-72B", quant="nf4", family="qwen", base=True),
     "qwen05": dict(hf_id="Qwen/Qwen2.5-0.5B-Instruct", quant=None, family="qwen", cpu_ok=True),
     "tiny": dict(hf_id="hf-internal-testing/tiny-random-LlamaForCausalLM", quant=None, family="llama", cpu_ok=True),
 }
