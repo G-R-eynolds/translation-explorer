@@ -358,7 +358,7 @@ def extract_self_supervised_fork_dataset(
             h_last = out.last_hidden_state[0, start - 1 : start - 1 + len(gen_ids)]
             lg_all = arch.logits(model, h_last)
             p_all = lg_all.softmax(-1)
-            ents = -(p_all * p_all.clamp_min(1e-30).log()).sum(dim=-1).cpu().tolist()
+            ents = (-(p_all * p_all.clamp_min(1e-30).log()).sum(dim=-1)).cpu().tolist()
             fises = [_power_iter_fisher_top(W, p_all[j], iters=3, seed=j) for j in range(len(gen_ids))]
 
         H_chunks.append(h_layer)

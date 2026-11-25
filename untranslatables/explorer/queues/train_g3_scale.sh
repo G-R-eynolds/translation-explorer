@@ -30,32 +30,50 @@ fi
 echo "===== Training v2 live artifacts for $MODEL (LORA_LAYERS=$LORA_LAYERS) ====="
 
 echo "=== [1/4] Extracting doc-prompt global tone/practice axes ==="
-python -m explorer.train_adapters \
-  --mode axes --model "$MODEL" --prompt-style doc \
-  --out "$OUT/phase3/global_axes.npz"
+if [[ ! -f "$OUT/phase3/global_axes.npz" ]]; then
+  python -m explorer.train_adapters \
+    --mode axes --model "$MODEL" --prompt-style doc \
+    --out "$OUT/phase3/global_axes.npz"
+else
+  echo "  (already exists: $OUT/phase3/global_axes.npz)"
+fi
 
 echo "=== [2/4] Training diversity-preserving multi-reference LoRA (doc prompt) ==="
-python -m explorer.train_adapters \
-  --mode lora --model "$MODEL" --prompt-style doc \
-  --layers "$LORA_LAYERS" --steps "${LORA_STEPS:-100}" --kl-beta 0.1 \
-  --out "$OUT/phase3/multiref_lora.pt"
+if [[ ! -f "$OUT/phase3/multiref_lora.pt" ]]; then
+  python -m explorer.train_adapters \
+    --mode lora --model "$MODEL" --prompt-style doc \
+    --layers "$LORA_LAYERS" --steps "${LORA_STEPS:-100}" --kl-beta 0.1 \
+    --out "$OUT/phase3/multiref_lora.pt"
+else
+  echo "  (already exists: $OUT/phase3/multiref_lora.pt)"
+fi
 
 echo "=== [3/4] Training continuous SpectralReFT slider controller (doc prompt) ==="
-python -m explorer.train_adapters \
-  --mode reft --model "$MODEL" --prompt-style doc \
-  --steps "${REFT_STEPS:-140}" \
-  --out "$OUT/phase3/spectral_reft.pt"
+if [[ ! -f "$OUT/phase3/spectral_reft.pt" ]]; then
+  python -m explorer.train_adapters \
+    --mode reft --model "$MODEL" --prompt-style doc \
+    --steps "${REFT_STEPS:-140}" \
+    --out "$OUT/phase3/spectral_reft.pt"
+else
+  echo "  (already exists: $OUT/phase3/spectral_reft.pt)"
+fi
 
 echo "=== [4/4] Training self-supervised ForkHead (doc prompt) ==="
-python -m explorer.fork_head \
-  --model "$MODEL" --prompt-style doc --from-texts \
-  --epochs "${FORK_EPOCHS:-80}" \
-  --out "$OUT/fork_head.pt"
+if [[ ! -f "$OUT/fork_head.pt" ]]; then
+  python -m explorer.fork_head \
+    --model "$MODEL" --prompt-style doc --from-texts \
+    --epochs "${FORK_EPOCHS:-80}" \
+    --out "$OUT/fork_head.pt"
+else
+  echo "  (already exists: $OUT/fork_head.pt)"
+fi
 
 if [[ "${RUN_PHASE1:-0}" == "1" ]]; then
   echo "=== [5/5] Phase 1: 9-text reading & steering benchmark (EXPLORER_FAST=1) + mapgrid + report ==="
   EXPLORER_FAST=1 python -m explorer run --model "$MODEL" --n 64
-  python -m explorer.mapgrid --model "$MODEL" --text duende_flamenco --n 15
+  if [[ ! -f "$OUT/map_duende_flamenco.json" ]]; then
+    python -m explorer.mapgrid --model "$MODEL" --text duende_flamenco --n 15
+  fi
   python -m explorer report --model "$MODEL"
 fi
 
