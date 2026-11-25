@@ -1,0 +1,33 @@
+{
+ "n_hard": 8,
+ "n_hard_with_2plus": 8,
+ "control_readings": [
+  5
+ ],
+ "steer_success_rate": 0.74,
+ "by_variant_mode": {
+  "natural/cursor": {
+   "n_cases": 50,
+   "success_rate": 0.74,
+   "median_lift_over_baseline": 0.375
+  },
+  "natural/at_b": {
+   "n_cases": 24,
+   "success_rate": 0.7916666666666666,
+   "median_lift_over_baseline": 0.38888888888888884
+  },
+  "plain/cursor": {
+   "n_cases": 50,
+   "success_rate": 0.68,
+   "median_lift_over_baseline": 0.3875
+  },
+  "plain/at_b": {
+   "n_cases": 24,
+   "success_rate": 0.8333333333333334,
+   "median_lift_over_baseline": 0.5694444444444444
+  }
+ },
+ "rule": "pass = n_hard_with_2plus >= n_hard/2 AND natural/cursor success_rate >= 0.6 (success = >=50% of the 9 continuations land in A and are fluent, at one of the three lower KL levels: at_b <= 1 nat at the cursor; cursor <= 0.25 nats mean per token)",
+ "pass": true,
+ "control_warning": true
+}

@@ -26,8 +26,11 @@ remote.env
 *.npy
 translation-lattice/runs/
 
-# Keep small saved explorer embeddings (196 KB each) so offline replay & figures work out of the box
+# Keep small saved explorer embeddings (196 KB each) and trained Phase 3/4 workbench artifacts
 !untranslatables/results/explorer/g3_4b_pt/samples/*.npy
+!untranslatables/results/explorer/g3_4b_pt/fork_head.pt
+!untranslatables/results/explorer/g3_4b_pt/phase3/*.npz
+!untranslatables/results/explorer/g3_4b_pt/phase3/*.pt
 
 # OS / editor noise
 .DS_Store
