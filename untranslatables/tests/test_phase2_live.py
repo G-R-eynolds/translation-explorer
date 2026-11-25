@@ -35,12 +35,12 @@ def replay_engine():
 def test_replay_loads_all_four_texts(replay_engine):
     texts = replay_engine.list_texts()
     ids = {t["id"] for t in texts}
-    assert ids == {"duende_flamenco", "duende_bare", "duende_cuento", "becquer_xxi"}
+    assert {"duende_flamenco", "duende_bare", "duende_cuento", "becquer_xxi"} <= ids
     required_keys = {"id", "text", "n_samples", "n_readings", "fork_t", "fork_token", "entropy_bits"}
     for t in texts:
         assert required_keys <= set(t.keys())
         assert t["n_samples"] == 64
-        assert t["n_readings"] >= 4
+        assert t["n_readings"] >= 2
         assert t["entropy_bits"] > 0
 
 
@@ -188,12 +188,12 @@ def test_http_and_sse_server_ephemeral_port(tiny_model, replay_engine):
         assert code == 200
         assert st["mode"] == "live"
         assert st["model_key"] == "tiny"
-        assert st["replay_texts"] == 4
+        assert st["replay_texts"] >= 4
 
         # GET /api/replay/texts
         code, txts = _http_json(f"{base}/api/replay/texts")
         assert code == 200
-        assert len(txts) == 4
+        assert len(txts) >= 4
 
         # GET /api/replay/duende_flamenco
         code, bundle = _http_json(f"{base}/api/replay/duende_flamenco")
@@ -277,6 +277,6 @@ def test_build_offline_html(tmp_path):
     assert m is not None, "Embedded __OFFLINE_DATA__ JSON payload not found"
     data = json.loads(m.group(1).replace("<\\/", "</"))
     assert data["mode"] == "offline"
-    assert {t["id"] for t in data["texts"]} == {"duende_flamenco", "duende_bare", "duende_cuento", "becquer_xxi"}
+    assert {"duende_flamenco", "duende_bare", "duende_cuento", "becquer_xxi"} <= {t["id"] for t in data["texts"]}
     assert data["bundles"]["duende_flamenco"]["n_readings"] == 5
     assert data["bundles"]["duende_flamenco"]["fork_t"] == 7

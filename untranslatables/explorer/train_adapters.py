@@ -31,14 +31,26 @@ def _model_device(model) -> torch.device:
     return arch.text_model(model).embed_tokens.weight.device
 
 
-def _prepare_examples(tok, dataset: dict, axis_names: list[str] | None = None) -> list[list[dict]]:
+def _prepare_examples(
+    tok,
+    dataset: dict,
+    axis_names: list[str] | None = None,
+    prompt_style: str = "legacy",
+) -> list[list[dict]]:
     """Pre-tokenize all items grouped by source sentence so sampling is uniform over items and readings."""
+    from explorer.frame import build_doc_prompt
+
     grouped: list[list[dict]] = []
     for item in dataset["items"]:
-        prompt_ids, start = build_prompt(tok, item["source"])
+        if prompt_style == "doc":
+            prompt_ids, start = build_doc_prompt(tok, item["source"])
+            lead = ""
+        else:
+            prompt_ids, start = build_prompt(tok, item["source"])
+            lead = " "
         entries: list[dict] = []
         for tr in item["translations"]:
-            cont_ids = tok(" " + tr["text"], add_special_tokens=False)["input_ids"]
+            cont_ids = tok(lead + tr["text"], add_special_tokens=False)["input_ids"]
             if not cont_ids:
                 continue
             entry: dict = {
@@ -89,6 +101,7 @@ def train_multiref_lora(
     save_path: str | Path | None = None,
     target_modules: tuple[str, ...] = ("q_proj", "v_proj", "o_proj"),
     layers: list[int] | None = None,
+    prompt_style: str = "legacy",
 ) -> dict:
     """Diversity-preserving multi-reference SFT with optional KL anchor to the base model.
 
@@ -113,7 +126,7 @@ def train_multiref_lora(
     if not params:
         raise ValueError("No trainable LoRA parameters found in model")
 
-    grouped = _prepare_examples(tok, dataset)
+    grouped = _prepare_examples(tok, dataset, prompt_style=prompt_style)
     opt = torch.optim.AdamW(params, lr=lr)
 
     losses: list[float] = []
@@ -172,6 +185,7 @@ def train_spectral_reft(
     max_delta_norm: float = 5.0,
     contrast_weight: float = 0.2,
     margin: float = 1.0,
+    prompt_style: str = "legacy",
 ) -> dict:
     """Train continuous Spectral ReFT blocks conditioned on tone/practice slider coordinates.
 
@@ -198,7 +212,7 @@ def train_spectral_reft(
         max_delta_norm=max_delta_norm,
     )
     params = list(controller.parameters())
-    grouped = _prepare_examples(tok, dataset, axis_names=axis_names)
+    grouped = _prepare_examples(tok, dataset, axis_names=axis_names, prompt_style=prompt_style)
     opt = torch.optim.AdamW(params, lr=lr)
 
     losses: list[float] = []
@@ -286,6 +300,7 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--kl-beta", type=float, default=0.1)
     ap.add_argument("--eps", type=float, default=1e-2)
     ap.add_argument("--max-items", type=int, default=None)
+    ap.add_argument("--prompt-style", choices=("legacy", "doc"), default="legacy")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None, help="Output path (.pt for lora/reft, .npz for axes)")
     args = ap.parse_args(argv)
@@ -308,6 +323,7 @@ def main(argv: list[str] | None = None) -> None:
             seed=args.seed,
             save_path=args.out,
             layers=layers,
+            prompt_style=args.prompt_style,
         )
         print(json.dumps({"mode": "lora", "steps": args.steps, "final_loss": res["final_loss"], "saved": res["saved"]}))
     elif args.mode == "reft":
@@ -322,6 +338,7 @@ def main(argv: list[str] | None = None) -> None:
             steps=args.steps,
             seed=args.seed,
             save_path=args.out,
+            prompt_style=args.prompt_style,
         )
         res["controller"].remove()
         print(json.dumps({
@@ -338,6 +355,7 @@ def main(argv: list[str] | None = None) -> None:
             layers=layers,
             eps=args.eps,
             max_items=args.max_items,
+            prompt_style=args.prompt_style,
         )
         saved = str(bank.save(args.out)) if args.out else None
         print(json.dumps({

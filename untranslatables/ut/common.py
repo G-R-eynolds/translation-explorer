@@ -30,6 +30,10 @@ MODELS = {
     "g3_4b": dict(hf_id="google/gemma-3-4b-it", quant=None, family="gemma3"),
     "g3_4b_pt": dict(hf_id="google/gemma-3-4b-pt", quant=None, family="gemma3", base=True),
     "g3_12b": dict(hf_id="google/gemma-3-12b-it", quant="nf4", family="gemma3"),
+    "g3_12b_pt": dict(hf_id="google/gemma-3-12b-pt", quant="nf4", family="gemma3", base=True),
+    "g3_12b_pt_bf16": dict(hf_id="google/gemma-3-12b-pt", quant=None, family="gemma3", base=True),
+    "g3_27b_pt": dict(hf_id="google/gemma-3-27b-pt", quant="nf4", family="gemma3", base=True),
+    "g3_27b_pt_8bit": dict(hf_id="google/gemma-3-27b-pt", quant="int8", family="gemma3", base=True),
     "qwen05": dict(hf_id="Qwen/Qwen2.5-0.5B-Instruct", quant=None, family="qwen", cpu_ok=True),
     "tiny": dict(hf_id="hf-internal-testing/tiny-random-LlamaForCausalLM", quant=None, family="llama", cpu_ok=True),
 }
@@ -97,15 +101,22 @@ def load_model(model_key):
     spec = MODELS[model_key]
     cuda = torch.cuda.is_available()
     if not cuda and not spec.get("cpu_ok"):
-        raise SystemExit(f"{model_key} needs the GPU desktop; on CPU use --model qwen05 or tiny")
+        raise SystemExit(f"{model_key} needs a CUDA GPU; on CPU use --model qwen05 or tiny")
     tok = AutoTokenizer.from_pretrained(spec["hf_id"])
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
-    kw = dict(dtype=torch.bfloat16 if cuda else torch.float32, device_map="cuda" if cuda else "cpu")
+    kw = dict(dtype=torch.bfloat16 if cuda else torch.float32, device_map={"": 0} if cuda else "cpu")
     if spec["quant"] == "nf4":
         from transformers import BitsAndBytesConfig
-        kw["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
-                                                       bnb_4bit_compute_dtype=torch.bfloat16)
+        kw["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_compute_dtype=torch.bfloat16,
+        )
+    elif spec["quant"] == "int8":
+        from transformers import BitsAndBytesConfig
+        kw["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
     model = AutoModelForCausalLM.from_pretrained(spec["hf_id"], **kw).eval()
     model.key = model_key
     return tok, model

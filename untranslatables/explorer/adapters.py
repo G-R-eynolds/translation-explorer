@@ -324,10 +324,17 @@ class SpectralReFTController:
         self._z: torch.Tensor | None = None
         self._start_pos: int = 0
         self._pos: dict[int, int] = {l: 0 for l in self.layers}
+        self._explicit_pos: dict[int, int | None] = {l: None for l in self.layers}
         self._handles = [
             arch.layers(model)[l].register_forward_hook(self._make_hook(l))
             for l in self.layers
         ]
+
+    def sync_pos(self, pos: int) -> None:
+        """Explicitly set the absolute start position of the next forward pass across all hooked layers."""
+        p = int(pos)
+        self._pos = {l: p for l in self.layers}
+        self._explicit_pos = {l: p for l in self.layers}
 
     def _make_hook(self, layer_idx: int):
         block = self.blocks[str(layer_idx)]
@@ -335,10 +342,16 @@ class SpectralReFTController:
         def hook(mod, inp, out):
             h = out[0] if isinstance(out, tuple) else out
             T = h.shape[1]
-            start = 0 if T > 1 else self._pos[layer_idx]
-            if T > 1:
+            exp = self._explicit_pos.get(layer_idx)
+            if exp is not None:
+                start = exp
+                self._explicit_pos[layer_idx] = None
+                self._pos[layer_idx] = start + T
+            elif T > 1:
+                start = 0
                 self._pos[layer_idx] = T
             else:
+                start = self._pos[layer_idx]
                 self._pos[layer_idx] += 1
 
             if self._z is None:
@@ -362,6 +375,7 @@ class SpectralReFTController:
         """Set active continuous slider coordinates (dict, tensor/sequence, or None)."""
         self._start_pos = int(start_pos)
         self._pos = {l: 0 for l in self.layers}
+        self._explicit_pos = {l: None for l in self.layers}
         if z is None:
             self._z = None
             return

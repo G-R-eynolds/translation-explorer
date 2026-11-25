@@ -188,6 +188,38 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                 self.close_connection = True
                 return
 
+            if path == "/api/session/glide":
+                if srv.live is None:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Live session gliding requires --mode live."})
+                    return
+                session_id = (qs.get("session_id") or [""])[0].strip()
+                if not session_id:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing required query parameter 'session_id'."})
+                    return
+                max_words = int((qs.get("max_words") or ["32"])[0])
+                stop_on_fork = (qs.get("stop_on_fork") or ["1"])[0].lower() not in ("0", "false", "no")
+
+                self.send_response(HTTPStatus.OK)
+                self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.send_header("Connection", "close")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                try:
+                    for item in srv.live.sessions.glide(session_id, max_words=max_words, stop_on_fork=stop_on_fork):
+                        ev = item.get("event", "step")
+                        chunk = f"event: {ev}\ndata: {json.dumps(item, ensure_ascii=False)}\n\n".encode("utf-8")
+                        self.wfile.write(chunk)
+                        self.wfile.flush()
+                except KeyError as exc:
+                    err = f"event: error\ndata: {json.dumps({'error': str(exc)})}\n\n".encode("utf-8")
+                    self.wfile.write(err)
+                    self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+                self.close_connection = True
+                return
+
             self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
         except Exception as exc:
             self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(exc)})
@@ -263,6 +295,77 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                 self._send_json(HTTPStatus.OK, res)
                 return
 
+            # ------------------------------------------------ v2 Live Co-Translation Session API
+            if path.startswith("/api/session/"):
+                if srv.live is None:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": f"{path} requires --mode live."})
+                    return
+
+                if path == "/api/session/start":
+                    source_text = str(body.get("source_text", "")).strip("\r\n")
+                    if not source_text.strip():
+                        self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing 'source_text'."})
+                        return
+                    res = srv.live.sessions.start(
+                        source_text=source_text,
+                        src_lang=str(body.get("src_lang", "Spanish")),
+                        tgt_lang=str(body.get("tgt_lang", "English")),
+                        global_coords=body.get("global_coords"),
+                        lookahead_tokens=int(body.get("lookahead_tokens", 9)),
+                        max_branches=int(body.get("max_branches", 6)),
+                    )
+                    self._send_json(HTTPStatus.OK, res)
+                    return
+
+                session_id = str(body.get("session_id", "")).strip()
+                if not session_id:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing 'session_id'."})
+                    return
+
+                try:
+                    if path == "/api/session/step":
+                        res = srv.live.sessions.step(
+                            session_id,
+                            mode=str(body.get("mode", "word")),
+                            branch_index=body.get("branch_index"),
+                            commit_full_branch=bool(body.get("commit_full_branch", False)),
+                            custom_text=body.get("custom_text"),
+                            custom_token_ids=body.get("custom_token_ids"),
+                            source_tag=body.get("source_tag"),
+                        )
+                    elif path == "/api/session/rewind":
+                        res = srv.live.sessions.rewind(session_id, int(body.get("to_token_index", 0)))
+                    elif path == "/api/session/checkout":
+                        node_id = str(body.get("node_id", "")).strip()
+                        if not node_id:
+                            self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing 'node_id'."})
+                            return
+                        res = srv.live.sessions.checkout(session_id, node_id)
+                    elif path == "/api/session/sliders":
+                        res = srv.live.sessions.set_sliders(session_id, body.get("global_coords") or {})
+                    elif path == "/api/session/compass/probe":
+                        res = srv.live.sessions.probe_compass(
+                            session_id,
+                            n_samples=int(body.get("n_samples", 10)),
+                            lookahead_tokens=int(body.get("lookahead_tokens", 12)),
+                            seed=int(body.get("seed", 0)),
+                        )
+                    elif path == "/api/session/compass/steer":
+                        res = srv.live.sessions.steer_compass(
+                            session_id,
+                            x=float(body.get("x", 0.0)),
+                            y=float(body.get("y", 0.0)),
+                            max_new=int(body.get("max_new", 16)),
+                        )
+                    else:
+                        self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
+                        return
+                except KeyError as exc:
+                    self._send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)})
+                    return
+                self._send_json(HTTPStatus.OK, res)
+                return
+
             self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
         except Exception as exc:
             self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(exc)})
@@ -276,6 +379,9 @@ def create_server(
     layer: int | None = None,
     results_dir: str | Path | None = None,
     global_axes_path: str | Path | None = None,
+    fork_head_path: str | Path | None = None,
+    reft_path: str | Path | None = None,
+    lora_path: str | Path | None = None,
     replay_engine: ReplayEngine | None = None,
     live_engine: LiveTranslationEngine | None = None,
     quiet: bool = False,
@@ -284,7 +390,14 @@ def create_server(
     replay = replay_engine if replay_engine is not None else ReplayEngine(results_dir)
     live = live_engine
     if mode == "live" and live is None:
-        live = LiveTranslationEngine(model_key=model_key, layer=layer, global_axes_path=global_axes_path)
+        live = LiveTranslationEngine(
+            model_key=model_key,
+            layer=layer,
+            global_axes_path=global_axes_path,
+            fork_head_path=fork_head_path,
+            reft_path=reft_path,
+            lora_path=lora_path,
+        )
     return WorkbenchServer((host, int(port)), mode=mode, replay_engine=replay, live_engine=live, quiet=quiet)
 
 
@@ -295,6 +408,9 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--layer", type=int, default=None, help="Residual steering layer (default: n_layers // 2)")
     ap.add_argument("--results-dir", default=None, help="Saved explorer results directory for replay mode")
     ap.add_argument("--global-axes", default=None, help="Optional global tone axes file (.npz/.pt/.json)")
+    ap.add_argument("--fork-head", default=None, help="Optional trained ForkHead checkpoint (.pt)")
+    ap.add_argument("--reft", default=None, help="Optional trained SpectralReFT checkpoint (.pt)")
+    ap.add_argument("--lora", default=None, help="Optional trained multi-reference LoRA checkpoint (.pt)")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--export-offline", default=None, help="Write standalone offline HTML bundle and exit")
@@ -313,6 +429,9 @@ def main(argv: list[str] | None = None) -> None:
         layer=args.layer,
         results_dir=args.results_dir,
         global_axes_path=args.global_axes,
+        fork_head_path=args.fork_head,
+        reft_path=args.reft,
+        lora_path=args.lora,
     )
     bound_host, bound_port = srv.server_address
     print(f"[workbench] mode={args.mode} listening on http://{bound_host}:{bound_port}", flush=True)

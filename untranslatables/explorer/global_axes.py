@@ -238,9 +238,10 @@ def extract_global_axes(
     layers: list[int] | None = None,
     eps: float = 1e-2,
     max_items: int | None = None,
-    batch: int = 8,
+    batch: int = 4,
     target_kl: float = 0.5,
     pole_threshold: float = 0.5,
+    prompt_style: str = "legacy",
 ) -> GlobalAxisBank:
     """Extract Fisher-whitened natural contrast directions for all global axes.
 
@@ -248,6 +249,8 @@ def extract_global_axes(
     across `layers`, pools positive-pole (coord >= 0.5) and negative-pole (coord <= -0.5)
     gradients across all sentences, and solves (G_hat + lam I)^{-1} (g_pos - g_neg).
     """
+    from explorer.frame import build_doc_prompt
+
     if dataset is None:
         dataset = load_tone_axes_dataset()
     if layers is None:
@@ -262,10 +265,15 @@ def extract_global_axes(
     neg_pool: dict[str, dict[int, list[np.ndarray]]] = {a: {l: [] for l in layers} for a in axis_names}
 
     for item in items:
-        prefix, start = build_prompt(tok, item["source"])
+        if prompt_style == "doc":
+            prefix, start = build_doc_prompt(tok, item["source"])
+            lead = ""
+        else:
+            prefix, start = build_prompt(tok, item["source"])
+            lead = " "
         b = start - 1
         trs = item["translations"]
-        conts = [tok(" " + tr["text"], add_special_tokens=False)["input_ids"] for tr in trs]
+        conts = [tok(lead + tr["text"], add_special_tokens=False)["input_ids"] for tr in trs]
         G_by_layer = grads_at_layers(model, prefix, conts, layers, b, batch=batch)
 
         for idx, tr in enumerate(trs):

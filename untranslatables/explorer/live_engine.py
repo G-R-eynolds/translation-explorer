@@ -643,7 +643,9 @@ class LiveTranslationEngine:
         self.reft_controller: Any = None
         self._lora_loaded = False
         self.forks: dict[str, dict[str, Any]] = {}
-        self._lock = threading.Lock()
+        self._lock = threading.RLock()
+        from explorer.session import CoTranslationManager
+        self.sessions = CoTranslationManager(self)
         if self.tok is not None and self.model is not None:
             self._init_hook()
 

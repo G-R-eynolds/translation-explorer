@@ -188,6 +188,7 @@ def extract_fork_dataset(
     explorer_dir: str | Path,
     layer: int | None = None,
     entropy_fork_thresh: float = 1.5,
+    prompt_style: str = "legacy",
 ) -> dict[str, Any]:
     """Extract (hidden_state, fork_label, entropy, fisher_top) tuples from saved explorer runs.
 
@@ -195,6 +196,8 @@ def extract_fork_dataset(
     no-grad forward pass per text through `ut.arch.forward_hidden(..., output_hidden_states=True)`,
     and slices `h[start + t - 1]` at `layer` (default `n_layers // 2`) for each output token `t`.
     """
+    from explorer.frame import build_doc_prompt
+
     explorer_dir = Path(explorer_dir)
     branches_dir = explorer_dir / "branches"
     samples_dir = explorer_dir / "samples"
@@ -237,7 +240,7 @@ def extract_fork_dataset(
         if n_tok == 0:
             continue
 
-        ids, start = build_prompt(tok, src_text)
+        ids, start = build_doc_prompt(tok, src_text) if prompt_style == "doc" else build_prompt(tok, src_text)
         x = torch.tensor([ids + y_ref[:n_tok]], dtype=torch.long, device=dev)
         with torch.no_grad():
             out = arch.forward_hidden(
@@ -277,6 +280,109 @@ def extract_fork_dataset(
             "n_texts": len(sources),
             "n_tokens": int(H.shape[0]),
             "entropy_fork_thresh": float(entropy_fork_thresh),
+            "prompt_style": prompt_style,
+            "sources": sources,
+            "text_ids": token_text_ids,
+            "positions": token_positions,
+        },
+    }
+
+
+def extract_self_supervised_fork_dataset(
+    model,
+    tok,
+    layer: int | None = None,
+    entropy_fork_thresh: float = 1.25,
+    prompt_style: str = "doc",
+    max_new_per_text: int = 64,
+) -> dict[str, Any]:
+    """Build a ForkHead dataset directly from `texts.yaml` + `tone_axes.yaml` in one pass per text.
+
+    Runs greedy KV-cached decoding on each source text, capturing layer-`layer` hidden states,
+    exact next-token entropy, and power-iteration output-Fisher λ₁ — no prior Phase-1 run needed.
+    """
+    from explorer.frame import DOC_STOPS, STOPS, build_doc_prompt
+    from explorer.global_axes import load_tone_axes_dataset
+    from explorer.live_engine import _power_iter_fisher_top
+
+    n_l = arch.n_layers(model)
+    layer = (n_l // 2) if layer is None else (int(layer) % n_l)
+    dev = arch.text_model(model).embed_tokens.weight.device
+    W = model.lm_head.weight
+    stops = DOC_STOPS if prompt_style == "doc" else STOPS
+
+    corpus: list[tuple[str, str]] = []
+    seen_src: set[str] = set()
+    for t in load_texts():
+        if t["text"] not in seen_src:
+            corpus.append((t["id"], t["text"]))
+            seen_src.add(t["text"])
+    for item in load_tone_axes_dataset()["items"]:
+        if item["source"] not in seen_src:
+            corpus.append((item["id"], item["source"]))
+            seen_src.add(item["source"])
+
+    H_chunks: list[torch.Tensor] = []
+    y_fork: list[float] = []
+    y_entropy: list[float] = []
+    y_fisher: list[float] = []
+    token_text_ids: list[str] = []
+    token_positions: list[int] = []
+    sources: list[str] = []
+    eos_ids = {i for i in (tok.eos_token_id, tok.pad_token_id) if i is not None}
+
+    for tid, src in corpus:
+        ids, start = build_doc_prompt(tok, src) if prompt_style == "doc" else build_prompt(tok, src)
+        gen_ids: list[int] = []
+        pkv = None
+        x = torch.tensor([ids], dtype=torch.long, device=dev)
+        with torch.no_grad():
+            for _ in range(int(max_new_per_text)):
+                out = arch.forward_hidden(model, input_ids=x, past_key_values=pkv, use_cache=True)
+                pkv = out.past_key_values
+                lg = arch.logits(model, out.last_hidden_state[0, -1][None])[0]
+                nxt = int(lg.argmax().item())
+                if nxt in eos_ids:
+                    break
+                gen_ids.append(nxt)
+                if any(st in tok.decode(gen_ids) for st in stops):
+                    break
+                x = torch.tensor([[nxt]], dtype=torch.long, device=dev)
+        if not gen_ids:
+            continue
+
+        x_full = torch.tensor([ids + gen_ids], dtype=torch.long, device=dev)
+        with torch.no_grad():
+            out = arch.forward_hidden(model, input_ids=x_full, output_hidden_states=True)
+            h_layer = out.hidden_states[layer + 1][0, start - 1 : start - 1 + len(gen_ids)].detach().float().cpu()
+            h_last = out.last_hidden_state[0, start - 1 : start - 1 + len(gen_ids)]
+            lg_all = arch.logits(model, h_last)
+            p_all = lg_all.softmax(-1)
+            ents = -(p_all * p_all.clamp_min(1e-30).log()).sum(dim=-1).cpu().tolist()
+            fises = [_power_iter_fisher_top(W, p_all[j], iters=3, seed=j) for j in range(len(gen_ids))]
+
+        H_chunks.append(h_layer)
+        sources.append(tid)
+        for j, (e_t, f_t) in enumerate(zip(ents, fises)):
+            y_fork.append(1.0 if float(e_t) >= entropy_fork_thresh else 0.0)
+            y_entropy.append(float(e_t))
+            y_fisher.append(float(f_t))
+            token_text_ids.append(tid)
+            token_positions.append(j)
+
+    H = torch.cat(H_chunks, dim=0)
+    return {
+        "H": H,
+        "y_fork": torch.tensor(y_fork, dtype=torch.float32),
+        "y_entropy": torch.tensor(y_entropy, dtype=torch.float32),
+        "y_fisher": torch.tensor(y_fisher, dtype=torch.float32),
+        "meta": {
+            "layer": layer,
+            "d_model": int(H.shape[1]),
+            "n_texts": len(sources),
+            "n_tokens": int(H.shape[0]),
+            "entropy_fork_thresh": float(entropy_fork_thresh),
+            "prompt_style": prompt_style,
             "sources": sources,
             "text_ids": token_text_ids,
             "positions": token_positions,
@@ -534,6 +640,8 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--val-frac", type=float, default=0.2)
     ap.add_argument("--entropy-thresh", type=float, default=1.5)
+    ap.add_argument("--prompt-style", choices=("legacy", "doc"), default="legacy")
+    ap.add_argument("--from-texts", action="store_true", help="Self-supervised extraction directly from texts.yaml + tone_axes.yaml")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None)
     ap.add_argument("--dataset", default=None)
@@ -548,13 +656,24 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     else:
         from explorer.frame import load
         tok, model = load(args.model)
-        ds = extract_fork_dataset(
-            model,
-            tok,
-            explorer_dir,
-            layer=args.layer,
-            entropy_fork_thresh=args.entropy_thresh,
-        )
+        use_self_sup = args.from_texts or not (explorer_dir / "branches").is_dir()
+        if use_self_sup:
+            ds = extract_self_supervised_fork_dataset(
+                model,
+                tok,
+                layer=args.layer,
+                entropy_fork_thresh=args.entropy_thresh,
+                prompt_style=args.prompt_style,
+            )
+        else:
+            ds = extract_fork_dataset(
+                model,
+                tok,
+                explorer_dir,
+                layer=args.layer,
+                entropy_fork_thresh=args.entropy_thresh,
+                prompt_style=args.prompt_style,
+            )
         if ds_path is not None:
             save_dataset(ds, ds_path)
 

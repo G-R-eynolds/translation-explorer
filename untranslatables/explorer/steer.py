@@ -13,11 +13,20 @@ from ut import arch
 class CursorHook:
     def __init__(self, model, layer):
         self.vec, self.b, self.only, self.pos = None, 0, False, 0
+        self.end_b = None
+        self._explicit_pos = None
         self.h = arch.layers(model)[layer].register_forward_hook(self._hook)
 
-    def set(self, vec=None, b=0, only_at_b=False):
+    def set(self, vec=None, b=0, only_at_b=False, end_b=None):
         self.vec = None if vec is None else torch.as_tensor(vec)
         self.b, self.only, self.pos = int(b), bool(only_at_b), 0
+        self.end_b = None if end_b is None else int(end_b)
+        self._explicit_pos = None
+
+    def sync_pos(self, pos: int):
+        """Explicitly set the absolute start position of the next forward pass (for cropped/chunked KV caches)."""
+        self.pos = int(pos)
+        self._explicit_pos = int(pos)
 
     def remove(self):
         self.h.remove()
@@ -25,15 +34,25 @@ class CursorHook:
     def _hook(self, mod, inp, out):
         h = out[0] if isinstance(out, tuple) else out
         T = h.shape[1]
-        start = 0 if T > 1 else self.pos
-        if T > 1:
+        if self._explicit_pos is not None:
+            start = self._explicit_pos
+            self._explicit_pos = None
+            self.pos = start + T
+        elif T > 1:
+            start = 0
             self.pos = T
         else:
+            start = self.pos
             self.pos += 1
         if self.vec is None:
             return None
         idx = torch.arange(start, start + T, device=h.device)
-        mask = (idx == self.b) if self.only else (idx >= self.b)
+        if self.only:
+            mask = idx == self.b
+        elif self.end_b is not None:
+            mask = (idx >= self.b) & (idx <= self.end_b)
+        else:
+            mask = idx >= self.b
         if not bool(mask.any()):
             return None
         add = mask[None, :, None].to(h.dtype) * self.vec.to(h.device, h.dtype)[None, None, :]

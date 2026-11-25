@@ -3,1620 +3,1196 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spectral Translation Workbench</title>
+<title>Spectral Translation Explorer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter+Tight:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter+Tight:wght@400;500;600&display=swap">
 <style>
 :root {
-  --paper: #f7f6f3;
-  --surface: #fcfbf9;
-  --surface-alt: #f0eee9;
-  --ink: #1d1b1f;
-  --muted: #67636b;
-  --rule: #dedbe0;
-  --wine: #8a2343;
-  --wine-soft: #e9d3da;
-  --wine-tint: rgba(138, 35, 67, 0.08);
-  --ochre: #9c6520;
+  --bg: #f8f6f2;
+  --surface: #fdfcfa;
+  --surface-2: #f1eee8;
+  --ink: #1c1a1e;
+  --muted: #6c6872;
+  --rule: #e2dfd9;
+  --accent: #8a2343;
+  --accent-soft: rgba(138, 35, 67, 0.10);
   --teal: #2c5d72;
-  --stem: #3b3740;
-  --shadow: 0 1px 2px rgba(29, 27, 31, 0.04), 0 6px 20px rgba(29, 27, 31, 0.04);
+  --ochre: #9c6520;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Inter Tight", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #17161a;
-    --surface: #1f1d23;
-    --surface-alt: #28252d;
-    --ink: #ecebef;
-    --muted: #a29ea8;
-    --rule: #34313a;
-    --wine: #e07d9c;
-    --wine-soft: #4a2533;
-    --wine-tint: rgba(224, 125, 156, 0.13);
-    --ochre: #dfa055;
+    --bg: #141317;
+    --surface: #1b191f;
+    --surface-2: #24212a;
+    --ink: #edece8;
+    --muted: #9c97a3;
+    --rule: #2f2b36;
+    --accent: #e07a9b;
+    --accent-soft: rgba(224, 122, 155, 0.14);
     --teal: #6ba8c2;
-    --stem: #c9c5cf;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    --ochre: #dfa055;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #17161a;
-  --surface: #1f1d23;
-  --surface-alt: #28252d;
-  --ink: #ecebef;
-  --muted: #a29ea8;
-  --rule: #34313a;
-  --wine: #e07d9c;
-  --wine-soft: #4a2533;
-  --wine-tint: rgba(224, 125, 156, 0.13);
-  --ochre: #dfa055;
+  --bg: #141317;
+  --surface: #1b191f;
+  --surface-2: #24212a;
+  --ink: #edece8;
+  --muted: #9c97a3;
+  --rule: #2f2b36;
+  --accent: #e07a9b;
+  --accent-soft: rgba(224, 122, 155, 0.14);
   --teal: #6ba8c2;
-  --stem: #c9c5cf;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --ochre: #dfa055;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
-button, input, select { font-family: inherit; color: inherit; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--ink);
+  font: 14.5px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font-family: inherit; color: inherit; }
 
-/* Top Masthead & Controls */
-.topbar {
-  position: sticky; top: 0; z-index: 30;
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
 }
-.topbar-inner {
-  max-width: 1320px; margin: 0 auto;
-  padding: 12px 24px;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px;
-}
-.brand { display: flex; flex-direction: column; gap: 1px; margin-right: auto; }
-.brand-title { font: 600 20px/1.15 var(--serif); letter-spacing: -0.01em; }
-.brand-title em { color: var(--wine); font-weight: 500; }
-.brand-sub { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-
-.badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 4px 10px; border-radius: 999px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--muted); white-space: nowrap;
-}
-.badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
-.badge.live { border-color: var(--wine-soft); color: var(--wine); background: var(--wine-tint); }
-.badge.live .dot { background: var(--wine); box-shadow: 0 0 0 3px var(--wine-soft); }
-.badge.replay .dot { background: var(--teal); }
-
-.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-select.ctrl, input.ctrl {
-  height: 36px; padding: 0 11px; border-radius: 6px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 14px; outline: none;
-}
-select.ctrl:focus, input.ctrl:focus { border-color: var(--wine); }
-input.ctrl.source-input { min-width: 240px; max-width: 340px; font-family: var(--serif); font-style: italic; }
-
-.btn {
-  height: 36px; padding: 0 14px; border-radius: 6px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 13px; font-weight: 600; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 6px;
-  transition: background 0.14s, border-color 0.14s, transform 0.08s;
-}
-.btn:hover { border-color: var(--muted); background: var(--surface-alt); }
-.btn:active { transform: translateY(1px); }
-.btn.primary { background: var(--wine); border-color: var(--wine); color: #fff; }
-.btn.primary:hover { filter: brightness(1.08); background: var(--wine); }
-.btn.ghost { padding: 0 10px; }
-.btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-/* Main Grid Layout */
-.shell {
-  max-width: 1320px; margin: 0 auto;
-  padding: 24px 24px 64px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 24px;
-  align-items: start;
-}
-.main-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-.side-col { display: flex; flex-direction: column; gap: 18px; position: sticky; top: 76px; }
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 20px 22px;
-  box-shadow: var(--shadow);
-}
-.card-head {
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: 8px 14px; margin-bottom: 14px;
-}
-.eyebrow { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-h2 { font: 600 19px/1.25 var(--serif); margin: 0; }
-.meta-row { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.meta-row b { color: var(--ink); font-weight: 600; }
-
-/* Source Quote */
-.source-quote {
-  font: italic 400 clamp(20px, 2.6vw, 26px)/1.38 var(--serif);
-  border-left: 3px solid var(--wine);
-  padding: 2px 0 2px 16px;
-  margin: 0 0 16px;
-}
-.source-quote small {
-  display: block; font: 400 13px/1.45 var(--sans); font-style: normal;
-  color: var(--muted); margin-top: 4px;
-}
-
-/* Token Stream */
-.token-stream {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 3px;
-  padding: 14px 16px; border-radius: 8px;
-  background: var(--paper); border: 1px solid var(--rule);
-  min-height: 62px; position: relative;
-}
-.tok {
-  position: relative;
-  font: 400 18px/1.55 var(--serif);
-  padding: 2px 4px 5px;
-  border-radius: 4px;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: background 0.12s, transform 0.1s;
-  user-select: none;
-  white-space: pre-wrap;
-}
-.tok:hover { background: var(--surface-alt); }
-.tok.is-fork::after {
-  content: "◆";
-  position: absolute; top: -7px; right: 1px;
-  font-size: 8px; color: var(--wine); line-height: 1;
-}
-.tok.active-cursor {
-  background: var(--wine-tint);
-  outline: 1.5px solid var(--wine);
-  outline-offset: -1px;
-  color: var(--ink);
-}
-.tok.before-cursor { opacity: 0.92; }
-.tok.after-cursor { opacity: 0.72; }
-
-.sparkline-wrap {
-  margin-top: 12px;
-  display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center;
-}
-.spark-bars {
-  display: flex; align-items: flex-end; gap: 3px; height: 34px;
-  padding: 2px 0;
-}
-.spark-bar {
-  flex: 1 1 0; min-width: 6px; max-width: 28px;
-  border-radius: 2px 2px 0 0; cursor: pointer;
-  transition: opacity 0.12s, transform 0.1s;
-  position: relative;
-}
-.spark-bar:hover { opacity: 0.85; transform: scaleY(1.06); transform-origin: bottom; }
-.spark-bar.active { outline: 1.5px solid var(--ink); }
-.legend-inline { display: flex; flex-wrap: wrap; gap: 10px 14px; font-size: 12px; color: var(--muted); }
-.swatch-line { display: inline-block; width: 16px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
-
-/* Tooltip */
-.tooltip {
-  position: fixed; z-index: 60; pointer-events: none;
-  background: var(--ink); color: var(--paper);
-  padding: 8px 11px; border-radius: 7px;
-  font-size: 12px; line-height: 1.45; max-width: 290px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
-  opacity: 0; transition: opacity 0.1s;
-}
-.tooltip.show { opacity: 1; }
-.tooltip .tt-tok { font: italic 500 15px var(--serif); margin-bottom: 3px; }
-.tooltip .tt-grid { display: flex; gap: 12px; font-family: var(--mono); font-size: 11px; opacity: 0.9; }
-.tooltip .tt-cands { margin-top: 5px; padding-top: 5px; border-top: 1px solid rgba(255,255,255,0.16); font-size: 11px; }
-
-/* Compass + Steered Output Split */
-.compass-grid {
-  display: grid;
-  grid-template-columns: minmax(290px, 410px) minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-}
-.compass-stage { display: flex; flex-direction: column; gap: 12px; }
-.canvas-frame {
-  position: relative; width: 100%; aspect-ratio: 1 / 1;
-  border-radius: 10px; overflow: hidden;
-  border: 1px solid var(--rule); background: var(--paper);
-  touch-action: none;
-}
-canvas#compass { width: 100%; height: 100%; display: block; cursor: crosshair; }
-.canvas-hud {
-  position: absolute; left: 10px; bottom: 8px;
-  font: 11px/1.3 var(--mono); color: var(--muted);
-  background: color-mix(in srgb, var(--surface) 85%, transparent);
-  padding: 3px 7px; border-radius: 4px; border: 1px solid var(--rule);
-  pointer-events: none;
-}
-.canvas-reset {
-  position: absolute; right: 10px; top: 10px;
-  height: 26px; padding: 0 8px; font-size: 11px;
-}
-
-.pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 4px 10px; border-radius: 999px;
-  border: 1px solid var(--rule); background: var(--paper);
-  font: italic 500 14px/1.2 var(--serif); cursor: pointer;
-  transition: border-color 0.14s, background 0.14s;
-}
-.pill:hover { border-color: var(--ink); }
-.pill.active { border-color: var(--wine); background: var(--wine-tint); }
-.pill .pdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.pill .ppct { font: 500 11.5px var(--sans); font-style: normal; color: var(--muted); font-variant-numeric: tabular-nums; }
-
-/* Live Steered Translation Panel */
-.steer-panel { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.steered-box {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--wine);
-  border-radius: 8px;
-  padding: 16px 18px;
-  display: flex; flex-direction: column; gap: 10px;
-}
-.steered-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.steered-text {
-  font: 400 clamp(19px, 2.2vw, 23px)/1.45 var(--serif);
-  color: var(--ink);
-  min-height: 54px;
-}
-.steered-text .prefix-part { color: var(--muted); }
-.steered-text .cont-part { color: var(--ink); background: var(--wine-tint); padding: 0 3px; border-radius: 3px; }
-.source-tag {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 999px;
-  background: var(--surface); border: 1px solid var(--rule); color: var(--muted);
-}
-.source-tag.steered { color: var(--wine); border-color: var(--wine-soft); background: var(--wine-tint); }
-
-.telemetry {
-  display: flex; flex-wrap: wrap; gap: 8px 16px;
-  font: 12px/1.4 var(--mono); color: var(--muted);
-  padding-top: 8px; border-top: 1px solid var(--rule);
-}
-.telemetry b { color: var(--ink); font-weight: 600; }
-
-/* Reading Probability Bars */
-.bars-wrap { display: flex; flex-direction: column; gap: 9px; }
-.bar-row { display: grid; grid-template-columns: 126px 1fr 44px; gap: 10px; align-items: center; cursor: pointer; }
-.bar-name { font: italic 500 15px/1.2 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bar-track { height: 14px; background: var(--surface-alt); border-radius: 3px; overflow: hidden; position: relative; }
-.bar-fill { height: 100%; border-radius: 3px; transition: width 0.12s ease-out; }
-.bar-val { font: 600 12.5px var(--sans); text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
-.bar-row.dominant .bar-val { color: var(--ink); }
-
-/* Global Tone & Practice Sliders Sidebar */
-.slider-group { display: flex; flex-direction: column; gap: 14px; }
-.slider-item { display: flex; flex-direction: column; gap: 5px; }
-.slider-labels {
-  display: flex; justify-content: space-between; align-items: baseline;
-  font-size: 12.5px; font-weight: 500;
-}
-.slider-labels .val { font-family: var(--mono); font-size: 11px; color: var(--wine); font-weight: 600; }
-.slider-ends { display: flex; justify-content: space-between; font: italic 13px var(--serif); color: var(--muted); }
-input[type="range"].axis-slider {
-  -webkit-appearance: none; appearance: none;
-  width: 100%; height: 6px; border-radius: 999px;
-  background: linear-gradient(90deg, var(--rule) 0%, var(--rule) 49.5%, var(--muted) 50%, var(--rule) 50.5%, var(--rule) 100%);
-  outline: none; cursor: pointer;
-}
-input[type="range"].axis-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none;
-  width: 15px; height: 15px; border-radius: 50%;
-  background: var(--wine); border: 2px solid var(--surface);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-}
-input[type="range"].axis-slider::-moz-range-thumb {
-  width: 15px; height: 15px; border-radius: 50%;
-  background: var(--wine); border: 2px solid var(--surface);
-}
-.note-box {
-  font-size: 12.5px; line-height: 1.48; color: var(--muted);
-  background: var(--paper); border: 1px solid var(--rule);
-  border-radius: 7px; padding: 10px 12px;
-}
-.note-box b { color: var(--ink); }
-
-/* Reading Inspector Accordion */
-.inspector-list { display: flex; flex-direction: column; gap: 10px; }
-details.reading-card {
-  border: 1px solid var(--rule); border-radius: 8px;
-  background: var(--paper); overflow: hidden;
-}
-details.reading-card summary {
-  list-style: none; cursor: pointer;
-  padding: 12px 15px;
+.bar {
+  max-width: 1380px; margin: 0 auto;
+  padding: 10px 22px;
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
 }
-details.reading-card summary::-webkit-details-marker { display: none; }
-.rc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.rc-title { font: italic 500 17px/1.2 var(--serif); margin-right: auto; }
-.rc-stats { display: flex; gap: 12px; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.rc-body {
-  padding: 0 15px 14px;
-  border-top: 1px solid var(--rule);
+.brand {
+  font: 600 18px/1 var(--serif);
+  letter-spacing: -0.015em;
+  margin-right: 6px;
+}
+.brand em { color: var(--accent); font-style: italic; font-weight: 500; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--surface);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--muted); white-space: nowrap;
+}
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+.pill.live { border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); color: var(--accent); background: var(--accent-soft); }
+.pill.live .dot { background: var(--accent); }
+.pill.replay .dot { background: var(--teal); }
+.spacer { flex: 1; }
+
+.btn {
+  height: 32px; padding: 0 11px; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--surface);
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) { background: var(--surface-2); border-color: var(--muted); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover:not(:disabled) { filter: brightness(1.07); }
+.btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+select.sel {
+  height: 32px; padding: 0 9px; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--surface);
+  font-size: 12.5px; outline: none; cursor: pointer;
+}
+select.sel:focus { border-color: var(--accent); }
+kbd {
+  font: 500 10.5px/1 var(--mono);
+  padding: 2px 5px; border-radius: 4px;
+  border: 1px solid var(--rule); background: var(--surface-2); color: var(--muted);
+}
+
+/* Main two-pane workspace */
+main {
+  max-width: 1380px; margin: 0 auto;
+  padding: 20px 22px 48px;
+}
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 920px) {
+  .studio { grid-template-columns: 1fr; }
+}
+.pane {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.pane-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* Source editor */
+textarea.source-editor {
+  width: 100%; min-height: 300px; resize: vertical;
+  padding: 14px 16px; border-radius: 8px;
+  border: 1px solid var(--rule); background: var(--bg);
+  font: 400 17.5px/1.62 var(--serif);
+  color: var(--ink); outline: none;
+  white-space: pre-wrap; tab-size: 2;
+}
+textarea.source-editor:focus { border-color: var(--accent); }
+.source-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+
+/* Living translation surface */
+.canvas-wrap {
+  min-height: 220px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  font: 400 18.5px/1.68 var(--serif);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  position: relative;
+}
+.ctok {
+  cursor: pointer; border-radius: 3px;
+  transition: background 0.1s;
+}
+.ctok:hover { background: var(--accent-soft); }
+.ctok.forked {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.ctok.steered {
+  background: color-mix(in srgb, var(--teal) 14%, transparent);
+}
+.cursor-caret {
+  display: inline-block; width: 2px; height: 1.1em;
+  background: var(--accent); vertical-align: -0.15em;
+  margin: 0 1px; animation: blink 1.1s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.ghost-text {
+  color: var(--muted); opacity: 0.62; font-style: italic;
+}
+.ghost-text.hover-preview {
+  color: var(--accent); opacity: 0.92; font-style: normal;
+  background: var(--accent-soft); border-radius: 3px; padding: 0 2px;
+}
+
+/* Tension meter & adaptive branch fan */
+.frontier-box {
   display: flex; flex-direction: column; gap: 10px;
+  padding-top: 2px;
 }
-.lift-strip {
-  margin-top: 10px; display: flex; flex-direction: column; gap: 5px;
-  font-size: 12.5px; color: var(--muted);
+.regime-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
 }
-.lift-track { position: relative; height: 16px; background: var(--surface-alt); border-radius: 3px; overflow: hidden; }
-.lift-alone { position: absolute; top: 0; bottom: 0; left: 0; background: var(--muted); opacity: 0.4; }
-.lift-nudged { position: absolute; top: 3px; bottom: 3px; left: 0; background: var(--wine); border-radius: 2px; }
-.exemplar-list { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
-.exemplar {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
-  padding: 7px 10px; border-radius: 6px; background: var(--surface);
-  border: 1px solid var(--rule); cursor: pointer; transition: border-color 0.12s;
+.regime-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 600; color: var(--muted);
 }
-.exemplar:hover { border-color: var(--wine); }
-.exemplar .ex-txt { font: italic 14.5px/1.4 var(--serif); color: var(--ink); }
-.exemplar .ex-meta { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+.regime-badge.fork { color: var(--accent); }
+.regime-badge.subtle { color: var(--ochre); }
+.meter {
+  width: 72px; height: 5px; border-radius: 99px;
+  background: var(--surface-2); overflow: hidden; display: inline-block;
+}
+.meter > i {
+  display: block; height: 100%; border-radius: 99px;
+  background: var(--muted); transition: width 0.18s ease, background 0.18s ease;
+}
+.regime-badge.fork .meter > i { background: var(--accent); }
+.regime-badge.subtle .meter > i { background: var(--ochre); }
 
-.status-banner {
-  display: none; align-items: center; gap: 10px;
-  padding: 9px 14px; border-radius: 7px;
-  background: var(--wine-tint); border: 1px solid var(--wine-soft);
-  color: var(--wine); font-size: 13px; font-weight: 500;
+.linear-hint {
+  padding: 10px 13px; border-radius: 8px;
+  border: 1px dashed var(--rule); background: var(--bg);
+  font-size: 13px; color: var(--muted);
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
 }
-.status-banner.show { display: flex; }
-.spinner {
-  width: 14px; height: 14px; border-radius: 50%;
-  border: 2px solid var(--wine-soft); border-top-color: var(--wine);
-  animation: spin 0.7s linear infinite;
+.branch-list {
+  display: flex; flex-direction: column; gap: 7px;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+.branch-btn {
+  width: 100%; text-align: left;
+  padding: 9px 12px; border-radius: 8px;
+  border: 1px solid var(--rule); background: var(--surface);
+  cursor: pointer; display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 54px;
+  gap: 8px 12px; align-items: center;
+  transition: border-color 0.12s, background 0.12s, transform 0.08s;
+}
+.branch-btn:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+.branch-key {
+  width: 22px; height: 22px; border-radius: 5px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 600 11px/1 var(--mono); color: #fff;
+}
+.branch-body { min-width: 0; }
+.branch-text {
+  font: 400 15.5px/1.4 var(--serif);
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.branch-text strong { font-weight: 600; }
+.branch-sub {
+  margin-top: 3px; display: flex; align-items: center; gap: 8px;
+  font-size: 11.5px; color: var(--muted);
+}
+.branch-bar {
+  flex: 1; max-width: 120px; height: 4px; border-radius: 99px;
+  background: var(--surface-2); overflow: hidden;
+}
+.branch-bar > i { display: block; height: 100%; border-radius: 99px; }
+.branch-pct {
+  text-align: right; font: 600 12px/1 var(--mono); color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
 
-@media (max-width: 1020px) {
-  .shell { grid-template-columns: 1fr; }
-  .side-col { position: static; }
+/* Transport bar */
+.transport {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding-top: 4px; border-top: 1px solid var(--rule);
 }
-@media (max-width: 740px) {
-  .compass-grid { grid-template-columns: 1fr; }
-  .topbar-inner { padding: 10px 14px; }
-  .shell { padding: 16px 14px 48px; }
+.custom-word {
+  flex: 1; min-width: 140px; height: 32px;
+  padding: 0 10px; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--bg);
+  font: 400 14px/1 var(--serif); outline: none;
 }
+.custom-word:focus { border-color: var(--accent); }
+
+/* Drawers (Compass, Sliders, History) */
+.drawer {
+  margin-top: 4px;
+  padding: 14px 16px; border-radius: 10px;
+  border: 1px solid var(--rule); background: var(--bg);
+  display: none; flex-direction: column; gap: 12px;
+}
+.drawer.open { display: flex; }
+
+.compass-grid {
+  display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 16px; align-items: center;
+}
+@media (max-width: 640px) { .compass-grid { grid-template-columns: 1fr; } }
+svg.compass-svg {
+  width: 230px; height: 230px; display: block;
+  border-radius: 10px; border: 1px solid var(--rule);
+  background: var(--surface); cursor: crosshair; touch-action: none;
+}
+.steered-preview {
+  padding: 12px 14px; border-radius: 8px;
+  border: 1px solid var(--rule); background: var(--surface);
+  font: 400 16px/1.5 var(--serif); min-height: 76px;
+  white-space: pre-wrap;
+}
+
+.slider-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 18px;
+}
+.slider-item label {
+  display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 4px;
+}
+.slider-item input[type=range] {
+  width: 100%; accent-color: var(--accent); cursor: pointer;
+}
+
+.history-list { display: flex; flex-direction: column; gap: 6px; }
+.hist-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 7px 10px; border-radius: 7px;
+  border: 1px solid var(--rule); background: var(--surface);
+  cursor: pointer; font-size: 12.5px;
+}
+.hist-item.active { border-color: var(--accent); background: var(--accent-soft); }
+.hist-item .snip { font-family: var(--serif); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 280px; }
+
+/* Replay view (compact, clean) */
+.replay-wrap { display: none; flex-direction: column; gap: 18px; }
+.replay-wrap.active { display: flex; }
+.studio.hidden { display: none; }
+.replay-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start;
+}
+@media (max-width: 900px) { .replay-grid { grid-template-columns: 1fr; } }
+.replay-tokens {
+  display: flex; flex-wrap: wrap; gap: 4px 2px;
+  padding: 14px 16px; border-radius: 8px; background: var(--bg); border: 1px solid var(--rule);
+  font: 400 18px/1.6 var(--serif);
+}
+.rtok { padding: 2px 3px; border-radius: 3px; border-bottom: 3px solid transparent; }
+.rtok.cur { outline: 2px solid var(--accent); }
+.status-msg { font-size: 12px; color: var(--muted); min-height: 18px; }
 </style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <div class="brand-title">Spectral Translation <em>Workbench</em></div>
-      <div class="brand-sub">Branch detection · Local Fisher directions · Real-time residual steering</div>
-    </div>
-    <span id="mode-badge" class="badge replay"><span class="dot"></span><span id="mode-label">INITIALISING</span></span>
-    <div class="controls">
-      <select id="text-select" class="ctrl" aria-label="Select text"></select>
-      <input id="custom-source" class="ctrl source-input" type="text" placeholder="Enter Spanish sentence (Live mode)…" style="display:none">
-      <button id="stream-btn" class="btn primary" type="button">▶ Stream Translation</button>
-      <button id="theme-btn" class="btn ghost" type="button" title="Toggle light/dark theme">◐</button>
-    </div>
+<header>
+  <div class="bar">
+    <div class="brand">Translation <em>Explorer</em></div>
+    <span id="modePill" class="pill"><i class="dot"></i><span id="modeLabel">Loading…</span></span>
+    <span id="modelPill" class="pill" style="display:none"></span>
+    <div class="spacer"></div>
+    <select id="srcLang" class="sel" title="Source language">
+      <option value="Spanish">Spanish → English</option>
+      <option value="Portuguese">Portuguese → English</option>
+      <option value="Italian">Italian → English</option>
+      <option value="French">French → English</option>
+      <option value="German">German → English</option>
+    </select>
+    <button id="btnSliders" class="btn" title="Global tone & practice sliders (S)">Sliders <kbd>S</kbd></button>
+    <button id="btnHistory" class="btn" title="Explored branch history (H)">Paths <kbd>H</kbd></button>
+    <button id="btnSwitchMode" class="btn" style="display:none">Replay Archive</button>
+    <button id="btnTheme" class="btn" title="Toggle light/dark">◐</button>
   </div>
 </header>
 
-<main class="shell">
-  <div class="main-col">
-    <div id="status-banner" class="status-banner"><span class="spinner"></span><span id="status-text">Working…</span></div>
-
-    <!-- Token Stream Panel -->
-    <section class="card" aria-label="Token stream and branch detector">
-      <div class="card-head">
-        <div>
-          <div class="eyebrow">1 · Source &amp; Token Stream</div>
-          <h2>Watch where the model hesitates, then click any token to branch</h2>
-        </div>
-        <div class="meta-row" id="stream-meta"></div>
+<main>
+  <!-- ==================== LIVE CO-TRANSLATION STUDIO ==================== -->
+  <section id="liveStudio" class="studio">
+    <!-- Left: Source Poem / Paragraph -->
+    <div class="pane">
+      <div class="pane-head">
+        <span class="eyebrow">Source Text</span>
+        <select id="presetSelect" class="sel" title="Load an example poem or passage">
+          <option value="">Load example…</option>
+        </select>
+      </div>
+      <textarea id="sourceInput" class="source-editor" spellcheck="false"
+        placeholder="Paste a poem, stanza, or paragraph in Spanish (or another language)…&#10;Line breaks, stanzas, and indentation are preserved."></textarea>
+      <div class="source-foot">
+        <span id="sourceStats" class="status-msg">Line breaks &amp; stanzas preserved</span>
+        <button id="btnStart" class="btn primary">Start Co-Translating</button>
       </div>
 
-      <div class="source-quote" id="source-quote">
-        <span id="source-text">Loading…</span>
-        <small id="source-caption"></small>
+      <!-- Collapsible Global Practice Sliders -->
+      <div id="slidersDrawer" class="drawer">
+        <div class="pane-head">
+          <span class="eyebrow">Global Practice &amp; Tone Axes</span>
+          <button id="btnResetSliders" class="btn">Reset</button>
+        </div>
+        <div id="sliderGrid" class="slider-grid"></div>
       </div>
 
-      <div id="token-stream" class="token-stream" role="list" aria-label="Generated tokens"></div>
-
-      <div class="sparkline-wrap">
-        <div id="spark-bars" class="spark-bars" aria-label="Token entropy profile"></div>
-        <div class="legend-inline">
-          <span><span class="swatch-line" style="background:var(--rule)"></span>low tension</span>
-          <span><span class="swatch-line" style="background:var(--ochre)"></span>rising H / λ₁</span>
-          <span><span class="swatch-line" style="background:var(--wine)"></span>fork peak ◆</span>
+      <!-- Collapsible Explored Paths -->
+      <div id="historyDrawer" class="drawer">
+        <div class="pane-head">
+          <span class="eyebrow">Explored Branches</span>
+          <span class="status-msg">Click any path to restore</span>
         </div>
+        <div id="historyList" class="history-list"></div>
       </div>
-    </section>
+    </div>
 
-    <!-- 2D Spectral Direction Compass + Live Steered Output -->
-    <section class="card" aria-label="2D Spectral Direction Compass">
-      <div class="card-head">
-        <div>
-          <div class="eyebrow">2 · 2D Spectral Direction Compass</div>
-          <h2>Drag the crosshair to steer between readings at the fork</h2>
-        </div>
-        <div class="meta-row" id="compass-meta"></div>
+    <!-- Right: Live Cursor & Adaptive Branches -->
+    <div class="pane">
+      <div class="pane-head">
+        <span class="eyebrow">Live Translation</span>
+        <span id="liveStatus" class="status-msg">Ready — click Start to prefill</span>
       </div>
 
-      <div class="compass-grid">
-        <div class="compass-stage">
-          <div class="canvas-frame">
-            <canvas id="compass" width="420" height="420"></canvas>
-            <div class="canvas-hud" id="canvas-hud">(0.00, 0.00) · r = 0.00</div>
-            <button id="reset-origin-btn" class="btn canvas-reset" type="button">Reset (0, 0)</button>
-          </div>
-          <div id="reading-pills" class="pills" aria-label="Quick-jump reading pills"></div>
-        </div>
+      <div id="translationCanvas" class="canvas-wrap" title="Click any committed word to rewind there">
+        <span class="ghost-text">Your translation will unfold here word by word…</span>
+      </div>
 
-        <div class="steer-panel">
-          <div class="steered-box">
-            <div class="steered-head">
-              <span class="eyebrow" style="margin:0">Steered Translation</span>
-              <span id="steered-source-tag" class="source-tag">baseline</span>
+      <div class="transport">
+        <button id="btnRewind" class="btn" disabled title="Rewind one word (Backspace)">← Rewind</button>
+        <button id="btnStep" class="btn primary" disabled title="Advance one word (Space or →)">Step Word →</button>
+        <button id="btnGlide" class="btn" disabled title="Stream automatically until next complex fork (Tab)">▶ Glide to Fork</button>
+        <button id="btnCompass" class="btn" disabled title="Open 2D Spectral Steering Compass at cursor (C)">◎ Compass</button>
+        <button id="btnCopy" class="btn" disabled title="Copy committed translation">Copy</button>
+        <input id="customWord" class="custom-word" placeholder="Or type next word & Enter…" disabled>
+      </div>
+
+      <!-- Adaptive Branch Frontier -->
+      <div id="frontierBox" class="frontier-box">
+        <div class="regime-row">
+          <span id="regimeBadge" class="regime-badge">
+            <span class="meter"><i id="tensionBar" style="width:0%"></i></span>
+            <span id="regimeText">Waiting for session</span>
+          </span>
+          <span id="frontierMetrics" class="status-msg"></span>
+        </div>
+        <div id="branchContainer"></div>
+      </div>
+
+      <!-- On-demand 2D Spectral Compass -->
+      <div id="compassDrawer" class="drawer">
+        <div class="pane-head">
+          <span class="eyebrow">2D Spectral Steering Compass (at cursor)</span>
+          <span id="compassMeta" class="status-msg">Drag to steer live</span>
+        </div>
+        <div class="compass-grid">
+          <svg id="compassSvg" class="compass-svg" viewBox="-1.45 -1.45 2.9 2.9"></svg>
+          <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+            <div id="steeredPreview" class="steered-preview"><span class="ghost-text">Drag inside the compass to generate a steered continuation…</span></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button id="btnCommitSteeredWord" class="btn primary" disabled>Commit Next Word</button>
+              <button id="btnCommitSteeredAll" class="btn" disabled>Commit Full Phrase</button>
+              <button id="btnReprobeCompass" class="btn">Re-probe Cursor</button>
             </div>
-            <div id="steered-text" class="steered-text">—</div>
-            <div id="steered-telemetry" class="telemetry"></div>
-          </div>
-
-          <div>
-            <div class="eyebrow" style="margin-bottom:8px">Reading Share Weights at Cursor</div>
-            <div id="prob-bars" class="bars-wrap"></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Reading Inspector -->
-    <section class="card" aria-label="Reading Inspector">
-      <div class="card-head">
-        <div>
-          <div class="eyebrow">3 · Reading Inspector</div>
-          <h2>Discovered readings, counts, and sample exemplars</h2>
-        </div>
-        <div class="meta-row" id="inspector-meta"></div>
+  <!-- ==================== REPLAY / OFFLINE ARCHIVE VIEW ==================== -->
+  <section id="replayView" class="replay-wrap">
+    <div class="pane">
+      <div class="pane-head">
+        <span class="eyebrow">Saved Explorer Archive</span>
+        <select id="replaySelect" class="sel"></select>
       </div>
-      <div id="reading-inspector" class="inspector-list"></div>
-    </section>
-  </div>
-
-  <!-- Sidebar: Global Tone & Practice Sliders -->
-  <aside class="side-col">
-    <section class="card" aria-label="Global tone and practice sliders">
-      <div class="card-head" style="margin-bottom:10px">
-        <div>
-          <div class="eyebrow">Global Axes</div>
-          <h2 style="font-size:17px">Tone &amp; Practice</h2>
+      <div id="replaySource" style="font:italic 400 20px/1.45 var(--serif);border-left:3px solid var(--accent);padding-left:14px"></div>
+      <div id="replayTokens" class="replay-tokens"></div>
+      <div class="replay-grid">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="eyebrow">Steered Output</div>
+          <div id="replayOut" class="steered-preview" style="font-size:18px"></div>
+          <div id="replayReadings" style="display:flex;flex-wrap:wrap;gap:8px"></div>
         </div>
-        <button id="reset-sliders-btn" class="btn ghost" type="button" style="height:28px;font-size:11.5px">Zero</button>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+          <svg id="replayCompass" class="compass-svg" style="width:280px;height:280px" viewBox="-1.45 -1.45 2.9 2.9"></svg>
+          <span id="replayMeta" class="status-msg">Drag compass to explore saved steering</span>
+        </div>
       </div>
-      <div id="slider-group" class="slider-group"></div>
-      <div id="global-note" class="note-box" style="margin-top:14px"></div>
-    </section>
-
-    <section class="card">
-      <div class="eyebrow" style="margin-bottom:6px">How to Read This</div>
-      <p style="margin:0 0 8px;font-size:13.5px;color:var(--muted)">
-        Each dot on the compass is one full translation sampled from the model, projected onto the top two spectral directions separating its readings.
-      </p>
-      <p style="margin:0;font-size:13.5px;color:var(--muted)">
-        Dragging from the origin <span style="font-family:var(--mono)">(0, 0)</span> adds a calibrated vector at the fork token and every subsequent decode step. Click any reading pill or exemplar to jump straight to it.
-      </p>
-    </section>
-  </aside>
+    </div>
+  </section>
 </main>
-
-<div id="tooltip" class="tooltip" role="tooltip"></div>
 
 <!-- OFFLINE_DATA_HOOK -->
 
 <script>
 (() => {
-  "use strict";
-
-  const GLOBAL_AXES = [
-    { id: "literal_idiomatic", neg: "Literal", pos: "Idiomatic" },
-    { id: "plain_poetic", neg: "Plain", pos: "Poetic" },
-    { id: "foreign_domestic", neg: "Foreignising", pos: "Domesticating" },
-    { id: "concise_glossed", neg: "Concise", pos: "Glossed" },
+  const PRESETS = [
+    {
+      label: "Camarón — duende (sentence)",
+      lang: "Spanish",
+      text: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
+    },
+    {
+      label: "Bécquer — Rima LIII (2 stanzas)",
+      lang: "Spanish",
+      text: "Volverán las oscuras golondrinas\n  en tu balcón sus nidos a colgar,\ny otra vez con el ala a sus cristales\n  jugando llamarán.\n\nPero aquellas que el vuelo refrenaban\n  tu hermosura y mi dicha a contemplar,\naquellas que aprendieron nuestros nombres...\n  ¡ésas... no volverán!"
+    },
+    {
+      label: "Machado — Proverbios XXIX (verse)",
+      lang: "Spanish",
+      text: "Caminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\n\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar."
+    },
+    {
+      label: "Rosalía de Castro — En las orillas del Sar",
+      lang: "Spanish",
+      text: "Dicen que no hablan las plantas, ni las fuentes, ni los pájaros,\nni el onda con sus rumores, ni con su brillo los astros;\nlo dicen, pero no es cierto, pues siempre cuando yo paso,\nde mí murmuran y exclaman:\n  —Ahí va la loca soñando\n  con la eterna primavera de la vida y de los campos."
+    },
+    {
+      label: "Literary paragraph (sobremesa & duende)",
+      lang: "Spanish",
+      text: "La sobremesa del domingo se alargó hasta el anochecer entre risas, café frío y un silencio cómplice que nadie se atrevía a romper. Cuando alguien puso a Camarón en el tocadiscos, la habitación entera pareció encogerse: aquello no era técnica ni adorno, sino un duende áspero que subía desde las plantas de los pies."
+    },
+    {
+      label: "Portuguese — saudade",
+      lang: "Portuguese",
+      text: "Sinto uma saudade funda da casa da minha avó,\ndas tardes lentas de chuva\ne do cheiro a pão quente na cozinha."
+    }
   ];
 
-  const TEXT_TITLES = {
-    duende_flamenco: "Duende · Camarón (Flamenco)",
-    duende_bare: "Duende · Bare sentence",
-    duende_cuento: "Duende · Fairy tale",
-    becquer_xxi: "Bécquer · Rima XXI",
-  };
+  const DEFAULT_AXES = [
+    { id: "literal_vs_idiomatic", neg: "Literal", pos: "Idiomatic" },
+    { id: "plain_vs_poetic", neg: "Plain", pos: "Poetic" },
+    { id: "foreignising_vs_domesticating", neg: "Foreignising", pos: "Domesticating" },
+    { id: "concise_vs_glossed", neg: "Concise", pos: "Glossed" }
+  ];
 
-  const state = {
-    embedded: Boolean(window.__OFFLINE_DATA__),
-    serverMode: "replay", // "offline" | "replay" | "live"
-    statusInfo: null,
-    texts: [],
-    currentTextId: null,
-    bundle: null,         // active replay bundle (or synthetic live view)
-    liveFork: null,       // active live fork session from /api/probe_fork
-    liveTokens: [],       // streamed tokens in live mode
-    cursorT: 0,
-    x: 0,
-    y: 0,
-    extent: 1.55,
-    dragging: false,
-    hoveredDot: null,
-    globalCoords: {
-      literal_idiomatic: 0,
-      plain_poetic: 0,
-      foreign_domestic: 0,
-      concise_glossed: 0,
-    },
-    steerInFlight: false,
-    steerPending: null,
-    streamTimer: null,
-    eventSource: null,
-    animFrame: null,
-  };
-
-  // DOM refs
   const $ = (id) => document.getElementById(id);
-  const elModeBadge = $("mode-badge");
-  const elModeLabel = $("mode-label");
-  const elTextSelect = $("text-select");
-  const elCustomSource = $("custom-source");
-  const elStreamBtn = $("stream-btn");
-  const elThemeBtn = $("theme-btn");
-  const elBanner = $("status-banner");
-  const elBannerText = $("status-text");
-  const elSourceText = $("source-text");
-  const elSourceCaption = $("source-caption");
-  const elStreamMeta = $("stream-meta");
-  const elTokenStream = $("token-stream");
-  const elSparkBars = $("spark-bars");
-  const elCompassMeta = $("compass-meta");
-  const elCanvas = $("compass");
-  const elCanvasHud = $("canvas-hud");
-  const elResetOrigin = $("reset-origin-btn");
-  const elPills = $("reading-pills");
-  const elSteeredTag = $("steered-source-tag");
-  const elSteeredText = $("steered-text");
-  const elSteeredTelemetry = $("steered-telemetry");
-  const elProbBars = $("prob-bars");
-  const elInspectorMeta = $("inspector-meta");
-  const elInspector = $("reading-inspector");
-  const elSliderGroup = $("slider-group");
-  const elGlobalNote = $("global-note");
-  const elTooltip = $("tooltip");
+  const state = {
+    serverMode: "replay",
+    activeView: "live",
+    session: null,
+    gliding: false,
+    glideES: null,
+    busy: false,
+    hoverPreview: null,
+    globalCoords: {},
+    compassData: null,
+    compassPos: [0, 0],
+    lastSteered: null,
+    steerTimer: null,
+    replayTexts: [],
+    replayBundle: null,
+    replayBundlesOffline: null,
+  };
 
-  // ---------- Helpers ----------
-  function showBanner(msg) {
-    elBannerText.textContent = msg;
-    elBanner.classList.add("show");
+  // Theme toggle
+  $("btnTheme").onclick = () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+  };
+
+  // Populate presets
+  PRESETS.forEach((p, idx) => {
+    const opt = document.createElement("option");
+    opt.value = String(idx);
+    opt.textContent = p.label;
+    $("presetSelect").appendChild(opt);
+  });
+  $("presetSelect").onchange = () => {
+    const idx = $("presetSelect").value;
+    if (idx === "") return;
+    const p = PRESETS[Number(idx)];
+    $("sourceInput").value = p.text;
+    $("srcLang").value = p.lang;
+    updateSourceStats();
+  };
+  $("sourceInput").value = PRESETS[1].text;
+  function updateSourceStats() {
+    const v = $("sourceInput").value;
+    const words = (v.trim().match(/\S+/g) || []).length;
+    const lines = v ? v.split("\n").length : 0;
+    $("sourceStats").textContent = `${words} words · ${lines} line${lines === 1 ? "" : "s"}`;
   }
-  function hideBanner() {
-    elBanner.classList.remove("show");
-  }
-  function cssVar(name) {
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  }
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  }
-  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  $("sourceInput").addEventListener("input", updateSourceStats);
+  updateSourceStats();
 
-  function tensionColor(norm) {
-    if (norm >= 0.72) return cssVar("--wine") || "#8a2343";
-    if (norm >= 0.35) return cssVar("--ochre") || "#9c6520";
-    return cssVar("--rule") || "#dedbe0";
-  }
-
-  // ---------- Client-side Offline Replay Math (mirrors ReplayEngine.steer_replay) ----------
-  function rbfShares(x, y, readings) {
-    if (!readings || !readings.length) return {};
-    if (readings.length === 1) return { [String(readings[0].id)]: 1.0 };
-    const pdist = [];
-    for (let i = 0; i < readings.length; i++) {
-      for (let j = i + 1; j < readings.length; j++) {
-        const dx = readings[i].anchor[0] - readings[j].anchor[0];
-        const dy = readings[i].anchor[1] - readings[j].anchor[1];
-        pdist.push(Math.hypot(dx, dy));
-      }
-    }
-    pdist.sort((a, b) => a - b);
-    const medD = pdist.length ? pdist[Math.floor(pdist.length / 2)] : 0.8;
-    const sigma = Math.max(0.22, Math.min(0.45, medD * 0.38));
-    const logits = readings.map((r) => {
-      const dx = x - r.anchor[0];
-      const dy = y - r.anchor[1];
-      return -(dx * dx + dy * dy) / (2 * sigma * sigma);
-    });
-    const m = Math.max(...logits);
-    const exps = logits.map((v) => Math.exp(v - m));
-    const s = exps.reduce((a, b) => a + b, 0) || 1;
-    const out = {};
-    readings.forEach((r, i) => { out[String(r.id)] = +(exps[i] / s).toFixed(4); });
-    return out;
-  }
-
-  function offlineSteerReplay(bundle, x, y) {
-    const r = Math.hypot(x, y);
-    const readings = bundle.readings || [];
-    const shares = rbfShares(x, y, readings);
-    let domR = readings.length ? readings[0].id : -1;
-    let bestW = -1;
-    for (const rd of readings) {
-      const w = shares[String(rd.id)] || 0;
-      if (w > bestW) { bestW = w; domR = rd.id; }
-    }
-    const anchorMap = {};
-    const labelMap = {};
-    readings.forEach((rd) => { anchorMap[rd.id] = rd.anchor; labelMap[rd.id] = rd.label; });
-
-    let chosenText = bundle.default_translation || bundle.ref_text || "";
-    let chosenFluency = bundle.default_fluency || 0;
-    let source = "baseline";
-    let condition = { mode: "baseline" };
-
-    const minAnchorD = readings.length
-      ? Math.min(...readings.map((rd) => Math.hypot(x - rd.anchor[0], y - rd.anchor[1])))
-      : 99;
-
-    if (!(r < 0.03 && minAnchorD > 0.04)) {
-      const spAll = bundle.steering_points || [];
-      let cand = spAll.filter((sp) => sp.A === domR && sp.variant === "natural" && sp.mode === "cursor" && sp.text);
-      if (!cand.length) cand = spAll.filter((sp) => sp.A === domR && sp.text);
-
-      if (cand.length) {
-        const wantLvl = r < 0.40 ? 0 : r < 0.80 ? 1 : r < 1.20 ? 2 : 3;
-        const levels = [...new Set(cand.map((sp) => sp.kl_level))];
-        let bestLvl = levels[0];
-        for (const lv of levels) {
-          if (Math.abs(lv - wantLvl) < Math.abs(bestLvl - wantLvl)) bestLvl = lv;
-        }
-        const lvlRows = cand.filter((sp) => sp.kl_level === bestLvl);
-        const aDom = anchorMap[domR] || [0, 0];
-        const px = r > 1e-4 ? x / r : 0;
-        const py = r > 1e-4 ? y / r : 0;
-
-        let bestRow = lvlRows[0];
-        let bestScore = -1e9;
-        for (const sp of lvlRows) {
-          const aB = anchorMap[sp.B] || [0, 0];
-          const dvx = aDom[0] - aB[0];
-          const dvy = aDom[1] - aB[1];
-          const dvn = Math.hypot(dvx, dvy) || 1;
-          const align = r > 1e-4 ? (px * dvx + py * dvy) / dvn : 0;
-          const sc = align + 0.35 * (sp.success_rate || 0) + 0.01 * (sp.fluency || 0);
-          if (sc > bestScore) { bestScore = sc; bestRow = sp; }
-        }
-        chosenText = bestRow.text;
-        chosenFluency = bestRow.fluency;
-        source = "steered";
-        condition = {
-          A: bestRow.A, B: bestRow.B, variant: bestRow.variant, mode: bestRow.mode,
-          kl: bestRow.kl, kl_level: bestRow.kl_level, alpha: bestRow.alpha,
-          success_rate: bestRow.success_rate, baseline_share_A: bestRow.baseline_share_A,
-        };
-      } else {
-        const dots = (bundle.dots || []).filter((d) => d.reading === domR);
-        const pool = dots.length ? dots : (bundle.dots || []).filter((d) => d.kept);
-        if (pool.length) {
-          const lpts = pool.map((d) => d.logp_per_tok || 0).sort((a, b) => a - b);
-          const medL = lpts[Math.floor(lpts.length / 2)] || 0;
-          let bestDot = pool[0];
-          let bestSc = -1e9;
-          for (const d of pool) {
-            const dist = Math.hypot(d.x - x, d.y - y);
-            const sc = -dist + 0.08 * ((d.logp_per_tok || 0) - medL);
-            if (sc > bestSc) { bestSc = sc; bestDot = d; }
-          }
-          chosenText = bestDot.text;
-          chosenFluency = bestDot.logp_per_tok || 0;
-          source = "sample";
-          condition = { sample_index: bestDot.i, distance_2d: +Math.hypot(bestDot.x - x, bestDot.y - y).toFixed(4) };
-        }
-      }
-    }
-
-    return {
-      text_id: bundle.id,
-      x: +x.toFixed(4),
-      y: +y.toFixed(4),
-      radius: +r.toFixed(4),
-      text: chosenText,
-      dominant_reading: domR,
-      dominant_label: labelMap[domR] || String(domR),
-      shares,
-      fluency: +Number(chosenFluency || 0).toFixed(4),
-      source,
-      condition,
-    };
-  }
-
-  // ---------- Global Sliders Setup ----------
-  function buildSliders() {
-    elSliderGroup.innerHTML = "";
-    for (const ax of GLOBAL_AXES) {
-      const wrap = document.createElement("div");
-      wrap.className = "slider-item";
-      wrap.innerHTML = `
-        <div class="slider-labels">
-          <span>${ax.neg} ↔ ${ax.pos}</span>
-          <span class="val" id="val-${ax.id}">0.00</span>
-        </div>
-        <input class="axis-slider" type="range" min="-1" max="1" step="0.05" value="0" id="sl-${ax.id}" aria-label="${ax.neg} to ${ax.pos}">
-        <div class="slider-ends"><span>−1 · ${ax.neg}</span><span>+1 · ${ax.pos}</span></div>
-      `;
-      elSliderGroup.appendChild(wrap);
-      const inp = wrap.querySelector("input");
-      inp.addEventListener("input", () => {
+  // Build global sliders
+  function buildSliders(schema) {
+    const grid = $("sliderGrid");
+    grid.innerHTML = "";
+    (schema || DEFAULT_AXES).forEach(ax => {
+      state.globalCoords[ax.id] = 0;
+      const div = document.createElement("div");
+      div.className = "slider-item";
+      div.innerHTML = `<label><span>${ax.neg}</span><span id="val_${ax.id}">0.0</span><span>${ax.pos}</span></label>
+        <input type="range" min="-1" max="1" step="0.1" value="0" data-axis="${ax.id}">`;
+      const inp = div.querySelector("input");
+      inp.oninput = () => {
         const v = parseFloat(inp.value);
         state.globalCoords[ax.id] = v;
-        $(`val-${ax.id}`).textContent = (v >= 0 ? "+" : "") + v.toFixed(2);
-        if (state.serverMode === "live" && state.liveFork) {
-          requestSteer(state.x, state.y);
-        }
-      });
-    }
-    $("reset-sliders-btn").addEventListener("click", () => {
-      for (const ax of GLOBAL_AXES) {
-        state.globalCoords[ax.id] = 0;
-        const sl = $(`sl-${ax.id}`);
-        if (sl) sl.value = "0";
-        const vl = $(`val-${ax.id}`);
-        if (vl) vl.textContent = "0.00";
-      }
-      if (state.serverMode === "live" && state.liveFork) requestSteer(state.x, state.y);
+        $(`val_${ax.id}`).textContent = v.toFixed(1);
+      };
+      inp.onchange = () => applySliders();
+      grid.appendChild(div);
     });
   }
+  buildSliders(DEFAULT_AXES);
 
-  function updateGlobalNote() {
-    if (state.serverMode === "live") {
-      const loaded = (state.statusInfo && state.statusInfo.global_axes_loaded) || [];
-      if (loaded.length) {
-        elGlobalNote.innerHTML = `<b>Live global steering active.</b> Loaded axes: <span style="font-family:var(--mono)">${escapeHtml(loaded.join(", "))}</span>. Slider coordinates combine additively with the 2D local fork compass on every <code>/api/steer</code> call.`;
-      } else {
-        elGlobalNote.innerHTML = `<b>Live mode (no global axes file loaded).</b> Slider coordinates are transmitted with every <code>/api/steer</code> request; start the server with <code>--global-axes</code> to apply global tone vectors alongside local fork steering.`;
-      }
-    } else {
-      elGlobalNote.innerHTML = `<b>Offline / Replay mode.</b> Saved Gemma 3 4B trajectories were pre-recorded along local reading directions only. Global tone sliders are interactive and ready for Live GPU/CPU mode, where they compose linearly with the 2D fork plane.`;
-    }
-  }
-
-  // ---------- Active Compass Data Accessor ----------
-  function activeCompassData() {
-    if (state.serverMode === "live" && state.liveFork) {
-      return {
-        readings: state.liveFork.readings || [],
-        dots: state.liveFork.dots || [],
-        variance_explained: state.liveFork.variance_explained,
-        prefix_text: state.liveFork.prefix_text || "",
-        n_samples: state.liveFork.n_samples,
-        label: `Live fork · b=${state.liveFork.b} · L${state.liveFork.layer}`,
-      };
-    }
-    if (state.bundle) {
-      return {
-        readings: state.bundle.readings || [],
-        dots: state.bundle.dots || [],
-        variance_explained: state.bundle.variance_explained,
-        prefix_text: state.bundle.prefix_text || "",
-        n_samples: state.bundle.n_samples,
-        label: `PCA plane · ${state.bundle.n_kept}/${state.bundle.n_samples} kept samples`,
-      };
-    }
-    return { readings: [], dots: [], variance_explained: 0, prefix_text: "", n_samples: 0, label: "" };
-  }
-
-  // ---------- Token Stream Rendering ----------
-  function renderTokenStream(tokens, entropies, fishers, forkT, activeCursor, topTokensList) {
-    elTokenStream.innerHTML = "";
-    elSparkBars.innerHTML = "";
-    if (!tokens || !tokens.length) {
-      elTokenStream.innerHTML = `<span style="color:var(--muted);font-style:italic">Press “Stream Translation” to decode tokens…</span>`;
-      return;
-    }
-
-    const maxH = Math.max(1e-6, ...entropies.map((v) => Number(v) || 0));
-    const maxF = Math.max(1e-6, ...fishers.map((v) => Number(v) || 0));
-
-    tokens.forEach((tokStr, idx) => {
-      const H = Number(entropies[idx] || 0);
-      const F = fishers[idx] != null ? Number(fishers[idx]) : null;
-      const hNorm = clamp(H / Math.max(maxH, 1.5), 0, 1);
-      const fNorm = F != null ? clamp(F / maxF, 0, 1) : hNorm;
-      const tension = Math.max(hNorm, 0.75 * fNorm);
-      const isFork = idx === forkT || (state.serverMode === "live" && state.liveTokens[idx] && state.liveTokens[idx].is_fork);
-
-      const span = document.createElement("span");
-      span.className = "tok" + (isFork ? " is-fork" : "") + (idx === activeCursor ? " active-cursor" : idx < activeCursor ? " before-cursor" : " after-cursor");
-      span.textContent = tokStr;
-      span.style.borderBottomColor = tensionColor(tension);
-      span.setAttribute("role", "listitem");
-
-      span.addEventListener("mouseenter", (e) => {
-        const cands = topTokensList && topTokensList[idx] ? topTokensList[idx] : null;
-        let candHtml = "";
-        if (cands && cands.length) {
-          candHtml = `<div class="tt-cands">Top next: ${cands.slice(0, 4).map((c) => `<span>${escapeHtml(c.token)} (${(c.prob * 100).toFixed(0)}%)</span>`).join(" · ")}</div>`;
-        }
-        elTooltip.innerHTML = `
-          <div class="tt-tok">“${escapeHtml(tokStr)}” <span style="font:11px var(--mono);font-style:normal;opacity:0.75">t = ${idx}</span></div>
-          <div class="tt-grid"><span>H = ${H.toFixed(3)} nats</span><span>λ₁ = ${F != null ? F.toFixed(2) : "—"}</span></div>
-          ${candHtml}
-        `;
-        elTooltip.classList.add("show");
-        moveTooltip(e);
-      });
-      span.addEventListener("mousemove", moveTooltip);
-      span.addEventListener("mouseleave", () => elTooltip.classList.remove("show"));
-      span.addEventListener("click", () => onTokenClick(idx));
-      elTokenStream.appendChild(span);
-
-      // Sparkline bar
-      const bar = document.createElement("div");
-      bar.className = "spark-bar" + (idx === activeCursor ? " active" : "");
-      bar.style.height = `${Math.max(12, Math.round(tension * 100))}%`;
-      bar.style.background = tensionColor(tension);
-      bar.title = `t=${idx} "${tokStr}" · H=${H.toFixed(2)} nats`;
-      bar.addEventListener("click", () => onTokenClick(idx));
-      elSparkBars.appendChild(bar);
+  $("btnResetSliders").onclick = () => {
+    Object.keys(state.globalCoords).forEach(k => state.globalCoords[k] = 0);
+    $("sliderGrid").querySelectorAll("input[type=range]").forEach(inp => {
+      inp.value = "0";
+      $(`val_${inp.dataset.axis}`).textContent = "0.0";
     });
+    applySliders();
+  };
+
+  $("btnSliders").onclick = () => {
+    $("slidersDrawer").classList.toggle("open");
+    $("btnSliders").classList.toggle("active");
+  };
+  $("btnHistory").onclick = () => {
+    $("historyDrawer").classList.toggle("open");
+    $("btnHistory").classList.toggle("active");
+  };
+
+  // HTTP helper
+  async function apiPost(path, payload) {
+    const res = await fetch(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+    return data;
   }
 
-  function moveTooltip(e) {
-    const pad = 14;
-    const x = Math.min(window.innerWidth - 300, e.clientX + pad);
-    const y = Math.min(window.innerHeight - 110, e.clientY + pad);
-    elTooltip.style.left = `${Math.max(8, x)}px`;
-    elTooltip.style.top = `${Math.max(8, y)}px`;
+  function setBusy(flag, msg) {
+    state.busy = flag;
+    if (msg !== undefined) $("liveStatus").textContent = msg;
+    const hasSess = !!state.session;
+    const atEnd = !!(state.session && state.session.frontier && state.session.frontier.at_end);
+    $("btnStart").disabled = flag;
+    $("btnStep").disabled = flag || !hasSess || atEnd;
+    $("btnGlide").disabled = (!hasSess || atEnd) && !state.gliding;
+    $("btnRewind").disabled = flag || !hasSess || state.session.n_tokens === 0;
+    $("btnCompass").disabled = flag || !hasSess || atEnd;
+    $("btnCopy").disabled = !hasSess || !state.session.committed_text;
+    $("customWord").disabled = flag || !hasSess;
   }
 
-  async function onTokenClick(idx) {
-    state.cursorT = idx;
-    if (state.serverMode === "live" && state.liveTokens.length) {
-      const toks = state.liveTokens.map((d) => d.token);
-      const ents = state.liveTokens.map((d) => d.entropy);
-      const fish = state.liveTokens.map((d) => d.fisher_top);
-      const tops = state.liveTokens.map((d) => d.top_tokens);
-      renderTokenStream(toks, ents, fish, idx, idx, tops);
-      const prefixIds = state.liveTokens.slice(0, idx).map((d) => d.token_id);
-      await probeLiveFork(elCustomSource.value.trim() || (state.bundle ? state.bundle.text : ""), prefixIds);
-    } else if (state.bundle) {
-      renderTokenStream(state.bundle.ref_tokens, state.bundle.entropy, state.bundle.fisher_top, state.bundle.fork_t, idx, null);
-      const h = state.bundle.entropy[idx];
-      const f = state.bundle.fisher_top[idx];
-      const isSavedFork = idx === state.bundle.fork_t;
-      elStreamMeta.innerHTML = `
-        <span>Cursor <b>t = ${idx}</b> (“${escapeHtml(state.bundle.ref_tokens[idx] || "")}”)</span>
-        <span>H = <b>${h != null ? h.toFixed(2) : "—"}</b> nats</span>
-        <span>λ₁ = <b>${f != null ? f.toFixed(1) : "—"}</b></span>
-        ${!isSavedFork ? `<button class="btn ghost" id="jump-fork-btn" style="height:22px;font-size:11px;padding:0 7px">Jump to fork t=${state.bundle.fork_t}</button>` : `<span><b style="color:var(--wine)">Saved fork point</b></span>`}
-      `;
-      const jb = $("jump-fork-btn");
-      if (jb) jb.addEventListener("click", () => onTokenClick(state.bundle.fork_t));
+  // ==================== LIVE SESSION ACTIONS ====================
+  async function startSession() {
+    stopGlide();
+    const src = $("sourceInput").value;
+    if (!src.trim()) return;
+    setBusy(true, "Prefilling source & inspecting opening frontier…");
+    $("compassDrawer").classList.remove("open");
+    $("btnCompass").classList.remove("active");
+    state.compassData = null;
+    try {
+      const s = await apiPost("/api/session/start", {
+        source_text: src,
+        src_lang: $("srcLang").value,
+        tgt_lang: "English",
+        global_coords: state.globalCoords,
+      });
+      state.session = s;
+      renderSession();
+      setBusy(false, "Session ready — Space to step · Tab to glide to fork");
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
     }
   }
 
-  // ---------- 2D Compass Canvas Rendering ----------
-  function compassToCanvas(cx, cy, w, h) {
-    const pad = 28;
-    const span = Math.min(w, h) - pad * 2;
-    const ox = w / 2;
-    const oy = h / 2;
-    const s = span / (2 * state.extent);
-    return [ox + cx * s, oy - cy * s];
+  async function doStep(opts = {}) {
+    if (!state.session || state.busy) return;
+    stopGlide();
+    setBusy(true, "Advancing…");
+    state.hoverPreview = null;
+    try {
+      const s = await apiPost("/api/session/step", {
+        session_id: state.session.session_id,
+        ...opts,
+      });
+      state.session = s;
+      state.compassData = null;
+      state.lastSteered = null;
+      $("compassDrawer").classList.remove("open");
+      $("btnCompass").classList.remove("active");
+      renderSession();
+      setBusy(false, s.frontier.at_end ? "Reached end of translation" : `${s.n_tokens} tokens committed`);
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
+    }
   }
 
-  function canvasToCompass(px, py, w, h) {
-    const pad = 28;
-    const span = Math.min(w, h) - pad * 2;
-    const ox = w / 2;
-    const oy = h / 2;
-    const s = span / (2 * state.extent);
-    return [
-      clamp((px - ox) / s, -state.extent, state.extent),
-      clamp((oy - py) / s, -state.extent, state.extent),
-    ];
+  async function doRewind(toIdx) {
+    if (!state.session || state.busy) return;
+    stopGlide();
+    setBusy(true, "Rewinding KV cache…");
+    state.hoverPreview = null;
+    try {
+      const s = await apiPost("/api/session/rewind", {
+        session_id: state.session.session_id,
+        to_token_index: toIdx,
+      });
+      state.session = s;
+      state.compassData = null;
+      $("compassDrawer").classList.remove("open");
+      $("btnCompass").classList.remove("active");
+      renderSession();
+      setBusy(false, `Rewound to token ${toIdx}`);
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
+    }
   }
 
-  function drawCompass() {
-    const rect = elCanvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-    const w = Math.max(260, Math.round(rect.width));
-    const h = Math.max(260, Math.round(rect.height));
-    if (elCanvas.width !== Math.round(w * dpr) || elCanvas.height !== Math.round(h * dpr)) {
-      elCanvas.width = Math.round(w * dpr);
-      elCanvas.height = Math.round(h * dpr);
-    }
-    const ctx = elCanvas.getContext("2d");
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const paper = cssVar("--paper") || "#f7f6f3";
-    const rule = cssVar("--rule") || "#dedbe0";
-    const ink = cssVar("--ink") || "#1d1b1f";
-    const muted = cssVar("--muted") || "#67636b";
-    const wine = cssVar("--wine") || "#8a2343";
-    const surface = cssVar("--surface") || "#ffffff";
-
-    ctx.fillStyle = paper;
-    ctx.fillRect(0, 0, w, h);
-
-    const [ox, oy] = compassToCanvas(0, 0, w, h);
-    const [r1x] = compassToCanvas(1, 0, w, h);
-    const unitPx = Math.abs(r1x - ox);
-
-    // Concentric radial rings
-    ctx.strokeStyle = rule;
-    ctx.lineWidth = 1;
-    for (const rad of [0.5, 1.0, 1.5]) {
-      ctx.beginPath();
-      ctx.setLineDash(rad === 1.0 ? [] : [3, 4]);
-      ctx.arc(ox, oy, rad * unitPx, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-    ctx.setLineDash([]);
-
-    // Axes hairlines
-    ctx.beginPath();
-    ctx.moveTo(16, oy); ctx.lineTo(w - 16, oy);
-    ctx.moveTo(ox, 16); ctx.lineTo(ox, h - 16);
-    ctx.stroke();
-
-    // Axis captions
-    ctx.fillStyle = muted;
-    ctx.font = `11px ${cssVar("--sans")}`;
-    ctx.textAlign = "right";
-    ctx.fillText("PC 1", w - 18, oy - 6);
-    ctx.textAlign = "left";
-    ctx.fillText("PC 2", ox + 6, 24);
-
-    const data = activeCompassData();
-    const readings = data.readings || [];
-    const dots = data.dots || [];
-
-    // Sample dots
-    for (const d of dots) {
-      const [dx, dy] = compassToCanvas(d.x, d.y, w, h);
-      ctx.beginPath();
-      const isHov = state.hoveredDot && state.hoveredDot.i === d.i;
-      ctx.arc(dx, dy, isHov ? 6.5 : d.kept ? 4.2 : 3.2, 0, Math.PI * 2);
-      if (d.kept) {
-        ctx.fillStyle = d.color || muted;
-        ctx.globalAlpha = isHov ? 1.0 : 0.62;
-        ctx.fill();
-        if (isHov) {
-          ctx.globalAlpha = 1;
-          ctx.strokeStyle = ink;
-          ctx.lineWidth = 1.6;
-          ctx.stroke();
-        }
-      } else {
-        ctx.globalAlpha = 0.5;
-        ctx.strokeStyle = muted;
-        ctx.lineWidth = 1.1;
-        ctx.stroke();
-      }
-    }
-    ctx.globalAlpha = 1;
-
-    // Direction arrows & anchor labels
-    for (const rd of readings) {
-      const [ax, ay] = compassToCanvas(rd.anchor[0], rd.anchor[1], w, h);
-      const col = rd.color || wine;
-
-      // Arrow shaft from origin to anchor
-      ctx.strokeStyle = col;
-      ctx.lineWidth = 2.1;
-      ctx.beginPath();
-      ctx.moveTo(ox, oy);
-      ctx.lineTo(ax, ay);
-      ctx.stroke();
-
-      // Arrowhead
-      const ang = Math.atan2(ay - oy, ax - ox);
-      const len = Math.hypot(ax - ox, ay - oy);
-      if (len > 10) {
-        const hl = 8;
-        ctx.fillStyle = col;
-        ctx.beginPath();
-        ctx.moveTo(ax, ay);
-        ctx.lineTo(ax - hl * Math.cos(ang - 0.36), ay - hl * Math.sin(ang - 0.36));
-        ctx.lineTo(ax - hl * Math.cos(ang + 0.36), ay - hl * Math.sin(ang + 0.36));
-        ctx.closePath();
-        ctx.fill();
-      }
-
-      // Anchor node
-      ctx.beginPath();
-      ctx.arc(ax, ay, 5.5, 0, Math.PI * 2);
-      ctx.fillStyle = col;
-      ctx.fill();
-      ctx.strokeStyle = surface;
-      ctx.lineWidth = 1.8;
-      ctx.stroke();
-
-      // Label badge slightly beyond anchor
-      const shortLbl = (rd.keywords && rd.keywords[0]) ? rd.keywords.slice(0, 2).join(" · ") : rd.label;
-      const off = len > 8 ? 16 : 18;
-      const lx = clamp(ax + Math.cos(ang) * off, 54, w - 54);
-      const ly = clamp(ay + Math.sin(ang) * off, 20, h - 16);
-      ctx.font = `italic 500 13px ${cssVar("--serif")}`;
-      const tw = ctx.measureText(shortLbl).width;
-      ctx.fillStyle = surface;
-      ctx.globalAlpha = 0.88;
-      ctx.fillRect(lx - tw / 2 - 5, ly - 10, tw + 10, 17);
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = col;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(shortLbl, lx, ly - 1);
-    }
-
-    // Origin dot
-    ctx.beginPath();
-    ctx.arc(ox, oy, 3.5, 0, Math.PI * 2);
-    ctx.fillStyle = ink;
-    ctx.fill();
-
-    // Active draggable crosshair
-    const [cx, cy] = compassToCanvas(state.x, state.y, w, h);
-    ctx.save();
-    ctx.strokeStyle = wine;
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([4, 3]);
-    ctx.beginPath();
-    ctx.moveTo(ox, oy);
-    ctx.lineTo(cx, cy);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    ctx.beginPath();
-    ctx.arc(cx, cy, 11, 0, Math.PI * 2);
-    ctx.fillStyle = wine;
-    ctx.globalAlpha = 0.16;
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    ctx.strokeStyle = wine;
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(cx - 15, cy); ctx.lineTo(cx - 5, cy);
-    ctx.moveTo(cx + 5, cy); ctx.lineTo(cx + 15, cy);
-    ctx.moveTo(cx, cy - 15); ctx.lineTo(cx, cy - 5);
-    ctx.moveTo(cx, cy + 5); ctx.lineTo(cx, cy + 15);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.arc(cx, cy, 3, 0, Math.PI * 2);
-    ctx.fillStyle = wine;
-    ctx.fill();
-    ctx.restore();
-
-    const rad = Math.hypot(state.x, state.y);
-    elCanvasHud.textContent = `(${state.x >= 0 ? "+" : ""}${state.x.toFixed(2)}, ${state.y >= 0 ? "+" : ""}${state.y.toFixed(2)}) · r = ${rad.toFixed(2)}`;
+  function rewindOneWord() {
+    if (!state.session || state.session.n_tokens === 0) return;
+    const toks = state.session.tokens;
+    let i = toks.length - 1;
+    // Step back across a whole word
+    while (i > 0 && !/^\s/.test(toks[i].token) && !toks[i].token.includes("\n")) i--;
+    doRewind(i);
   }
 
-  // ---------- Canvas Pointer Interaction ----------
-  function findNearestDot(px, py) {
-    const rect = elCanvas.getBoundingClientRect();
-    const data = activeCompassData();
-    let best = null;
-    let bestD = 12;
-    for (const d of (data.dots || [])) {
-      const [dx, dy] = compassToCanvas(d.x, d.y, rect.width, rect.height);
-      const dist = Math.hypot(dx - px, dy - py);
-      if (dist < bestD) { bestD = dist; best = d; }
+  async function checkoutNode(nodeId) {
+    if (!state.session || state.busy) return;
+    stopGlide();
+    setBusy(true, "Switching path…");
+    try {
+      state.session = await apiPost("/api/session/checkout", {
+        session_id: state.session.session_id,
+        node_id: nodeId,
+      });
+      renderSession();
+      setBusy(false, "Restored explored path");
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
     }
-    return best;
   }
 
-  function updateFromPointer(e) {
-    const rect = elCanvas.getBoundingClientRect();
-    const px = e.clientX - rect.left;
-    const py = e.clientY - rect.top;
-    const [nx, ny] = canvasToCompass(px, py, rect.width, rect.height);
-    state.x = nx;
-    state.y = ny;
-    drawCompass();
-    requestSteer(nx, ny);
+  async function applySliders() {
+    if (!state.session || state.busy) return;
+    stopGlide();
+    setBusy(true, "Updating global practice steering…");
+    try {
+      state.session = await apiPost("/api/session/sliders", {
+        session_id: state.session.session_id,
+        global_coords: state.globalCoords,
+      });
+      renderSession();
+      setBusy(false, "Updated live frontier with sliders");
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
+    }
   }
 
-  elCanvas.addEventListener("pointerdown", (e) => {
-    state.dragging = true;
-    elCanvas.setPointerCapture(e.pointerId);
-    updateFromPointer(e);
-  });
-  elCanvas.addEventListener("pointermove", (e) => {
-    if (state.dragging) {
-      elTooltip.classList.remove("show");
-      updateFromPointer(e);
+  function stopGlide() {
+    if (state.glideES) {
+      state.glideES.close();
+      state.glideES = null;
+    }
+    state.gliding = false;
+    $("btnGlide").textContent = "▶ Glide to Fork";
+    $("btnGlide").classList.remove("active");
+  }
+
+  function toggleGlide() {
+    if (state.gliding) {
+      stopGlide();
+      setBusy(false, "Glide paused");
       return;
     }
-    const rect = elCanvas.getBoundingClientRect();
-    const dot = findNearestDot(e.clientX - rect.left, e.clientY - rect.top);
-    if (dot !== state.hoveredDot) {
-      state.hoveredDot = dot;
-      drawCompass();
-    }
-    if (dot) {
-      elTooltip.innerHTML = `
-        <div class="tt-tok">“${escapeHtml((dot.text || "").split("\n")[0])}”</div>
-        <div class="tt-grid"><span>(${dot.x.toFixed(2)}, ${dot.y.toFixed(2)})</span><span>${dot.logp_per_tok != null ? `log p/tok ${dot.logp_per_tok.toFixed(2)}` : `sample #${dot.i}`}</span></div>
-      `;
-      elTooltip.classList.add("show");
-      moveTooltip(e);
-    } else {
-      elTooltip.classList.remove("show");
-    }
-  });
-  elCanvas.addEventListener("pointerup", () => { state.dragging = false; });
-  elCanvas.addEventListener("pointercancel", () => { state.dragging = false; });
-  elCanvas.addEventListener("pointerleave", () => {
-    state.hoveredDot = null;
-    elTooltip.classList.remove("show");
-    drawCompass();
-  });
-
-  function animateTo(tx, ty) {
-    if (state.animFrame) cancelAnimationFrame(state.animFrame);
-    const sx = state.x, sy = state.y;
-    const t0 = performance.now();
-    const dur = 240;
-    function step(now) {
-      const u = clamp((now - t0) / dur, 0, 1);
-      const ease = 1 - Math.pow(1 - u, 3);
-      state.x = sx + (tx - sx) * ease;
-      state.y = sy + (ty - sy) * ease;
-      drawCompass();
-      if (u < 1) {
-        state.animFrame = requestAnimationFrame(step);
-      } else {
-        state.animFrame = null;
-        requestSteer(state.x, state.y);
+    if (!state.session) return;
+    state.gliding = true;
+    $("btnGlide").textContent = "■ Stop";
+    $("btnGlide").classList.add("active");
+    $("liveStatus").textContent = "Gliding until next complex fork…";
+    const qs = new URLSearchParams({
+      session_id: state.session.session_id,
+      max_words: "36",
+      stop_on_fork: "1",
+    });
+    const es = new EventSource(`/api/session/glide?${qs.toString()}`);
+    state.glideES = es;
+    es.addEventListener("step", ev => {
+      const d = JSON.parse(ev.data);
+      if (d.state) {
+        state.session = d.state;
+        renderSession();
       }
-    }
-    state.animFrame = requestAnimationFrame(step);
-  }
-
-  elResetOrigin.addEventListener("click", () => animateTo(0, 0));
-
-  // ---------- Steer Request Dispatch (Offline / Replay / Live) ----------
-  function requestSteer(x, y) {
-    if (state.embedded) {
-      if (!state.bundle) return;
-      renderSteerResult(offlineSteerReplay(state.bundle, x, y));
-      return;
-    }
-    if (state.steerInFlight) {
-      state.steerPending = { x, y };
-      return;
-    }
-    state.steerInFlight = true;
-    const run = async (px, py) => {
-      try {
-        if (state.serverMode === "live" && state.liveFork) {
-          const resp = await fetch("/api/steer", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              fork_id: state.liveFork.fork_id,
-              x: px,
-              y: py,
-              global_coords: state.globalCoords,
-              max_new: 28,
-            }),
-          });
-          if (resp.ok) {
-            const data = await resp.json();
-            renderSteerResult({
-              ...data,
-              radius: Math.hypot(px, py),
-              source: "live",
-              condition: { fork_id: data.fork_id, global_applied: data.global_coords_applied },
-            });
-          }
-        } else if (state.bundle) {
-          const resp = await fetch("/api/replay/steer", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              text_id: state.bundle.id,
-              x: px,
-              y: py,
-              global_coords: state.globalCoords,
-            }),
-          });
-          if (resp.ok) {
-            renderSteerResult(await resp.json());
-          }
-        }
-      } catch (err) {
-        console.error("Steer request failed:", err);
-      } finally {
-        state.steerInFlight = false;
-        if (state.steerPending) {
-          const next = state.steerPending;
-          state.steerPending = null;
-          requestSteer(next.x, next.y);
-        }
+    });
+    es.addEventListener("paused", ev => {
+      const d = JSON.parse(ev.data);
+      if (d.state) {
+        state.session = d.state;
+        renderSession();
       }
+      const why = d.reason === "fork"
+        ? "Paused at complex fork — pick a branch (1–6) or open Compass (C)"
+        : d.reason === "end"
+          ? "Translation complete"
+          : `Stepped ${d.steps} words`;
+      stopGlide();
+      setBusy(false, why);
+    });
+    es.onerror = () => {
+      stopGlide();
+      setBusy(false, "Glide finished");
     };
-    run(x, y);
   }
 
-  function renderSteerResult(res) {
-    const data = activeCompassData();
-    const readings = data.readings || [];
-    const prefix = res.prefix_text != null ? res.prefix_text : (data.prefix_text || "");
-    const fullText = (res.text || "").split("\n")[0].trim();
-
-    if (prefix && fullText.toLowerCase().startsWith(prefix.toLowerCase())) {
-      const head = fullText.slice(0, prefix.length);
-      const tail = fullText.slice(prefix.length);
-      elSteeredText.innerHTML = `<span class="prefix-part">${escapeHtml(head)}</span><span class="cont-part">${escapeHtml(tail)}</span>`;
-    } else if (res.continuation != null && prefix) {
-      elSteeredText.innerHTML = `<span class="prefix-part">${escapeHtml(prefix)} </span><span class="cont-part">${escapeHtml(res.continuation)}</span>`;
-    } else {
-      elSteeredText.textContent = fullText || "—";
+  // ==================== COMPASS (TIER 2) ====================
+  async function openCompass(forceReprobe = false) {
+    if (!state.session) return;
+    const drawer = $("compassDrawer");
+    if (!forceReprobe && drawer.classList.contains("open")) {
+      drawer.classList.remove("open");
+      $("btnCompass").classList.remove("active");
+      return;
     }
-
-    const src = res.source || "baseline";
-    elSteeredTag.textContent = src === "steered"
-      ? `steered · ${res.condition.variant || "natural"}/${res.condition.mode || "cursor"}`
-      : src === "live"
-        ? "live steered"
-        : src === "sample"
-          ? "saved sample"
-          : "unsteered baseline";
-    elSteeredTag.className = "source-tag" + (src === "steered" || src === "live" ? " steered" : "");
-
-    const cond = res.condition || {};
-    const tel = [
-      `<span>xy <b>(${Number(res.x).toFixed(2)}, ${Number(res.y).toFixed(2)})</b></span>`,
-      `<span>r <b>${Number(res.radius != null ? res.radius : Math.hypot(res.x, res.y)).toFixed(2)}</b></span>`,
-    ];
-    if (res.fluency != null) tel.push(`<span>log p/tok <b>${Number(res.fluency).toFixed(2)}</b></span>`);
-    if (cond.kl != null) tel.push(`<span>KL <b>${cond.kl}</b></span>`);
-    if (cond.alpha != null) tel.push(`<span>α <b>${Number(cond.alpha).toFixed(2)}</b></span>`);
-    if (cond.success_rate != null) tel.push(`<span>steer hit <b>${Math.round(cond.success_rate * 100)}%</b></span>`);
-    elSteeredTelemetry.innerHTML = tel.join("");
-
-    // Reading probability bars
-    const shares = res.shares || {};
-    let domId = res.dominant_reading;
-    if (domId == null && readings.length) {
-      domId = readings.reduce((best, r) => ((shares[String(r.id)] || 0) > (shares[String(best.id)] || 0) ? r : best), readings[0]).id;
+    drawer.classList.add("open");
+    $("btnCompass").classList.add("active");
+    if (!forceReprobe && state.compassData && state.compassData.cursor_len === state.session.n_tokens) {
+      return;
     }
-
-    elProbBars.innerHTML = "";
-    for (const rd of readings) {
-      const w = shares[String(rd.id)] || 0;
-      const pct = Math.round(w * 100);
-      const row = document.createElement("div");
-      row.className = "bar-row" + (rd.id === domId ? " dominant" : "");
-      row.innerHTML = `
-        <div class="bar-name" style="color:${rd.id === domId ? rd.color : "inherit"}" title="${escapeHtml(rd.label)}">${escapeHtml(rd.label)}</div>
-        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${rd.color}"></div></div>
-        <div class="bar-val">${pct}%</div>
-      `;
-      row.addEventListener("click", () => animateTo(rd.anchor[0], rd.anchor[1]));
-      elProbBars.appendChild(row);
+    $("compassMeta").textContent = "Probing spectral steering plane at cursor…";
+    $("steeredPreview").innerHTML = `<span class="ghost-text">Computing local reading directions…</span>`;
+    try {
+      const data = await apiPost("/api/session/compass/probe", {
+        session_id: state.session.session_id,
+        n_samples: 10,
+        lookahead_tokens: 12,
+      });
+      state.compassData = data;
+      state.compassPos = [0, 0];
+      $("compassMeta").textContent = data.source === "fork_head"
+        ? "Amortised ForkHead plane · drag to steer"
+        : `Gradient plane (${Math.round(data.variance_explained * 100)}% var) · drag to steer`;
+      drawCompass($("compassSvg"), data.readings, data.dots, state.compassPos, (x, y) => {
+        state.compassPos = [x, y];
+        scheduleLiveSteer(x, y);
+      });
+      scheduleLiveSteer(0, 0);
+    } catch (e) {
+      $("compassMeta").textContent = `Compass error: ${e.message}`;
     }
+  }
 
-    // Highlight active pill
-    elPills.querySelectorAll(".pill").forEach((el) => {
-      el.classList.toggle("active", Number(el.dataset.rid) === Number(domId));
+  function scheduleLiveSteer(x, y) {
+    if (state.steerTimer) clearTimeout(state.steerTimer);
+    state.steerTimer = setTimeout(async () => {
+      if (!state.session) return;
+      try {
+        const res = await apiPost("/api/session/compass/steer", {
+          session_id: state.session.session_id,
+          x, y, max_new: 18,
+        });
+        state.lastSteered = res;
+        $("steeredPreview").textContent = res.preview_text || "(empty)";
+        $("btnCommitSteeredWord").disabled = !(res.first_word_ids && res.first_word_ids.length);
+        $("btnCommitSteeredAll").disabled = !(res.preview_ids && res.preview_ids.length);
+        state.hoverPreview = res.preview_text;
+        renderCanvasOnly();
+      } catch (e) {
+        $("steeredPreview").textContent = `Error: ${e.message}`;
+      }
+    }, 90);
+  }
+
+  function drawCompass(svg, readings, dots, pos, onDrag) {
+    const ns = "http://www.w3.org/2000/svg";
+    svg.innerHTML = "";
+    const el = (tag, attrs) => {
+      const n = document.createElementNS(ns, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, String(v)));
+      return n;
+    };
+    // Subtle concentric rings + axes
+    [0.5, 1.0].forEach(r => svg.appendChild(el("circle", {
+      cx: 0, cy: 0, r, fill: "none", stroke: "var(--rule)", "stroke-width": 0.015, "stroke-dasharray": "0.04 0.04"
+    })));
+    svg.appendChild(el("line", { x1: -1.35, y1: 0, x2: 1.35, y2: 0, stroke: "var(--rule)", "stroke-width": 0.012 }));
+    svg.appendChild(el("line", { x1: 0, y1: -1.35, x2: 0, y2: 1.35, stroke: "var(--rule)", "stroke-width": 0.012 }));
+
+    (dots || []).forEach(d => {
+      svg.appendChild(el("circle", { cx: d.x, cy: -d.y, r: 0.035, fill: d.color, opacity: 0.45 }));
     });
+    (readings || []).forEach(rd => {
+      const [ax, ay] = rd.anchor;
+      svg.appendChild(el("circle", { cx: ax, cy: -ay, r: 0.075, fill: rd.color, stroke: "var(--surface)", "stroke-width": 0.02 }));
+      const tx = el("text", {
+        x: ax * 1.16, y: -ay * 1.16,
+        fill: rd.color, "font-size": 0.125, "font-weight": 600,
+        "text-anchor": "middle", "dominant-baseline": "middle",
+        style: "pointer-events:none;font-family:var(--sans)"
+      });
+      tx.textContent = (rd.label || `R${rd.id}`).slice(0, 14);
+      svg.appendChild(tx);
+    });
+    const knob = el("circle", {
+      cx: pos[0], cy: -pos[1], r: 0.085,
+      fill: "var(--accent)", stroke: "#fff", "stroke-width": 0.028
+    });
+    svg.appendChild(knob);
+
+    let dragging = false;
+    const toCoords = (ev) => {
+      const rect = svg.getBoundingClientRect();
+      const nx = ((ev.clientX - rect.left) / rect.width) * 2.9 - 1.45;
+      const ny = -(((ev.clientY - rect.top) / rect.height) * 2.9 - 1.45);
+      return [Math.max(-1.35, Math.min(1.35, nx)), Math.max(-1.35, Math.min(1.35, ny))];
+    };
+    const move = (ev) => {
+      const [x, y] = toCoords(ev);
+      knob.setAttribute("cx", String(x));
+      knob.setAttribute("cy", String(-y));
+      onDrag(x, y);
+    };
+    svg.onpointerdown = (ev) => { dragging = true; svg.setPointerCapture(ev.pointerId); move(ev); };
+    svg.onpointermove = (ev) => { if (dragging) move(ev); };
+    svg.onpointerup = () => { dragging = false; };
   }
 
-  // ---------- Reading Pills & Inspector ----------
-  function renderReadingPillsAndInspector() {
-    const data = activeCompassData();
-    const readings = data.readings || [];
+  // ==================== RENDERING ====================
+  function renderCanvasOnly() {
+    const s = state.session;
+    const canvas = $("translationCanvas");
+    if (!s) return;
+    canvas.innerHTML = "";
+    s.tokens.forEach((tk, idx) => {
+      const sp = document.createElement("span");
+      sp.className = "ctok" + (tk.is_fork ? " forked" : "") + (tk.source === "steered" ? " steered" : "");
+      sp.textContent = tk.token;
+      sp.title = `Click to rewind before "${tk.token.trim() || "↵"}" (token ${idx}, H=${tk.entropy})`;
+      sp.onclick = () => doRewind(idx);
+      canvas.appendChild(sp);
+    });
+    const caret = document.createElement("span");
+    caret.className = "cursor-caret";
+    canvas.appendChild(caret);
 
-    elCompassMeta.innerHTML = `
-      <span>${escapeHtml(data.label)}</span>
-      <span>2D variance <b>${Math.round((data.variance_explained || 0) * 100)}%</b></span>
-    `;
-
-    elPills.innerHTML = "";
-    for (const rd of readings) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "pill";
-      btn.dataset.rid = rd.id;
-      btn.innerHTML = `<span class="pdot" style="background:${rd.color}"></span>${escapeHtml(rd.label)}<span class="ppct">${Math.round((rd.share || 0) * 100)}%</span>`;
-      btn.addEventListener("click", () => animateTo(rd.anchor[0], rd.anchor[1]));
-      elPills.appendChild(btn);
+    const preview = state.hoverPreview !== null
+      ? state.hoverPreview
+      : (s.frontier && s.frontier.ghost ? s.frontier.ghost.text : "");
+    if (preview) {
+      const g = document.createElement("span");
+      g.className = "ghost-text" + (state.hoverPreview !== null ? " hover-preview" : "");
+      g.textContent = preview;
+      canvas.appendChild(g);
     }
+  }
 
-    elInspectorMeta.innerHTML = `<span><b>${readings.length}</b> readings</span><span><b>${data.n_samples || 0}</b> samples</span>`;
-    elInspector.innerHTML = "";
-    readings.forEach((rd, idx) => {
-      const det = document.createElement("details");
-      det.className = "reading-card";
-      if (idx === 0) det.open = true;
+  function renderSession() {
+    const s = state.session;
+    if (!s) return;
+    renderCanvasOnly();
 
-      let liftHtml = "";
-      if (rd.steering_lift) {
-        const bPct = Math.round((rd.steering_lift.baseline_share || 0) * 100);
-        const sPct = Math.round((rd.steering_lift.best_success_rate || 0) * 100);
-        liftHtml = `
-          <div class="lift-strip">
-            <div style="display:flex;justify-content:space-between">
-              <span>Steering lift (natural/cursor)</span>
-              <span>alone <b>${bPct}%</b> → nudged <b style="color:var(--wine)">${sPct}%</b></span>
-            </div>
-            <div class="lift-track">
-              <div class="lift-alone" style="width:${bPct}%"></div>
-              <div class="lift-nudged" style="width:${sPct}%"></div>
+    const f = s.frontier;
+    const badge = $("regimeBadge");
+    badge.className = "regime-badge " + (f.regime || "linear");
+    $("tensionBar").style.width = `${Math.round((f.fork_score || 0) * 100)}%`;
+    const regimeLabels = {
+      linear: "Linear · low spread",
+      subtle: "Subtle divergence",
+      fork: "Complex fork — multiple readings"
+    };
+    $("regimeText").textContent = f.at_end ? "End of translation" : (regimeLabels[f.regime] || f.regime);
+    const fhPart = f.fork_head_prob != null ? ` · ForkHead ${Math.round(f.fork_head_prob * 100)}%` : "";
+    $("frontierMetrics").textContent = `H = ${f.entropy.toFixed(2)} nats · top1 = ${Math.round(f.top1_prob * 100)}%${fhPart}`;
+
+    const box = $("branchContainer");
+    box.innerHTML = "";
+    if (f.at_end) {
+      box.innerHTML = `<div class="linear-hint"><span>Reached end of translation. Click any earlier word to rewind and try another branch.</span></div>`;
+    } else if (f.regime === "linear" || f.branches.length <= 1) {
+      const nextW = (f.ghost && f.ghost.next_word_text) ? f.ghost.next_word_text.trim() || "↵" : "";
+      box.innerHTML = `<div class="linear-hint">
+        <span>Linear continuation — next: <strong style="font-family:var(--serif);color:var(--ink)">${escapeHtml(nextW)}</strong>. Steering has little leverage here.</span>
+        <span><kbd>Space</kbd> step · <kbd>Tab</kbd> glide to next fork</span>
+      </div>`;
+    } else {
+      const list = document.createElement("div");
+      list.className = "branch-list";
+      f.branches.forEach((br, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "branch-btn";
+        const pct = Math.round(br.share * 100);
+        btn.innerHTML = `
+          <span class="branch-key" style="background:${br.color}">${idx + 1}</span>
+          <div class="branch-body">
+            <div class="branch-text"><strong>${escapeHtml(br.first_word_text)}</strong>${escapeHtml(br.preview_text.slice(br.first_word_text.length))}</div>
+            <div class="branch-sub">
+              <span>${escapeHtml(br.distinctive || "")}</span>
+              <span class="branch-bar"><i style="width:${pct}%;background:${br.color}"></i></span>
+              <span>click: 1 word · Shift+click: full phrase</span>
             </div>
           </div>
-        `;
-      }
-
-      det.innerHTML = `
-        <summary>
-          <span class="rc-dot" style="background:${rd.color}"></span>
-          <span class="rc-title">${escapeHtml(rd.label)}</span>
-          <span class="rc-stats">
-            <span><b>${Math.round((rd.share || 0) * 100)}%</b> (${rd.count})</span>
-            ${rd.median_logp != null ? `<span>med log p/tok <b>${Number(rd.median_logp).toFixed(2)}</b></span>` : ""}
-          </span>
-        </summary>
-        <div class="rc-body">
-          ${liftHtml}
-          <div class="exemplar-list"></div>
-        </div>
-      `;
-      const exList = det.querySelector(".exemplar-list");
-      (rd.exemplars || []).forEach((ex) => {
-        const item = document.createElement("div");
-        item.className = "exemplar";
-        item.innerHTML = `
-          <span class="ex-txt">“${escapeHtml((ex.text || "").split("\n")[0])}”</span>
-          <span class="ex-meta">(${Number(ex.x).toFixed(2)}, ${Number(ex.y).toFixed(2)})${ex.logp_per_tok != null ? ` · ${Number(ex.logp_per_tok).toFixed(2)}` : ""}</span>
-        `;
-        item.addEventListener("click", () => animateTo(ex.x, ex.y));
-        exList.appendChild(item);
+          <span class="branch-pct">${pct}%</span>`;
+        btn.onmouseenter = () => { state.hoverPreview = br.preview_text; renderCanvasOnly(); };
+        btn.onmouseleave = () => { state.hoverPreview = null; renderCanvasOnly(); };
+        btn.onclick = (ev) => doStep({ branch_index: idx, commit_full_branch: !!ev.shiftKey });
+        list.appendChild(btn);
       });
-      elInspector.appendChild(det);
+      box.appendChild(list);
+    }
+
+    // History drawer
+    const hl = $("historyList");
+    hl.innerHTML = "";
+    (s.history || []).forEach(n => {
+      const row = document.createElement("div");
+      row.className = "hist-item" + (n.active ? " active" : "");
+      row.innerHTML = `<span><strong>${escapeHtml(n.label)}</strong> · ${n.n_tokens} tok</span><span class="snip">${escapeHtml(n.snippet || "(start)")}</span>`;
+      row.onclick = () => checkoutNode(n.id);
+      hl.appendChild(row);
     });
   }
 
-  // ---------- Load Replay Text ----------
-  async function loadReplayText(textId, animateStream = false) {
-    stopStreaming();
-    state.currentTextId = textId;
-    state.liveFork = null;
-    state.liveTokens = [];
-
-    let bundle;
-    if (state.embedded) {
-      bundle = window.__OFFLINE_DATA__.bundles[textId];
-    } else {
-      showBanner(`Loading ${textId}…`);
-      const resp = await fetch(`/api/replay/${encodeURIComponent(textId)}`);
-      bundle = await resp.json();
-      hideBanner();
-    }
-    state.bundle = bundle;
-    state.cursorT = bundle.fork_t || 0;
-    state.x = 0;
-    state.y = 0;
-
-    elSourceText.textContent = bundle.text;
-    elSourceCaption.textContent = `Gemma 3 4B base · ${bundle.n_samples} samples · ${bundle.n_readings} readings · reading entropy ${Number(bundle.entropy_bits).toFixed(2)} bits`;
-    if (state.serverMode === "live") {
-      elCustomSource.value = bundle.text;
-    }
-
-    elStreamMeta.innerHTML = `
-      <span>Fork at <b>t = ${bundle.fork_t}</b> (“${escapeHtml(bundle.fork_token || "")}”)</span>
-      <span>Specificity <b>${bundle.specificity != null ? bundle.specificity.toFixed(2) : "—"}</b></span>
-      <span>Silhouette <b>${Number(bundle.silhouette).toFixed(2)}</b></span>
-    `;
-
-    renderReadingPillsAndInspector();
-    drawCompass();
-    requestSteer(0, 0);
-
-    if (animateStream && bundle.ref_tokens && bundle.ref_tokens.length) {
-      animateReplayTokens(bundle);
-    } else {
-      renderTokenStream(bundle.ref_tokens, bundle.entropy, bundle.fisher_top, bundle.fork_t, bundle.fork_t, null);
-    }
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  function animateReplayTokens(bundle) {
-    stopStreaming();
-    let k = 0;
-    const toks = bundle.ref_tokens || [];
-    const ents = bundle.entropy || [];
-    const fish = bundle.fisher_top || [];
-    const step = () => {
-      k += 1;
-      const cur = k >= toks.length ? bundle.fork_t : k - 1;
-      renderTokenStream(toks.slice(0, k), ents.slice(0, k), fish.slice(0, k), bundle.fork_t, cur, null);
-      if (k < toks.length) {
-        state.streamTimer = setTimeout(step, k === bundle.fork_t ? 180 : 52);
-      } else {
-        state.streamTimer = null;
+  // Button bindings
+  $("btnStart").onclick = startSession;
+  $("btnStep").onclick = () => doStep({ mode: "word" });
+  $("btnRewind").onclick = rewindOneWord;
+  $("btnGlide").onclick = toggleGlide;
+  $("btnCompass").onclick = () => openCompass(false);
+  $("btnReprobeCompass").onclick = () => openCompass(true);
+  $("btnCopy").onclick = () => {
+    if (!state.session) return;
+    navigator.clipboard.writeText(state.session.committed_text || "");
+    $("liveStatus").textContent = "Copied translation to clipboard";
+  };
+  $("customWord").onkeydown = (ev) => {
+    if (ev.key === "Enter" && $("customWord").value) {
+      ev.preventDefault();
+      let txt = $("customWord").value;
+      if (state.session && state.session.committed_text && !/[\s\n]$/.test(state.session.committed_text) && !/^[\s.,;:!?]/.test(txt)) {
+        txt = " " + txt;
       }
-    };
-    step();
-  }
-
-  function stopStreaming() {
-    if (state.streamTimer) { clearTimeout(state.streamTimer); state.streamTimer = null; }
-    if (state.eventSource) { state.eventSource.close(); state.eventSource = null; }
-  }
-
-  // ---------- Live SSE Stream & Fork Probing ----------
-  function startLiveStream() {
-    stopStreaming();
-    const srcText = (elCustomSource.value || "").trim() || (state.bundle ? state.bundle.text : "Cuando canta Camarón, tiene duende; me gusta mucho el duende.");
-    elCustomSource.value = srcText;
-    elSourceText.textContent = srcText;
-    elSourceCaption.textContent = `Live streaming via ${state.statusInfo ? state.statusInfo.model_key : "model"} · KV-cached decode`;
-
-    state.liveTokens = [];
-    state.liveFork = null;
-    elTokenStream.innerHTML = "";
-    elSparkBars.innerHTML = "";
-    showBanner("Streaming tokens from model…");
-
-    const params = new URLSearchParams({ text: srcText, max_new: "36", compute_fisher: "0" });
-    const es = new EventSource(`/api/stream?${params.toString()}`);
-    state.eventSource = es;
-
-    es.addEventListener("token", (ev) => {
-      const d = JSON.parse(ev.data);
-      state.liveTokens.push(d);
-      const toks = state.liveTokens.map((x) => x.token);
-      const ents = state.liveTokens.map((x) => x.entropy);
-      const fish = state.liveTokens.map((x) => x.fisher_top);
-      const tops = state.liveTokens.map((x) => x.top_tokens);
-      const peakIdx = ents.reduce((bi, v, i, arr) => (v > arr[bi] ? i : bi), 0);
-      renderTokenStream(toks, ents, fish, peakIdx, state.liveTokens.length - 1, tops);
-      elStreamMeta.innerHTML = `<span>Streamed <b>${state.liveTokens.length}</b> tokens</span><span>Peak H <b>${ents[peakIdx].toFixed(2)}</b> nats @ t=${peakIdx}</span>`;
-    });
-
-    es.addEventListener("done", async () => {
-      es.close();
-      state.eventSource = null;
-      hideBanner();
-      if (state.liveTokens.length) {
-        const ents = state.liveTokens.map((x) => x.entropy);
-        const peakIdx = ents.reduce((bi, v, i, arr) => (v > arr[bi] ? i : bi), 0);
-        state.cursorT = peakIdx;
-        await onTokenClick(peakIdx);
-      }
-    });
-
-    es.onerror = () => {
-      es.close();
-      state.eventSource = null;
-      hideBanner();
-    };
-  }
-
-  async function probeLiveFork(sourceText, prefixIds) {
-    showBanner(`Probing fork at t=${prefixIds.length} (sampling continuations & computing Fisher plane)…`);
-    try {
-      const resp = await fetch("/api/probe_fork", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source_text: sourceText,
-          prefix_token_ids: prefixIds,
-          n_samples: 12,
-          lookahead_tokens: 14,
-        }),
-      });
-      if (!resp.ok) throw new Error(await resp.text());
-      state.liveFork = await resp.json();
-      state.x = 0;
-      state.y = 0;
-      renderReadingPillsAndInspector();
-      drawCompass();
-      requestSteer(0, 0);
-    } catch (err) {
-      console.error("probe_fork error:", err);
-      elStreamMeta.innerHTML = `<span style="color:var(--wine)">Fork probe failed: ${escapeHtml(err.message)}</span>`;
-    } finally {
-      hideBanner();
+      $("customWord").value = "";
+      doStep({ custom_text: txt, source_tag: "typed" });
     }
-  }
+  };
+  $("btnCommitSteeredWord").onclick = () => {
+    if (state.lastSteered && state.lastSteered.first_word_ids.length) {
+      doStep({ custom_token_ids: state.lastSteered.first_word_ids, source_tag: "steered" });
+    }
+  };
+  $("btnCommitSteeredAll").onclick = () => {
+    if (state.lastSteered && state.lastSteered.preview_ids.length) {
+      doStep({ custom_token_ids: state.lastSteered.preview_ids, source_tag: "steered" });
+    }
+  };
 
-  // ---------- Bootstrap ----------
-  async function init() {
-    buildSliders();
-
-    elThemeBtn.addEventListener("click", () => {
-      const cur = document.documentElement.getAttribute("data-theme");
-      const next = cur === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      drawCompass();
-    });
-
-    window.addEventListener("resize", () => drawCompass());
-
-    if (state.embedded) {
-      state.serverMode = "offline";
-      elModeBadge.className = "badge replay";
-      elModeLabel.textContent = "OFFLINE REPLAY";
-      state.texts = window.__OFFLINE_DATA__.texts || [];
-    } else {
-      try {
-        const st = await (await fetch("/api/status")).json();
-        state.statusInfo = st;
-        state.serverMode = st.mode === "live" ? "live" : "replay";
-        if (state.serverMode === "live") {
-          elModeBadge.className = "badge live";
-          const devTag = (st.device || "cpu").toUpperCase();
-          elModeLabel.textContent = `LIVE · ${devTag} · ${st.model_key || ""}`;
-          elCustomSource.style.display = "inline-block";
-        } else {
-          elModeBadge.className = "badge replay";
-          elModeLabel.textContent = "REPLAY SERVER";
-        }
-        const txResp = await fetch("/api/replay/texts");
-        if (txResp.ok) state.texts = await txResp.json();
-      } catch (err) {
-        elModeLabel.textContent = "OFFLINE ERROR";
-        console.error(err);
+  // Keyboard-first workflow (inactive while typing in textarea/input)
+  document.addEventListener("keydown", (ev) => {
+    if (state.activeView !== "live") return;
+    const tag = (ev.target && ev.target.tagName) || "";
+    if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT") return;
+    if (ev.key === " " || ev.key === "ArrowRight") {
+      ev.preventDefault(); doStep({ mode: "word" });
+    } else if (ev.key === "Backspace" || ev.key === "ArrowLeft") {
+      ev.preventDefault(); rewindOneWord();
+    } else if (ev.key === "Tab") {
+      ev.preventDefault(); toggleGlide();
+    } else if (ev.key === "c" || ev.key === "C") {
+      ev.preventDefault(); openCompass(false);
+    } else if (ev.key === "s" || ev.key === "S") {
+      ev.preventDefault(); $("btnSliders").click();
+    } else if (ev.key === "h" || ev.key === "H") {
+      ev.preventDefault(); $("btnHistory").click();
+    } else if (/^[1-6]$/.test(ev.key)) {
+      const idx = Number(ev.key) - 1;
+      if (state.session && state.session.frontier && idx < state.session.frontier.branches.length) {
+        ev.preventDefault();
+        doStep({ branch_index: idx, commit_full_branch: ev.shiftKey });
       }
     }
+  });
 
-    updateGlobalNote();
+  // ==================== REPLAY / OFFLINE VIEW ====================
+  function setView(view) {
+    state.activeView = view;
+    const isLive = view === "live";
+    $("liveStudio").classList.toggle("hidden", !isLive);
+    $("replayView").classList.toggle("active", !isLive);
+    $("btnSwitchMode").textContent = isLive ? "Replay Archive" : "Live Studio";
+  }
+  $("btnSwitchMode").onclick = () => setView(state.activeView === "live" ? "replay" : "live");
 
-    // Populate text selector
-    elTextSelect.innerHTML = "";
-    for (const t of state.texts) {
+  async function initReplayList(texts, offlineBundles = null) {
+    state.replayTexts = texts;
+    state.replayBundlesOffline = offlineBundles;
+    const sel = $("replaySelect");
+    sel.innerHTML = "";
+    texts.forEach(t => {
       const opt = document.createElement("option");
       opt.value = t.id;
-      opt.textContent = TEXT_TITLES[t.id] || t.id;
-      elTextSelect.appendChild(opt);
-    }
-    elTextSelect.addEventListener("change", () => {
-      if (elTextSelect.value) loadReplayText(elTextSelect.value, false);
+      opt.textContent = `${t.id} (${t.n_readings} readings)`;
+      sel.appendChild(opt);
     });
+    sel.onchange = () => loadReplayText(sel.value);
+    if (texts.length) await loadReplayText(texts[0].id);
+  }
 
-    elStreamBtn.addEventListener("click", () => {
-      if (state.serverMode === "live") {
-        startLiveStream();
-      } else if (state.bundle) {
-        animateReplayTokens(state.bundle);
-      }
+  async function loadReplayText(textId) {
+    const b = state.replayBundlesOffline
+      ? state.replayBundlesOffline[textId]
+      : await (await fetch(`/api/replay/${encodeURIComponent(textId)}`)).json();
+    state.replayBundle = b;
+    $("replaySource").textContent = b.text;
+    const rt = $("replayTokens");
+    rt.innerHTML = "";
+    const mx = Math.max(...(b.entropy || [1]), 1e-6);
+    (b.ref_tokens || []).forEach((tok, i) => {
+      const sp = document.createElement("span");
+      sp.className = "rtok" + (i === b.fork_t ? " cur" : "");
+      sp.textContent = tok;
+      const pct = Math.min(100, Math.round(100 * (b.entropy[i] || 0) / mx));
+      sp.style.borderBottomColor = `color-mix(in srgb, var(--accent) ${pct}%, transparent)`;
+      rt.appendChild(sp);
     });
+    const rr = $("replayReadings");
+    rr.innerHTML = "";
+    (b.readings || []).forEach(rd => {
+      const chip = document.createElement("span");
+      chip.className = "pill";
+      chip.innerHTML = `<i class="dot" style="background:${rd.color}"></i>${escapeHtml(rd.label)} (${Math.round(rd.share * 100)}%)`;
+      rr.appendChild(chip);
+    });
+    drawCompass($("replayCompass"), b.readings, b.dots, [0, 0], (x, y) => steerReplay(x, y));
+    steerReplay(0, 0);
+  }
 
-    if (state.texts.length) {
-      await loadReplayText(state.texts[0].id, false);
-    } else if (state.serverMode === "live") {
-      elCustomSource.value = "Cuando canta Camarón, tiene duende; me gusta mucho el duende.";
-      elSourceText.textContent = elCustomSource.value;
-      elSourceCaption.textContent = "Press Stream Translation to decode live.";
-      drawCompass();
+  async function steerReplay(x, y) {
+    const b = state.replayBundle;
+    if (!b) return;
+    if (state.replayBundlesOffline) {
+      // Offline Gaussian blend + nearest dot
+      let best = b.dots[0], bestD = Infinity;
+      b.dots.forEach(d => {
+        const dist = (d.x - x) ** 2 + (d.y - y) ** 2;
+        if (dist < bestD) { bestD = dist; best = d; }
+      });
+      $("replayOut").textContent = best ? best.text : b.ref_text;
+      $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · offline replay`;
+    } else {
+      const res = await apiPost("/api/replay/steer", { text_id: b.id, x, y });
+      $("replayOut").textContent = res.text;
+      $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · ${res.source}`;
     }
   }
 
+  // ==================== BOOTSTRAP ====================
+  async function init() {
+    if (window.__OFFLINE_DATA__) {
+      const od = window.__OFFLINE_DATA__;
+      $("modePill").className = "pill replay";
+      $("modeLabel").textContent = "Offline Replay";
+      $("srcLang").style.display = "none";
+      $("btnSliders").style.display = "none";
+      $("btnHistory").style.display = "none";
+      setView("replay");
+      await initReplayList(od.texts, od.bundles);
+      return;
+    }
+    try {
+      const st = await (await fetch("/api/status")).json();
+      state.serverMode = st.mode || "replay";
+      if (st.global_axes_schema) buildSliders(st.global_axes_schema);
+      if (st.mode === "live") {
+        $("modePill").className = "pill live";
+        $("modeLabel").textContent = "Live";
+        const tags = [st.model_key || "live"];
+        if (st.reft_loaded) tags.push("ReFT");
+        if (st.lora_loaded) tags.push("LoRA");
+        if (st.fork_head_loaded) tags.push("ForkHead");
+        $("modelPill").textContent = tags.join(" · ");
+        $("modelPill").style.display = "";
+        setView("live");
+        if (st.replay_texts > 0) {
+          $("btnSwitchMode").style.display = "";
+          const txts = await (await fetch("/api/replay/texts")).json();
+          initReplayList(txts);
+        }
+      } else {
+        $("modePill").className = "pill replay";
+        $("modeLabel").textContent = "Replay";
+        setView("replay");
+        const txts = await (await fetch("/api/replay/texts")).json();
+        await initReplayList(txts);
+      }
+    } catch (e) {
+      $("modeLabel").textContent = "Disconnected";
+      $("liveStatus").textContent = `Could not reach server: ${e.message}`;
+    }
+  }
   init();
 })();
 </script>
