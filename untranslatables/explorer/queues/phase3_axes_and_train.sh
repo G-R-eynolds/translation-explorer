@@ -12,7 +12,7 @@ echo "=== [1/3] Extracting universal Fisher-whitened global axes (no training) =
 python -m explorer.train_adapters --mode axes --model "$MODEL" --out "$OUT/global_axes.npz"
 
 echo "=== [2/3] Training diversity-preserving multi-reference LoRA ==="
-python -m explorer.train_adapters --mode lora --model "$MODEL" --steps 120 --kl-beta 0.1 --out "$OUT/multiref_lora.pt"
+python -m explorer.train_adapters --mode lora --model "$MODEL" --layers "${LORA_LAYERS:-12,17,22,27}" --steps 120 --kl-beta 0.1 --out "$OUT/multiref_lora.pt"
 
 echo "=== [3/3] Training continuous SpectralReFT slider controller ==="
 python -m explorer.train_adapters --mode reft --model "$MODEL" --steps 160 --out "$OUT/spectral_reft.pt"

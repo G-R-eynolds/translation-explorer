@@ -75,9 +75,9 @@ def run(cfg):
         if stp.exists() and stp.read_text().strip():
             rows = [json.loads(l) for l in stp.read_text().splitlines()]
             H.append("<table><tr><th>towards</th><th>away from</th><th>KL</th><th>steered translation (greedy)</th>"
-                     "<th>landed</th><th>success over 9</th><th>baseline</th></tr>")
+                     "<th>landed</th><th>success</th><th>baseline</th></tr>")
             for r in rows:
-                if r["variant"] != "natural" or r["mode"] != "cursor" or r["kl"] not in (0.5, 1.0):
+                if r["variant"] != "natural" or r["mode"] != "cursor" or r["kl"] not in (0.1, 0.25, 0.5, 1.0):
                     continue
                 na, nb = lab.get(r["A"], f"reading {r['A']}"), lab.get(r["B"], f"reading {r['B']}")
                 H.append(f"<tr><td>{e(na)}</td><td>{e(nb)}</td>"

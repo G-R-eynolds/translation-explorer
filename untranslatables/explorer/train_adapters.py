@@ -216,24 +216,43 @@ def train_spectral_reft(
                 edit_pos = max(start - 1, 0)
 
                 opt.zero_grad(set_to_none=True)
+                use_contrast = contrast_weight > 0.0 and float(z_target.abs().sum().item()) > 0.0
+                nll_neg_val: float | None = None
+                if use_contrast:
+                    with torch.no_grad():
+                        controller.set_coords(-z_target, start_pos=edit_pos)
+                        nll_neg_val = float(
+                            _translation_nll(
+                                _translation_logprobs(model, prompt_ids, start, cont_ids), cont_ids
+                            ).item()
+                        )
+
                 controller.set_coords(z_target, start_pos=edit_pos)
                 logp_pos = _translation_logprobs(model, prompt_ids, start, cont_ids)
                 nll_pos = _translation_nll(logp_pos, cont_ids)
+                nll_pos_val = float(nll_pos.detach().item())
 
-                if contrast_weight > 0.0 and float(z_target.abs().sum().item()) > 0.0:
+                margin_active = use_contrast and (float(margin) + nll_pos_val - float(nll_neg_val)) > 0.0
+                if margin_active:
+                    ((1.0 + float(contrast_weight)) * nll_pos).backward()
+                    del logp_pos, nll_pos
                     controller.set_coords(-z_target, start_pos=edit_pos)
                     logp_neg = _translation_logprobs(model, prompt_ids, start, cont_ids)
                     nll_neg = _translation_nll(logp_neg, cont_ids)
-                    contrast = F.relu(float(margin) + nll_pos - nll_neg)
-                    loss = nll_pos + float(contrast_weight) * contrast
+                    (-float(contrast_weight) * nll_neg).backward()
+                    loss_val = nll_pos_val + float(contrast_weight) * (
+                        float(margin) + nll_pos_val - float(nll_neg.detach().item())
+                    )
+                    del logp_neg, nll_neg
                 else:
-                    loss = nll_pos
+                    nll_pos.backward()
+                    loss_val = nll_pos_val
+                    del logp_pos, nll_pos
 
-                loss.backward()
                 torch.nn.utils.clip_grad_norm_(params, 1.0)
                 opt.step()
 
-                losses.append(float(loss.detach().item()))
+                losses.append(loss_val)
     finally:
         controller.set_coords(None)
 

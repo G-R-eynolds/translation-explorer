@@ -204,15 +204,26 @@ def grads_at_layers(
     handles = [arch.layers(model)[l].register_forward_hook(_make_hook(l)) for l in layers]
     try:
         with torch.enable_grad():
-            for c in range(0, len(conts), batch):
-                part = [y if y else [prefix[-1]] for y in conts[c:c + batch]]
-                for l in layers:
-                    state[l] = torch.zeros(len(part), d, device=dev, dtype=torch.float32, requires_grad=True)
-                lp = seq_logp(model, prefix, part)
-                grads = torch.autograd.grad(lp.sum(), [state[l] for l in layers])
-                for l, g in zip(layers, grads):
-                    out[l].append(g.detach().float().cpu().numpy())
-                state.clear()
+            cur_batch = max(1, int(batch))
+            c = 0
+            while c < len(conts):
+                part = [y if y else [prefix[-1]] for y in conts[c:c + cur_batch]]
+                try:
+                    for l in layers:
+                        state[l] = torch.zeros(len(part), d, device=dev, dtype=torch.float32, requires_grad=True)
+                    lp = seq_logp(model, prefix, part)
+                    grads = torch.autograd.grad(lp.sum(), [state[l] for l in layers])
+                    for l, g in zip(layers, grads):
+                        out[l].append(g.detach().float().cpu().numpy())
+                    state.clear()
+                    c += len(part)
+                except torch.cuda.OutOfMemoryError:
+                    state.clear()
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                    if cur_batch == 1:
+                        raise
+                    cur_batch = max(1, cur_batch // 2)
     finally:
         for hd in handles:
             hd.remove()
