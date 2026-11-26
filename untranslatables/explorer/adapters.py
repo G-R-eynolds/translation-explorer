@@ -74,6 +74,7 @@ class LoRALinear(nn.Module):
     @torch.no_grad()
     def merge(self, inplace: bool = False) -> nn.Linear:
         """Fuse LoRA weights into an nn.Linear (returns a new Linear unless inplace=True)."""
+        _check_mergeable_base(self.base, self.out_features, self.in_features)
         delta_w = (self.lora_B @ self.lora_A) * self.scaling
         delta_w = delta_w.to(device=self.base.weight.device, dtype=self.base.weight.dtype)
         if inplace:
@@ -97,6 +98,40 @@ class LoRALinear(nn.Module):
             "lora_A": self.lora_A.detach().cpu().clone(),
             "lora_B": self.lora_B.detach().cpu().clone(),
         }
+
+
+def _check_mergeable_base(base: nn.Module, out_features: int, in_features: int) -> None:
+    """Validate that `base` is a dense floating-point linear layer safe for LoRA weight merging."""
+    w = getattr(base, "weight", None)
+    if w is None or not isinstance(w, torch.Tensor):
+        raise RuntimeError(
+            f"Cannot merge LoRA into {type(base).__name__}: base layer has no Tensor weight."
+        )
+    quant_detected = (
+        type(base).__name__ in ("Linear4bit", "Linear8bitLt")
+        or getattr(w, "quant_state", None) is not None
+        or getattr(base, "quant_state", None) is not None
+        or getattr(w, "CB", None) is not None
+        or getattr(w, "SCB", None) is not None
+        or bool(getattr(w, "bnb_quantized", False))
+    )
+    if quant_detected:
+        raise RuntimeError(
+            f"Cannot merge LoRA weights into quantized layer {type(base).__name__} "
+            f"(weight dtype={w.dtype}, shape={tuple(w.shape)}). Keep LoRA unmerged during inference "
+            "or dequantize the base weight first."
+        )
+    if not w.is_floating_point():
+        raise RuntimeError(
+            f"Cannot merge LoRA weights into non-floating-point weight (dtype={w.dtype}) "
+            f"on {type(base).__name__}."
+        )
+    expected_shape = (int(out_features), int(in_features))
+    if tuple(w.shape) != expected_shape:
+        raise RuntimeError(
+            f"Cannot merge LoRA weights into {type(base).__name__}: expected weight shape "
+            f"{expected_shape}, got {tuple(w.shape)} (possibly packed/quantized)."
+        )
 
 
 def lora_parameters(model: nn.Module) -> list[nn.Parameter]:

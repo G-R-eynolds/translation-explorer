@@ -58,10 +58,11 @@ else
   echo "  (already exists: $OUT/phase3/spectral_reft.pt)"
 fi
 
-echo "=== [4/4] Training self-supervised ForkHead (doc prompt) ==="
-if [[ ! -f "$OUT/fork_head.pt" ]]; then
+echo "=== [4/4] Training self-supervised ForkHead (doc prompt, n_dirs=${FORK_N_DIRS:-2}) ==="
+if [[ ! -f "$OUT/fork_head.pt" || "${FORCE_FORK_HEAD:-0}" == "1" ]]; then
   python -m explorer.fork_head \
     --model "$MODEL" --prompt-style doc --from-texts \
+    --n-dirs "${FORK_N_DIRS:-2}" \
     --epochs "${FORK_EPOCHS:-80}" \
     --out "$OUT/fork_head.pt"
 else
@@ -70,9 +71,15 @@ fi
 
 if [[ "${RUN_PHASE1:-0}" == "1" ]]; then
   echo "=== [5/5] Phase 1: 9-text reading & steering benchmark (EXPLORER_FAST=1) + mapgrid + report ==="
-  EXPLORER_FAST=1 python -m explorer run --model "$MODEL" --n 64
-  if [[ ! -f "$OUT/map_duende_flamenco.json" ]]; then
+  if [[ ! -f "$OUT/summary.json" || "${FORCE_PHASE1:-0}" == "1" ]]; then
+    EXPLORER_FAST=1 python -m explorer run --model "$MODEL" --n "${PHASE1_N:-64}"
+  else
+    echo "  (already exists: $OUT/summary.json)"
+  fi
+  if [[ ! -f "$OUT/map_duende_flamenco.json" || "${FORCE_PHASE1:-0}" == "1" ]]; then
     python -m explorer.mapgrid --model "$MODEL" --text duende_flamenco --n 15
+  else
+    echo "  (already exists: $OUT/map_duende_flamenco.json)"
   fi
   python -m explorer report --model "$MODEL"
 fi

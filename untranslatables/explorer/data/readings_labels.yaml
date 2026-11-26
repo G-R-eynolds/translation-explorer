@@ -1,0 +1,84 @@
+# Curated human-readable metadata and reading labels for Translation Explorer.
+# Schema (PROJECT.md § Interface Contracts #3):
+#   texts.<text_id>.{title, description}
+#   models.<model_key>.<text_id>.<int_reading_id>: "<human-readable label>"
+
+texts:
+  duende_flamenco:
+    title: "Camarón's Duende (Flamenco)"
+    description: "Lorca's untranslatable artistic spirit and dark power in flamenco performance."
+  duende_cuento:
+    title: "Folktale Duende (Under the Bed)"
+    description: "Narrative folktale context where duende denotes a household sprite or creature."
+  duende_bare:
+    title: "Bare Duende (No Context)"
+    description: "Minimal sentence without disambiguating context: folklore creature vs. artistic spirit."
+  becquer_xxi:
+    title: "Bécquer, Rima XXI (¿Qué es poesía?)"
+    description: "Gustavo Adolfo Bécquer's lyric epigram turning on the verb 'clavas' and 'pupila azul'."
+  becquer_liii:
+    title: "Bécquer, Rima LIII (Golondrinas)"
+    description: "Opening stanza with Spanish hyperbaton ('Volverán las oscuras golondrinas...')."
+  machado_caminante:
+    title: "Machado, Proverbios y cantares XXIX"
+    description: "Antonio Machado's aphorism on walking and creating the road ('caminante' / 'camino')."
+  rosalia_dicen:
+    title: "Rosalía de Castro, En las orillas del Sar"
+    description: "Lyric catalogue of nature's hidden voices ('plantas', 'fuentes', 'onda', 'astros')."
+  monte_catalejo:
+    title: "Man on the Mountain with the Telescope"
+    description: "Classic attachment and lexical ambiguity ('monte' and 'catalejo')."
+  control_museo:
+    title: "Museum Opening Time (Control)"
+    description: "Plain factual control sentence expected to yield a single unanimous reading."
+
+models:
+  g3_4b_pt:
+    duende_flamenco:
+      0: "Gift, rhythm & possession"
+      1: "Magic & fairy"
+      2: "Untranslated duende & flame"
+      3: "Spirit & soul"
+      4: "Charm & allure"
+    duende_cuento:
+      0: "Elf under the bed"
+      1: "Dwarf under the bed"
+      2: "Fairy under the bed"
+      3: "Gnome under the bed"
+      4: "Goblin under the bed"
+    duende_bare:
+      0: "Fairy"
+      1: "Dwarf"
+      2: "Elided pronoun ('it')"
+      3: "Goblin"
+      4: "Elf"
+      5: "Gnome"
+    becquer_xxi:
+      0: "Stab / sink pupil"
+      1: "Stick / pierce pupil"
+      2: "Implant / lock pupil"
+      3: "Cast azure eye / direct stab"
+    becquer_liii:
+      0: "Dark swallows (inverted syntax)"
+      1: "Swifts / alternate bird & order"
+    machado_caminante:
+      0: "Traveler"
+      1: "Walker"
+      2: "Wanderer / Pilgrim"
+      3: "Wayfarer"
+    rosalia_dicen:
+      0: "Waves & murmuring (concise)"
+      1: "Wind & rumors (literal)"
+      2: "Colloquial / impersonal ('It is said')"
+    monte_catalejo:
+      0: "Forest / woods + telescope"
+      1: "Mountain + spyglass"
+      2: "Mountain + binoculars"
+      3: "Mountain + telescope"
+      5: "Mountains (plural) + telescope"
+    control_museo:
+      0: "Ten o’clock (curly apostrophe)"
+      1: "10 a.m. (abbreviated)"
+      2: "Ten in the morning (spelled)"
+      3: "Ten o'clock (straight apostrophe)"
+      4: "10 in the morning (numeral)"

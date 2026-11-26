@@ -151,6 +151,81 @@ def test_multilayer_cursor_hook_positions_and_additive(tiny):
     assert hk.handles == []
 
 
+def test_multilayer_cursor_hook_sync_pos_with_kv_cache(tiny):
+    _, model = tiny
+    layers = [0, 1]
+    d = arch.hidden_size(model)
+    v0_loc = torch.full((d,), 0.35)
+    v1_loc = torch.full((d,), -0.25)
+    v0_glb = torch.full((d,), 0.15)
+    v1_glb = torch.full((d,), 0.10)
+
+    hk = MultiLayerCursorHook(model, layers)
+    try:
+        # Uncached 6-token reference with global_start=2 and local b=4
+        x_full = torch.tensor([[1, 2, 3, 4, 5, 6]])
+        hk.set(
+            local_vecs={0: v0_loc, 1: v1_loc},
+            b=4,
+            only_at_b=False,
+            global_vecs={0: v0_glb, 1: v1_glb},
+            global_start=2,
+        )
+        with torch.no_grad():
+            ref_logits = model(input_ids=x_full, use_cache=False).logits[:, -1, :]
+
+        # Cached prefill (4 tokens) + multi-token cached append (T=2 at pos=4) via sync_pos
+        hk.set(
+            local_vecs={0: v0_loc, 1: v1_loc},
+            b=4,
+            only_at_b=False,
+            global_vecs={0: v0_glb, 1: v1_glb},
+            global_start=2,
+        )
+        hk.sync_pos(0)
+        with torch.no_grad():
+            out0 = model(input_ids=x_full[:, :4], use_cache=True)
+            assert hk.pos == {0: 4, 1: 4}
+            hk.sync_pos(4)
+            out1 = model(input_ids=x_full[:, 4:6], past_key_values=out0.past_key_values, use_cache=True)
+            assert hk.pos == {0: 6, 1: 6}
+            cached_logits = out1.logits[:, -1, :]
+        assert torch.allclose(cached_logits, ref_logits, atol=1e-5)
+
+        # Cropped-cache single-token replay at pos=3 (global applies, local b=4 must NOT leak)
+        with torch.no_grad():
+            hk.clear()
+            base_out = model(input_ids=x_full[:, :3], use_cache=True)
+            base_l0 = _capture_layers(
+                model,
+                [0],
+                lambda: model(input_ids=x_full[:, 3:4], past_key_values=base_out.past_key_values, use_cache=False),
+            )[0][0]
+
+        hk.set(
+            local_vecs={0: v0_loc, 1: v1_loc},
+            b=4,
+            only_at_b=False,
+            global_vecs={0: v0_glb, 1: v1_glb},
+            global_start=2,
+        )
+        with torch.no_grad():
+            hk.sync_pos(0)
+            pre3 = model(input_ids=x_full[:, :3], use_cache=True).past_key_values
+            hk.sync_pos(3)
+            steered_l0 = _capture_layers(
+                model,
+                [0],
+                lambda: model(input_ids=x_full[:, 3:4], past_key_values=pre3, use_cache=False),
+            )[0][0]
+            assert hk.pos == {0: 4, 1: 4}
+        # Position 3 received global_vecs only (not local_vecs which starts at b=4)
+        assert torch.allclose((steered_l0 - base_l0)[0, 0], v0_glb, atol=1e-5)
+    finally:
+        hk.remove()
+
+
+
 def test_multi_layer_grads_at_matches_fd(tiny):
     from explorer.directions import grads_at
     from explorer.sample import score

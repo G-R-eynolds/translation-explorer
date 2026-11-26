@@ -43,16 +43,74 @@ def _dump(p, obj):
     p.write_text(json.dumps(obj, ensure_ascii=False, indent=1, default=lambda o: o.tolist() if hasattr(o, "tolist") else float(o)))
 
 
-def run_text(model, tok, hook, layer, txt, out, n):
+def _generate_for_style(model, tok, ids, n, max_new, prompt_style="legacy", temperature=1.0, seed=0, batch=64):
+    from explorer.sample import _dev, generate
+    if prompt_style == "legacy":
+        return generate(model, tok, ids, n, max_new, temperature=temperature, seed=seed, batch=batch)
+    from transformers import GenerationConfig
+    import torch
+    from explorer.frame import DOC_STOPS, cut_doc
+    from ut.common import seed_all
+
+    gc = GenerationConfig(
+        max_new_tokens=max_new,
+        do_sample=temperature > 0,
+        eos_token_id=tok.eos_token_id,
+        pad_token_id=tok.pad_token_id,
+        stop_strings=list(DOC_STOPS),
+        temperature=temperature if temperature > 0 else None,
+        top_k=0 if temperature > 0 else None,
+        top_p=1.0 if temperature > 0 else None,
+    )
+    out = []
+    for c in range(0, n, batch):
+        m = min(batch, n - c)
+        seed_all((seed * 100003 + c) % 2 ** 32)
+        x = torch.tensor([ids] * m, device=_dev(model))
+        with torch.no_grad():
+            g = model.generate(
+                input_ids=x,
+                attention_mask=torch.ones_like(x),
+                generation_config=gc,
+                tokenizer=tok,
+            )[:, len(ids):].tolist()
+        for row in g:
+            row = [t for t in row if t not in (tok.pad_token_id, tok.eos_token_id)]
+            out.append(cut_doc(tok, row))
+    return out
+
+
+def _steered_for_style(model, tok, hook, ids, vec, b, max_new, prompt_style="legacy",
+                       n=1, temperature=0.0, only_at_b=False, seed=0):
+    from explorer.sample import steered
+    if prompt_style == "legacy":
+        return steered(model, tok, hook, ids, vec, b, max_new, n=n,
+                       temperature=temperature, only_at_b=only_at_b, seed=seed)
+    hook.set(vec, b, only_at_b)
+    try:
+        return _generate_for_style(model, tok, ids, n, max_new, prompt_style="doc",
+                                   temperature=temperature, seed=seed)
+    finally:
+        hook.set(None)
+
+
+def run_text(model, tok, hook, layer, txt, out, n, prompt_style="legacy",
+             clustering="semantic", alpha_grad=0.5, disp_min=0.035):
     from explorer import readings as R
     from explorer.branches import align_index, choose_t, timeline
     from explorer.directions import alpha_for, calibrate, grads_at, natural, plain
-    from explorer.frame import build_prompt
-    from explorer.sample import sample, score, steered
+    from explorer.frame import build_doc_prompt, build_prompt
+    from explorer.grad_readings import cluster_gradients, cluster_hybrid
+    from explorer.sample import score
     import torch
 
+    if prompt_style not in ("legacy", "doc"):
+        raise ValueError(f"Unknown prompt_style: {prompt_style!r}")
+    if clustering not in ("semantic", "hybrid", "grad"):
+        raise ValueError(f"Unknown clustering mode: {clustering!r}")
+
     tid = txt["id"]
-    ids, start = build_prompt(tok, txt["text"])
+    ids, start = build_doc_prompt(tok, txt["text"]) if prompt_style == "doc" else build_prompt(tok, txt["text"])
     n_src = len(tok(txt["text"], add_special_tokens=False)["input_ids"])
     max_new = 3 * n_src + 16
     sp = out / "samples" / f"{tid}.json"
@@ -61,12 +119,27 @@ def run_text(model, tok, hook, layer, txt, out, n):
         X = np.load(out / "samples" / f"{tid}_emb.npy")
     else:
         t0 = time.time()
-        ys = sample(model, tok, ids, n, max_new, seed=_seed(tid))
+        ys = _generate_for_style(model, tok, ids, n, max_new, prompt_style=prompt_style,
+                                 temperature=1.0, seed=_seed(tid))
         lp = score(model, ids, ys)
         texts = [tok.decode(y).strip() for y in ys]
-        X = R.embed_texts(texts)
-        cl = R.readings_from(X, lp / np.maximum([len(y) for y in ys], 1))
-        S = dict(id=tid, text=txt["text"], kind=txt["kind"], ys=ys, texts=texts,
+        emb_in = [R.normalize_text(t, collapse_newlines=True) for t in texts] if prompt_style == "doc" else texts
+        X = R.embed_texts(emb_in)
+        lpt_s = lp / np.maximum([len(y) for y in ys], 1)
+        if clustering in ("hybrid", "grad"):
+            try:
+                G_init = grads_at(model, ids, ys, layer, start - 1)
+                if clustering == "hybrid":
+                    cl = cluster_hybrid(X, G_init, lpt_s, alpha_grad=alpha_grad, disp_min=disp_min)
+                else:
+                    cl = cluster_gradients(G_init, lpt_s, disp_min=disp_min)
+            except Exception as exc:
+                cl = R.readings_from(X, lpt_s, disp_min=disp_min)
+                cl["clustering_fallback"] = f"semantic ({type(exc).__name__}: {exc})"
+        else:
+            cl = R.readings_from(X, lpt_s, disp_min=disp_min)
+        S = dict(id=tid, text=txt["text"], kind=txt["kind"], prompt_style=prompt_style,
+                 clustering=clustering, ys=ys, texts=texts,
                  logp=lp.tolist(), lens=[len(y) for y in ys], **cl, entropy_bits=R.entropy(cl["shares"]),
                  seconds=round(time.time() - t0, 1))
         (out / "samples").mkdir(parents=True, exist_ok=True)
@@ -78,6 +151,8 @@ def run_text(model, tok, hook, layer, txt, out, n):
     labels = np.array(S["labels"])
     ys = S["ys"]
     rd = S["readings"][:3]
+    if not rd:
+        return S, {}, []
     members = {r: [ys[i] for i in np.where(labels == r)[0]] for r in rd}
     lpt = np.array(S["logp"]) / np.maximum(np.array(S["lens"]), 1)
     ref_i = max(np.where(labels == rd[0])[0], key=lambda i: S["logp"][i])
@@ -101,7 +176,12 @@ def run_text(model, tok, hook, layer, txt, out, n):
     t = Bx["t"]
     prefix = ids + y_ref[:t]
     b_abs = len(prefix) - 1
-    mu = np.array(S["mu"])
+    mu_raw = np.asarray(S.get("mu", []), dtype=np.float64)
+    if mu_raw.ndim == 1 and len(mu_raw) == X.shape[1]:
+        mu = mu_raw
+    else:
+        kept_mask = labels >= 0
+        mu = X[kept_mask].mean(0) if np.any(kept_mask) else X.mean(0)
     C = R.centroids(R.centre(X, mu), labels, rd)
     med = {r: float(np.median(lpt[labels == r])) for r in rd}
     conts = {r: [y[align_index(y_ref, y, t):] for y in members[r][:MAX_MEMBERS]] for r in rd}
@@ -112,12 +192,14 @@ def run_text(model, tok, hook, layer, txt, out, n):
     def judge(conts):
         full = [y_ref[:t] + c for c in conts]
         txts = [tok.decode(f).strip() for f in full]
-        E = R.centre(R.embed_texts(txts), mu)
+        j_in = [R.normalize_text(s, collapse_newlines=True) for s in txts] if prompt_style == "doc" else txts
+        E = R.centre(R.embed_texts(j_in), mu)
         fl = score(model, ids, full) / np.maximum([len(f) for f in full], 1)
         return [rd[R.assign(e, C)] for e in E], fl.tolist(), txts
 
-    base_conts = steered(model, tok, hook, prefix, None, b_abs, max_rest, n=N_STEER, temperature=0.7,
-                         seed=_seed(tid, "base"))
+    base_conts = _steered_for_style(model, tok, hook, prefix, None, b_abs, max_rest,
+                                    prompt_style=prompt_style, n=N_STEER, temperature=0.7,
+                                    seed=_seed(tid, "base"))
     base_r, _, base_txt = judge(base_conts)
     rows = []
     for A in rd:
@@ -130,9 +212,11 @@ def run_text(model, tok, hook, layer, txt, out, n):
                     for kl in KLS[mode]:
                         a = calibrate(model, hook, ids + y_ref, b_abs, v, kl, mode, alpha_for(G_all, v, kl))
                         vec = torch.tensor(a * v, dtype=torch.float32)
-                        g = steered(model, tok, hook, prefix, vec, b_abs, max_rest, only_at_b=mode == "at_b")
-                        s = steered(model, tok, hook, prefix, vec, b_abs, max_rest, n=N_STEER, temperature=0.7,
-                                    only_at_b=mode == "at_b", seed=_seed(tid, A, B, var, kl, mode))
+                        g = _steered_for_style(model, tok, hook, prefix, vec, b_abs, max_rest,
+                                               prompt_style=prompt_style, only_at_b=mode == "at_b")
+                        s = _steered_for_style(model, tok, hook, prefix, vec, b_abs, max_rest,
+                                               prompt_style=prompt_style, n=N_STEER, temperature=0.7,
+                                               only_at_b=mode == "at_b", seed=_seed(tid, A, B, var, kl, mode))
                         r_, fl, txts = judge(g + s)
                         ok = [ri == A and f >= med[A] - 1.5 for ri, f in zip(r_, fl)]
                         rows.append(dict(id=tid, A=A, B=B, variant=var, kl=kl,
@@ -184,10 +268,20 @@ def run(cfg):
     texts = load_texts()
     if cfg.get("texts"):
         texts = [t for t in texts if t["id"] in cfg["texts"]]
+    prompt_style = cfg.get("prompt_style", "legacy")
+    clustering = cfg.get("clustering", "semantic")
+    alpha_grad = cfg.get("alpha_grad", 0.5)
+    disp_min = cfg.get("disp_min", 0.035)
     res = []
     t0 = time.time()
     for i, txt in enumerate(texts):
-        res.append(run_text(model, tok, hook, layer, txt, out, cfg.get("n", 64)))
+        res.append(run_text(
+            model, tok, hook, layer, txt, out, cfg.get("n", 64),
+            prompt_style=prompt_style,
+            clustering=clustering,
+            alpha_grad=alpha_grad,
+            disp_min=disp_min,
+        ))
         el = time.time() - t0
         print(f"[explorer] {i + 1}/{len(texts)} texts, {el / 60:.1f} min, ~{el / (i + 1) * (len(texts) - i - 1) / 60:.1f} min left",
               flush=True)

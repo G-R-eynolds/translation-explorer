@@ -1,11 +1,11 @@
-# Curated multi-reference Spanish->English parallel dataset for global translational
-# tone/practice axes and diversity-preserving multi-reference adapter training.
-# Public-domain poetic lines (Bécquer d. 1870, Rosalía de Castro d. 1885, Machado d. 1939,
-# Lorca d. 1936) and culturally dense Spanish prose.
+# Curated multi-reference literary parallel dataset for global translational tone/practice axes
+# and diversity-preserving multi-reference adapter training (Spanish, Portuguese, French, German, Italian).
+# Includes public-domain single-line and multi-stanza formatted poems (Bécquer d. 1870, Rosalía de Castro d. 1885,
+# Machado d. 1939, Lorca d. 1936, San Juan de la Cruz d. 1591) and culturally dense literary prose.
 
 axes:
   literal_vs_idiomatic:
-    neg: "literal / close to Spanish syntax"
+    neg: "literal / close to source syntax"
     pos: "idiomatic / natural English"
   plain_vs_poetic:
     neg: "plain / everyday prose"
@@ -19,6 +19,7 @@ axes:
 
 items:
   - id: duende_flamenco
+    lang: Spanish
     source: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
     translations:
       - text: "When Camarón sings, he has duende; I like duende very much."
@@ -53,6 +54,7 @@ items:
           concise_vs_glossed: 0.8
 
   - id: sobremesa_domingo
+    lang: Spanish
     source: "La sobremesa del domingo se alargó hasta el anochecer entre risas y café."
     translations:
       - text: "The sobremesa of Sunday lengthened itself until nightfall among laughs and coffee."
@@ -87,6 +89,7 @@ items:
           concise_vs_glossed: -0.7
 
   - id: madrugada_silencio
+    lang: Spanish
     source: "Nos sorprendió la madrugada caminando por las calles vacías de la ciudad."
     translations:
       - text: "The madrugada surprised us walking through the empty streets of the city."
@@ -121,6 +124,7 @@ items:
           concise_vs_glossed: -0.9
 
   - id: querencia_tierra
+    lang: Spanish
     source: "Con los años volvió a su querencia, aquel pequeño pueblo entre los olivos."
     translations:
       - text: "With the years he returned to his querencia, that small village among the olive trees."
@@ -155,6 +159,7 @@ items:
           concise_vs_glossed: -0.8
 
   - id: desvelado_noche
+    lang: Spanish
     source: "Pasé toda la noche desvelado, escuchando la lluvia contra los cristales."
     translations:
       - text: "I passed all the night desvelado, listening to the rain against the windowpanes."
@@ -189,6 +194,7 @@ items:
           concise_vs_glossed: -0.5
 
   - id: estrenar_abrigo
+    lang: Spanish
     source: "Hoy voy a estrenar el abrigo nuevo que me regaló mi abuela."
     translations:
       - text: "Today I am going to estrenar the new coat that my grandmother gifted me."
@@ -223,6 +229,7 @@ items:
           concise_vs_glossed: -0.8
 
   - id: verguenza_ajena
+    lang: Spanish
     source: "Al oír aquel discurso tan torpe, sentí una profunda vergüenza ajena."
     translations:
       - text: "Upon hearing that speech so clumsy, I felt a profound alien shame."
@@ -257,6 +264,7 @@ items:
           concise_vs_glossed: -0.9
 
   - id: becquer_golondrinas
+    lang: Spanish
     source: "Volverán las oscuras golondrinas en tu balcón sus nidos a colgar."
     translations:
       - text: "Will return the dark swallows on your balcony their nests to hang."
@@ -291,6 +299,7 @@ items:
           concise_vs_glossed: -0.6
 
   - id: machado_caminante
+    lang: Spanish
     source: "Caminante, no hay camino, se hace camino al andar."
     translations:
       - text: "Walker, there is no road, road makes itself on walking."
@@ -325,6 +334,7 @@ items:
           concise_vs_glossed: -0.8
 
   - id: lorca_verde
+    lang: Spanish
     source: "Verde que te quiero verde. Verde viento. Verdes ramas."
     translations:
       - text: "Green that I want you green. Green wind. Green branches."
@@ -359,6 +369,7 @@ items:
           concise_vs_glossed: 0.1
 
   - id: siesta_patio
+    lang: Spanish
     source: "En agosto, después de comer, el pueblo entero se rendía a la siesta tras las persianas."
     translations:
       - text: "In August, after eating, the whole village surrendered itself to the siesta behind the persianas."
@@ -393,6 +404,7 @@ items:
           concise_vs_glossed: -0.6
 
   - id: tertulia_cafe
+    lang: Spanish
     source: "Cada jueves se reunían en el café antiguo para mantener viva la tertulia."
     translations:
       - text: "Each Thursday they gathered themselves in the old café to maintain alive the tertulia."
@@ -427,6 +439,7 @@ items:
           concise_vs_glossed: -0.9
 
   - id: tutear_maestro
+    lang: Spanish
     source: "Después de tantos años de amistad, todavía no me atrevo a tutear al maestro."
     translations:
       - text: "After so many years of friendship, still I do not dare to tutear the master."
@@ -461,6 +474,7 @@ items:
           concise_vs_glossed: -0.6
 
   - id: tocayo_plaza
+    lang: Spanish
     source: "Me encontré con mi tocayo en la plaza y estuvimos charlando un buen rato."
     translations:
       - text: "I encountered myself with my tocayo in the plaza and we were chatting a good while."
@@ -495,6 +509,7 @@ items:
           concise_vs_glossed: -0.9
 
   - id: friolero_invierno
+    lang: Spanish
     source: "Mi hermano es muy friolero y enciende la estufa en cuanto llega el otoño."
     translations:
       - text: "My brother is very friolero and lights the stove as soon as arrives the autumn."
@@ -529,6 +544,7 @@ items:
           concise_vs_glossed: -0.8
 
   - id: rosalia_fuentes
+    lang: Spanish
     source: "Dicen que no hablan las plantas, ni las fuentes, ni los pájaros; lo dicen, pero no es cierto."
     translations:
       - text: "They say that do not speak the plants, nor the fountains, nor the birds; they say it, but it is not certain."
@@ -561,3 +577,851 @@ items:
           plain_vs_poetic: 0.5
           foreignising_vs_domesticating: 0.4
           concise_vs_glossed: -0.6
+
+  - id: becquer_golondrinas_stanzas
+    lang: Spanish
+    source: |-
+      Volverán las oscuras golondrinas
+        en tu balcón sus nidos a colgar,
+      y otra vez con el ala a sus cristales
+        jugando llamarán.
+
+      Pero aquellas que el vuelo refrenaban
+        tu hermosura y mi dicha a contemplar,
+      aquellas que aprendieron nuestros nombres...
+        ¡ésas... no volverán!
+    translations:
+      - text: |-
+          Will return the dark swallows
+            on your balcony their nests to hang,
+          and once more with the wing at its panes
+            playing they will call.
+
+          But those that their flight reined in
+            your beauty and my bliss to behold,
+          those that learned our names...
+            those... will not return!
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          The dark swallows will come back
+            to build their nests on your balcony,
+          and once again they will tap at the glass
+            playfully with their wings.
+
+          But the ones that slowed their flight
+            to watch your beauty and my happiness,
+          the ones that learned our names...
+            they won't come back!
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: |-
+          Once more the dusky swallows shall return
+            to hang their cradles from your balcony,
+          and brush the windowpanes again with playful wings
+            to summon you.
+
+          Yet those that checked their flight in midair
+            to gaze upon your loveliness and my delight,
+          those that grew to know our whispered names...
+            they shall return no more!
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: -0.2
+      - text: |-
+          The dark golondrinas will return
+            to hang their nests upon your balcón,
+          and once again, tapping the panes with a wing
+            in play, they will call out.
+
+          Yet those swallows that reined back their flight
+            to contemplate your beauty and my dicha (joy),
+          those very birds that learned our names...
+            those—irretrievably—will not return!
+        coords:
+          literal_vs_idiomatic: 0.2
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: |-
+          Dark swallows will return each spring
+            to hang their clay nests by your balcony,
+          and beat their wings against the window glass
+            in playful greeting.
+
+          But the ones that paused upon the wind
+            to watch your grace and share my joy,
+          the ones that knew our names by heart...
+            those never will return!
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: 0.6
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: 0.5
+
+  - id: machado_caminante_stanzas
+    lang: Spanish
+    source: |-
+      Caminante, son tus huellas
+        el camino y nada más;
+      caminante, no hay camino,
+        se hace camino al andar.
+
+      Al andar se hace camino
+        y al volver la vista atrás
+      se ve la senda que nunca
+        se ha de volver a pisar.
+    translations:
+      - text: |-
+          Walker, are your footprints
+            the road and nothing more;
+          walker, there is no road,
+            road makes itself on walking.
+
+          On walking road makes itself
+            and on turning the sight behind
+          is seen the path that never
+            is to be trod again.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.4
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.9
+      - text: |-
+          Traveler, your footprints are
+            the only path there is;
+          traveler, there is no path,
+            you make it as you walk.
+
+          You make the path by walking,
+            and when you look back
+          you see the trail you will never
+            walk on again.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          Wayfarer, your footprints alone
+            are the road, and nothing more;
+          wayfarer, no road awaits you—
+            the road is forged in walking.
+
+          Step by step the way is woven,
+            and glancing backward down the years
+          you glimpse the narrow track
+            no foot shall ever tread again.
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: 0.1
+      - text: |-
+          Caminante (wandering traveler), your footprints
+            are the camino—the road—and nothing else;
+          caminante, there is no laid-out road,
+            the road comes into being as you walk.
+
+          By walking, the camino is made,
+            and turning your gaze behind you
+          you see the senda—the solitary footpath—
+            that you are never meant to tread again.
+        coords:
+          literal_vs_idiomatic: 0.2
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: |-
+          Traveler, your own footsteps
+            are the road and nothing else;
+          traveler, there is no road,
+            you carve the way by going.
+
+          By going you carve the way,
+            and looking over your shoulder
+          you see the quiet trail
+            you will never step upon again.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: 0.4
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.4
+
+  - id: rosalia_orillas_dialogue
+    lang: Spanish
+    source: |-
+      —¿Por qué callas, río oscuro,
+        entre la niebla del alba?
+      —No callo: cuento en voz baja
+        lo que el silencio me guarda.
+
+      —¿Y quién escucha tu queja
+        cuando se apaga la tarde?
+      —Las piedras viejas del puente
+        y las sombras que no parten.
+    translations:
+      - text: |-
+          —Why are you silent, dark river,
+            among the mist of dawn?
+          —I am not silent: I tell in low voice
+            what the silence keeps for me.
+
+          —And who listens to your complaint
+            when the evening extinguishes itself?
+          —The old stones of the bridge
+            and the shadows that do not depart.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.4
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: -0.8
+      - text: |-
+          —Why are you so quiet, dark river,
+            in the morning fog?
+          —I'm not quiet: I whisper
+            what the silence holds for me.
+
+          —And who listens to your sorrow
+            when the evening fades?
+          —The old bridge stones
+            and the shadows that stay behind.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          —Why keep your silence, dusky river,
+            veiled within the mist of daybreak?
+          —I am not mute: I murmur softly
+            all the secrets stillness hoards for me.
+
+          —And who attends your low lament
+            when twilight dims along the shore?
+          —The weathered stones beneath the bridge
+            and lingering shades that never leave.
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: 0.1
+      - text: |-
+          —Why do you fall silent, río oscuro (dark river),
+            amid the pale mist of the alba (dawn)?
+          —I am not silent: I recount in a hushed voice
+            what the stillness guards in trust for me.
+
+          —And who gives ear to your queja (plaintive sorrow)
+            when the late afternoon fades out?
+          —The ancient stones of the bridge
+            and the lingering shadows that refuse to depart.
+        coords:
+          literal_vs_idiomatic: 0.2
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: |-
+          —Why so hushed, dark river,
+            drifting through the dawn mist?
+          —I am not hushed: I speak in whispers
+            of the things silence saves for me.
+
+          —And who hears your lament
+            once evening settles in?
+          —The worn stones of the bridge
+            and the shadows that linger on.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: 0.5
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: -0.5
+
+  - id: lorca_sonambulo_stanzas
+    lang: Spanish
+    source: |-
+      —Compadre, quiero cambiar
+        mi caballo por su casa,
+      mi montura por su espejo,
+        mi cuchillo por su manta.
+
+      —Compadre, vengo sangrando
+        desde los puertos de Cabra.
+      —Si yo pudiera, mocito,
+        este trato se cerraba.
+    translations:
+      - text: |-
+          —Compadre, I want to change
+            my horse for your house,
+          my saddle for your mirror,
+            my knife for your blanket.
+
+          —Compadre, I come bleeding
+            from the mountain passes of Cabra.
+          —If I could, young lad,
+            this bargain would be closed.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.5
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          —Friend, I want to trade
+            my horse for your house,
+          my saddle for your mirror,
+            my knife for your blanket.
+
+          —Friend, I've come here bleeding
+            from the passes of Cabra.
+          —If I could, son,
+            we'd strike that deal right now.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: |-
+          —Kinsman, let me barter
+            my stallion for your hearth,
+          my saddle for your looking-glass,
+            my blade for your warm wool.
+
+          —Kinsman, I come here bleeding
+            down from the high passes of Cabra.
+          —Were it within my power, lad,
+            that pact would now be sealed.
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: -0.1
+      - text: |-
+          —Compadre (sworn friend and kinsman), I wish to trade
+            my horse for your house,
+          my saddle for your mirror,
+            my knife for your woven blanket.
+
+          —Compadre, I have ridden here bleeding
+            all the way from the mountain passes of Cabra.
+          —If only I were able, mocito (young man),
+            this bargain would be sealed at once.
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: |-
+          —Compadre, I'd gladly swap
+            my horse for your quiet roof,
+          my saddle for your mirror,
+            my knife for your blanket.
+
+          —Compadre, I arrive here bleeding
+            from the passes of Cabra.
+          —If I only could, my boy,
+            I would seal the deal tonight.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.4
+          concise_vs_glossed: -0.4
+
+  - id: san_juan_noche_stanzas
+    lang: Spanish
+    source: |-
+      En una noche oscura,
+        con ansias, en amores inflamada,
+      ¡oh dichosa ventura!,
+        salí sin ser notada
+      estando ya mi casa sosegada.
+
+      A oscuras y segura,
+        por la secreta escala, disfrazada,
+      ¡oh dichosa ventura!,
+        a oscuras y en celada,
+      estando ya mi casa sosegada.
+    translations:
+      - text: |-
+          On a dark night,
+            with yearnings, in loves inflamed,
+          oh fortunate venture!,
+            I went out without being noticed,
+          being already my house stilled.
+
+          In darkness and secure,
+            by the secret ladder, disguised,
+          oh fortunate venture!,
+            in darkness and in concealment,
+          being already my house stilled.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: -0.8
+      - text: |-
+          On a dark night,
+            filled with longing and on fire with love,
+          what lucky chance!
+            I slipped out unseen
+          once my house had grown quiet.
+
+          Safe in the dark,
+            down the secret staircase in disguise,
+          what lucky chance!
+            hidden in the dark,
+          once my house had grown quiet.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: |-
+          Upon a shadowed night,
+            kindled in longing, set ablaze with love,
+          O blessed grace of chance!
+            I stole forth unperceived
+          when all my house was hushed in rest.
+
+          Sheltered within the dark,
+            by the hidden stair, veiled in disguise,
+          O blessed grace of chance!
+            in darkness and in stealth,
+          when all my house was hushed in rest.
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.5
+          concise_vs_glossed: -0.1
+      - text: |-
+          On a noche oscura (dark night of the soul),
+            aflame with yearning and ardent love,
+          oh dichosa ventura (blessed fortune)!
+            I slipped away unnoticed
+          once my house—the restless senses—lay stilled.
+
+          In darkness and secure,
+            along the secret escala (ladder of contemplation), disguised,
+          oh dichosa ventura!
+            in darkness and hidden in ambush,
+          once my house lay stilled in peace.
+        coords:
+          literal_vs_idiomatic: 0.2
+          plain_vs_poetic: 0.4
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: |-
+          One dark night,
+            burning with longing and love,
+          ah, happy fortune!
+            I stepped out unseen
+          with my house now at rest.
+
+          Safe in the shadow,
+            by the hidden stair in disguise,
+          ah, happy fortune!
+            concealed in the dark
+          with my house now at rest.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.8
+
+  - id: pt_saudade_casa
+    lang: Portuguese
+    source: |-
+      Quando a maré recua na varanda,
+        fica na sala um cheiro de saudade
+      —como quem guarda o mar numa gaveta
+        e teme abri-la ao fim da tarde.
+
+      Ninguém pronuncia o nome antigo,
+        mas cada xícara lembra o regresso
+      de vozes lentas sob a chuva mansa
+        no pátio claro do começo.
+    translations:
+      - text: |-
+          When the tide retreats on the veranda,
+            stays in the room a scent of saudade
+          —like one who keeps the sea in a drawer
+            and fears to open it at the end of afternoon.
+
+          No one pronounces the old name,
+            but each cup remembers the return
+          of slow voices under the gentle rain
+            in the bright courtyard of the beginning.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.4
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          When the tide goes out past the porch,
+            a lingering longing hangs in the room
+          —like someone tucking the ocean in a drawer
+            and dreading opening it at dusk.
+
+          Nobody says the old name out loud,
+            yet every teacup brings back the return
+          of unhurried voices in soft rain
+            out in the bright yard where it all began.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.6
+      - text: |-
+          As the tide withdraws beneath the veranda,
+            a salt-sweet ache of saudade lingers in the room
+          —like one who folds the ocean in a drawer
+            and fears to lift the latch at twilight.
+
+          None dares to speak the elder name,
+            yet every porcelain cup recalls the homecoming
+          of unhurried voices beneath the mild rain
+            within the luminous courtyard of our youth.
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: -0.3
+          concise_vs_glossed: 0.1
+      - text: |-
+          When the tide ebbs past the varanda,
+            the parlor holds a scent of saudade—that tender Portuguese longing for what is absent—
+          —like someone who keeps the sea shut in a drawer
+            and dreads opening it as late afternoon fades.
+
+          No one speaks the old name aloud,
+            yet every xícara (teacup) remembers the return
+          of unhurried voices under the gentle rain
+            in the sunlit pátio where everything began.
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 0.9
+      - text: |-
+          As the tide slips away from the porch,
+            a quiet homesickness fills the room
+          —as if you hid the ocean in a drawer
+            and feared to open it at dusk.
+
+          No one speaks the old name now,
+            but every cup recalls the coming back
+          of slow voices in the soft rain
+            across that bright first courtyard.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.5
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.7
+
+  - id: fr_flaneur_ennui
+    lang: French
+    source: |-
+      Le flâneur s'attarde au bord du quai
+        où l'ennui dore les vitrines,
+      suivant du regard la fumée lente
+        qui monte au-dessus des collines.
+
+      Dans le crépuscule gris de Paris,
+        chaque pas mesure l'absence
+      et transforme la foule distraite
+        en un théâtre de silence.
+    translations:
+      - text: |-
+          The flâneur lingers at the edge of the quai
+            where ennui gilds the shopwindows,
+          following with his gaze the slow smoke
+            that rises above the hills.
+
+          In the gray crépuscule of Paris,
+            each step measures the absence
+          and transforms the distracted crowd
+            into a theater of silence.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          The city stroller loiters by the riverbank
+            where boredom catches the light in shop windows,
+          watching the lazy trail of smoke
+            drift up above the hills.
+
+          In the gray Paris dusk,
+            every step counts out what is missing
+          and turns the busy, distracted crowd
+            into a quiet stage.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: |-
+          The solitary flâneur loiters along the embankment
+            where listless ennui gilds the glass,
+          tracing with unhurried eyes the ribbon of smoke
+            curling above the distant hills.
+
+          Beneath the pewter twilight of Paris,
+            every footfall weighs an absence
+          and conjures from the heedless throng
+            a hushed theater of stillness.
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: -0.2
+          concise_vs_glossed: 0.1
+      - text: |-
+          The flâneur—an unhurried Parisian wanderer and observer—lingers by the stone quai
+            where ennui (a weary, world-worn melancholy) gilds the shopfronts,
+          following with his gaze the slow smoke
+            rising above the hills.
+
+          In the pale gray crépuscule (twilight) of Paris,
+            each footstep takes the measure of absence
+          and reshapes the distracted crowd
+            into a quiet theater of silence.
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.8
+          concise_vs_glossed: 0.9
+      - text: |-
+          The aimless walker pauses along the wharf
+            as pale weariness gleams on the windows,
+          watching slow smoke
+            rise over the hills.
+
+          In gray Paris twilight,
+            each step marks an absence
+          and turns the passing crowd
+            into a silent stage.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.9
+
+  - id: de_waldeinsamkeit_sehnsucht
+    lang: German
+    source: |-
+      In tiefer Waldeinsamkeit
+        rauschen die alten Tannen leise,
+      und eine stille Sehnsucht zieht
+        durch moosbedeckte Schattenkreise.
+
+      Kein Weg führt aus dem Dämmerlicht
+        zurück ins laute Tal der Tage;
+      nur Wind im hohen Wipfel spricht
+        von einer längst vergessnen Frage.
+    translations:
+      - text: |-
+          In deep Waldeinsamkeit
+            rustle the old firs softly,
+          and a quiet Sehnsucht draws
+            through moss-covered shadow circles.
+
+          No path leads out of the twilight
+            back into the loud valley of days;
+          only wind in the high treetop speaks
+            of a long-forgotten question.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          Deep in the quiet woods alone,
+            the old fir trees whisper softly,
+          and a gentle longing drifts
+            across the mossy rings of shade.
+
+          No trail leads out of the dim light
+            back down to the noisy valley of daily life;
+          only the wind high in the branches speaks
+            of a question long forgotten.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.6
+      - text: |-
+          Steeped in forest solitude,
+            the ancient firs murmur low,
+          while a hushed yearning wanders
+            through mossy rings of shadow.
+
+          No road climbs from the gloaming
+            back to the clamorous vale of days;
+          the wind alone in the high crowns tells
+            of a question lost to time.
+        coords:
+          literal_vs_idiomatic: 0.7
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: -0.2
+      - text: |-
+          In deep Waldeinsamkeit—the hushed, inward solitude of being alone in the woods—
+            the ancient firs murmur softly,
+          and a quiet Sehnsucht (wistful, nameless yearning) drifts
+            through moss-grown rings of shadow.
+
+          No track leads out of the Dämmerlicht (dusk-light)
+            back to the noisy valley of everyday days;
+          only the wind high in the treetops speaks
+            of a long-forgotten question.
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 0.9
+      - text: |-
+          Alone in the deep forest,
+            the old firs rustle softly,
+          and a quiet ache moves
+            through mossy patches of shade.
+
+          No path leaves the dusk
+            for the busy valley below;
+          just wind in the high branches
+            hints at an old forgotten question.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.9
+
+  - id: de_geborgenheit_fernweh
+    lang: German
+    source: "Am warmen Kachelofen spürte sie tiefe Geborgenheit, und doch zog ein leises Fernweh sie immer wieder ans Fenster."
+    translations:
+      - text: "At the warm Kachelofen she felt deep Geborgenheit, and yet a quiet Fernweh drew her again and again to the window."
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.5
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: "By the warm tiled stove she felt completely safe and cozy, yet a quiet wanderlust kept pulling her back to the window."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.6
+      - text: "Beside the glowing hearth-tiles a deep sanctuary enfolded her, yet a subtle ache for distant horizons drew her gaze repeatedly to the glass."
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.7
+          concise_vs_glossed: 0.1
+      - text: "Beside the warm tiled Kachelofen she felt profound Geborgenheit—that sheltered sense of warmth and belonging—yet a quiet Fernweh (a homesickness for faraway places) drew her back to the window."
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.2
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 0.9
+      - text: "Warm by the stove, she felt safe at home, yet wanderlust kept tugging her to the window."
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.8
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.9
+
+  - id: it_meriggio_dolce_far_niente
+    lang: Italian
+    source: |-
+      Nel meriggio pallido e assorto
+        s'arresta il canto delle cicale,
+      e il dolce far niente distende
+        la sua luce lungo il viale.
+
+      Sotto gli archi freschi di pietra
+        il tempo posa il suo peso,
+      mentre l'ombra lenta del cipresso
+        custodisce un segreto atteso.
+    translations:
+      - text: |-
+          In the pale and absorbed meriggio
+            halts the song of the cicadas,
+          and the dolce far niente spreads
+            its light along the avenue.
+
+          Under the cool arches of stone
+            time lays down its weight,
+          while the slow shadow of the cypress
+            guards an awaited secret.
+        coords:
+          literal_vs_idiomatic: -0.9
+          plain_vs_poetic: -0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: -0.8
+      - text: |-
+          In the pale, quiet heat of midday
+            the cicadas stop singing,
+          and sweet idleness stretches
+            its warm light down the lane.
+
+          Under the cool stone arches
+            time sets down its burden,
+          while the slow cypress shadow
+            keeps a secret waiting to be told.
+        coords:
+          literal_vs_idiomatic: 0.9
+          plain_vs_poetic: -0.6
+          foreignising_vs_domesticating: 0.9
+          concise_vs_glossed: -0.7
+      - text: |-
+          Through the pale, entranced hush of noon
+            the cicadas' chorus falls still,
+          and sweet unhurried leisure unfurls
+            its amber sheen along the cypress walk.
+
+          Beneath the cool vaulted stone
+            time lays aside its heavy yoke,
+          while the unhurried shadow of the cypress
+            keeps watch over a long-awaited secret.
+        coords:
+          literal_vs_idiomatic: 0.6
+          plain_vs_poetic: 0.9
+          foreignising_vs_domesticating: 0.6
+          concise_vs_glossed: 0.1
+      - text: |-
+          In the pale, rapt meriggio (the drowsy stillness of Italian high noon)
+            the cicadas hush their song,
+          and dolce far niente—the sweet art of doing nothing—spreads
+            its bright light down the tree-lined viale.
+
+          Beneath the cool stone arches
+            time sets down its weight,
+          while the slow shadow of the cypress
+            keeps watch over an awaited secret.
+        coords:
+          literal_vs_idiomatic: 0.3
+          plain_vs_poetic: 0.3
+          foreignising_vs_domesticating: -0.9
+          concise_vs_glossed: 0.9
+      - text: |-
+          At pale, silent noon
+            the cicadas grow quiet,
+          and easy idleness spreads
+            its sunlight down the lane.
+
+          Under cool stone arches
+            time drops its weight,
+          as the slow cypress shadow
+            holds a waiting secret.
+        coords:
+          literal_vs_idiomatic: 0.8
+          plain_vs_poetic: -0.7
+          foreignising_vs_domesticating: 0.8
+          concise_vs_glossed: -0.9

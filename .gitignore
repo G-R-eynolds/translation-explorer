@@ -35,3 +35,8 @@ translation-lattice/runs/
 # OS / editor noise
 .DS_Store
 Thumbs.db
+
+# Agent teamwork state & secret tokens
+.agents/
+*.token
+

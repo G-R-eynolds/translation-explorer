@@ -389,3 +389,257 @@ def test_cli_and_default_layer(tiny, tmp_path):
     loaded = ForkHead.load(out_ckpt)
     assert loaded.param_count() == summary["params"]
 
+
+def test_extract_fork_dataset_with_dirs_and_zero_grad_leakage(tiny, tmp_path):
+    tok, model = tiny
+    d_model = arch.hidden_size(model)
+    model.requires_grad_(False)
+    for p in model.parameters():
+        p.grad = None
+
+    (tmp_path / "branches").mkdir()
+    (tmp_path / "samples").mkdir()
+
+    y_ref = [10, 11, 12, 13, 14]
+    (tmp_path / "samples" / "case_dirs.json").write_text(json.dumps({
+        "id": "case_dirs",
+        "text": "Cuando canta tiene duende.",
+        "ys": [y_ref],
+        "logp": [-2.0],
+        "labels": [0],
+        "readings": [0],
+    }))
+    (tmp_path / "branches" / "case_dirs.json").write_text(json.dumps({
+        "id": "case_dirs",
+        "ref": tok.decode(y_ref).strip(),
+        "ref_tokens": [tok.decode([x]) for x in y_ref],
+        "t": 2,
+        "entropy": [0.1, 0.2, 1.9, 2.2, 0.3],
+        "fisher_top": [0.02, 0.04, 0.4, 0.5, 0.03],
+    }))
+
+    ds = extract_fork_dataset(model, tok, tmp_path, layer=0, entropy_fork_thresh=1.5, n_dirs=2)
+    assert "y_dirs" in ds and "y_dirs_mask" in ds
+    assert ds["y_dirs"].shape == (5, 2, d_model)
+    assert ds["y_dirs_mask"].shape == (5,) and ds["y_dirs_mask"].dtype == torch.bool
+    assert ds["meta"]["n_dirs"] == 2
+    assert isinstance(ds["meta"]["recommended_alpha"], float)
+    assert np.isfinite(ds["meta"]["recommended_alpha"]) and ds["meta"]["recommended_alpha"] > 0.0
+    assert ds["meta"]["median_hidden_norm"] > 0.0
+
+    # Non-fork tokens are exact zeros with mask == False
+    non_fork = ds["y_fork"] < 0.5
+    assert not bool(ds["y_dirs_mask"][non_fork].any())
+    assert torch.equal(ds["y_dirs"][non_fork], torch.zeros_like(ds["y_dirs"][non_fork]))
+
+    # Valid fork tokens have orthonormal rows D @ D^T ≈ I_2
+    valid = ds["y_dirs_mask"]
+    assert bool(valid.any())
+    for D in ds["y_dirs"][valid]:
+        assert torch.allclose(D @ D.T, torch.eye(2), atol=1e-4)
+
+    # Zero .grad leakage on frozen model weights
+    assert all(p.grad is None for p in model.parameters())
+
+    # n_dirs=0 omits y_dirs / y_dirs_mask cleanly while keeping recommended_alpha
+    ds0 = extract_fork_dataset(model, tok, tmp_path, layer=0, n_dirs=0)
+    assert "y_dirs" not in ds0 and "y_dirs_mask" not in ds0
+    assert ds0["meta"]["n_dirs"] == 0
+    assert ds0["meta"]["recommended_alpha"] > 0.0
+
+
+def test_extract_self_supervised_fork_dataset_with_dirs_and_zero_forks(tiny, monkeypatch):
+    from explorer import fork_head as FH
+    from explorer import global_axes as GA
+
+    tok, model = tiny
+    d_model = arch.hidden_size(model)
+    model.requires_grad_(False)
+    for p in model.parameters():
+        p.grad = None
+
+    monkeypatch.setattr(FH, "load_texts", lambda: [{"id": "t_es", "text": "Hola mundo.", "kind": "hard"}])
+    monkeypatch.setattr(GA, "load_tone_axes_dataset", lambda: {
+        "axes": {},
+        "items": [{"id": "t_pt", "lang": "Portuguese", "source": "Saudade do mar.", "translations": []}],
+    })
+
+    # Low threshold -> fork tokens extracted with orthonormal y_dirs
+    ds = FH.extract_self_supervised_fork_dataset(
+        model, tok, layer=0, entropy_fork_thresh=0.0, prompt_style="doc", max_new_per_text=5, n_dirs=2
+    )
+    assert ds["y_dirs"].shape == (len(ds["H"]), 2, d_model)
+    assert bool(ds["y_dirs_mask"].any())
+    for D in ds["y_dirs"][ds["y_dirs_mask"]]:
+        assert torch.allclose(D @ D.T, torch.eye(2), atol=1e-4)
+    assert np.isfinite(ds["meta"]["recommended_alpha"]) and ds["meta"]["recommended_alpha"] > 0.0
+    assert all(p.grad is None for p in model.parameters())
+
+    # Impossible threshold -> 0 fork tokens edge case still trains stably with dir_subspace_sim is None
+    ds_zero = FH.extract_self_supervised_fork_dataset(
+        model, tok, layer=0, entropy_fork_thresh=1e9, prompt_style="doc", max_new_per_text=5, n_dirs=2
+    )
+    assert not bool(ds_zero["y_dirs_mask"].any())
+    assert torch.equal(ds_zero["y_dirs"], torch.zeros_like(ds_zero["y_dirs"]))
+    assert ds_zero["meta"]["recommended_alpha"] > 0.0
+
+    res = train_fork_head(ds_zero, hidden_dim=16, n_dirs=2, epochs=2, lr=1e-3, val_frac=0.2, seed=0)
+    assert np.isfinite(res["train_loss"]) and np.isfinite(res["val_loss"])
+    assert res["val_metrics"]["dir_subspace_sim"] is None
+
+
+def test_train_fork_head_n_dirs_2_checkpoint_and_load_helper(tmp_path):
+    from explorer.fork_head import load_fork_head
+
+    ds = _make_synthetic_dataset(n=120, d_model=24, with_dirs=True, seed=19)
+    mask = ds["y_fork"] >= 0.5
+    ds["y_dirs_mask"] = mask
+    ds["meta"]["recommended_alpha"] = 3.25
+    ds["meta"]["median_hidden_norm"] = 42.0
+
+    ckpt = tmp_path / "fork_head_nd2.pt"
+    res = train_fork_head(ds, hidden_dim=32, n_dirs=2, epochs=15, lr=3e-3, val_frac=0.2, seed=0, save_path=ckpt)
+    assert ckpt.exists()
+    raw = torch.load(ckpt, map_location="cpu", weights_only=True)
+    assert raw["config"]["n_dirs"] == 2
+    assert raw["config"]["predict_dirs"] is True
+    assert raw["meta"]["recommended_alpha"] == pytest.approx(3.25)
+
+    loaded = load_fork_head(ckpt)
+    assert loaded.recommended_alpha == pytest.approx(3.25)
+    assert res["head"].recommended_alpha == pytest.approx(3.25)
+
+
+def test_live_fork_scorer_paused_and_recommended_alpha(tiny):
+    tok, model = tiny
+    d_model = arch.hidden_size(model)
+    head = ForkHead(d_model=d_model, hidden_dim=16, n_dirs=2)
+    head.meta["recommended_alpha"] = 2.5
+    x = torch.tensor([[1, 5, 6, 7]], dtype=torch.long)
+
+    with LiveForkScorer(head, model, layer=0) as scorer:
+        assert scorer.is_paused is False
+        assert scorer.recommended_alpha == pytest.approx(2.5)
+
+        with torch.no_grad():
+            model(input_ids=x, use_cache=False)
+        assert len(scorer.history()) == 1
+        assert scorer.latest()["recommended_alpha"] == pytest.approx(2.5)
+
+        # Single pause
+        with scorer.paused():
+            assert scorer.is_paused is True
+            with torch.no_grad():
+                model(input_ids=x, use_cache=False)
+            assert len(scorer.history()) == 1
+        assert scorer.is_paused is False
+
+        # Nested re-entrant pause
+        with scorer.paused():
+            with scorer.paused():
+                assert scorer.is_paused is True
+                with torch.no_grad():
+                    model(input_ids=x, use_cache=False)
+            assert scorer.is_paused is True
+            with torch.no_grad():
+                model(input_ids=x, use_cache=False)
+        assert scorer.is_paused is False
+        assert len(scorer.history()) == 1
+
+        # Exception safety inside paused()
+        with pytest.raises(RuntimeError, match="boom"):
+            with scorer.paused():
+                assert scorer.is_paused is True
+                raise RuntimeError("boom")
+        assert scorer.is_paused is False
+
+        # Resumes recording normally
+        with torch.no_grad():
+            model(input_ids=x, use_cache=False)
+        assert len(scorer.history()) == 2
+
+
+def test_explorer_cli_main_flag_forwarding(monkeypatch, tmp_path):
+    import explorer.__main__ as cli
+    import explorer.fork_head as FH
+    import explorer.report as REP
+    import explorer.run as RUN
+    import explorer.server as SRV
+    import explorer.train_adapters as TA
+
+    # 1. _parse_model_dirs formats
+    assert cli._parse_model_dirs([["a=/tmp/a,b=/tmp/b"]]) == {"a": "/tmp/a", "b": "/tmp/b"}
+    assert cli._parse_model_dirs([["/tmp/g3_4b_pt,/tmp/g3_12b_pt"]]) == {
+        "g3_4b_pt": "/tmp/g3_4b_pt",
+        "g3_12b_pt": "/tmp/g3_12b_pt",
+    }
+    assert cli._parse_model_dirs([["/tmp/m1", "/tmp/m2"]]) == {"m1": "/tmp/m1", "m2": "/tmp/m2"}
+    assert cli._parse_model_dirs([["k1=/p1"], ["k2=/p2"]]) == {"k1": "/p1", "k2": "/p2"}
+
+    # 2. run + report forwarding
+    captured_run = {}
+    captured_rep = {}
+    monkeypatch.setattr(RUN, "run", lambda cfg: captured_run.update(cfg))
+    monkeypatch.setattr(REP, "run", lambda cfg: captured_rep.update(cfg) or str(tmp_path / "r.html"))
+    cli.main([
+        "run", "--model", "tiny", "--n", "8", "--prompt-style", "doc",
+        "--clustering", "hybrid", "--alpha-grad", "0.35", "--disp-min", "0.04",
+    ])
+    assert captured_run["prompt_style"] == "doc"
+    assert captured_run["clustering"] == "hybrid"
+    assert captured_run["alpha_grad"] == pytest.approx(0.35)
+    assert captured_run["disp_min"] == pytest.approx(0.04)
+    assert captured_rep["model"] == "tiny"
+
+    # 3. train-lora forwarding
+    captured_ta = []
+    monkeypatch.setattr(TA, "main", lambda argv: captured_ta.append(list(argv)))
+    cli.main([
+        "train-lora", "--model", "tiny", "--prompt-style", "doc",
+        "--layers", "0,1", "--dataset", "/tmp/axes.yaml", "--out", "/tmp/l.pt",
+    ])
+    assert "--prompt-style" in captured_ta[-1] and "doc" in captured_ta[-1]
+    assert "--layers" in captured_ta[-1] and "0,1" in captured_ta[-1]
+    assert "--dataset" in captured_ta[-1] and "/tmp/axes.yaml" in captured_ta[-1]
+
+    # 4. train-fork-head forwarding
+    captured_fh = []
+    monkeypatch.setattr(FH, "main", lambda argv: captured_fh.append(list(argv)))
+    cli.main([
+        "train-fork-head", "--model", "tiny", "--prompt-style", "doc",
+        "--from-texts", "--n-dirs", "2", "--layer", "0",
+        "--dataset", "/tmp/ds.pt", "--entropy-thresh", "1.1", "--out", "/tmp/fh.pt",
+    ])
+    fh_argv = captured_fh[-1]
+    assert "--from-texts" in fh_argv
+    assert fh_argv[fh_argv.index("--n-dirs") + 1] == "2"
+    assert fh_argv[fh_argv.index("--prompt-style") + 1] == "doc"
+    assert fh_argv[fh_argv.index("--dataset") + 1] == "/tmp/ds.pt"
+    assert fh_argv[fh_argv.index("--entropy-thresh") + 1] == "1.1"
+
+    # 5. offline pre-M3 signature (no model_dirs/sessions_dir -> no TypeError!)
+    calls_pre = []
+    def fake_offline_pre(output_path, results_dir=None):
+        calls_pre.append((output_path, results_dir))
+        return output_path
+    monkeypatch.setattr(SRV, "build_offline_html", fake_offline_pre)
+    cli.main([
+        "offline", "--out", "/tmp/o.html", "--results-dir", "/tmp/res",
+        "--model-dirs", "m1=/tmp/m1,m2=/tmp/m2", "--sessions-dir", "/tmp/sess",
+    ])
+    assert calls_pre == [("/tmp/o.html", "/tmp/res")]
+
+    # 6. offline post-M3 signature (forwards model_dirs & sessions_dir)
+    calls_post = []
+    def fake_offline_post(output_path, results_dir=None, model_dirs=None, sessions_dir=None):
+        calls_post.append((output_path, results_dir, model_dirs, sessions_dir))
+        return output_path
+    monkeypatch.setattr(SRV, "build_offline_html", fake_offline_post)
+    cli.main([
+        "offline", "--out", "/tmp/o2.html",
+        "--model-dirs", "g3_4b=/tmp/4b", "--model-dirs", "g3_27b=/tmp/27b",
+        "--sessions-dir", "/tmp/sess2",
+    ])
+    assert calls_post == [("/tmp/o2.html", None, {"g3_4b": "/tmp/4b", "g3_27b": "/tmp/27b"}, "/tmp/sess2")]
+
+

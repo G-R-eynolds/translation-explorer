@@ -10,6 +10,7 @@ CLI:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 from pathlib import Path
 from typing import Any
@@ -50,7 +51,7 @@ def _subspace_alignment_loss(pred_dirs: torch.Tensor, target_dirs: torch.Tensor)
         target_dirs = target_dirs.unsqueeze(-2)
     valid = target_dirs.norm(dim=-1).max(dim=-1).values > 1e-6
     if not bool(valid.any()):
-        zero = pred_dirs.new_zeros(())
+        zero = pred_dirs.sum() * 0.0
         return zero, pred_dirs.new_ones(())
     q = pred_dirs[valid]
     u = _gram_schmidt(target_dirs[valid])
@@ -138,6 +139,17 @@ class ForkHead(nn.Module):
         torch.save(payload, p)
         return p
 
+    @property
+    def recommended_alpha(self) -> float | None:
+        val = self.meta.get("recommended_alpha")
+        if val is None:
+            return None
+        try:
+            f = float(val)
+        except (TypeError, ValueError):
+            return None
+        return f if (np.isfinite(f) and f > 0.0) else None
+
     @classmethod
     def load(cls, path: str | Path, map_location: str | torch.device = "cpu") -> "ForkHead":
         ckpt = torch.load(Path(path), map_location=map_location, weights_only=True)
@@ -146,6 +158,211 @@ class ForkHead(nn.Module):
         head.meta = dict(ckpt.get("meta", {}))
         head.eval()
         return head
+
+
+def load_fork_head(path: str | Path, map_location: str | torch.device = "cpu") -> ForkHead:
+    """Load a saved ForkHead checkpoint from disk."""
+    return ForkHead.load(path, map_location=map_location)
+
+
+def _extract_local_fisher_dirs(
+    model,
+    x: torch.Tensor,
+    layer: int,
+    fork_abs_positions: list[int],
+    n_dirs: int,
+    top_k: int = 16,
+) -> tuple[torch.Tensor, torch.Tensor, list[float]]:
+    """Extract top-`n_dirs` orthonormal local output-Fisher steering directions at `fork_abs_positions`.
+
+    Runs a single forward pass per call with a float32 leaf perturbation `z` injected at `layer`
+    via an out-of-place `index_add` forward hook (works on frozen/NF4/INT8 models with zero `.grad`
+    leakage on model weights), slices `last_hidden_state` at fork positions before `lm_head`, forms
+    the top-K logit-space Fisher eigenspace, and pulls back top eigen-directions via `autograd.grad`.
+    """
+    d_model = arch.hidden_size(model)
+    m = len(fork_abs_positions)
+    if m == 0 or n_dirs <= 0:
+        return (
+            torch.zeros((m, max(int(n_dirs), 0), d_model), dtype=torch.float32),
+            torch.zeros((m,), dtype=torch.bool),
+            [0.0] * m,
+        )
+
+    try:
+        dev = x.device
+        idx_t = torch.tensor(fork_abs_positions, dtype=torch.long, device=dev)
+        z = torch.zeros((m, d_model), dtype=torch.float32, device=dev, requires_grad=True)
+        blk = arch.layers(model)[layer]
+
+        def _inject_hook(mod, inp, out):
+            h = out[0] if isinstance(out, tuple) else out
+            dz = z.to(dtype=h.dtype)
+            if h.ndim == 3:
+                h_new = h.index_add(1, idx_t, dz.unsqueeze(0))
+            else:
+                h_new = h.index_add(0, idx_t, dz)
+            return (h_new, *out[1:]) if isinstance(out, tuple) else h_new
+
+        dirs_out = torch.zeros((m, n_dirs, d_model), dtype=torch.float32)
+        mask_out = torch.zeros((m,), dtype=torch.bool)
+        lam1s = [0.0] * m
+
+        handle = blk.register_forward_hook(_inject_hook)
+        try:
+            with torch.enable_grad():
+                out = arch.forward_hidden(model, input_ids=x, attention_mask=torch.ones_like(x))
+                h_fork_last = out.last_hidden_state[0, idx_t, :]  # (m, d_model)
+                lg_fork = arch.logits(model, h_fork_last).float()  # (m, V)
+
+                V = int(lg_fork.shape[-1])
+                K = min(int(top_k), V)
+                if K < 2:
+                    return dirs_out, mask_out, lam1s
+
+                # Precompute top-K Fisher pullback scalars for all fork positions
+                tasks: list[tuple[int, float, list[torch.Tensor]]] = []
+                for k in range(m):
+                    lg_k = lg_fork[k]
+                    with torch.no_grad():
+                        p_full = lg_k.softmax(-1)
+                        top_p, top_idx = torch.topk(p_full, k=K)
+                        mass_k = float(top_p.sum().item())
+                        p_hat = top_p.double() / max(mass_k, 1e-12)
+                        F_k = torch.diag(p_hat) - torch.outer(p_hat, p_hat)
+                        F_k = 0.5 * (F_k + F_k.T)
+                        evals, evecs = torch.linalg.eigh(F_k)
+                        evals = evals.flip(0)
+                        evecs = evecs.flip(1)
+                        pos_mask = evals > 1e-12
+                        n_pos = int(pos_mask.sum().item())
+                    if n_pos == 0:
+                        continue
+                    R = min(max(int(n_dirs) + 2, 4), K - 1, n_pos)
+                    z_top = lg_k.index_select(0, top_idx)
+                    scalars: list[torch.Tensor] = []
+                    for r in range(R):
+                        w_r = (torch.sqrt(evals[r]) * evecs[:, r]).to(dtype=z_top.dtype, device=z_top.device)
+                        scalars.append((w_r * z_top).sum())
+                    tasks.append((k, mass_k, scalars))
+
+                total_pulls = sum(len(sc) for _, _, sc in tasks)
+                pull_idx = 0
+                for k, mass_k, scalars in tasks:
+                    rows: list[np.ndarray] = []
+                    for s_r in scalars:
+                        pull_idx += 1
+                        retain = pull_idx < total_pulls
+                        (gz,) = torch.autograd.grad(s_r, (z,), retain_graph=retain, allow_unused=False)
+                        rows.append(gz[k].detach().cpu().numpy().astype(np.float64))
+                    G_k = np.vstack(rows)  # (R, d_model)
+                    _, S_vals, Vh = np.linalg.svd(G_k, full_matrices=False)
+                    if len(S_vals) > 0:
+                        lam1s[k] = float((S_vals[0] ** 2) * mass_k)
+                    if len(S_vals) >= n_dirs and float(S_vals[n_dirs - 1]) > 1e-8:
+                        dirs_out[k] = torch.from_numpy(Vh[:n_dirs].copy()).float()
+                        mask_out[k] = True
+        finally:
+            handle.remove()
+        return dirs_out, mask_out, lam1s
+    except torch.cuda.OutOfMemoryError:
+        if m <= 1:
+            raise
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        mid = m // 2
+        d1, m1, l1 = _extract_local_fisher_dirs(model, x, layer, fork_abs_positions[:mid], n_dirs, top_k=top_k)
+        d2, m2, l2 = _extract_local_fisher_dirs(model, x, layer, fork_abs_positions[mid:], n_dirs, top_k=top_k)
+        return torch.cat([d1, d2], dim=0), torch.cat([m1, m2], dim=0), l1 + l2
+
+
+def _fallback_alpha_from_hidden(H: torch.Tensor) -> float:
+    if H is not None and H.numel() > 0:
+        med_norm = float(H.float().norm(dim=-1).median().item())
+        if np.isfinite(med_norm) and med_norm > 0.0:
+            return float(np.clip(0.05 * med_norm, 1e-3, 1e4))
+    return 1.0
+
+
+def _calibrate_recommended_alpha(
+    model,
+    layer: int,
+    calib_samples: list[tuple[list[int], int, np.ndarray, float]],
+    H: torch.Tensor,
+    target_kl: float = 0.25,
+    max_samples: int = 5,
+    iters: int = 6,
+) -> float:
+    """Calibrate baseline cursor-mode steering alpha (for target_kl nats) via cached-p0 log-bisection."""
+    if not calib_samples:
+        return _fallback_alpha_from_hidden(H)
+
+    from explorer.steer import CursorHook
+
+    dev = arch.text_model(model).embed_tokens.weight.device
+    hook = CursorHook(model, layer)
+    alphas: list[float] = []
+    try:
+        for seq_ids, b_abs, unit_dir, lam1 in calib_samples[:max_samples]:
+            if b_abs < 0 or b_abs >= len(seq_ids):
+                continue
+            v = np.asarray(unit_dir, dtype=np.float64)
+            v_norm = float(np.linalg.norm(v))
+            if not np.isfinite(v_norm) or v_norm <= 1e-12:
+                continue
+            v = v / v_norm
+            x = torch.tensor([seq_ids], dtype=torch.long, device=dev)
+
+            hook.set(None)
+            with torch.no_grad():
+                h0 = arch.forward_hidden(model, input_ids=x).last_hidden_state[0, b_abs:]
+                logp0 = arch.logits(model, h0).float().log_softmax(-1)
+                p0 = logp0.exp()
+
+            def _kl(a_val: float) -> float:
+                vec = torch.tensor(a_val * v, dtype=torch.float32, device=dev)
+                hook.set(vec, b_abs, only_at_b=False)
+                try:
+                    with torch.no_grad():
+                        hs = arch.forward_hidden(model, input_ids=x).last_hidden_state[0, b_abs:]
+                        logps = arch.logits(model, hs).float().log_softmax(-1)
+                    val = float((p0 * (logp0 - logps)).sum(-1).mean().item())
+                    return max(0.0, val) if np.isfinite(val) else 0.0
+                finally:
+                    hook.set(None)
+
+            a0 = float(np.clip(np.sqrt(2.0 * target_kl / max(lam1, 1e-6)), 1e-2, 1e2))
+            k0 = _kl(a0)
+            if k0 <= 0.0:
+                continue
+
+            if k0 < target_kl:
+                lo, hi = a0, a0
+                while hi < 1e3 and _kl(hi) < target_kl:
+                    lo, hi = hi, min(hi * 4.0, 1e3)
+            else:
+                lo, hi = a0, a0
+                while lo > 1e-3 and _kl(lo) > target_kl:
+                    hi, lo = lo, max(lo * 0.25, 1e-3)
+
+            best_a = hi if (k0 < target_kl and _kl(hi) < target_kl) else (lo if (k0 > target_kl and _kl(lo) > target_kl) else a0)
+            if lo < hi and _kl(lo) <= target_kl <= _kl(hi):
+                for _ in range(int(iters)):
+                    mid = float(np.sqrt(lo * hi))
+                    if _kl(mid) < target_kl:
+                        lo = mid
+                    else:
+                        hi = mid
+                best_a = float(np.sqrt(lo * hi))
+
+            if np.isfinite(best_a) and best_a > 0.0:
+                alphas.append(float(np.clip(best_a, 1e-3, 1e4)))
+    finally:
+        hook.remove()
+
+    if not alphas:
+        return _fallback_alpha_from_hidden(H)
+    return float(np.clip(float(np.median(alphas)), 1e-3, 1e4))
 
 
 def _resolve_ref_ids(tok, branch: dict[str, Any], sample: dict[str, Any] | None) -> list[int]:
@@ -189,12 +406,15 @@ def extract_fork_dataset(
     layer: int | None = None,
     entropy_fork_thresh: float = 1.5,
     prompt_style: str = "legacy",
+    n_dirs: int = 2,
 ) -> dict[str, Any]:
-    """Extract (hidden_state, fork_label, entropy, fisher_top) tuples from saved explorer runs.
+    """Extract (hidden_state, fork_label, entropy, fisher_top[, y_dirs, y_dirs_mask]) from saved explorer runs.
 
     Scans `explorer_dir/branches/*.json` and matching `explorer_dir/samples/*.json`, runs one
     no-grad forward pass per text through `ut.arch.forward_hidden(..., output_hidden_states=True)`,
-    and slices `h[start + t - 1]` at `layer` (default `n_layers // 2`) for each output token `t`.
+    slices `h[start + t - 1]` at `layer` (default `n_layers // 2`), and when `n_dirs > 0` extracts
+    top-`n_dirs` orthonormal local Fisher steering directions on fork tokens plus a calibrated
+    `meta["recommended_alpha"]`.
     """
     from explorer.frame import build_doc_prompt
 
@@ -207,6 +427,8 @@ def extract_fork_dataset(
     n_l = arch.n_layers(model)
     layer = (n_l // 2) if layer is None else (int(layer) % n_l)
     dev = arch.text_model(model).embed_tokens.weight.device
+    n_dirs = int(n_dirs)
+    d_model = arch.hidden_size(model)
 
     try:
         text_lookup = {t["id"]: t["text"] for t in load_texts()}
@@ -214,6 +436,9 @@ def extract_fork_dataset(
         text_lookup = {}
 
     H_chunks: list[torch.Tensor] = []
+    dirs_chunks: list[torch.Tensor] = []
+    mask_chunks: list[torch.Tensor] = []
+    calib_samples: list[tuple[list[int], int, np.ndarray, float]] = []
     y_fork: list[float] = []
     y_entropy: list[float] = []
     y_fisher: list[float] = []
@@ -241,7 +466,8 @@ def extract_fork_dataset(
             continue
 
         ids, start = build_doc_prompt(tok, src_text) if prompt_style == "doc" else build_prompt(tok, src_text)
-        x = torch.tensor([ids + y_ref[:n_tok]], dtype=torch.long, device=dev)
+        seq_ids = ids + y_ref[:n_tok]
+        x = torch.tensor([seq_ids], dtype=torch.long, device=dev)
         with torch.no_grad():
             out = arch.forward_hidden(
                 model,
@@ -256,20 +482,42 @@ def extract_fork_dataset(
         fork_t = B.get("t", -1)
         H_chunks.append(h_slice)
         sources.append(tid)
+        fork_local_idxs: list[int] = []
         for t in range(n_tok):
             e_t = float(ent[t])
             f_t = float(fis[t])
-            y_fork.append(1.0 if (t == fork_t or e_t >= entropy_fork_thresh) else 0.0)
+            is_fork = (t == fork_t or e_t >= entropy_fork_thresh)
+            y_fork.append(1.0 if is_fork else 0.0)
+            if is_fork:
+                fork_local_idxs.append(t)
             y_entropy.append(e_t)
             y_fisher.append(f_t)
             token_text_ids.append(tid)
             token_positions.append(t)
 
+        if n_dirs > 0:
+            d_txt = torch.zeros((n_tok, n_dirs, d_model), dtype=torch.float32)
+            m_txt = torch.zeros((n_tok,), dtype=torch.bool)
+            if fork_local_idxs:
+                fork_abs = [start - 1 + t for t in fork_local_idxs]
+                d_f, m_f, l1_f = _extract_local_fisher_dirs(model, x, layer, fork_abs, n_dirs=n_dirs)
+                for idx_local, dk, mk, l1k in zip(fork_local_idxs, d_f, m_f, l1_f):
+                    if bool(mk.item()):
+                        d_txt[idx_local] = dk
+                        m_txt[idx_local] = True
+                        if len(calib_samples) < 5:
+                            calib_samples.append((seq_ids, start - 1 + idx_local, dk[0].numpy(), l1k))
+            dirs_chunks.append(d_txt)
+            mask_chunks.append(m_txt)
+
     if not H_chunks:
         raise ValueError(f"No usable branch/sample entries found under {explorer_dir}")
 
     H = torch.cat(H_chunks, dim=0)
-    return {
+    median_hidden_norm = float(H.float().norm(dim=-1).median().item()) if len(H) else 0.0
+    recommended_alpha = _calibrate_recommended_alpha(model, layer, calib_samples, H)
+
+    ds: dict[str, Any] = {
         "H": H,
         "y_fork": torch.tensor(y_fork, dtype=torch.float32),
         "y_entropy": torch.tensor(y_entropy, dtype=torch.float32),
@@ -279,13 +527,20 @@ def extract_fork_dataset(
             "d_model": int(H.shape[1]),
             "n_texts": len(sources),
             "n_tokens": int(H.shape[0]),
+            "n_dirs": int(n_dirs),
             "entropy_fork_thresh": float(entropy_fork_thresh),
             "prompt_style": prompt_style,
+            "recommended_alpha": float(recommended_alpha),
+            "median_hidden_norm": float(median_hidden_norm),
             "sources": sources,
             "text_ids": token_text_ids,
             "positions": token_positions,
         },
     }
+    if n_dirs > 0:
+        ds["y_dirs"] = torch.cat(dirs_chunks, dim=0)
+        ds["y_dirs_mask"] = torch.cat(mask_chunks, dim=0)
+    return ds
 
 
 def extract_self_supervised_fork_dataset(
@@ -295,11 +550,13 @@ def extract_self_supervised_fork_dataset(
     entropy_fork_thresh: float = 1.25,
     prompt_style: str = "doc",
     max_new_per_text: int = 64,
+    n_dirs: int = 2,
 ) -> dict[str, Any]:
     """Build a ForkHead dataset directly from `texts.yaml` + `tone_axes.yaml` in one pass per text.
 
     Runs greedy KV-cached decoding on each source text, capturing layer-`layer` hidden states,
-    exact next-token entropy, and power-iteration output-Fisher λ₁ — no prior Phase-1 run needed.
+    exact next-token entropy, power-iteration output-Fisher λ₁, and (when `n_dirs > 0`) local
+    output-Fisher steering subspaces `y_dirs` + calibrated `meta["recommended_alpha"]`.
     """
     from explorer.frame import DOC_STOPS, STOPS, build_doc_prompt
     from explorer.global_axes import load_tone_axes_dataset
@@ -310,19 +567,24 @@ def extract_self_supervised_fork_dataset(
     dev = arch.text_model(model).embed_tokens.weight.device
     W = model.lm_head.weight
     stops = DOC_STOPS if prompt_style == "doc" else STOPS
+    n_dirs = int(n_dirs)
+    d_model = arch.hidden_size(model)
 
-    corpus: list[tuple[str, str]] = []
+    corpus: list[tuple[str, str, str]] = []
     seen_src: set[str] = set()
     for t in load_texts():
         if t["text"] not in seen_src:
-            corpus.append((t["id"], t["text"]))
+            corpus.append((t["id"], t["text"], t.get("lang", "Spanish")))
             seen_src.add(t["text"])
     for item in load_tone_axes_dataset()["items"]:
         if item["source"] not in seen_src:
-            corpus.append((item["id"], item["source"]))
+            corpus.append((item["id"], item["source"], item.get("lang", "Spanish")))
             seen_src.add(item["source"])
 
     H_chunks: list[torch.Tensor] = []
+    dirs_chunks: list[torch.Tensor] = []
+    mask_chunks: list[torch.Tensor] = []
+    calib_samples: list[tuple[list[int], int, np.ndarray, float]] = []
     y_fork: list[float] = []
     y_entropy: list[float] = []
     y_fisher: list[float] = []
@@ -331,8 +593,8 @@ def extract_self_supervised_fork_dataset(
     sources: list[str] = []
     eos_ids = {i for i in (tok.eos_token_id, tok.pad_token_id) if i is not None}
 
-    for tid, src in corpus:
-        ids, start = build_doc_prompt(tok, src) if prompt_style == "doc" else build_prompt(tok, src)
+    for tid, src, src_lang in corpus:
+        ids, start = build_doc_prompt(tok, src, src_lang=src_lang) if prompt_style == "doc" else build_prompt(tok, src)
         gen_ids: list[int] = []
         pkv = None
         x = torch.tensor([ids], dtype=torch.long, device=dev)
@@ -351,7 +613,8 @@ def extract_self_supervised_fork_dataset(
         if not gen_ids:
             continue
 
-        x_full = torch.tensor([ids + gen_ids], dtype=torch.long, device=dev)
+        seq_ids = ids + gen_ids
+        x_full = torch.tensor([seq_ids], dtype=torch.long, device=dev)
         with torch.no_grad():
             out = arch.forward_hidden(model, input_ids=x_full, output_hidden_states=True)
             h_layer = out.hidden_states[layer + 1][0, start - 1 : start - 1 + len(gen_ids)].detach().float().cpu()
@@ -363,15 +626,41 @@ def extract_self_supervised_fork_dataset(
 
         H_chunks.append(h_layer)
         sources.append(tid)
+        fork_local_idxs: list[int] = []
         for j, (e_t, f_t) in enumerate(zip(ents, fises)):
-            y_fork.append(1.0 if float(e_t) >= entropy_fork_thresh else 0.0)
+            is_fork = float(e_t) >= entropy_fork_thresh
+            y_fork.append(1.0 if is_fork else 0.0)
+            if is_fork:
+                fork_local_idxs.append(j)
             y_entropy.append(float(e_t))
             y_fisher.append(float(f_t))
             token_text_ids.append(tid)
             token_positions.append(j)
 
+        if n_dirs > 0:
+            n_tok = len(gen_ids)
+            d_txt = torch.zeros((n_tok, n_dirs, d_model), dtype=torch.float32)
+            m_txt = torch.zeros((n_tok,), dtype=torch.bool)
+            if fork_local_idxs:
+                fork_abs = [start - 1 + j for j in fork_local_idxs]
+                d_f, m_f, l1_f = _extract_local_fisher_dirs(model, x_full, layer, fork_abs, n_dirs=n_dirs)
+                for idx_local, dk, mk, l1k in zip(fork_local_idxs, d_f, m_f, l1_f):
+                    if bool(mk.item()):
+                        d_txt[idx_local] = dk
+                        m_txt[idx_local] = True
+                        if len(calib_samples) < 5:
+                            calib_samples.append((seq_ids, start - 1 + idx_local, dk[0].numpy(), l1k))
+            dirs_chunks.append(d_txt)
+            mask_chunks.append(m_txt)
+
+    if not H_chunks:
+        raise ValueError("No usable tokens generated during self-supervised fork extraction")
+
     H = torch.cat(H_chunks, dim=0)
-    return {
+    median_hidden_norm = float(H.float().norm(dim=-1).median().item()) if len(H) else 0.0
+    recommended_alpha = _calibrate_recommended_alpha(model, layer, calib_samples, H)
+
+    ds: dict[str, Any] = {
         "H": H,
         "y_fork": torch.tensor(y_fork, dtype=torch.float32),
         "y_entropy": torch.tensor(y_entropy, dtype=torch.float32),
@@ -381,13 +670,20 @@ def extract_self_supervised_fork_dataset(
             "d_model": int(H.shape[1]),
             "n_texts": len(sources),
             "n_tokens": int(H.shape[0]),
+            "n_dirs": int(n_dirs),
             "entropy_fork_thresh": float(entropy_fork_thresh),
             "prompt_style": prompt_style,
+            "recommended_alpha": float(recommended_alpha),
+            "median_hidden_norm": float(median_hidden_norm),
             "sources": sources,
             "text_ids": token_text_ids,
             "positions": token_positions,
         },
     }
+    if n_dirs > 0:
+        ds["y_dirs"] = torch.cat(dirs_chunks, dim=0)
+        ds["y_dirs_mask"] = torch.cat(mask_chunks, dim=0)
+    return ds
 
 
 def save_dataset(dataset: dict[str, Any], path: str | Path) -> Path:
@@ -448,13 +744,18 @@ def train_fork_head(
     np.random.seed(seed)
 
     H = torch.as_tensor(dataset["H"], dtype=torch.float32)
-    y_fork = torch.as_tensor(dataset["y_fork"], dtype=torch.float32)
-    y_ent = torch.as_tensor(dataset["y_entropy"], dtype=torch.float32)
-    y_fis = torch.as_tensor(dataset["y_fisher"], dtype=torch.float32)
-    y_dirs_raw = dataset.get("y_dirs")
-    y_dirs = torch.as_tensor(y_dirs_raw, dtype=torch.float32) if y_dirs_raw is not None else None
-
     dev = H.device
+    y_fork = torch.as_tensor(dataset["y_fork"], dtype=torch.float32, device=dev)
+    y_ent = torch.as_tensor(dataset["y_entropy"], dtype=torch.float32, device=dev)
+    y_fis = torch.as_tensor(dataset["y_fisher"], dtype=torch.float32, device=dev)
+    y_dirs_raw = dataset.get("y_dirs")
+    y_dirs = torch.as_tensor(y_dirs_raw, dtype=torch.float32, device=dev) if y_dirs_raw is not None else None
+    y_dirs_mask_raw = dataset.get("y_dirs_mask")
+    if y_dirs is not None and y_dirs_mask_raw is not None:
+        y_dirs_mask = torch.as_tensor(y_dirs_mask_raw, dtype=torch.bool, device=dev)
+        y_dirs = y_dirs.clone()
+        y_dirs[~y_dirs_mask] = 0.0
+
     d_model = int(H.shape[-1])
     head = ForkHead(d_model=d_model, hidden_dim=hidden_dim, n_dirs=n_dirs).to(dev)
     use_dirs = y_dirs is not None and head.predict_dirs
@@ -531,11 +832,28 @@ def train_fork_head(
             "fisher_mae": fis_mae,
         }
         if use_dirs:
-            _, mean_ov = _subspace_alignment_loss(pred_val["dirs"], y_dirs[val_idx])
-            val_metrics["dir_subspace_sim"] = float(mean_ov.item())
+            val_td = y_dirs[val_idx]
+            if val_td.ndim == 2:
+                val_td = val_td.unsqueeze(-2)
+            has_valid_dirs = bool((val_td.norm(dim=-1).max(dim=-1).values > 1e-6).any())
+            if has_valid_dirs:
+                _, mean_ov = _subspace_alignment_loss(pred_val["dirs"], y_dirs[val_idx])
+                val_metrics["dir_subspace_sim"] = float(mean_ov.item())
+            else:
+                val_metrics["dir_subspace_sim"] = None
+
+    ds_meta = dataset.get("meta", {}) or {}
+    med_norm = ds_meta.get("median_hidden_norm")
+    if med_norm is None:
+        med_norm = float(H.float().norm(dim=-1).median().item()) if len(H) else 0.0
+    rec_alpha = ds_meta.get("recommended_alpha")
+    if rec_alpha is None or not (np.isfinite(float(rec_alpha)) and float(rec_alpha) > 0.0):
+        rec_alpha = _fallback_alpha_from_hidden(H)
 
     head.meta = {
-        "layer": dataset.get("meta", {}).get("layer"),
+        "layer": ds_meta.get("layer"),
+        "recommended_alpha": float(rec_alpha),
+        "median_hidden_norm": float(med_norm),
         "train_loss": train_loss_last,
         "val_loss": val_loss_f,
         "val_metrics": val_metrics,
@@ -566,9 +884,29 @@ class LiveForkScorer:
             self.head = self.head.to(device=first_param.device)
         self._history: list[dict[str, Any]] = []
         self._step = 0
+        self._pause_depth = 0
         self._handle = blk.register_forward_hook(self._hook)
 
+    @property
+    def is_paused(self) -> bool:
+        return self._pause_depth > 0
+
+    @property
+    def recommended_alpha(self) -> float | None:
+        return self.head.recommended_alpha
+
+    @contextlib.contextmanager
+    def paused(self):
+        """Re-entrant context manager disabling hook execution during lookahead/compass/calibration."""
+        self._pause_depth += 1
+        try:
+            yield self
+        finally:
+            self._pause_depth = max(0, self._pause_depth - 1)
+
     def _hook(self, mod, inp, out):
+        if self._pause_depth > 0:
+            return None
         h = out[0] if isinstance(out, tuple) else out
         h_last = h[:, -1, :] if h.ndim == 3 else h[-1:]
         head_param = next(self.head.parameters())
@@ -592,6 +930,7 @@ class LiveForkScorer:
                 "pred_entropy": float(ent[0].item()),
                 "pred_fisher_top": float(fis[0].item()),
                 "dirs": dirs[0].detach().cpu() if dirs is not None else None,
+                "recommended_alpha": self.recommended_alpha,
             }
         else:
             rec = {
@@ -602,6 +941,7 @@ class LiveForkScorer:
                 "pred_entropy": [float(v) for v in ent.detach().cpu().tolist()],
                 "pred_fisher_top": [float(v) for v in fis.detach().cpu().tolist()],
                 "dirs": dirs.detach().cpu() if dirs is not None else None,
+                "recommended_alpha": self.recommended_alpha,
             }
         self._history.append(rec)
         self._step += 1
@@ -664,6 +1004,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
                 layer=args.layer,
                 entropy_fork_thresh=args.entropy_thresh,
                 prompt_style=args.prompt_style,
+                n_dirs=args.n_dirs,
             )
         else:
             ds = extract_fork_dataset(
@@ -673,6 +1014,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
                 layer=args.layer,
                 entropy_fork_thresh=args.entropy_thresh,
                 prompt_style=args.prompt_style,
+                n_dirs=args.n_dirs,
             )
         if ds_path is not None:
             save_dataset(ds, ds_path)
@@ -691,6 +1033,8 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         "model": args.model,
         "layer": ds.get("meta", {}).get("layer"),
         "n_tokens": int(ds["H"].shape[0]),
+        "n_dirs": int(args.n_dirs),
+        "recommended_alpha": res["head"].recommended_alpha,
         "params": res["head"].param_count(),
         "train_loss": res["train_loss"],
         "val_loss": res["val_loss"],

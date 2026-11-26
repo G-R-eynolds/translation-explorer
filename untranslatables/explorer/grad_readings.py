@@ -11,11 +11,13 @@ collapses distinct interpretive readings into one cluster) by clustering in Fish
 """
 import numpy as np
 
-from explorer.readings import centre, cluster
+from explorer.readings import centre, cluster, raw_dispersion
 
 
 def _row_normalize(X):
-    return X / np.linalg.norm(X, axis=-1, keepdims=True).clip(1e-12)
+    X = np.asarray(X, dtype=np.float64)
+    norms = np.linalg.norm(X, axis=-1, keepdims=True)
+    return np.where(norms > 1e-12, X / norms.clip(1e-12), 0.0)
 
 
 def whiten_gradients(G, eps=1e-2):
@@ -60,34 +62,60 @@ def _grad_features(G_keep, whiten=True, eps=1e-2):
     return _row_normalize(np.asarray(G_keep, dtype=np.float64))
 
 
-def cluster_gradients(G, logp_per_token, drop_q=0.1, whiten=True, eps=1e-2, **kw):
+def cluster_gradients(G, logp_per_token, drop_q=0.1, whiten=True, eps=1e-2, disp_min=0.0, **kw):
     """Filter the lowest `drop_q` tail by logp_per_token, optionally Fisher-whiten G[keep], centre and
     L2-normalise, then cluster via explorer.readings.cluster.
 
-    Returns the same schema as explorer.readings.readings_from plus method='grad_whitened'|'grad_plain'.
+    Returns the same schema as explorer.readings.readings_from plus method='grad_whitened'|'grad_plain'
+    and raw_disp.
     """
     G = np.asarray(G, dtype=np.float64)
     lp = np.asarray(logp_per_token, dtype=np.float64)
     if len(G) != len(lp):
         raise ValueError(f"Length mismatch: len(G)={len(G)} vs len(logp_per_token)={len(lp)}")
+    method = "grad_whitened" if whiten else "grad_plain"
+    if len(G) == 0:
+        return dict(labels=[], k=0, silhouette=0.0, readings=[], shares={}, mu=[], n_dropped=0,
+                    method=method, raw_disp=0.0)
     keep = lp >= np.quantile(lp, drop_q)
+    if not np.any(keep):
+        keep = np.ones(len(G), dtype=bool)
     X = _grad_features(G[keep], whiten=whiten, eps=eps)
     mu = X.mean(0)
-    c = cluster(centre(X, mu), **kw)
+    raw_disp = raw_dispersion(X)
     labels = np.full(len(G), -1, dtype=int)
+    if len(X) < 2 or raw_disp <= 1e-12 or (disp_min is not None and float(disp_min) > 0.0 and raw_disp < float(disp_min)):
+        labels[keep] = 0
+        return {
+            "labels": labels.tolist(),
+            "k": 1,
+            "silhouette": 0.0,
+            "readings": [0],
+            "shares": {0: 1.0},
+            "mu": mu.tolist(),
+            "n_dropped": int((~keep).sum()),
+            "method": method,
+            "raw_disp": float(raw_disp),
+        }
+    c = cluster(centre(X, mu), **kw)
     labels[keep] = c["labels"]
     return {
         **c,
         "labels": labels.tolist(),
         "mu": mu.tolist(),
         "n_dropped": int((~keep).sum()),
-        "method": "grad_whitened" if whiten else "grad_plain",
+        "method": method,
+        "raw_disp": float(raw_disp),
     }
 
 
-def cluster_hybrid(E_sem, G, logp_per_token, alpha_grad=0.5, drop_q=0.1, whiten=True, eps=1e-2, **kw):
+def cluster_hybrid(E_sem, G, logp_per_token, alpha_grad=0.5, drop_q=0.1, whiten=True, eps=1e-2, disp_min=0.035, **kw):
     """Combine L2-normalised centred semantic embeddings (weight sqrt(1 - alpha_grad)) with L2-normalised
-    centred (optionally Fisher-whitened) gradient features (weight sqrt(alpha_grad)), then cluster."""
+    centred (optionally Fisher-whitened) gradient features (weight sqrt(alpha_grad)), then cluster.
+
+    Applies an uncentred hybrid raw-dispersion gate (`disp_min=0.035`) so surface-identical controls
+    collapse to k=1 while genuine gradient-only (poetry blind-spot) or semantic forks still split.
+    """
     E_sem = np.asarray(E_sem, dtype=np.float64)
     G = np.asarray(G, dtype=np.float64)
     lp = np.asarray(logp_per_token, dtype=np.float64)
@@ -98,22 +126,52 @@ def cluster_hybrid(E_sem, G, logp_per_token, alpha_grad=0.5, drop_q=0.1, whiten=
     alpha_grad = float(alpha_grad)
     if not (0.0 <= alpha_grad <= 1.0):
         raise ValueError(f"alpha_grad must be in [0, 1], got {alpha_grad}")
+    method = "hybrid_whitened" if whiten else "hybrid_plain"
+    if len(E_sem) == 0:
+        return dict(labels=[], k=0, silhouette=0.0, readings=[], shares={}, mu=[], mu_grad=[],
+                    n_dropped=0, method=method, alpha_grad=alpha_grad,
+                    raw_disp=0.0, raw_disp_sem=0.0, raw_disp_grad=0.0)
 
     keep = lp >= np.quantile(lp, drop_q)
+    if not np.any(keep):
+        keep = np.ones(len(G), dtype=bool)
     E_k = E_sem[keep]
     mu_sem = E_k.mean(0)
-    Z_sem = centre(E_k, mu_sem)
+    E_unit = _row_normalize(E_k)
 
     Xg = _grad_features(G[keep], whiten=whiten, eps=eps)
     mu_grad = Xg.mean(0)
-    Z_grad = centre(Xg, mu_grad)
 
     w_sem = np.sqrt(1.0 - alpha_grad)
     w_grad = np.sqrt(alpha_grad)
+    raw_disp_sem = raw_dispersion(E_k)
+    raw_disp_grad = raw_dispersion(Xg)
+    raw_disp = raw_dispersion(np.hstack([w_sem * E_unit, w_grad * Xg]))
+
+    labels = np.full(len(G), -1, dtype=int)
+    if len(E_k) < 2 or (disp_min is not None and raw_disp < float(disp_min)):
+        labels[keep] = 0
+        return {
+            "labels": labels.tolist(),
+            "k": 1,
+            "silhouette": 0.0,
+            "readings": [0],
+            "shares": {0: 1.0},
+            "mu": mu_sem.tolist(),
+            "mu_grad": mu_grad.tolist(),
+            "n_dropped": int((~keep).sum()),
+            "method": method,
+            "alpha_grad": alpha_grad,
+            "raw_disp": float(raw_disp),
+            "raw_disp_sem": float(raw_disp_sem),
+            "raw_disp_grad": float(raw_disp_grad),
+        }
+
+    Z_sem = centre(E_k, mu_sem)
+    Z_grad = centre(Xg, mu_grad)
     H = _row_normalize(np.hstack([w_sem * Z_sem, w_grad * Z_grad]))
 
     c = cluster(H, **kw)
-    labels = np.full(len(G), -1, dtype=int)
     labels[keep] = c["labels"]
     return {
         **c,
@@ -121,8 +179,11 @@ def cluster_hybrid(E_sem, G, logp_per_token, alpha_grad=0.5, drop_q=0.1, whiten=
         "mu": mu_sem.tolist(),
         "mu_grad": mu_grad.tolist(),
         "n_dropped": int((~keep).sum()),
-        "method": "hybrid_whitened" if whiten else "hybrid_plain",
+        "method": method,
         "alpha_grad": alpha_grad,
+        "raw_disp": float(raw_disp),
+        "raw_disp_sem": float(raw_disp_sem),
+        "raw_disp_grad": float(raw_disp_grad),
     }
 
 

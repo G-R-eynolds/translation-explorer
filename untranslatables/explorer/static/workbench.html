@@ -69,12 +69,12 @@ header {
 .bar {
   max-width: 1380px; margin: 0 auto;
   padding: 10px 22px;
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
 .brand {
   font: 600 18px/1 var(--serif);
   letter-spacing: -0.015em;
-  margin-right: 6px;
+  margin-right: 4px;
 }
 .brand em { color: var(--accent); font-style: italic; font-weight: 500; }
 .pill {
@@ -91,10 +91,10 @@ header {
 .spacer { flex: 1; }
 
 .btn {
-  height: 32px; padding: 0 11px; border-radius: 6px;
+  height: 31px; padding: 0 10px; border-radius: 6px;
   border: 1px solid var(--rule); background: var(--surface);
   font-size: 12.5px; font-weight: 600; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 5px;
   transition: background 0.12s, border-color 0.12s, opacity 0.12s;
   white-space: nowrap;
 }
@@ -102,27 +102,29 @@ header {
 .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .btn.primary:hover:not(:disabled) { filter: brightness(1.07); }
 .btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn:disabled { opacity: 0.42; cursor: not-allowed; }
 select.sel {
-  height: 32px; padding: 0 9px; border-radius: 6px;
+  height: 31px; padding: 0 8px; border-radius: 6px;
   border: 1px solid var(--rule); background: var(--surface);
   font-size: 12.5px; outline: none; cursor: pointer;
 }
 select.sel:focus { border-color: var(--accent); }
 kbd {
-  font: 500 10.5px/1 var(--mono);
-  padding: 2px 5px; border-radius: 4px;
+  font: 500 10px/1 var(--mono);
+  padding: 2px 4px; border-radius: 4px;
   border: 1px solid var(--rule); background: var(--surface-2); color: var(--muted);
 }
+.lang-pair { display: inline-flex; align-items: center; gap: 4px; }
+.lang-arrow { color: var(--muted); font-size: 12px; }
 
 /* Main two-pane workspace */
 main {
   max-width: 1380px; margin: 0 auto;
-  padding: 20px 22px 48px;
+  padding: 18px 22px 48px;
 }
 .studio {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
   gap: 20px;
   align-items: start;
 }
@@ -134,7 +136,7 @@ main {
   border: 1px solid var(--rule);
   border-radius: 12px;
   padding: 18px 20px;
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 13px;
 }
 .pane-head {
   display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
@@ -144,9 +146,9 @@ main {
   text-transform: uppercase; color: var(--muted);
 }
 
-/* Source editor */
+/* Source editor + annotated alignment view */
 textarea.source-editor {
-  width: 100%; min-height: 300px; resize: vertical;
+  width: 100%; min-height: 270px; max-height: 440px; resize: vertical;
   padding: 14px 16px; border-radius: 8px;
   border: 1px solid var(--rule); background: var(--bg);
   font: 400 17.5px/1.62 var(--serif);
@@ -154,13 +156,38 @@ textarea.source-editor {
   white-space: pre-wrap; tab-size: 2;
 }
 textarea.source-editor:focus { border-color: var(--accent); }
+.source-annotated {
+  display: none;
+  min-height: 220px; max-height: 420px; overflow-y: auto;
+  padding: 14px 16px; border-radius: 8px;
+  border: 1px solid var(--rule); background: var(--bg);
+  font: 400 17.5px/1.65 var(--serif);
+}
+.source-annotated.visible { display: block; }
+.src-line {
+  display: block; padding: 2px 8px; margin: 1px -8px;
+  border-radius: 5px; border-left: 2px solid transparent;
+  white-space: pre-wrap; cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.src-line.empty { height: 0.9em; pointer-events: none; }
+.src-line.active-line {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+.src-line.hover-line {
+  background: color-mix(in srgb, var(--teal) 14%, transparent);
+  border-left-color: var(--teal);
+}
 .source-foot {
   display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
 }
 
-/* Living translation surface */
+/* Living translation surface (bounded + scrollable for long poems) */
 .canvas-wrap {
-  min-height: 220px;
+  min-height: 200px;
+  max-height: 360px;
+  overflow-y: auto;
   padding: 16px 18px;
   border-radius: 8px;
   border: 1px solid var(--rule);
@@ -175,6 +202,9 @@ textarea.source-editor:focus { border-color: var(--accent); }
   transition: background 0.1s;
 }
 .ctok:hover { background: var(--accent-soft); }
+.ctok.aligned-hl {
+  background: color-mix(in srgb, var(--teal) 18%, transparent);
+}
 .ctok.forked {
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
@@ -237,9 +267,9 @@ textarea.source-editor:focus { border-color: var(--accent); }
   padding: 9px 12px; border-radius: 8px;
   border: 1px solid var(--rule); background: var(--surface);
   cursor: pointer; display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) 54px;
-  gap: 8px 12px; align-items: center;
-  transition: border-color 0.12s, background 0.12s, transform 0.08s;
+  grid-template-columns: 22px minmax(0, 1fr) 52px;
+  gap: 6px 12px; align-items: center;
+  transition: border-color 0.12s, background 0.12s;
 }
 .branch-btn:hover {
   border-color: var(--accent);
@@ -257,14 +287,23 @@ textarea.source-editor:focus { border-color: var(--accent); }
 }
 .branch-text strong { font-weight: 600; }
 .branch-sub {
-  margin-top: 3px; display: flex; align-items: center; gap: 8px;
+  margin-top: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   font-size: 11.5px; color: var(--muted);
 }
 .branch-bar {
-  flex: 1; max-width: 120px; height: 4px; border-radius: 99px;
+  flex: 1; min-width: 48px; max-width: 110px; height: 4px; border-radius: 99px;
   background: var(--surface-2); overflow: hidden;
 }
 .branch-bar > i { display: block; height: 100%; border-radius: 99px; }
+.sub-forks {
+  margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px;
+  font-size: 11px; color: var(--muted);
+}
+.sub-chip {
+  padding: 1px 6px; border-radius: 999px;
+  background: var(--surface-2); border: 1px solid var(--rule);
+  font-family: var(--serif);
+}
 .branch-pct {
   text-align: right; font: 600 12px/1 var(--mono); color: var(--muted);
   font-variant-numeric: tabular-nums;
@@ -272,11 +311,11 @@ textarea.source-editor:focus { border-color: var(--accent); }
 
 /* Transport bar */
 .transport {
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  padding-top: 4px; border-top: 1px solid var(--rule);
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  padding-top: 6px; border-top: 1px solid var(--rule);
 }
 .custom-word {
-  flex: 1; min-width: 140px; height: 32px;
+  flex: 1; min-width: 130px; height: 31px;
   padding: 0 10px; border-radius: 6px;
   border: 1px solid var(--rule); background: var(--bg);
   font: 400 14px/1 var(--serif); outline: none;
@@ -309,7 +348,7 @@ svg.compass-svg {
 }
 
 .slider-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 18px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px 18px;
 }
 .slider-item label {
   display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 4px;
@@ -326,23 +365,33 @@ svg.compass-svg {
   cursor: pointer; font-size: 12.5px;
 }
 .hist-item.active { border-color: var(--accent); background: var(--accent-soft); }
-.hist-item .snip { font-family: var(--serif); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 280px; }
+.hist-item .snip { font-family: var(--serif); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 240px; }
 
-/* Replay view (compact, clean) */
+/* Replay / Offline Archive View */
 .replay-wrap { display: none; flex-direction: column; gap: 18px; }
 .replay-wrap.active { display: flex; }
 .studio.hidden { display: none; }
 .replay-grid {
-  display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start;
 }
 @media (max-width: 900px) { .replay-grid { grid-template-columns: 1fr; } }
 .replay-tokens {
   display: flex; flex-wrap: wrap; gap: 4px 2px;
   padding: 14px 16px; border-radius: 8px; background: var(--bg); border: 1px solid var(--rule);
   font: 400 18px/1.6 var(--serif);
+  white-space: pre-wrap;
 }
-.rtok { padding: 2px 3px; border-radius: 3px; border-bottom: 3px solid transparent; }
+.rtok { padding: 2px 3px; border-radius: 3px; border-bottom: 3px solid transparent; white-space: pre-wrap; }
 .rtok.cur { outline: 2px solid var(--accent); }
+.share-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--surface);
+  font-size: 12px; font-variant-numeric: tabular-nums;
+}
+.share-chip .dot { width: 7px; height: 7px; border-radius: 50%; }
+.share-mini { width: 42px; height: 4px; border-radius: 99px; background: var(--surface-2); overflow: hidden; display: inline-block; }
+.share-mini > i { display: block; height: 100%; border-radius: 99px; }
 .status-msg { font-size: 12px; color: var(--muted); min-height: 18px; }
 </style>
 </head>
@@ -353,13 +402,24 @@ svg.compass-svg {
     <span id="modePill" class="pill"><i class="dot"></i><span id="modeLabel">Loading…</span></span>
     <span id="modelPill" class="pill" style="display:none"></span>
     <div class="spacer"></div>
-    <select id="srcLang" class="sel" title="Source language">
-      <option value="Spanish">Spanish → English</option>
-      <option value="Portuguese">Portuguese → English</option>
-      <option value="Italian">Italian → English</option>
-      <option value="French">French → English</option>
-      <option value="German">German → English</option>
-    </select>
+    <div id="langPairWrap" class="lang-pair">
+      <select id="srcLang" class="sel" title="Source language">
+        <option value="Spanish">Spanish</option>
+        <option value="Portuguese">Portuguese</option>
+        <option value="Italian">Italian</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+      </select>
+      <span class="lang-arrow">→</span>
+      <select id="tgtLang" class="sel" title="Target language">
+        <option value="English">English</option>
+        <option value="Spanish">Spanish</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Italian">Italian</option>
+        <option value="Portuguese">Portuguese</option>
+      </select>
+    </div>
     <button id="btnSliders" class="btn" title="Global tone & practice sliders (S)">Sliders <kbd>S</kbd></button>
     <button id="btnHistory" class="btn" title="Explored branch history (H)">Paths <kbd>H</kbd></button>
     <button id="btnSwitchMode" class="btn" style="display:none">Replay Archive</button>
@@ -374,12 +434,16 @@ svg.compass-svg {
     <div class="pane">
       <div class="pane-head">
         <span class="eyebrow">Source Text</span>
-        <select id="presetSelect" class="sel" title="Load an example poem or passage">
-          <option value="">Load example…</option>
-        </select>
+        <div style="display:flex;gap:6px;align-items:center">
+          <button id="btnEditSource" class="btn" style="display:none" title="Edit raw source text">Edit</button>
+          <select id="presetSelect" class="sel" title="Load an example poem or passage">
+            <option value="">Load example…</option>
+          </select>
+        </div>
       </div>
       <textarea id="sourceInput" class="source-editor" spellcheck="false"
         placeholder="Paste a poem, stanza, or paragraph in Spanish (or another language)…&#10;Line breaks, stanzas, and indentation are preserved."></textarea>
+      <div id="sourceAnnotated" class="source-annotated" aria-label="Aligned source text"></div>
       <div class="source-foot">
         <span id="sourceStats" class="status-msg">Line breaks &amp; stanzas preserved</span>
         <button id="btnStart" class="btn primary">Start Co-Translating</button>
@@ -394,7 +458,7 @@ svg.compass-svg {
         <div id="sliderGrid" class="slider-grid"></div>
       </div>
 
-      <!-- Collapsible Explored Paths -->
+      <!-- Collapsible Explored Paths (Hierarchical Tree) -->
       <div id="historyDrawer" class="drawer">
         <div class="pane-head">
           <span class="eyebrow">Explored Branches</span>
@@ -416,9 +480,13 @@ svg.compass-svg {
       </div>
 
       <div class="transport">
-        <button id="btnRewind" class="btn" disabled title="Rewind one word (Backspace)">← Rewind</button>
-        <button id="btnStep" class="btn primary" disabled title="Advance one word (Space or →)">Step Word →</button>
-        <button id="btnGlide" class="btn" disabled title="Stream automatically until next complex fork (Tab)">▶ Glide to Fork</button>
+        <button id="btnRewind" class="btn" disabled title="Rewind (Backspace / ←)">← Rewind</button>
+        <button id="btnRedo" class="btn" disabled title="Redo along rewound path">Redo →</button>
+        <button id="btnStep" class="btn primary" disabled title="Advance (Space / →)">Step Word →</button>
+        <button id="btnStepMode" class="btn" title="Switch between Word and Token stepping">Mode: Word</button>
+        <button id="btnGlide" class="btn" disabled title="Stream automatically until next complex fork (Tab)">▶ Glide</button>
+        <button id="btnNewline" class="btn" disabled title="Insert line break (↵)">↵</button>
+        <button id="btnStanza" class="btn" disabled title="Insert stanza break (¶)">¶</button>
         <button id="btnCompass" class="btn" disabled title="Open 2D Spectral Steering Compass at cursor (C)">◎ Compass</button>
         <button id="btnCopy" class="btn" disabled title="Copy committed translation">Copy</button>
         <input id="customWord" class="custom-word" placeholder="Or type next word & Enter…" disabled>
@@ -462,9 +530,12 @@ svg.compass-svg {
     <div class="pane">
       <div class="pane-head">
         <span class="eyebrow">Saved Explorer Archive</span>
-        <select id="replaySelect" class="sel"></select>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <select id="replayModelSelect" class="sel" style="display:none" title="Switch model"></select>
+          <select id="replaySelect" class="sel" title="Select text"></select>
+        </div>
       </div>
-      <div id="replaySource" style="font:italic 400 20px/1.45 var(--serif);border-left:3px solid var(--accent);padding-left:14px"></div>
+      <div id="replaySource" style="font:italic 400 20px/1.45 var(--serif);border-left:3px solid var(--accent);padding-left:14px;white-space:pre-wrap"></div>
       <div id="replayTokens" class="replay-tokens"></div>
       <div class="replay-grid">
         <div style="display:flex;flex-direction:column;gap:12px">
@@ -477,6 +548,13 @@ svg.compass-svg {
           <span id="replayMeta" class="status-msg">Drag compass to explore saved steering</span>
         </div>
       </div>
+      <div id="offlineSessionsBox" style="display:none;border-top:1px solid var(--rule);padding-top:14px;margin-top:4px">
+        <div class="pane-head" style="margin-bottom:8px">
+          <span class="eyebrow">Recorded Live Co-Translation Sessions</span>
+          <select id="offlineSessionSelect" class="sel"></select>
+        </div>
+        <div id="offlineSessionDetail" class="steered-preview" style="font-size:15px"></div>
+      </div>
     </div>
   </section>
 </main>
@@ -487,14 +565,14 @@ svg.compass-svg {
 (() => {
   const PRESETS = [
     {
-      label: "Camarón — duende (sentence)",
-      lang: "Spanish",
-      text: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
-    },
-    {
       label: "Bécquer — Rima LIII (2 stanzas)",
       lang: "Spanish",
       text: "Volverán las oscuras golondrinas\n  en tu balcón sus nidos a colgar,\ny otra vez con el ala a sus cristales\n  jugando llamarán.\n\nPero aquellas que el vuelo refrenaban\n  tu hermosura y mi dicha a contemplar,\naquellas que aprendieron nuestros nombres...\n  ¡ésas... no volverán!"
+    },
+    {
+      label: "Camarón — duende (sentence)",
+      lang: "Spanish",
+      text: "Cuando canta Camarón, tiene duende; me gusta mucho el duende."
     },
     {
       label: "Machado — Proverbios XXIX (verse)",
@@ -529,29 +607,40 @@ svg.compass-svg {
   const state = {
     serverMode: "replay",
     activeView: "live",
+    stepMode: "word", // "word" | "token"
+    editingSource: true,
     session: null,
     gliding: false,
     glideES: null,
     busy: false,
     hoverPreview: null,
+    hoverSourceLine: null,
     globalCoords: {},
     compassData: null,
     compassPos: [0, 0],
     lastSteered: null,
     steerTimer: null,
+    steerAbort: null,
+    steerSeq: 0,
     replayTexts: [],
     replayBundle: null,
-    replayBundlesOffline: null,
+    offlineModels: null,
+    activeOfflineModel: null,
   };
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
 
   // Theme toggle
   $("btnTheme").onclick = () => {
     const cur = document.documentElement.getAttribute("data-theme");
-    const next = cur === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = cur === "dark" || (!cur && prefersDark);
+    document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
   };
 
-  // Populate presets
+  // Source presets & Tab indentation
   PRESETS.forEach((p, idx) => {
     const opt = document.createElement("option");
     opt.value = String(idx);
@@ -564,9 +653,10 @@ svg.compass-svg {
     const p = PRESETS[Number(idx)];
     $("sourceInput").value = p.text;
     $("srcLang").value = p.lang;
+    setSourceEditMode(true);
     updateSourceStats();
   };
-  $("sourceInput").value = PRESETS[1].text;
+  $("sourceInput").value = PRESETS[0].text;
   function updateSourceStats() {
     const v = $("sourceInput").value;
     const words = (v.trim().match(/\S+/g) || []).length;
@@ -574,9 +664,38 @@ svg.compass-svg {
     $("sourceStats").textContent = `${words} words · ${lines} line${lines === 1 ? "" : "s"}`;
   }
   $("sourceInput").addEventListener("input", updateSourceStats);
+  $("sourceInput").addEventListener("keydown", (ev) => {
+    if (ev.key === "Tab") {
+      ev.preventDefault();
+      const el = $("sourceInput");
+      const s = el.selectionStart;
+      const e = el.selectionEnd;
+      el.value = el.value.slice(0, s) + "  " + el.value.slice(e);
+      el.selectionStart = el.selectionEnd = s + 2;
+      updateSourceStats();
+    }
+  });
   updateSourceStats();
 
-  // Build global sliders
+  function setSourceEditMode(editing) {
+    state.editingSource = editing;
+    $("sourceInput").style.display = editing ? "" : "none";
+    $("sourceAnnotated").classList.toggle("visible", !editing);
+    $("btnEditSource").style.display = editing ? "none" : "";
+  }
+  $("btnEditSource").onclick = () => {
+    setSourceEditMode(true);
+    $("sourceInput").focus();
+  };
+
+  // Step mode toggle (Word vs Token)
+  $("btnStepMode").onclick = () => {
+    state.stepMode = state.stepMode === "word" ? "token" : "word";
+    $("btnStepMode").textContent = state.stepMode === "word" ? "Mode: Word" : "Mode: Token";
+    $("btnStep").textContent = state.stepMode === "word" ? "Step Word →" : "Step Token →";
+  };
+
+  // Global sliders
   function buildSliders(schema) {
     const grid = $("sliderGrid");
     grid.innerHTML = "";
@@ -584,7 +703,7 @@ svg.compass-svg {
       state.globalCoords[ax.id] = 0;
       const div = document.createElement("div");
       div.className = "slider-item";
-      div.innerHTML = `<label><span>${ax.neg}</span><span id="val_${ax.id}">0.0</span><span>${ax.pos}</span></label>
+      div.innerHTML = `<label><span>${escapeHtml(ax.neg)}</span><span id="val_${ax.id}">0.0</span><span>${escapeHtml(ax.pos)}</span></label>
         <input type="range" min="-1" max="1" step="0.1" value="0" data-axis="${ax.id}">`;
       const inp = div.querySelector("input");
       inp.oninput = () => {
@@ -607,6 +726,10 @@ svg.compass-svg {
     applySliders();
   };
 
+  function closeAllDrawers() {
+    ["slidersDrawer", "historyDrawer", "compassDrawer"].forEach(id => $(id).classList.remove("open"));
+    ["btnSliders", "btnHistory", "btnCompass"].forEach(id => $(id).classList.remove("active"));
+  }
   $("btnSliders").onclick = () => {
     $("slidersDrawer").classList.toggle("open");
     $("btnSliders").classList.toggle("active");
@@ -616,12 +739,13 @@ svg.compass-svg {
     $("btnHistory").classList.toggle("active");
   };
 
-  // HTTP helper
-  async function apiPost(path, payload) {
+  // HTTP helper with optional AbortSignal
+  async function apiPost(path, payload, signal) {
     const res = await fetch(path, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      signal,
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -631,14 +755,18 @@ svg.compass-svg {
   function setBusy(flag, msg) {
     state.busy = flag;
     if (msg !== undefined) $("liveStatus").textContent = msg;
-    const hasSess = !!state.session;
-    const atEnd = !!(state.session && state.session.frontier && state.session.frontier.at_end);
+    const s = state.session;
+    const hasSess = !!s;
+    const atEnd = !!(s && s.frontier && s.frontier.at_end);
     $("btnStart").disabled = flag;
     $("btnStep").disabled = flag || !hasSess || atEnd;
     $("btnGlide").disabled = (!hasSess || atEnd) && !state.gliding;
-    $("btnRewind").disabled = flag || !hasSess || state.session.n_tokens === 0;
+    $("btnRewind").disabled = flag || !hasSess || s.n_tokens === 0;
+    $("btnRedo").disabled = flag || !hasSess || !s.can_redo;
+    $("btnNewline").disabled = flag || !hasSess;
+    $("btnStanza").disabled = flag || !hasSess;
     $("btnCompass").disabled = flag || !hasSess || atEnd;
-    $("btnCopy").disabled = !hasSess || !state.session.committed_text;
+    $("btnCopy").disabled = !hasSess || !s.committed_text;
     $("customWord").disabled = flag || !hasSess;
   }
 
@@ -655,12 +783,13 @@ svg.compass-svg {
       const s = await apiPost("/api/session/start", {
         source_text: src,
         src_lang: $("srcLang").value,
-        tgt_lang: "English",
+        tgt_lang: $("tgtLang").value,
         global_coords: state.globalCoords,
       });
       state.session = s;
+      setSourceEditMode(false);
       renderSession();
-      setBusy(false, "Session ready — Space to step · Tab to glide to fork");
+      setBusy(false, "Ready — Space to step · Tab to glide to fork");
     } catch (e) {
       setBusy(false, `Error: ${e.message}`);
     }
@@ -672,10 +801,8 @@ svg.compass-svg {
     setBusy(true, "Advancing…");
     state.hoverPreview = null;
     try {
-      const s = await apiPost("/api/session/step", {
-        session_id: state.session.session_id,
-        ...opts,
-      });
+      const payload = { session_id: state.session.session_id, mode: state.stepMode, ...opts };
+      const s = await apiPost("/api/session/step", payload);
       state.session = s;
       state.compassData = null;
       state.lastSteered = null;
@@ -709,13 +836,34 @@ svg.compass-svg {
     }
   }
 
-  function rewindOneWord() {
+  async function doRedo() {
+    if (!state.session || state.busy || !state.session.can_redo) return;
+    stopGlide();
+    setBusy(true, "Stepping forward along saved path…");
+    state.hoverPreview = null;
+    try {
+      const s = await apiPost("/api/session/redo", {
+        session_id: state.session.session_id,
+        mode: state.stepMode,
+      });
+      state.session = s;
+      renderSession();
+      setBusy(false, `Restored to ${s.n_tokens} tokens`);
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
+    }
+  }
+
+  function rewindUnit() {
     if (!state.session || state.session.n_tokens === 0) return;
     const toks = state.session.tokens;
-    let i = toks.length - 1;
-    // Step back across a whole word
-    while (i > 0 && !/^\s/.test(toks[i].token) && !toks[i].token.includes("\n")) i--;
-    doRewind(i);
+    if (state.stepMode === "token") {
+      doRewind(toks.length - 1);
+      return;
+    }
+    const last = toks[toks.length - 1];
+    const target = (typeof last.word_start_idx === "number") ? last.word_start_idx : Math.max(0, toks.length - 1);
+    doRewind(target);
   }
 
   async function checkoutNode(nodeId) {
@@ -756,7 +904,7 @@ svg.compass-svg {
       state.glideES = null;
     }
     state.gliding = false;
-    $("btnGlide").textContent = "▶ Glide to Fork";
+    $("btnGlide").textContent = "▶ Glide";
     $("btnGlide").classList.remove("active");
   }
 
@@ -801,11 +949,11 @@ svg.compass-svg {
     });
     es.onerror = () => {
       stopGlide();
-      setBusy(false, "Glide finished");
+      setBusy(false, "Glide paused");
     };
   }
 
-  // ==================== COMPASS (TIER 2) ====================
+  // ==================== COMPASS (TIER 2 with AbortController + Seq Guard) ====================
   async function openCompass(forceReprobe = false) {
     if (!state.session) return;
     const drawer = $("compassDrawer");
@@ -829,9 +977,10 @@ svg.compass-svg {
       });
       state.compassData = data;
       state.compassPos = [0, 0];
+      const msTxt = data.probe_ms != null ? ` · ${data.probe_ms} ms` : "";
       $("compassMeta").textContent = data.source === "fork_head"
-        ? "Amortised ForkHead plane · drag to steer"
-        : `Gradient plane (${Math.round(data.variance_explained * 100)}% var) · drag to steer`;
+        ? `Amortised ForkHead plane${msTxt} · drag to steer`
+        : `Gradient plane (${Math.round(data.variance_explained * 100)}% var${msTxt}) · drag to steer`;
       drawCompass($("compassSvg"), data.readings, data.dots, state.compassPos, (x, y) => {
         state.compassPos = [x, y];
         scheduleLiveSteer(x, y);
@@ -844,13 +993,22 @@ svg.compass-svg {
 
   function scheduleLiveSteer(x, y) {
     if (state.steerTimer) clearTimeout(state.steerTimer);
+    if (state.steerAbort) {
+      state.steerAbort.abort();
+      state.steerAbort = null;
+    }
+    const seq = ++state.steerSeq;
     state.steerTimer = setTimeout(async () => {
-      if (!state.session) return;
+      if (!state.session || seq !== state.steerSeq) return;
+      const ctrl = new AbortController();
+      state.steerAbort = ctrl;
       try {
-        const res = await apiPost("/api/session/compass/steer", {
-          session_id: state.session.session_id,
-          x, y, max_new: 18,
-        });
+        const res = await apiPost(
+          "/api/session/compass/steer",
+          { session_id: state.session.session_id, x, y, max_new: 18 },
+          ctrl.signal,
+        );
+        if (seq !== state.steerSeq) return; // Discard stale out-of-order response!
         state.lastSteered = res;
         $("steeredPreview").textContent = res.preview_text || "(empty)";
         $("btnCommitSteeredWord").disabled = !(res.first_word_ids && res.first_word_ids.length);
@@ -858,9 +1016,11 @@ svg.compass-svg {
         state.hoverPreview = res.preview_text;
         renderCanvasOnly();
       } catch (e) {
+        if (e && e.name === "AbortError") return;
+        if (seq !== state.steerSeq) return;
         $("steeredPreview").textContent = `Error: ${e.message}`;
       }
-    }, 90);
+    }, 35);
   }
 
   function drawCompass(svg, readings, dots, pos, onDrag) {
@@ -871,7 +1031,6 @@ svg.compass-svg {
       Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, String(v)));
       return n;
     };
-    // Subtle concentric rings + axes
     [0.5, 1.0].forEach(r => svg.appendChild(el("circle", {
       cx: 0, cy: 0, r, fill: "none", stroke: "var(--rule)", "stroke-width": 0.015, "stroke-dasharray": "0.04 0.04"
     })));
@@ -886,11 +1045,11 @@ svg.compass-svg {
       svg.appendChild(el("circle", { cx: ax, cy: -ay, r: 0.075, fill: rd.color, stroke: "var(--surface)", "stroke-width": 0.02 }));
       const tx = el("text", {
         x: ax * 1.16, y: -ay * 1.16,
-        fill: rd.color, "font-size": 0.125, "font-weight": 600,
+        fill: rd.color, "font-size": 0.12, "font-weight": 600,
         "text-anchor": "middle", "dominant-baseline": "middle",
         style: "pointer-events:none;font-family:var(--sans)"
       });
-      tx.textContent = (rd.label || `R${rd.id}`).slice(0, 14);
+      tx.textContent = (rd.label || `Variant ${rd.id}`).slice(0, 14);
       svg.appendChild(tx);
     });
     const knob = el("circle", {
@@ -904,7 +1063,7 @@ svg.compass-svg {
       const rect = svg.getBoundingClientRect();
       const nx = ((ev.clientX - rect.left) / rect.width) * 2.9 - 1.45;
       const ny = -(((ev.clientY - rect.top) / rect.height) * 2.9 - 1.45);
-      return [Math.max(-1.35, Math.min(1.35, nx)), Math.max(-1.35, Math.min(1.35, ny))];
+      return [Math.max(-1.4, Math.min(1.4, nx)), Math.max(-1.4, Math.min(1.4, ny))];
     };
     const move = (ev) => {
       const [x, y] = toCoords(ev);
@@ -912,12 +1071,44 @@ svg.compass-svg {
       knob.setAttribute("cy", String(-y));
       onDrag(x, y);
     };
-    svg.onpointerdown = (ev) => { dragging = true; svg.setPointerCapture(ev.pointerId); move(ev); };
+    svg.onpointerdown = (ev) => { dragging = true; if (svg.setPointerCapture) svg.setPointerCapture(ev.pointerId); move(ev); };
     svg.onpointermove = (ev) => { if (dragging) move(ev); };
     svg.onpointerup = () => { dragging = false; };
   }
 
   // ==================== RENDERING ====================
+  function renderAnnotatedSource() {
+    const s = state.session;
+    const box = $("sourceAnnotated");
+    if (!s || !s.alignment || !s.alignment.source_lines) return;
+    const activeLine = s.alignment.active_source_line;
+    box.innerHTML = "";
+    s.alignment.source_lines.forEach(sl => {
+      const sp = document.createElement("span");
+      const isEmpty = !sl.text || !sl.text.trim();
+      sp.className = "src-line"
+        + (isEmpty ? " empty" : "")
+        + (sl.index === activeLine ? " active-line" : "")
+        + (state.hoverSourceLine === sl.index ? " hover-line" : "");
+      sp.dataset.lineIdx = String(sl.index);
+      sp.textContent = isEmpty ? " " : sl.text;
+      if (!isEmpty) {
+        sp.onmouseenter = () => { state.hoverSourceLine = sl.index; renderCanvasOnly(); };
+        sp.onmouseleave = () => { state.hoverSourceLine = null; renderCanvasOnly(); };
+      }
+      box.appendChild(sp);
+    });
+  }
+
+  function tokenSourceLine(idx) {
+    const s = state.session;
+    if (!s || !s.alignment || !s.alignment.spans) return null;
+    for (const sp of s.alignment.spans) {
+      if (idx >= sp.target_start && idx < sp.target_end) return sp.source_line;
+    }
+    return null;
+  }
+
   function renderCanvasOnly() {
     const s = state.session;
     const canvas = $("translationCanvas");
@@ -925,10 +1116,28 @@ svg.compass-svg {
     canvas.innerHTML = "";
     s.tokens.forEach((tk, idx) => {
       const sp = document.createElement("span");
-      sp.className = "ctok" + (tk.is_fork ? " forked" : "") + (tk.source === "steered" ? " steered" : "");
+      const sl = tokenSourceLine(idx);
+      const isAlignedHl = state.hoverSourceLine !== null && sl === state.hoverSourceLine;
+      sp.className = "ctok"
+        + (tk.is_fork ? " forked" : "")
+        + (tk.source === "steered" ? " steered" : "")
+        + (isAlignedHl ? " aligned-hl" : "");
       sp.textContent = tk.token;
-      sp.title = `Click to rewind before "${tk.token.trim() || "↵"}" (token ${idx}, H=${tk.entropy})`;
-      sp.onclick = () => doRewind(idx);
+      const snapIdx = (typeof tk.word_start_idx === "number") ? tk.word_start_idx : idx;
+      sp.title = `Click to rewind to word start (token ${snapIdx}, H=${tk.entropy})`;
+      sp.onclick = () => doRewind(snapIdx);
+      sp.onmouseenter = () => {
+        if (sl !== null) {
+          state.hoverSourceLine = sl;
+          renderAnnotatedSource();
+        }
+      };
+      sp.onmouseleave = () => {
+        if (state.hoverSourceLine !== null) {
+          state.hoverSourceLine = null;
+          renderAnnotatedSource();
+        }
+      };
       canvas.appendChild(sp);
     });
     const caret = document.createElement("span");
@@ -944,12 +1153,55 @@ svg.compass-svg {
       g.textContent = preview;
       canvas.appendChild(g);
     }
+    // Keep cursor smoothly scrolled into view for long poems
+    canvas.scrollTop = canvas.scrollHeight;
+  }
+
+  function renderHistoryTree() {
+    const s = state.session;
+    const hl = $("historyList");
+    hl.innerHTML = "";
+    const nodes = s.history || [];
+    const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
+    const children = {};
+    nodes.forEach(n => {
+      const pid = n.parent_id && byId[n.parent_id] ? n.parent_id : "__ROOT__";
+      (children[pid] = children[pid] || []).push(n);
+    });
+
+    const ordered = [];
+    function walk(pid, depth) {
+      (children[pid] || []).forEach(n => {
+        ordered.push({ node: n, depth });
+        walk(n.id, depth + 1);
+      });
+    }
+    walk("__ROOT__", 0);
+    // Fallback if any orphan node existed
+    if (ordered.length < nodes.length) {
+      const seen = new Set(ordered.map(o => o.node.id));
+      nodes.forEach(n => { if (!seen.has(n.id)) ordered.push({ node: n, depth: 0 }); });
+    }
+
+    ordered.forEach(({ node: n, depth }) => {
+      const row = document.createElement("div");
+      row.className = "hist-item" + (n.active ? " active" : "");
+      row.dataset.depth = String(depth);
+      row.setAttribute("aria-level", String(depth + 1));
+      row.style.marginLeft = `${depth * 18}px`;
+      const prefix = depth > 0 ? "↳ " : "";
+      row.innerHTML = `<span>${prefix}<strong>${escapeHtml(n.label)}</strong> · ${n.n_tokens} tok</span><span class="snip">${escapeHtml(n.snippet || "(start)")}</span>`;
+      row.onclick = () => checkoutNode(n.id);
+      hl.appendChild(row);
+    });
   }
 
   function renderSession() {
     const s = state.session;
     if (!s) return;
+    renderAnnotatedSource();
     renderCanvasOnly();
+    renderHistoryTree();
 
     const f = s.frontier;
     const badge = $("regimeBadge");
@@ -962,17 +1214,17 @@ svg.compass-svg {
     };
     $("regimeText").textContent = f.at_end ? "End of translation" : (regimeLabels[f.regime] || f.regime);
     const fhPart = f.fork_head_prob != null ? ` · ForkHead ${Math.round(f.fork_head_prob * 100)}%` : "";
-    $("frontierMetrics").textContent = `H = ${f.entropy.toFixed(2)} nats · top1 = ${Math.round(f.top1_prob * 100)}%${fhPart}`;
+    $("frontierMetrics").textContent = `H = ${f.entropy.toFixed(2)} · top1 = ${Math.round(f.top1_prob * 100)}%${fhPart}`;
 
     const box = $("branchContainer");
     box.innerHTML = "";
     if (f.at_end) {
-      box.innerHTML = `<div class="linear-hint"><span>Reached end of translation. Click any earlier word to rewind and try another branch.</span></div>`;
+      box.innerHTML = `<div class="linear-hint"><span>Reached end of translation. Click any word to rewind and explore another branch.</span></div>`;
     } else if (f.regime === "linear" || f.branches.length <= 1) {
       const nextW = (f.ghost && f.ghost.next_word_text) ? f.ghost.next_word_text.trim() || "↵" : "";
       box.innerHTML = `<div class="linear-hint">
-        <span>Linear continuation — next: <strong style="font-family:var(--serif);color:var(--ink)">${escapeHtml(nextW)}</strong>. Steering has little leverage here.</span>
-        <span><kbd>Space</kbd> step · <kbd>Tab</kbd> glide to next fork</span>
+        <span>Linear continuation — next: <strong style="font-family:var(--serif);color:var(--ink)">${escapeHtml(nextW)}</strong>.</span>
+        <span><kbd>Space</kbd> step · <kbd>Tab</kbd> glide to fork</span>
       </div>`;
     } else {
       const list = document.createElement("div");
@@ -981,6 +1233,10 @@ svg.compass-svg {
         const btn = document.createElement("button");
         btn.className = "branch-btn";
         const pct = Math.round(br.share * 100);
+        const subs = (br.sub_branches || []).slice(0, 3);
+        const subHtml = subs.length
+          ? `<div class="sub-forks">${subs.map(sb => `<span class="sub-chip">↳ ${escapeHtml((sb.first_word_text || sb.preview_text || "").trim() || "↵")} ${Math.round((sb.share || 0) * 100)}%</span>`).join("")}</div>`
+          : "";
         btn.innerHTML = `
           <span class="branch-key" style="background:${br.color}">${idx + 1}</span>
           <div class="branch-body">
@@ -988,8 +1244,9 @@ svg.compass-svg {
             <div class="branch-sub">
               <span>${escapeHtml(br.distinctive || "")}</span>
               <span class="branch-bar"><i style="width:${pct}%;background:${br.color}"></i></span>
-              <span>click: 1 word · Shift+click: full phrase</span>
+              <span>click: 1 word · Shift: full</span>
             </div>
+            ${subHtml}
           </div>
           <span class="branch-pct">${pct}%</span>`;
         btn.onmouseenter = () => { state.hoverPreview = br.preview_text; renderCanvasOnly(); };
@@ -999,28 +1256,16 @@ svg.compass-svg {
       });
       box.appendChild(list);
     }
-
-    // History drawer
-    const hl = $("historyList");
-    hl.innerHTML = "";
-    (s.history || []).forEach(n => {
-      const row = document.createElement("div");
-      row.className = "hist-item" + (n.active ? " active" : "");
-      row.innerHTML = `<span><strong>${escapeHtml(n.label)}</strong> · ${n.n_tokens} tok</span><span class="snip">${escapeHtml(n.snippet || "(start)")}</span>`;
-      row.onclick = () => checkoutNode(n.id);
-      hl.appendChild(row);
-    });
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
   // Button bindings
   $("btnStart").onclick = startSession;
-  $("btnStep").onclick = () => doStep({ mode: "word" });
-  $("btnRewind").onclick = rewindOneWord;
+  $("btnStep").onclick = () => doStep({ mode: state.stepMode });
+  $("btnRewind").onclick = rewindUnit;
+  $("btnRedo").onclick = doRedo;
   $("btnGlide").onclick = toggleGlide;
+  $("btnNewline").onclick = () => doStep({ custom_text: "\n", source_tag: "typed" });
+  $("btnStanza").onclick = () => doStep({ custom_text: "\n\n", source_tag: "typed" });
   $("btnCompass").onclick = () => openCompass(false);
   $("btnReprobeCompass").onclick = () => openCompass(true);
   $("btnCopy").onclick = () => {
@@ -1050,15 +1295,27 @@ svg.compass-svg {
     }
   };
 
-  // Keyboard-first workflow (inactive while typing in textarea/input)
+  // Keyboard-first workflow (Escape always cancels glide / closes drawers; other shortcuts suppressed inside TEXTAREA / INPUT / SELECT)
   document.addEventListener("keydown", (ev) => {
     if (state.activeView !== "live") return;
+    if (ev.key === "Escape") {
+      ev.preventDefault();
+      if (state.gliding) {
+        stopGlide();
+        setBusy(false, "Glide paused");
+      }
+      closeAllDrawers();
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+      return;
+    }
     const tag = (ev.target && ev.target.tagName) || "";
     if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT") return;
     if (ev.key === " " || ev.key === "ArrowRight") {
-      ev.preventDefault(); doStep({ mode: "word" });
+      ev.preventDefault(); doStep({ mode: state.stepMode });
     } else if (ev.key === "Backspace" || ev.key === "ArrowLeft") {
-      ev.preventDefault(); rewindOneWord();
+      ev.preventDefault(); rewindUnit();
     } else if (ev.key === "Tab") {
       ev.preventDefault(); toggleGlide();
     } else if (ev.key === "c" || ev.key === "C") {
@@ -1067,8 +1324,8 @@ svg.compass-svg {
       ev.preventDefault(); $("btnSliders").click();
     } else if (ev.key === "h" || ev.key === "H") {
       ev.preventDefault(); $("btnHistory").click();
-    } else if (/^[1-6]$/.test(ev.key)) {
-      const idx = Number(ev.key) - 1;
+    } else if (/^Digit[1-6]$/.test(ev.code || "") || /^[1-6]$/.test(ev.key)) {
+      const idx = /^Digit[1-6]$/.test(ev.code || "") ? (Number(ev.code.slice(5)) - 1) : (Number(ev.key) - 1);
       if (state.session && state.session.frontier && idx < state.session.frontier.branches.length) {
         ev.preventDefault();
         doStep({ branch_index: idx, commit_full_branch: ev.shiftKey });
@@ -1076,7 +1333,7 @@ svg.compass-svg {
     }
   });
 
-  // ==================== REPLAY / OFFLINE VIEW ====================
+  // ==================== REPLAY / OFFLINE ARCHIVE VIEW ====================
   function setView(view) {
     state.activeView = view;
     const isLive = view === "live";
@@ -1086,26 +1343,121 @@ svg.compass-svg {
   }
   $("btnSwitchMode").onclick = () => setView(state.activeView === "live" ? "replay" : "live");
 
-  async function initReplayList(texts, offlineBundles = null) {
-    state.replayTexts = texts;
-    state.replayBundlesOffline = offlineBundles;
+  function renderReplayShares(readings, sharesMap) {
+    const rr = $("replayReadings");
+    rr.innerHTML = "";
+    (readings || []).forEach(rd => {
+      const rawSh = sharesMap && sharesMap[String(rd.id)] != null ? Number(sharesMap[String(rd.id)]) : Number(rd.share || 0);
+      const pct = Number.isFinite(rawSh) ? Math.round(rawSh * 100) : 0;
+      const chip = document.createElement("span");
+      chip.className = "share-chip";
+      chip.innerHTML = `<i class="dot" style="background:${rd.color}"></i><span>${escapeHtml(rd.label)}</span><span class="share-mini"><i style="width:${pct}%;background:${rd.color}"></i></span><strong>${pct}%</strong>`;
+      rr.appendChild(chip);
+    });
+  }
+
+  function computeOfflineRbfShares(readings, x, y) {
+    if (!readings || !readings.length) return {};
+    if (readings.length === 1) return { [String(readings[0].id)]: 1.0 };
+    const sigma2 = 2.0 * 0.55 * 0.55;
+    const logs = readings.map(rd => {
+      const dx = (rd.anchor ? rd.anchor[0] : 0) - x;
+      const dy = (rd.anchor ? rd.anchor[1] : 0) - y;
+      return -(dx * dx + dy * dy) / sigma2;
+    });
+    const maxL = Math.max(...logs);
+    const exps = logs.map(v => Math.exp(v - maxL));
+    const sum = exps.reduce((a, b) => a + b, 0) || 1.0;
+    const out = {};
+    readings.forEach((rd, i) => { out[String(rd.id)] = exps[i] / sum; });
+    return out;
+  }
+
+  function pickOfflineSteered(bundle, x, y, shares) {
+    const r = Math.hypot(x, y);
+    if (r < 0.08 && bundle.ref_text) {
+      return { text: bundle.ref_text, source: "baseline" };
+    }
+    const pts = bundle.steering_points || [];
+    if (pts.length > 0) {
+      let best = pts[0], bestScore = Infinity;
+      for (const p of pts) {
+        const dx = (p.x || 0) - x;
+        const dy = (p.y || 0) - y;
+        const dist = dx * dx + dy * dy;
+        if (dist < bestScore) { bestScore = dist; best = p; }
+      }
+      return { text: best.text, source: "steered" };
+    }
+    const dots = bundle.dots || [];
+    if (dots.length > 0) {
+      let best = dots[0], bestD = Infinity;
+      for (const d of dots) {
+        const dist = (d.x - x) ** 2 + (d.y - y) ** 2;
+        if (dist < bestD) { bestD = dist; best = d; }
+      }
+      return { text: best.text, source: "sample" };
+    }
+    return { text: bundle.ref_text || "", source: "baseline" };
+  }
+
+  function renderOfflineSessions(sessions) {
+    const box = $("offlineSessionsBox");
+    const sel = $("offlineSessionSelect");
+    if (!sessions || !sessions.length) {
+      box.style.display = "none";
+      return;
+    }
+    box.style.display = "";
+    sel.innerHTML = "";
+    sessions.forEach((s, i) => {
+      const opt = document.createElement("option");
+      opt.value = String(i);
+      opt.textContent = s.title || s.session_id || `Session ${i + 1}`;
+      sel.appendChild(opt);
+    });
+    const show = (idx) => {
+      const s = sessions[idx];
+      if (!s) return;
+      const lines = (s.history || []).map(h => `• ${h.label}: ${h.snippet || h.text || ""}`).join("\n");
+      $("offlineSessionDetail").textContent = `${s.source_text || ""}\n\n${lines}`;
+    };
+    sel.onchange = () => show(Number(sel.value));
+    show(0);
+  }
+
+  async function initReplayList(texts, offlineEntry = null) {
+    state.replayTexts = texts || [];
     const sel = $("replaySelect");
     sel.innerHTML = "";
-    texts.forEach(t => {
+    state.replayTexts.forEach(t => {
       const opt = document.createElement("option");
       opt.value = t.id;
-      opt.textContent = `${t.id} (${t.n_readings} readings)`;
+      const label = t.title ? `${t.title} (${t.n_readings} reading${t.n_readings === 1 ? "" : "s"})` : `${t.id} (${t.n_readings} readings)`;
+      opt.textContent = label;
       sel.appendChild(opt);
     });
     sel.onchange = () => loadReplayText(sel.value);
-    if (texts.length) await loadReplayText(texts[0].id);
+    if (offlineEntry) {
+      renderOfflineSessions(offlineEntry.sessions || []);
+    }
+    if (state.replayTexts.length) {
+      await loadReplayText(state.replayTexts[0].id);
+    } else {
+      $("replaySource").textContent = "No saved texts in this model archive.";
+      $("replayTokens").innerHTML = "";
+      $("replayOut").textContent = "";
+      $("replayReadings").innerHTML = "";
+    }
   }
 
   async function loadReplayText(textId) {
-    const b = state.replayBundlesOffline
-      ? state.replayBundlesOffline[textId]
+    const entry = state.offlineModels && state.activeOfflineModel ? state.offlineModels[state.activeOfflineModel] : null;
+    const b = entry
+      ? entry.bundles[textId]
       : await (await fetch(`/api/replay/${encodeURIComponent(textId)}`)).json();
     state.replayBundle = b;
+    if (!b) return;
     $("replaySource").textContent = b.text;
     const rt = $("replayTokens");
     rt.innerHTML = "";
@@ -1118,14 +1470,7 @@ svg.compass-svg {
       sp.style.borderBottomColor = `color-mix(in srgb, var(--accent) ${pct}%, transparent)`;
       rt.appendChild(sp);
     });
-    const rr = $("replayReadings");
-    rr.innerHTML = "";
-    (b.readings || []).forEach(rd => {
-      const chip = document.createElement("span");
-      chip.className = "pill";
-      chip.innerHTML = `<i class="dot" style="background:${rd.color}"></i>${escapeHtml(rd.label)} (${Math.round(rd.share * 100)}%)`;
-      rr.appendChild(chip);
-    });
+    renderReplayShares(b.readings, null);
     drawCompass($("replayCompass"), b.readings, b.dots, [0, 0], (x, y) => steerReplay(x, y));
     steerReplay(0, 0);
   }
@@ -1133,18 +1478,16 @@ svg.compass-svg {
   async function steerReplay(x, y) {
     const b = state.replayBundle;
     if (!b) return;
-    if (state.replayBundlesOffline) {
-      // Offline Gaussian blend + nearest dot
-      let best = b.dots[0], bestD = Infinity;
-      b.dots.forEach(d => {
-        const dist = (d.x - x) ** 2 + (d.y - y) ** 2;
-        if (dist < bestD) { bestD = dist; best = d; }
-      });
-      $("replayOut").textContent = best ? best.text : b.ref_text;
-      $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · offline replay`;
+    if (state.offlineModels) {
+      const shares = computeOfflineRbfShares(b.readings, x, y);
+      const picked = pickOfflineSteered(b, x, y, shares);
+      $("replayOut").textContent = picked.text;
+      renderReplayShares(b.readings, shares);
+      $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · offline ${picked.source}`;
     } else {
       const res = await apiPost("/api/replay/steer", { text_id: b.id, x, y });
       $("replayOut").textContent = res.text;
+      renderReplayShares(b.readings, res.shares);
       $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · ${res.source}`;
     }
   }
@@ -1155,13 +1498,38 @@ svg.compass-svg {
       const od = window.__OFFLINE_DATA__;
       $("modePill").className = "pill replay";
       $("modeLabel").textContent = "Offline Replay";
-      $("srcLang").style.display = "none";
+      $("langPairWrap").style.display = "none";
       $("btnSliders").style.display = "none";
       $("btnHistory").style.display = "none";
       setView("replay");
-      await initReplayList(od.texts, od.bundles);
+
+      const models = od.models || { default: { label: "Default", texts: od.texts || [], bundles: od.bundles || {}, maps: {}, sessions: [] } };
+      const keys = Object.keys(models);
+      state.offlineModels = models;
+      state.activeOfflineModel = od.default_model && models[od.default_model] ? od.default_model : keys[0];
+
+      const msel = $("replayModelSelect");
+      if (keys.length > 1) {
+        msel.style.display = "";
+        msel.innerHTML = "";
+        keys.forEach(k => {
+          const opt = document.createElement("option");
+          opt.value = k;
+          opt.textContent = models[k].label || k;
+          msel.appendChild(opt);
+        });
+        msel.value = state.activeOfflineModel;
+        msel.onchange = async () => {
+          state.activeOfflineModel = msel.value;
+          const entry = models[state.activeOfflineModel];
+          await initReplayList(entry.texts, entry);
+        };
+      }
+      const defEntry = models[state.activeOfflineModel];
+      await initReplayList(defEntry.texts, defEntry);
       return;
     }
+
     try {
       const st = await (await fetch("/api/status")).json();
       state.serverMode = st.mode || "replay";

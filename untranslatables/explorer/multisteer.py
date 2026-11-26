@@ -74,6 +74,7 @@ class MultiLayerCursorHook:
         self.only = False
         self.global_start = 0
         self.pos = {l: 0 for l in self.layers}
+        self._explicit_pos = {l: None for l in self.layers}
         blocks = arch.layers(model)
         self.handles = [blocks[l].register_forward_hook(self._mk(l)) for l in self.layers]
 
@@ -95,6 +96,13 @@ class MultiLayerCursorHook:
         self.only = bool(only_at_b)
         self.global_start = int(global_start)
         self.pos = {l: 0 for l in self.layers}
+        self._explicit_pos = {l: None for l in self.layers}
+
+    def sync_pos(self, pos: int) -> None:
+        """Explicitly set the absolute start position of the next forward pass across all hooked layers."""
+        p = int(pos)
+        self.pos = {l: p for l in self.layers}
+        self._explicit_pos = {l: p for l in self.layers}
 
     def clear(self):
         self.set(None, global_vecs=None)
@@ -114,10 +122,16 @@ class MultiLayerCursorHook:
         def _hook(mod, inp, out):
             h = out[0] if isinstance(out, tuple) else out
             T = h.shape[1]
-            start = 0 if T > 1 else self.pos[layer]
-            if T > 1:
+            exp = self._explicit_pos.get(layer)
+            if exp is not None:
+                start = exp
+                self._explicit_pos[layer] = None
+                self.pos[layer] = start + T
+            elif T > 1:
+                start = 0
                 self.pos[layer] = T
             else:
+                start = self.pos[layer]
                 self.pos[layer] += 1
             lv = self.local_vecs.get(layer)
             gv = self.global_vecs.get(layer)

@@ -1,8 +1,8 @@
-"""Zero-dependency HTTP + SSE server and offline single-file HTML exporter for the Workbench.
+"""Zero-dependency HTTP + SSE server and multi-model offline HTML exporter for Translation Explorer.
 
 Usage:
     python -m explorer.server --mode replay --port 8765
-    python -m explorer.server --mode live --model tiny --port 8765
+    python -m explorer.server --mode live --model g3_12b_pt --port 8765
     python -m explorer.server --export-offline ../figures_for_dad/duende_workbench_offline.html
 """
 from __future__ import annotations
@@ -13,25 +13,127 @@ import sys
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 from urllib.parse import parse_qs, unquote, urlparse
 
-from explorer.live_engine import DEFAULT_GLOBAL_AXES, LiveTranslationEngine, ReplayEngine
+from explorer.live_engine import DEFAULT_GLOBAL_AXES, DEFAULT_RESULTS_DIR, LiveTranslationEngine, ReplayEngine
 
 HERE = Path(__file__).resolve().parent
 WORKBENCH_HTML = HERE / "static" / "workbench.html"
 OFFLINE_HOOK = "<!-- OFFLINE_DATA_HOOK -->"
+MAX_JSON_BODY_BYTES = 2 * 1024 * 1024  # 2 MiB hard guard against oversized JSON payloads
+
+_MODEL_LABELS = {
+    "g3_4b_pt": "Gemma 3 4B (Base)",
+    "g3_12b_pt": "Gemma 3 12B (NF4)",
+    "g3_12b_pt_bf16": "Gemma 3 12B (bf16)",
+    "g3_27b_pt": "Gemma 3 27B (NF4)",
+    "g3_27b_pt_8bit": "Gemma 3 27B (8-bit)",
+    "qwen72b_base": "Qwen2.5 72B (NF4)",
+}
 
 
-def build_offline_html(output_path: str | Path, results_dir: str | Path | None = None) -> Path:
-    """Inject all saved ReplayEngine bundles as `window.__OFFLINE_DATA__` into a standalone HTML file."""
-    engine = ReplayEngine(results_dir)
-    texts = engine.list_texts()
-    bundles = {t["id"]: engine.get_text_bundle(t["id"]) for t in texts}
-    payload = {
-        "mode": "offline",
+class _PayloadTooLargeError(ValueError):
+    """Raised when an incoming HTTP JSON body exceeds MAX_JSON_BODY_BYTES."""
+
+
+def _load_json_safe(path: Path) -> Any:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _collect_sessions(dirs: list[Path]) -> list[dict[str, Any]]:
+    sessions: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    for d in dirs:
+        if not d.is_dir():
+            continue
+        for p in sorted(d.glob("*.json")):
+            obj = _load_json_safe(p)
+            if isinstance(obj, dict) and ("source_text" in obj or "history" in obj):
+                sid = str(obj.get("session_id") or p.stem)
+                if sid not in seen_ids:
+                    seen_ids.add(sid)
+                    sessions.append(obj)
+    return sessions
+
+
+def _build_model_offline_entry(
+    model_key: str,
+    model_dir: Path,
+    extra_sessions_dir: Path | None = None,
+) -> dict[str, Any]:
+    texts: list[dict[str, Any]] = []
+    bundles: dict[str, Any] = {}
+    if model_dir.is_dir():
+        try:
+            eng = ReplayEngine(model_dir)
+            texts = eng.list_texts()
+            bundles = {t["id"]: eng.get_text_bundle(t["id"]) for t in texts}
+        except Exception:
+            texts, bundles = [], {}
+
+    summary = _load_json_safe(model_dir / "summary.json") if model_dir.is_dir() else None
+    maps: dict[str, Any] = {}
+    if model_dir.is_dir():
+        for mp in sorted(model_dir.glob("map_*.json")):
+            tid = mp.stem[len("map_"):]
+            mobj = _load_json_safe(mp)
+            if isinstance(mobj, dict):
+                maps[tid] = mobj
+
+    sess_dirs = [model_dir / "sessions"]
+    if extra_sessions_dir is not None:
+        sess_dirs.append(extra_sessions_dir)
+    sessions = _collect_sessions(sess_dirs)
+
+    return {
+        "label": _MODEL_LABELS.get(model_key, model_key),
+        "summary": summary,
         "texts": texts,
         "bundles": bundles,
+        "maps": maps,
+        "sessions": sessions,
+    }
+
+
+def build_offline_html(
+    output_path: str | Path,
+    results_dir: str | Path | None = None,
+    model_dirs: Mapping[str, str | Path] | None = None,
+    sessions_dir: str | Path | None = None,
+) -> Path:
+    """Inject single- or multi-model ReplayEngine bundles as `window.__OFFLINE_DATA__` into standalone HTML."""
+    extra_sess = Path(sessions_dir) if sessions_dir is not None else None
+    models_payload: dict[str, dict[str, Any]] = {}
+
+    if model_dirs:
+        for idx, (mkey, mpath) in enumerate(model_dirs.items()):
+            models_payload[str(mkey)] = _build_model_offline_entry(
+                str(mkey),
+                Path(mpath),
+                extra_sessions_dir=extra_sess if idx == 0 else None,
+            )
+        default_key = next(iter(models_payload.keys()))
+    else:
+        rdir = Path(results_dir) if results_dir is not None else DEFAULT_RESULTS_DIR
+        default_key = rdir.name or "default"
+        models_payload[default_key] = _build_model_offline_entry(
+            default_key,
+            rdir,
+            extra_sessions_dir=extra_sess,
+        )
+
+    default_entry = models_payload[default_key]
+    payload = {
+        "mode": "offline",
+        "default_model": default_key,
+        "models": models_payload,
+        # Backwards-compatible top-level mirrors of the default model
+        "texts": default_entry["texts"],
+        "bundles": default_entry["bundles"],
     }
     raw_json = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
     script_tag = f"<script>window.__OFFLINE_DATA__ = {raw_json};</script>"
@@ -89,8 +191,30 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
         self._send_bytes(status, "application/json; charset=utf-8", body)
 
     def _read_json_body(self) -> dict[str, Any]:
-        length = int(self.headers.get("Content-Length", "0") or "0")
+        raw_len = self.headers.get("Content-Length", "0") or "0"
+        try:
+            length = int(raw_len)
+        except ValueError as exc:
+            raise ValueError(f"Invalid Content-Length: {raw_len!r}") from exc
+        if length < 0:
+            raise ValueError("Negative Content-Length")
+        if length > MAX_JSON_BODY_BYTES:
+            # Drain a bounded amount of the incoming body so clients (e.g. Python http.client)
+            # finish writing and cleanly receive the HTTP 413 JSON response instead of BrokenPipeError.
+            rem = min(length, 16 * 1024 * 1024)
+            while rem > 0:
+                chunk = self.rfile.read(min(rem, 65536))
+                if not chunk:
+                    break
+                rem -= len(chunk)
+            self.close_connection = True
+            raise _PayloadTooLargeError(
+                f"Request body too large ({length} bytes > {MAX_JSON_BODY_BYTES} byte limit)"
+            )
         raw = self.rfile.read(length) if length > 0 else b"{}"
+        if len(raw) > MAX_JSON_BODY_BYTES:
+            self.close_connection = True
+            raise _PayloadTooLargeError(f"Request body exceeds {MAX_JSON_BODY_BYTES} byte limit")
         data = json.loads(raw.decode("utf-8"))
         if not isinstance(data, dict):
             raise ValueError("Request body must be a JSON object")
@@ -99,10 +223,38 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
     def do_OPTIONS(self) -> None:
         self.send_response(HTTPStatus.NO_CONTENT)
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Content-Length", "0")
         self.end_headers()
+
+    def do_DELETE(self) -> None:
+        parsed = urlparse(self.path)
+        path = parsed.path
+        srv: WorkbenchServer = self.server  # type: ignore[assignment]
+
+        try:
+            if path.startswith("/api/session/"):
+                if srv.live is None:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": f"{path} requires --mode live."})
+                    return
+                session_id = unquote(path[len("/api/session/"):]).strip("/")
+                if not session_id or "/" in session_id:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Invalid session_id."})
+                    return
+                try:
+                    res = srv.live.sessions.delete(session_id)
+                except KeyError as exc:
+                    self._send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)})
+                    return
+                self._send_json(HTTPStatus.OK, res)
+                return
+
+            self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
+        except (ValueError, TypeError, IndexError) as exc:
+            self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+        except Exception as exc:
+            self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(exc)})
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -197,7 +349,14 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                     self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing required query parameter 'session_id'."})
                     return
                 max_words = int((qs.get("max_words") or ["32"])[0])
+                if max_words <= 0:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": "max_words must be > 0."})
+                    return
                 stop_on_fork = (qs.get("stop_on_fork") or ["1"])[0].lower() not in ("0", "false", "no")
+                # Pre-header validation: unknown session MUST return HTTP 404 JSON before SSE headers!
+                if not srv.live.sessions.has_session(session_id):
+                    self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Unknown session_id: {session_id!r}"})
+                    return
 
                 self.send_response(HTTPStatus.OK)
                 self.send_header("Content-Type", "text/event-stream; charset=utf-8")
@@ -220,7 +379,26 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                 self.close_connection = True
                 return
 
+            if path.startswith("/api/session/"):
+                if srv.live is None:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": f"{path} requires --mode live."})
+                    return
+                session_id = unquote(path[len("/api/session/"):]).strip("/")
+                if not session_id or "/" in session_id:
+                    self._send_json(HTTPStatus.BAD_REQUEST, {"error": "Invalid session_id."})
+                    return
+                include_frontier = (qs.get("include_frontier") or ["0"])[0].lower() in ("1", "true", "yes")
+                try:
+                    res = srv.live.sessions.get_state(session_id, include_frontier=include_frontier)
+                except KeyError as exc:
+                    self._send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)})
+                    return
+                self._send_json(HTTPStatus.OK, res)
+                return
+
             self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
+        except (ValueError, TypeError, IndexError) as exc:
+            self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
         except Exception as exc:
             self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(exc)})
 
@@ -231,6 +409,9 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
 
         try:
             body = self._read_json_body()
+        except _PayloadTooLargeError as exc:
+            self._send_json(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, {"error": str(exc)})
+            return
         except Exception as exc:
             self._send_json(HTTPStatus.BAD_REQUEST, {"error": f"Invalid JSON body: {exc}"})
             return
@@ -324,17 +505,35 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
 
                 try:
                     if path == "/api/session/step":
+                        mode_s = str(body.get("mode", "word"))
+                        if mode_s not in ("word", "token"):
+                            raise ValueError(f"Invalid step mode: {mode_s!r} (expected 'word' or 'token')")
+                        branch_idx = body.get("branch_index")
+                        if branch_idx is not None:
+                            if isinstance(branch_idx, bool):
+                                raise TypeError("branch_index must be an integer")
+                            branch_idx = int(branch_idx)
+                            if branch_idx < 0:
+                                raise IndexError(f"branch_index {branch_idx} must be >= 0")
                         res = srv.live.sessions.step(
                             session_id,
-                            mode=str(body.get("mode", "word")),
-                            branch_index=body.get("branch_index"),
+                            mode=mode_s,
+                            branch_index=branch_idx,
                             commit_full_branch=bool(body.get("commit_full_branch", False)),
                             custom_text=body.get("custom_text"),
                             custom_token_ids=body.get("custom_token_ids"),
                             source_tag=body.get("source_tag"),
                         )
                     elif path == "/api/session/rewind":
-                        res = srv.live.sessions.rewind(session_id, int(body.get("to_token_index", 0)))
+                        raw_idx = body.get("to_token_index", 0)
+                        if isinstance(raw_idx, bool):
+                            raise TypeError("to_token_index must be an integer")
+                        res = srv.live.sessions.rewind(session_id, int(raw_idx))
+                    elif path == "/api/session/redo":
+                        mode_r = str(body.get("mode", "word"))
+                        if mode_r not in ("word", "token"):
+                            raise ValueError(f"Invalid redo mode: {mode_r!r} (expected 'word' or 'token')")
+                        res = srv.live.sessions.redo(session_id, mode=mode_r)
                     elif path == "/api/session/checkout":
                         node_id = str(body.get("node_id", "")).strip()
                         if not node_id:
@@ -342,13 +541,18 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                             return
                         res = srv.live.sessions.checkout(session_id, node_id)
                     elif path == "/api/session/sliders":
-                        res = srv.live.sessions.set_sliders(session_id, body.get("global_coords") or {})
+                        gc = body.get("global_coords")
+                        if gc is not None and not isinstance(gc, dict):
+                            raise TypeError("global_coords must be a JSON object")
+                        res = srv.live.sessions.set_sliders(session_id, gc or {})
                     elif path == "/api/session/compass/probe":
                         res = srv.live.sessions.probe_compass(
                             session_id,
                             n_samples=int(body.get("n_samples", 10)),
                             lookahead_tokens=int(body.get("lookahead_tokens", 12)),
                             seed=int(body.get("seed", 0)),
+                            force=bool(body.get("force", False)),
+                            force_gradient=bool(body.get("force_gradient", False)),
                         )
                     elif path == "/api/session/compass/steer":
                         res = srv.live.sessions.steer_compass(
@@ -367,6 +571,8 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                 return
 
             self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
+        except (ValueError, TypeError, IndexError) as exc:
+            self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
         except Exception as exc:
             self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(exc)})
 

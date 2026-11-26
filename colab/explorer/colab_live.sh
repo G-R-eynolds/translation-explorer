@@ -90,13 +90,58 @@ PY
   fetch)
     LOCAL="$REPO/untranslatables/results/explorer/$MODEL"
     mkdir -p "$LOCAL/phase3"
-    for f in fork_head.pt train_g3_scale.log; do
-      colab download -s "$S" "$RES/$f" "$LOCAL/$f" </dev/null || true
-    done
-    for f in global_axes.npz multiref_lora.pt spectral_reft.pt; do
-      colab download -s "$S" "$RES/phase3/$f" "$LOCAL/phase3/$f" </dev/null || true
-    done
-    echo "Fetched checkpoints into $LOCAL"
+    REMOTE_TGZ="/content/explorer_${MODEL}.tgz"
+    LOCAL_TGZ="$(mktemp "/tmp/explorer_${MODEL}_XXXXXX.tgz")"
+    trap 'rm -f "$LOCAL_TGZ"' EXIT
+    PACK_OK=0
+    if cat <<PY | colab exec -s "$S" --timeout 300
+import pathlib, tarfile
+res = pathlib.Path("$RES")
+out_tgz = pathlib.Path("$REMOTE_TGZ")
+targets = [
+    "samples",
+    "branches",
+    "steering",
+    "phase3",
+    "summary.json",
+    "report.html",
+    "fork_head.pt",
+    "train_g3_scale.log",
+    "server.log",
+]
+added = []
+with tarfile.open(out_tgz, "w:gz") as tf:
+    for rel in targets:
+        p = res / rel
+        if p.exists():
+            tf.add(p, arcname=rel)
+            added.append(rel)
+    if res.is_dir():
+        for mp in sorted(res.glob("map_*.json")):
+            tf.add(mp, arcname=mp.name)
+            added.append(mp.name)
+print("Packed", len(added), "entries into", out_tgz, "->", added)
+PY
+    then
+      if colab download -s "$S" "$REMOTE_TGZ" "$LOCAL_TGZ" </dev/null; then
+        tar -xzf "$LOCAL_TGZ" -C "$LOCAL"
+        PACK_OK=1
+        echo "import pathlib; pathlib.Path('$REMOTE_TGZ').unlink(missing_ok=True)" \
+          | colab exec -s "$S" --timeout 60 >/dev/null 2>&1 || true
+      fi
+    fi
+    rm -f "$LOCAL_TGZ"
+    trap - EXIT
+    if [[ "$PACK_OK" != "1" ]]; then
+      echo "Tarball pack/download unavailable; falling back to direct file downloads..." >&2
+      for f in fork_head.pt summary.json report.html map_duende_flamenco.json train_g3_scale.log server.log; do
+        colab download -s "$S" "$RES/$f" "$LOCAL/$f" </dev/null || true
+      done
+      for f in global_axes.npz multiref_lora.pt spectral_reft.pt; do
+        colab download -s "$S" "$RES/phase3/$f" "$LOCAL/phase3/$f" </dev/null || true
+      done
+    fi
+    echo "Fetched outputs into $LOCAL"
     ;;
   down)
     colab stop -s "$S" </dev/null || true

@@ -392,3 +392,68 @@ def test_train_adapters_cli_axes_smoke(tmp_path):
     bank = GlobalAxisBank.load(out_path)
     assert len(bank.axis_names) == 4
     assert bank.layers == [0, 1]
+
+
+def test_tone_axes_expanded_multistanza_and_multilingual():
+    ds = load_tone_axes_dataset()
+    axes = ds["axes"]
+    items = ds["items"]
+
+    assert 24 <= len(items) <= 28
+    assert "Spanish" not in axes["literal_vs_idiomatic"]["neg"]
+    assert items[0]["id"] == "duende_flamenco"
+    assert items[15]["id"] == "rosalia_fuentes"
+
+    langs = {it.get("lang") for it in items}
+    assert {"Spanish", "Portuguese", "French", "German", "Italian"} <= langs
+
+    axis_names = list(axes.keys())
+    multistanza_items = [it for it in items if "\n\n" in it["source"]]
+    assert len(multistanza_items) >= 8
+
+    for it in items:
+        assert not it["source"].endswith("\n"), (it["id"], "trailing newline in source")
+        src_stanzas = it["source"].split("\n\n")
+        has_indent = "\n  " in it["source"]
+        has_emdash = "—" in it["source"]
+        trs = it["translations"]
+        assert 4 <= len(trs) <= 6
+
+        for ax in axis_names:
+            vals = [float(tr["coords"][ax]) for tr in trs]
+            assert any(v >= 0.5 for v in vals), (it["id"], ax, "missing positive pole >= 0.5", vals)
+            assert any(v <= -0.5 for v in vals), (it["id"], ax, "missing negative pole <= -0.5", vals)
+
+        for tr in trs:
+            txt = tr["text"]
+            assert not txt.endswith("\n"), (it["id"], "trailing newline in translation")
+            assert len(txt.split("\n\n")) == len(src_stanzas), (it["id"], "stanza count mismatch")
+            if has_indent:
+                assert "\n  " in txt, (it["id"], "2-space indentation lost in translation")
+            if has_emdash:
+                assert "—" in txt, (it["id"], "em-dash dialogue lost in translation")
+
+
+def test_doc_prompt_and_cut_doc_multistanza_roundtrip(tiny):
+    from explorer.frame import build_doc_prompt, cut_doc
+
+    tok, _ = tiny
+    ds = load_tone_axes_dataset()
+    by_id = {it["id"]: it for it in ds["items"]}
+
+    for tid in ("becquer_golondrinas_stanzas", "pt_saudade_casa"):
+        it = by_id[tid]
+        ids, start = build_doc_prompt(tok, it["source"], src_lang=it["lang"])
+        assert start == len(ids)
+        prompt_str = tok.decode(ids)
+        assert f'<source lang="{it["lang"]}">' in prompt_str
+        assert '<translation lang="English">' in prompt_str
+
+        ref_tr = it["translations"][0]["text"]
+        y = tok(ref_tr + "\n</translation>\n<source>next", add_special_tokens=False)["input_ids"]
+        decoded = tok.decode(cut_doc(tok, y)).strip()
+        assert "\n\n" in decoded
+        assert "\n  " in decoded
+        assert "</translation>" not in decoded
+        assert "<source" not in decoded
+

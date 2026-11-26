@@ -69,16 +69,24 @@ def alpha_for(G_all, v, kl):
     return float(np.sqrt(2 * kl / max(q, 1e-300)))
 
 
-def measured_kl(model, hook, seq, b, vec, mode):
+def _log_probs_from_b(model, x, b):
+    h = arch.forward_hidden(model, input_ids=x).last_hidden_state[0, b:]
+    return arch.logits(model, h).float().log_softmax(-1)
+
+
+def measured_kl(model, hook, seq, b, vec, mode, p0=None):
     """Mean KL(unsteered || steered) of the next-token distributions over positions >= b (cursor) or at b (at_b),
     teacher-forced along `seq` (prefix + reference continuation)."""
     dev = arch.text_model(model).embed_tokens.weight.device
     x = torch.tensor([seq], device=dev)
-    with torch.no_grad():
-        hook.set(None)
-        p0 = model(input_ids=x).logits[0, b:].float().log_softmax(-1)
-        hook.set(vec, b, only_at_b=mode == "at_b")
-        p1 = model(input_ids=x).logits[0, b:].float().log_softmax(-1)
+    try:
+        with torch.no_grad():
+            if p0 is None:
+                hook.set(None)
+                p0 = _log_probs_from_b(model, x, b)
+            hook.set(vec, b, only_at_b=mode == "at_b")
+            p1 = _log_probs_from_b(model, x, b)
+    finally:
         hook.set(None)
     kl = (p0.exp() * (p0 - p1)).sum(-1)
     return float(kl[0] if mode == "at_b" else kl.mean())
@@ -87,12 +95,25 @@ def measured_kl(model, hook, seq, b, vec, mode):
 def calibrate(model, hook, seq, b, v, target, mode, a0, iters=14):
     """α (by bisection in log space) such that measured_kl(α v) ≈ target.  Revised 24 Nov: the single-position Fisher
     prediction badly underestimates the cursor mode, where the vector is added at every later position."""
+    dev = arch.text_model(model).embed_tokens.weight.device
+    x = torch.tensor([seq], device=dev)
     vt = torch.as_tensor(v, dtype=torch.float32)
-    lo, hi = a0 * 1e-3, a0 * 1e2
-    for _ in range(iters):
-        mid = float(np.sqrt(lo * hi))
-        if measured_kl(model, hook, seq, b, mid * vt, mode) < target:
-            lo = mid
-        else:
-            hi = mid
+    try:
+        with torch.no_grad():
+            hook.set(None)
+            p0 = _log_probs_from_b(model, x, b)
+        lo, hi = a0 * 1e-3, a0 * 1e2
+        for _ in range(iters):
+            mid = float(np.sqrt(lo * hi))
+            with torch.no_grad():
+                hook.set(mid * vt, b, only_at_b=mode == "at_b")
+                p1 = _log_probs_from_b(model, x, b)
+            kl_t = (p0.exp() * (p0 - p1)).sum(-1)
+            kl = float(kl_t[0] if mode == "at_b" else kl_t.mean())
+            if kl < target:
+                lo = mid
+            else:
+                hi = mid
+    finally:
+        hook.set(None)
     return float(np.sqrt(lo * hi))

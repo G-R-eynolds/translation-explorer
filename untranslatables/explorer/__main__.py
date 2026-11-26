@@ -11,9 +11,41 @@ Examples:
     python -m explorer train-fork-head --model g3_4b_pt --epochs 80
 """
 import argparse
+import inspect
+from pathlib import Path
 
 
-def main():
+def _parse_model_dirs(raw) -> dict[str, str] | None:
+    """Parse --model-dirs supporting k1=p1,k2=p2, p1,p2, p1 p2, and repeated flags."""
+    if not raw:
+        return None
+    flat: list[str] = []
+    if isinstance(raw, str):
+        flat.append(raw)
+    else:
+        for item in raw:
+            if isinstance(item, (list, tuple)):
+                flat.extend(str(x) for x in item)
+            else:
+                flat.append(str(item))
+    out: dict[str, str] = {}
+    for entry in flat:
+        for part in entry.split(","):
+            tok = part.strip()
+            if not tok:
+                continue
+            if "=" in tok:
+                k, p = tok.split("=", 1)
+                k, p = k.strip(), p.strip()
+                if k and p:
+                    out[k] = p
+            else:
+                key = Path(tok).name or tok
+                out[key] = tok
+    return out or None
+
+
+def main(argv: list[str] | None = None):
     ap = argparse.ArgumentParser(prog="python -m explorer")
     ap.add_argument(
         "stage",
@@ -23,11 +55,18 @@ def main():
     ap.add_argument("--n", type=int, default=64)
     ap.add_argument("--texts", default=None)
     ap.add_argument("--layer", type=int, default=None)
+    ap.add_argument("--layers", default=None)
+    ap.add_argument("--prompt-style", choices=["legacy", "doc"], default="legacy")
+    ap.add_argument("--clustering", choices=["semantic", "hybrid", "grad"], default="semantic")
+    ap.add_argument("--alpha-grad", type=float, default=0.5)
+    ap.add_argument("--disp-min", type=float, default=0.035)
     # Phase 2 server / offline args
     ap.add_argument("--mode", choices=["replay", "live"], default="replay")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--results-dir", default=None)
+    ap.add_argument("--model-dirs", action="append", nargs="+", default=None)
+    ap.add_argument("--sessions-dir", default=None)
     ap.add_argument("--out", default=None)
     ap.add_argument("--global-axes", default=None)
     ap.add_argument("--fork-head", default=None)
@@ -39,10 +78,24 @@ def main():
     ap.add_argument("--epochs", type=int, default=80)
     ap.add_argument("--kl-beta", type=float, default=0.1)
     ap.add_argument("--rank", type=int, default=8)
-    a = ap.parse_args()
+    ap.add_argument("--from-texts", action="store_true")
+    ap.add_argument("--n-dirs", type=int, default=None)
+    ap.add_argument("--dataset", default=None)
+    ap.add_argument("--entropy-thresh", type=float, default=None)
+    a = ap.parse_args(argv)
 
     if a.stage in ("run", "report"):
-        cfg = dict(model=a.model, n=a.n, layer=a.layer, texts=a.texts.split(",") if a.texts else None)
+        cfg = dict(
+            model=a.model,
+            n=a.n,
+            layer=a.layer,
+            texts=a.texts.split(",") if a.texts else None,
+            prompt_style=a.prompt_style,
+            clustering=a.clustering,
+            alpha_grad=a.alpha_grad,
+            disp_min=a.disp_min,
+            results_dir=a.results_dir,
+        )
         if a.stage == "run":
             from explorer.run import run
             run(cfg)
@@ -53,7 +106,15 @@ def main():
     if a.stage == "offline":
         from explorer.server import build_offline_html
         out = a.out or "../figures_for_dad/duende_workbench_offline.html"
-        print("offline workbench:", build_offline_html(out, results_dir=a.results_dir))
+        kwargs = {"results_dir": a.results_dir}
+        sig = inspect.signature(build_offline_html)
+        has_varkw = any(p.kind == inspect.Parameter.VAR_KEYWORD for p in sig.parameters.values())
+        model_dirs = _parse_model_dirs(a.model_dirs)
+        if model_dirs is not None and ("model_dirs" in sig.parameters or has_varkw):
+            kwargs["model_dirs"] = model_dirs
+        if a.sessions_dir is not None and ("sessions_dir" in sig.parameters or has_varkw):
+            kwargs["sessions_dir"] = a.sessions_dir
+        print("offline workbench:", build_offline_html(out, **kwargs))
         return
 
     if a.stage == "serve":
@@ -85,24 +146,42 @@ def main():
     if a.stage in ("axes", "train-lora", "train-reft"):
         from explorer.train_adapters import main as train_main
         mode_map = {"axes": "axes", "train-lora": "lora", "train-reft": "reft"}
-        argv = ["--mode", mode_map[a.stage], "--model", a.model, "--steps", str(a.steps), "--rank", str(a.rank)]
+        sub_argv = [
+            "--mode", mode_map[a.stage],
+            "--model", a.model,
+            "--steps", str(a.steps),
+            "--rank", str(a.rank),
+            "--prompt-style", a.prompt_style,
+        ]
         if a.stage == "train-lora":
-            argv += ["--kl-beta", str(a.kl_beta)]
+            sub_argv += ["--kl-beta", str(a.kl_beta)]
+        if a.layers:
+            sub_argv += ["--layers", a.layers]
+        if a.dataset:
+            sub_argv += ["--dataset", a.dataset]
         out_path = a.out or a.save
         if out_path:
-            argv += ["--out", out_path]
-        train_main(argv)
+            sub_argv += ["--out", out_path]
+        train_main(sub_argv)
         return
 
     if a.stage == "train-fork-head":
         from explorer.fork_head import main as fh_main
-        argv = ["--model", a.model, "--epochs", str(a.epochs)]
+        sub_argv = ["--model", a.model, "--epochs", str(a.epochs), "--prompt-style", a.prompt_style]
         if a.layer is not None:
-            argv += ["--layer", str(a.layer)]
+            sub_argv += ["--layer", str(a.layer)]
+        if a.from_texts:
+            sub_argv += ["--from-texts"]
+        if a.n_dirs is not None:
+            sub_argv += ["--n-dirs", str(a.n_dirs)]
+        if a.dataset:
+            sub_argv += ["--dataset", a.dataset]
+        if a.entropy_thresh is not None:
+            sub_argv += ["--entropy-thresh", str(a.entropy_thresh)]
         out_path = a.out or a.save
         if out_path:
-            argv += ["--out", out_path]
-        fh_main(argv)
+            sub_argv += ["--out", out_path]
+        fh_main(sub_argv)
         return
 
 

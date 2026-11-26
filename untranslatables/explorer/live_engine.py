@@ -16,6 +16,7 @@ Two engines share a clean JSON-serialisable contract for the HTTP/SSE server and
 from __future__ import annotations
 
 import collections
+from contextlib import nullcontext
 import json
 import math
 import re
@@ -26,17 +27,20 @@ from typing import Any, Generator
 
 import numpy as np
 import torch
+import yaml
 
 from blind.fisher import seq_logp
 from explorer import readings as R
 from explorer.directions import alpha_for, calibrate, grads_at
 from explorer.frame import STOPS, build_prompt, cut, load
+from explorer.multisteer import MultiLayerCursorHook, fast_calibrate
 from explorer.sample import generate, steered
 from explorer.steer import CursorHook
 from ut import arch
 from ut.common import ROOT
 
 DEFAULT_RESULTS_DIR = ROOT / "results" / "explorer" / "g3_4b_pt"
+DEFAULT_LABELS_PATH = Path(__file__).resolve().parent / "data" / "readings_labels.yaml"
 
 # Warm editorial palette aligned with figures_for_dad/duende_five_ways.html
 READING_PALETTE = [
@@ -72,12 +76,147 @@ _STOPWORDS = {
     "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by", "from",
     "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "do", "does", "did",
     "i", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them", "my", "your", "his",
+    "its", "our", "their", "mine", "yours", "hers", "ours", "theirs",
+    "himself", "herself", "itself", "myself", "yourself", "themselves",
     "this", "that", "these", "those", "very", "much", "lot", "really", "so", "as", "when", "while",
-    "there", "here", "not", "no", "yes", "what", "which", "who", "whom", "if", "then", "than", "into",
-    "about", "up", "out", "just", "also", "too", "more", "most", "some", "any", "all", "one", "two",
+    "there", "here", "not", "no", "yes", "nor", "what", "which", "who", "whom", "if", "then", "than",
+    "into", "upon", "about", "up", "out", "just", "also", "too", "more", "most", "some", "any", "all",
+    "one", "two", "still", "even", "however", "else", "back", "own", "only", "such",
+    "will", "would", "could", "should", "can", "may", "might", "must", "shall",
     "like", "love", "things", "thing", "good", "got", "get", "gets", "make", "makes", "side",
+    "say", "says", "said",
+    "it's", "you're", "don't", "doesn't", "didn't", "can't", "won't", "i'm", "he's", "she's",
+    "that's", "there's", "they're", "we're", "isn't", "aren't", "wasn't", "weren't",
     "s", "t", "re", "ve", "ll", "d", "m", "spanish", "english",
 }
+
+_ROMAN_NUMERAL_RE = re.compile(
+    r"^(?=[ivxlcdm]+$)m{0,3}(?:cm|cd|d?c{0,3})(?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})$",
+    re.IGNORECASE,
+)
+_BARE_READING_RE = re.compile(r"^reading\s+\d+$", re.IGNORECASE)
+
+
+def _normalize_quotes(text: str) -> str:
+    return (
+        text.replace("\u2019", "'")
+        .replace("\u2018", "'")
+        .replace("\u00b4", "'")
+        .replace("\u201c", '"')
+        .replace("\u201d", '"')
+    )
+
+
+def _singular_stem(word: str) -> str:
+    """Lightweight English singularization for deduplicating keyword pairs like elf/elves, gnome/gnomes."""
+    w = word.lower()
+    if len(w) <= 3:
+        return w
+    if w.endswith("elves"):
+        return w[:-3] + "f"
+    if w.endswith("ves") and len(w) > 4:
+        return w[:-3] + "f"
+    if w.endswith("ies") and len(w) > 4:
+        return w[:-3] + "y"
+    if w.endswith(("ches", "shes", "xes", "zes", "sses")) and len(w) > 4:
+        return w[:-2]
+    if w.endswith("s") and not w.endswith(("ss", "us", "is")):
+        return w[:-1]
+    return w
+
+
+def _humanize_text_title(tid: str) -> str:
+    """Turn a snake_case text ID like 'becquer_liii' into 'Becquer LIII'."""
+    parts = [p for p in str(tid).replace("-", "_").split("_") if p]
+    if not parts:
+        return str(tid)
+    out: list[str] = []
+    for idx, p in enumerate(parts):
+        if _ROMAN_NUMERAL_RE.match(p) and (len(p) >= 2 or idx > 0):
+            out.append(p.upper())
+        else:
+            out.append(p[:1].upper() + p[1:])
+    return " ".join(out)
+
+
+def _format_reading_label(kws: list[str], exemplar_text: str = "", rank_idx: int = 0) -> str:
+    """Format a clean human-readable reading label (never bare 'reading 0')."""
+    cleaned: list[str] = []
+    seen_stems: set[str] = set()
+    for kw in kws or []:
+        s = _normalize_quotes(str(kw)).strip()
+        if not s or _BARE_READING_RE.match(s):
+            continue
+        stem = _singular_stem(s)
+        if stem in seen_stems:
+            continue
+        seen_stems.add(stem)
+        cleaned.append(s)
+    if cleaned:
+        first = cleaned[0]
+        cleaned[0] = first[:1].upper() + first[1:]
+        return " · ".join(cleaned)
+    first_line = _normalize_quotes(exemplar_text or "").split("\n")[0].strip()
+    if first_line:
+        words = re.findall(r"[A-Za-zÀ-ÿ0-9']+", first_line)
+        snippet = " ".join(words[:4]).strip() if words else first_line
+        if len(snippet) > 28:
+            snippet = snippet[:27].rstrip() + "…"
+        if snippet:
+            return snippet[:1].upper() + snippet[1:]
+    return f"Variant {chr(65 + (int(rank_idx) % 26))}"
+
+
+def _load_readings_labels(path: str | Path | None = None) -> dict[str, Any]:
+    """Load optional curated reading labels YAML; returns {} gracefully if absent."""
+    p = Path(path) if path is not None else DEFAULT_LABELS_PATH
+    if not p.exists():
+        return {}
+    try:
+        data = yaml.safe_load(p.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def _resolve_text_meta(cfg: dict[str, Any], tid: str) -> tuple[str, str]:
+    texts_cfg = cfg.get("texts") if isinstance(cfg, dict) else None
+    entry = texts_cfg.get(tid) if isinstance(texts_cfg, dict) else None
+    if isinstance(entry, dict):
+        title = str(entry.get("title") or "").strip() or _humanize_text_title(tid)
+        desc = str(entry.get("description") or "").strip()
+        return title, desc
+    return _humanize_text_title(tid), ""
+
+
+def _resolve_curated_reading_label(
+    cfg: dict[str, Any],
+    model_key: str,
+    tid: str,
+    reading_id: int,
+) -> str | None:
+    if not isinstance(cfg, dict):
+        return None
+    models_cfg = cfg.get("models")
+    if isinstance(models_cfg, dict):
+        m_cfg = models_cfg.get(model_key)
+        if isinstance(m_cfg, dict):
+            t_cfg = m_cfg.get(tid)
+            if isinstance(t_cfg, dict):
+                val = t_cfg.get(reading_id)
+                if val is None:
+                    val = t_cfg.get(str(reading_id))
+                if isinstance(val, str) and val.strip():
+                    return val.strip()
+    if tid not in ("texts", "models"):
+        flat = cfg.get(tid)
+        if isinstance(flat, dict):
+            val = flat.get(reading_id)
+            if val is None:
+                val = flat.get(str(reading_id))
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+    return None
 
 
 def _extract_reading_keywords(
@@ -96,14 +235,15 @@ def _extract_reading_keywords(
         if lab_i not in per_r:
             continue
         n_kept += 1
-        first_line = txt.split("\n")[0].lower()
-        words = set(re.findall(r"[a-zA-Záéíóúüñ]+(?:'[a-z]+)?", first_line))
+        first_line = _normalize_quotes(txt.split("\n")[0]).lower()
+        words = set(re.findall(r"[a-zA-ZÀ-ÿ]+(?:'[a-z]+)?", first_line))
         for w in words:
-            if len(w) <= 1 or w in _STOPWORDS:
+            w_clean = w.strip("'")
+            if len(w_clean) <= 1 or w_clean in _STOPWORDS or w in _STOPWORDS:
                 continue
-            per_r[lab_i][w] += 1
-            total[w] += 1
-            doc_freq[w] += 1
+            per_r[lab_i][w_clean] += 1
+            total[w_clean] += 1
+            doc_freq[w_clean] += 1
 
     sizes = {int(r): sum(1 for lab in labels if int(lab) == int(r)) for r in reading_ids}
     out: dict[int, list[str]] = {}
@@ -121,13 +261,25 @@ def _extract_reading_keywords(
             if lift > 0.04:
                 scored.append((lift * (0.5 + p_in), cnt, w))
         scored.sort(reverse=True)
-        kws = [w for _, _, w in scored[:top]]
+        kws: list[str] = []
+        seen_stems: set[str] = set()
+        for _, _, w in scored:
+            st = _singular_stem(w)
+            if st in seen_stems:
+                continue
+            seen_stems.add(st)
+            kws.append(w)
+            if len(kws) >= top:
+                break
         if not kws:
-            kws = [w for w, _ in per_r[ri].most_common(top)]
-        if not kws:
-            # Final fallback: short snippet from the first member text
-            first_mem = next((t.split("\n")[0].strip() for t, l in zip(texts, labels) if int(l) == ri and t.strip()), "")
-            kws = [first_mem[:24]] if first_mem else [f"reading {ri}"]
+            for w, _ in per_r[ri].most_common(top * 2):
+                st = _singular_stem(w)
+                if st in seen_stems:
+                    continue
+                seen_stems.add(st)
+                kws.append(w)
+                if len(kws) >= top:
+                    break
         out[ri] = kws
     return out
 
@@ -199,7 +351,10 @@ def _load_global_axes(path: str | Path | None, layer: int | None = None) -> tupl
             for ax_name, by_layer in bank.vectors.items():
                 if not by_layer:
                     continue
-                chosen_l = layer if (layer is not None and layer in by_layer) else sorted(by_layer)[len(by_layer) // 2]
+                if layer is not None:
+                    chosen_l = layer if layer in by_layer else min(by_layer, key=lambda l: abs(l - layer))
+                else:
+                    chosen_l = sorted(by_layer)[len(by_layer) // 2]
                 scale = float(bank.scales.get(ax_name, 1.0))
                 out[ax_name] = np.asarray(by_layer[chosen_l], dtype=np.float32) * scale
             return out, bank
@@ -228,8 +383,16 @@ def _load_global_axes(path: str | Path | None, layer: int | None = None) -> tupl
 class ReplayEngine:
     """Zero-GPU replay engine backed by saved `results/explorer/<model>/` runs."""
 
-    def __init__(self, results_dir: str | Path | None = None):
+    def __init__(
+        self,
+        results_dir: str | Path | None = None,
+        labels_path: str | Path | None = None,
+        model_key: str | None = None,
+    ):
         self.results_dir = Path(results_dir) if results_dir is not None else DEFAULT_RESULTS_DIR
+        self.model_key = str(model_key) if model_key else self.results_dir.name
+        self.labels_path = Path(labels_path) if labels_path is not None else None
+        self._labels_cfg = _load_readings_labels(self.labels_path)
         self._records: dict[str, dict[str, Any]] = {}
         self._order: list[str] = []
         self._load_all()
@@ -338,12 +501,11 @@ class ReplayEngine:
                     "best_example": best_row["texts"][0] if best_row.get("texts") else "",
                 }
 
+        title, description = _resolve_text_meta(self._labels_cfg, tid)
+
         for idx, r in enumerate(reading_ids):
             color = READING_PALETTE[idx % len(READING_PALETTE)]
             color_map[r] = color
-            kws = kw_map.get(r, [f"reading {r}"])
-            rlabel = " · ".join(kws)
-            label_map[r] = rlabel
             anchor_map[r] = anchors[idx]
             mem_idx = np.where(labels == r)[0]
             mem_sorted = sorted(mem_idx.tolist(), key=lambda i: float(lpt[i]), reverse=True)
@@ -363,9 +525,20 @@ class ReplayEngine:
                 })
                 if len(exemplars) >= 6:
                     break
+            kws = kw_map.get(r, [])
+            curated = _resolve_curated_reading_label(self._labels_cfg, self.model_key, tid, r)
+            if curated is not None:
+                rlabel = curated
+                label_source = "curated"
+            else:
+                ex_text = exemplars[0]["text"] if exemplars else ""
+                rlabel = _format_reading_label(kws, exemplar_text=ex_text, rank_idx=idx)
+                label_source = "auto"
+            label_map[r] = rlabel
             reading_meta.append({
                 "id": int(r),
                 "label": rlabel,
+                "label_source": label_source,
                 "keywords": kws,
                 "share": round(float(shares_raw.get(r, len(mem_idx) / max(int(keep.sum()), 1))), 4),
                 "count": int(len(mem_idx)),
@@ -433,8 +606,20 @@ class ReplayEngine:
         default_text = B.get("ref") or (baseline["texts"][0] if baseline.get("texts") else (texts[0] if texts else ""))
         default_fluency = float(np.median(lpt[keep])) if keep.any() else 0.0
 
+        map_data: dict[str, Any] | None = None
+        map_path = self.results_dir / f"map_{tid}.json"
+        if map_path.exists():
+            try:
+                parsed_map = json.loads(map_path.read_text(encoding="utf-8"))
+                if isinstance(parsed_map, dict):
+                    map_data = parsed_map
+            except (OSError, json.JSONDecodeError):
+                map_data = None
+
         bundle = {
             "id": tid,
+            "title": title,
+            "description": description,
             "text": S["text"],
             "kind": S.get("kind", "hard"),
             "n_samples": len(texts),
@@ -459,6 +644,8 @@ class ReplayEngine:
             "baseline_texts": baseline.get("texts", [])[:6],
             "default_translation": default_text,
             "default_fluency": round(default_fluency, 4),
+            "has_map": map_data is not None,
+            "map": map_data,
         }
 
         return {
@@ -474,6 +661,7 @@ class ReplayEngine:
             "steering_points": steering_points,
             "default_text": default_text,
             "default_fluency": default_fluency,
+            "map": map_data,
         }
 
     def list_texts(self) -> list[dict[str, Any]]:
@@ -482,6 +670,8 @@ class ReplayEngine:
             b = self._records[tid]["bundle"]
             out.append({
                 "id": b["id"],
+                "title": b["title"],
+                "description": b["description"],
                 "text": b["text"],
                 "kind": b["kind"],
                 "n_samples": b["n_samples"],
@@ -489,6 +679,7 @@ class ReplayEngine:
                 "fork_t": b["fork_t"],
                 "fork_token": b["fork_token"],
                 "entropy_bits": b["entropy_bits"],
+                "has_map": b["has_map"],
             })
         return out
 
@@ -496,6 +687,11 @@ class ReplayEngine:
         if text_id not in self._records:
             raise KeyError(f"Unknown text_id: {text_id!r}. Available: {self._order}")
         return self._records[text_id]["bundle"]
+
+    def get_text_map(self, text_id: str) -> dict[str, Any] | None:
+        if text_id not in self._records:
+            raise KeyError(f"Unknown text_id: {text_id!r}. Available: {self._order}")
+        return self._records[text_id]["map"]
 
     def steer_replay(
         self,
@@ -639,6 +835,8 @@ class LiveTranslationEngine:
         self.tok = tok
         self.model = model
         self.hook: CursorHook | None = None
+        self.global_hook: MultiLayerCursorHook | None = None
+        self._calibrated_axis_scales: dict[str, float] = {}
         self.fork_scorer: Any = None
         self.reft_controller: Any = None
         self._lora_loaded = False
@@ -654,6 +852,9 @@ class LiveTranslationEngine:
             self.layer = arch.n_layers(self.model) // 2
         if self.global_axes_path and not self.global_axes:
             self.global_axes, self.global_bank = _load_global_axes(self.global_axes_path, layer=self.layer)
+        elif self.global_bank is not None and self.global_axes_path:
+            # Refresh representative flat view for the resolved layer while retaining exact multi-layer bank
+            self.global_axes, _ = _load_global_axes(self.global_axes_path, layer=self.layer)
         if self.lora_path and self.lora_path.exists() and not self._lora_loaded:
             from explorer.adapters import load_lora
             load_lora(self.model, self.lora_path)
@@ -663,6 +864,14 @@ class LiveTranslationEngine:
             self.reft_controller = SpectralReFTController.from_checkpoint(self.model, self.reft_path)
         if self.hook is None:
             self.hook = CursorHook(self.model, self.layer)
+        if self.global_hook is None:
+            if self.global_bank is not None:
+                n_l = arch.n_layers(self.model)
+                valid_layers = [int(l) for l in self.global_bank.layers if 0 <= int(l) < n_l]
+                if valid_layers:
+                    self.global_hook = MultiLayerCursorHook(self.model, valid_layers)
+            elif self.global_axes:
+                self.global_hook = MultiLayerCursorHook(self.model, [self.layer])
         if self.fork_head_path and self.fork_head_path.exists() and self.fork_scorer is None:
             from explorer.fork_head import ForkHead, LiveForkScorer
             head = ForkHead.load(self.fork_head_path, map_location=self._dev())
@@ -678,10 +887,17 @@ class LiveTranslationEngine:
             return self.tok, self.model
 
     def close(self) -> None:
+        # Cancel & join any async background compass precompute threads BEFORE acquiring `_lock`
+        cancel_all = getattr(self.sessions, "cancel_all_precomputes", None)
+        if callable(cancel_all):
+            cancel_all(wait=True)
         with self._lock:
             if self.hook is not None:
                 self.hook.remove()
                 self.hook = None
+            if self.global_hook is not None:
+                self.global_hook.remove()
+                self.global_hook = None
             if self.fork_scorer is not None:
                 self.fork_scorer.remove()
                 self.fork_scorer = None
@@ -691,6 +907,10 @@ class LiveTranslationEngine:
 
     def _dev(self) -> torch.device:
         return arch.text_model(self.model).embed_tokens.weight.device
+
+    def _pause_fork_scorer(self):
+        paused_fn = getattr(self.fork_scorer, "paused", None) if self.fork_scorer is not None else None
+        return paused_fn() if callable(paused_fn) else nullcontext()
 
     def _resolve_coords(self, global_coords: dict[str, float] | None, target_keys: set[str]) -> dict[str, float]:
         if not global_coords:
@@ -720,9 +940,179 @@ class LiveTranslationEngine:
                 used = True
         return vec if used else None
 
+    def _split_reft_and_bank_coords(
+        self,
+        global_coords: dict[str, float] | None,
+    ) -> tuple[dict[str, float], dict[str, float]]:
+        """ReFT-primary precedence: axes covered by SpectralReFT go 100% to ReFT (zero double-steering);
+        any non-ReFT axes (or all axes when ReFT is absent) route to the calibrated GlobalAxisBank hook."""
+        if not global_coords:
+            return {}, {}
+        if self.reft_controller is not None:
+            reft_keys = set(self.reft_controller.axis_names)
+            reft_coords = self._resolve_coords(global_coords, reft_keys)
+            covered = set(reft_keys) | {k for k, v in _AXIS_ALIASES.items() if v in reft_keys}
+            fallback_coords = {
+                str(k): float(v)
+                for k, v in global_coords.items()
+                if k not in covered and abs(float(v)) > 1e-9
+            }
+            return reft_coords, fallback_coords
+        fallback_coords = {str(k): float(v) for k, v in global_coords.items() if abs(float(v)) > 1e-9}
+        return {}, fallback_coords
+
+    def _calibrated_bank_scale(self, axis_name: str) -> float:
+        """Return cursor-mode calibrated scale for a GlobalAxisBank axis (lazily calibrated once via fast_calibrate)."""
+        bank = self.global_bank
+        if bank is None:
+            return 1.0
+        raw_scale = float(bank.scales.get(axis_name, 1.0))
+        meta = getattr(bank, "meta", None)
+        if isinstance(meta, dict) and meta.get("cursor_calibrated"):
+            return raw_scale
+        if axis_name in self._calibrated_axis_scales:
+            return self._calibrated_axis_scales[axis_name]
+        if self.global_hook is None or self.model is None or self.tok is None:
+            return raw_scale
+
+        by_layer = bank.vectors.get(axis_name, {})
+        d = arch.hidden_size(self.model)
+        unit_vecs = {
+            int(l): np.asarray(by_layer[l], dtype=np.float32)
+            for l in self.global_hook.layers
+            if l in by_layer and np.asarray(by_layer[l]).shape == (d,)
+        }
+        if not unit_vecs:
+            return raw_scale
+
+        # Save/clear any active steering and pause ForkHead scorer during one-time calibration
+        self.clear_steering()
+        try:
+            with self._pause_fork_scorer():
+                ids, start = build_prompt(self.tok, "Cuando canta Camarón, tiene duende.")
+                dev = self._dev()
+                x = torch.tensor([ids], dtype=torch.long, device=dev)
+                pkv = None
+                gen: list[int] = []
+                with torch.no_grad():
+                    for _ in range(4):
+                        out = arch.forward_hidden(self.model, input_ids=x, past_key_values=pkv, use_cache=True)
+                        pkv = out.past_key_values
+                        nxt = int(arch.logits(self.model, out.last_hidden_state[0, -1][None])[0].argmax().item())
+                        gen.append(nxt)
+                        x = torch.tensor([[nxt]], dtype=torch.long, device=dev)
+                cal_seq = ids + gen
+                a0 = min(max(raw_scale, 0.1), 15.0)
+                alpha, _, _ = fast_calibrate(
+                    self.model,
+                    self.global_hook,
+                    cal_seq,
+                    max(0, start - 1),
+                    unit_vecs,
+                    target=0.25,
+                    mode="cursor",
+                    a0=a0,
+                    max_evals=5,
+                    tol=0.15,
+                )
+                if not math.isfinite(alpha) or alpha <= 0.0:
+                    alpha = min(raw_scale, 20.0)
+        except Exception:
+            alpha = min(raw_scale, 20.0)
+        finally:
+            self.clear_steering()
+
+        self._calibrated_axis_scales[axis_name] = float(alpha)
+        return float(alpha)
+
+    def _global_layer_vectors(self, coords: dict[str, float] | None) -> dict[int, torch.Tensor]:
+        """Build per-layer global steering vectors on exact bank layers (or `[self.layer]` for flat axes)."""
+        if not coords:
+            return {}
+        d = arch.hidden_size(self.model)
+        if self.global_bank is not None and self.global_hook is not None:
+            resolved = self._resolve_coords(coords, set(self.global_bank.vectors.keys()))
+            if not resolved:
+                return {}
+            acc: dict[int, np.ndarray] = {}
+            for ax_name, fv in resolved.items():
+                scale = self._calibrated_bank_scale(ax_name)
+                by_layer = self.global_bank.vectors.get(ax_name, {})
+                for l in self.global_hook.layers:
+                    if l not in by_layer:
+                        continue
+                    v = np.asarray(by_layer[l], dtype=np.float32)
+                    if v.shape != (d,):
+                        continue
+                    if l not in acc:
+                        acc[l] = np.zeros(d, dtype=np.float32)
+                    acc[l] += (fv * scale) * v
+            return {l: torch.tensor(arr, dtype=torch.float32) for l, arr in acc.items()}
+
+        if self.global_axes and self.layer is not None:
+            gvec = self._global_vector(coords)
+            if gvec is not None:
+                return {int(self.layer): torch.tensor(gvec, dtype=torch.float32)}
+        return {}
+
+    def apply_steering(
+        self,
+        global_coords: dict[str, float] | None = None,
+        global_start: int = 0,
+        local_vec: torch.Tensor | np.ndarray | None = None,
+        local_b: int = 0,
+        local_only_at_b: bool = False,
+    ) -> bool:
+        """Apply unified ReFT-primary global steering + optional local cursor steering.
+
+        Returns True if any global tone coordinates were applied (via ReFT or global_hook).
+        """
+        reft_coords, fallback_coords = self._split_reft_and_bank_coords(global_coords)
+        # Compute fallback vectors BEFORE setting hooks (lazy calibration temporarily clears hooks)
+        gvecs = self._global_layer_vectors(fallback_coords)
+
+        if self.reft_controller is not None:
+            self.reft_controller.set_coords(reft_coords or None, start_pos=int(global_start))
+        if self.global_hook is not None:
+            self.global_hook.set(global_vecs=gvecs or None, global_start=int(global_start))
+        if self.hook is not None:
+            if local_vec is not None:
+                lv = local_vec if torch.is_tensor(local_vec) else torch.tensor(local_vec, dtype=torch.float32)
+                self.hook.set(lv, b=int(local_b), only_at_b=bool(local_only_at_b))
+            else:
+                self.hook.set(None)
+        return bool(reft_coords) or bool(gvecs)
+
+    def sync_steering_pos(self, pos: int) -> None:
+        """Synchronise absolute KV-cache start position across all active steering hooks."""
+        p = int(pos)
+        if self.hook is not None:
+            self.hook.sync_pos(p)
+        if self.global_hook is not None:
+            self.global_hook.sync_pos(p)
+        if self.reft_controller is not None:
+            self.reft_controller.sync_pos(p)
+
+    def clear_steering(self) -> None:
+        """Clear all active local, global, and ReFT steering hooks."""
+        if self.hook is not None:
+            self.hook.set(None)
+        if self.global_hook is not None:
+            self.global_hook.clear()
+        if self.reft_controller is not None:
+            self.reft_controller.set_coords(None)
+
     def status(self) -> dict[str, Any]:
         loaded = self.model is not None
         dev = str(self._dev()) if loaded else ("cuda" if torch.cuda.is_available() else "cpu")
+        if self.reft_controller is not None:
+            steering_mode = "reft"
+        elif self.global_bank is not None and self.global_hook is not None:
+            steering_mode = "global_axes_multilayer"
+        elif self.global_axes:
+            steering_mode = "global_axes_single"
+        else:
+            steering_mode = "none"
         return {
             "model_key": self.model_key,
             "loaded": loaded,
@@ -733,6 +1123,8 @@ class LiveTranslationEngine:
             "active_forks": len(self.forks),
             "global_axes_loaded": list(self.global_axes.keys()),
             "global_axes_schema": DEFAULT_GLOBAL_AXES,
+            "global_steering_mode": steering_mode,
+            "global_hook_layers": list(self.global_hook.layers) if self.global_hook is not None else [],
             "fork_head_loaded": self.fork_scorer is not None,
             "reft_loaded": self.reft_controller is not None,
             "lora_loaded": self._lora_loaded,
@@ -751,16 +1143,10 @@ class LiveTranslationEngine:
         tok, model = self.ensure_loaded()
         ids, start = build_prompt(tok, source_text)
         dev = self._dev()
-        gvec = self._global_vector(global_coords)
 
         with self._lock:
-            if gvec is not None:
-                self.hook.set(torch.tensor(gvec, dtype=torch.float32), b=start - 1, only_at_b=False)
-            else:
-                self.hook.set(None)
-            if self.reft_controller is not None:
-                rc = self._resolve_coords(global_coords, set(self.reft_controller.axis_names))
-                self.reft_controller.set_coords(rc or None, start_pos=start - 1)
+            self.apply_steering(global_coords=global_coords, global_start=start - 1)
+            self.sync_steering_pos(0)
             if self.fork_scorer is not None:
                 self.fork_scorer.reset()
 
@@ -820,9 +1206,7 @@ class LiveTranslationEngine:
                     yield event
                     x = torch.tensor([[next_id]], device=dev)
             finally:
-                self.hook.set(None)
-                if self.reft_controller is not None:
-                    self.reft_controller.set_coords(None)
+                self.clear_steering()
 
     def probe_fork(
         self,
@@ -844,7 +1228,7 @@ class LiveTranslationEngine:
         lookahead_tokens = max(2, int(lookahead_tokens))
 
         with self._lock:
-            self.hook.set(None)
+            self.clear_steering()
             conts = generate(
                 model,
                 tok,
@@ -959,8 +1343,9 @@ class LiveTranslationEngine:
             color = READING_PALETTE[idx % len(READING_PALETTE)]
             color_map[r] = color
             mem_idx = np.where(labels == r)[0].tolist()
-            kws = kw_map.get(r, [f"reading {r}"])
-            rlabel = " · ".join(kws)
+            kws = kw_map.get(r, [])
+            first_ex = cont_texts[mem_idx[0]] if mem_idx else ""
+            rlabel = _format_reading_label(kws, exemplar_text=first_ex, rank_idx=idx)
             seen_c: set[tuple[int, ...]] = set()
             exemplars: list[dict[str, Any]] = []
             for i in mem_idx:
@@ -1054,60 +1439,54 @@ class LiveTranslationEngine:
         fx, fy = float(x), float(y)
 
         vec_np = fork["alpha_unit"] * (fx * fork["axes"][0] + fy * fork["axes"][1])
-        gvec = self._global_vector(global_coords)
-        if gvec is not None:
-            vec_np = vec_np + gvec.astype(np.float64)
-        vec = torch.tensor(vec_np, dtype=torch.float32)
+        local_vec = torch.tensor(vec_np, dtype=torch.float32)
 
-        reft_applied = False
+        global_applied = False
         with self._lock:
-            if self.reft_controller is not None:
-                rc = self._resolve_coords(global_coords, set(self.reft_controller.axis_names))
-                if rc:
-                    self.reft_controller.set_coords(rc, start_pos=fork["b"])
-                    reft_applied = True
-                else:
-                    self.reft_controller.set_coords(None)
+            global_applied = self.apply_steering(
+                global_coords=global_coords,
+                global_start=fork["b"],
+            )
             try:
-                cont_ids = steered(
-                    model,
-                    tok,
-                    self.hook,
-                    fork["prefix"],
-                    vec,
-                    fork["b"],
-                    int(max_new),
-                    n=1,
-                    temperature=float(temperature),
-                    only_at_b=bool(only_at_b),
-                )[0]
+                with self._pause_fork_scorer():
+                    cont_ids = steered(
+                        model,
+                        tok,
+                        self.hook,
+                        fork["prefix"],
+                        local_vec,
+                        fork["b"],
+                        int(max_new),
+                        n=1,
+                        temperature=float(temperature),
+                        only_at_b=bool(only_at_b),
+                    )[0]
 
-                # Reading affinity scores under the steered model
-                cand_list = fork["cand_list"]
-                rids = fork["reading_ids"]
-                if cand_list:
-                    self.hook.set(vec, fork["b"], only_at_b=bool(only_at_b))
-                    try:
-                        with torch.no_grad():
-                            lps = seq_logp(model, fork["prefix"], [c for _, c in cand_list]).float().cpu().numpy()
-                    finally:
-                        self.hook.set(None)
-                    lens = np.maximum(np.array([len(c) for _, c in cand_list], dtype=np.float64), 1.0)
-                    norm_lp = lps / lens
-                    norm_lp = norm_lp - float(norm_lp.max())
-                    probs = np.exp(norm_lp)
-                    probs /= max(float(probs.sum()), 1e-30)
-                    shares_raw: dict[int, float] = {int(r): 0.0 for r in rids}
-                    for (r, _), pr in zip(cand_list, probs):
-                        shares_raw[int(r)] += float(pr)
-                    total_s = sum(shares_raw.values())
-                    shares = {str(r): round(shares_raw[r] / max(total_s, 1e-30), 4) for r in rids}
-                else:
-                    rbf = _rbf_reading_shares(fx, fy, rids, fork["anchors"])
-                    shares = {str(r): round(float(v), 4) for r, v in rbf.items()}
+                    # Reading affinity scores under the steered model
+                    cand_list = fork["cand_list"]
+                    rids = fork["reading_ids"]
+                    if cand_list:
+                        self.hook.set(local_vec, fork["b"], only_at_b=bool(only_at_b))
+                        try:
+                            with torch.no_grad():
+                                lps = seq_logp(model, fork["prefix"], [c for _, c in cand_list]).float().cpu().numpy()
+                        finally:
+                            self.hook.set(None)
+                        lens = np.maximum(np.array([len(c) for _, c in cand_list], dtype=np.float64), 1.0)
+                        norm_lp = lps / lens
+                        norm_lp = norm_lp - float(norm_lp.max())
+                        probs = np.exp(norm_lp)
+                        probs /= max(float(probs.sum()), 1e-30)
+                        shares_raw: dict[int, float] = {int(r): 0.0 for r in rids}
+                        for (r, _), pr in zip(cand_list, probs):
+                            shares_raw[int(r)] += float(pr)
+                        total_s = sum(shares_raw.values())
+                        shares = {str(r): round(shares_raw[r] / max(total_s, 1e-30), 4) for r in rids}
+                    else:
+                        rbf = _rbf_reading_shares(fx, fy, rids, fork["anchors"])
+                        shares = {str(r): round(float(v), 4) for r, v in rbf.items()}
             finally:
-                if self.reft_controller is not None:
-                    self.reft_controller.set_coords(None)
+                self.clear_steering()
 
         cont_text = tok.decode(cont_ids).strip()
         full_text = tok.decode(fork["prefix_token_ids"] + cont_ids).strip()
@@ -1121,5 +1500,5 @@ class LiveTranslationEngine:
             "shares": shares,
             "tokens": [tok.decode([tid]) for tid in cont_ids],
             "token_ids": [int(tid) for tid in cont_ids],
-            "global_coords_applied": (gvec is not None) or reft_applied,
+            "global_coords_applied": global_applied,
         }
