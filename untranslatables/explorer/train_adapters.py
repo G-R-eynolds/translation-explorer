@@ -172,6 +172,27 @@ def train_multiref_lora(
     }
 
 
+def _calibrate_reft_delta_norm(model, prompt_ids: list[int], cont_ids: list[int], layers: list[int]) -> float:
+    """Estimate a safe, scale-invariant SpectralReFT norm bound (10% of median hooked hidden norm, floor 5.0)."""
+    dev = _model_device(model)
+    x = torch.tensor([prompt_ids + cont_ids[:16]], device=dev, dtype=torch.long)
+    norms: list[float] = []
+    with torch.no_grad():
+        out = arch.forward_hidden(model, input_ids=x, output_hidden_states=True)
+        hs = getattr(out, "hidden_states", None)
+        if hs is not None:
+            for l_idx in layers:
+                if 0 <= int(l_idx) + 1 < len(hs):
+                    h_l = hs[int(l_idx) + 1][0].float()
+                    norms.append(float(h_l.norm(dim=-1).median().item()))
+    if not norms:
+        return 5.0
+    med_norm = float(sorted(norms)[len(norms) // 2])
+    if not (med_norm > 0.0) or med_norm != med_norm:
+        return 5.0
+    return float(max(5.0, round(0.10 * med_norm, 2)))
+
+
 def train_spectral_reft(
     model,
     tok,
@@ -182,7 +203,7 @@ def train_spectral_reft(
     steps: int = 100,
     seed: int = 0,
     save_path: str | Path | None = None,
-    max_delta_norm: float = 5.0,
+    max_delta_norm: float | None = None,
     contrast_weight: float = 0.2,
     margin: float = 1.0,
     prompt_style: str = "legacy",
@@ -204,15 +225,23 @@ def train_spectral_reft(
     if layers is None:
         layers = default_layers(model)
 
+    grouped = _prepare_examples(tok, dataset, axis_names=axis_names, prompt_style=prompt_style)
+    if max_delta_norm is None:
+        sample_ex = grouped[0][0]
+        resolved_max_delta = _calibrate_reft_delta_norm(
+            model, sample_ex["prompt_ids"], sample_ex["cont_ids"], layers
+        )
+    else:
+        resolved_max_delta = float(max_delta_norm)
+
     controller = SpectralReFTController(
         model=model,
         layers=layers,
         axis_names=axis_names,
         rank=rank,
-        max_delta_norm=max_delta_norm,
+        max_delta_norm=resolved_max_delta,
     )
     params = list(controller.parameters())
-    grouped = _prepare_examples(tok, dataset, axis_names=axis_names, prompt_style=prompt_style)
     opt = torch.optim.AdamW(params, lr=lr)
 
     losses: list[float] = []
@@ -344,6 +373,7 @@ def main(argv: list[str] | None = None) -> None:
         print(json.dumps({
             "mode": "reft",
             "steps": args.steps,
+            "max_delta_norm": res["controller"].max_delta_norm,
             "final_loss": res["losses"][-1] if res["losses"] else 0.0,
             "saved": res["saved"],
         }))
