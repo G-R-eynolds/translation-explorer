@@ -1,0 +1,179 @@
+{
+  "session_id": "g3_4b_pt_sobremesa_paragraph",
+  "model_key": "g3_4b_pt",
+  "text_id": "sobremesa_paragraph",
+  "title": "Literary Paragraph (Sobremesa & Duende) (g3_4b_pt)",
+  "source_text": "La sobremesa del domingo se alargó hasta el anochecer entre risas, café frío y un silencio cómplice que nadie se atrevía a romper. Cuando alguien puso a Camarón en el tocadiscos, la habitación entera pareció encogerse: aquello no era técnica ni adorno, sino un duende áspero que subía desde las plantas de los pies.",
+  "src_lang": "Spanish",
+  "tgt_lang": "English",
+  "committed_text": "The Sunday over-afternoon stretched into the dusk between laughter, cold coffee, and a complicit silence that nobody dared to break. When someone put Camarón on the turntable, the whole room seemed to shrink: that wasn't technique or decoration, but a rough duende rising from the soles of",
+  "n_tokens": 61,
+  "history": [
+    {
+      "id": "n0",
+      "parent_id": null,
+      "fork_token_idx": 0,
+      "label": "Main path",
+      "n_tokens": 61,
+      "snippet": " but a rough duende rising from the soles of",
+      "active": true
+    },
+    {
+      "id": "n1",
+      "parent_id": "n0",
+      "fork_token_idx": 1,
+      "label": "hushed Sunday afternoon stre",
+      "n_tokens": 11,
+      "snippet": "oon stretched into the dusk between laughter",
+      "active": false
+    }
+  ],
+  "alignment": {
+    "source_lines": [
+      {
+        "index": 0,
+        "text": "La sobremesa del domingo se alargó hasta el anochecer entre risas, café frío y un silencio cómplice que nadie se atrevía a romper.",
+        "stanza": 0
+      },
+      {
+        "index": 1,
+        "text": "Cuando alguien puso a Camarón en el tocadiscos, la habitación entera pareció encogerse: aquello no era técnica ni adorno, sino un duende áspero que subía desde las plantas de los pies.",
+        "stanza": 0
+      }
+    ],
+    "active_source_line": 1,
+    "spans": [
+      {
+        "target_start": 0,
+        "target_end": 27,
+        "source_line": 0,
+        "confidence": 0.8
+      },
+      {
+        "target_start": 27,
+        "target_end": 61,
+        "source_line": 1,
+        "confidence": 0.8
+      }
+    ]
+  },
+  "fork_snapshot": {
+    "at_token": 1,
+    "regime": "fork",
+    "entropy": 3.8065,
+    "fork_score": 0.7794,
+    "branches": [
+      {
+        "first_word": " Sunday",
+        "preview": " Sunday over-afternoon stretched into the dusk between",
+        "prob": 0.376,
+        "distinctive": "over",
+        "sub_branches": [
+          {
+            "word": " over",
+            "prob": 0.3105
+          },
+          {
+            "word": " afternoon",
+            "prob": 0.1883
+          },
+          {
+            "word": " table",
+            "prob": 0.0611
+          }
+        ]
+      },
+      {
+        "first_word": " hushed",
+        "preview": " hushed Sunday afternoon stretched into the dusk between laughter",
+        "prob": 0.0508,
+        "distinctive": "hushed",
+        "sub_branches": [
+          {
+            "word": " Sunday",
+            "prob": 0.1719
+          },
+          {
+            "word": " conversation",
+            "prob": 0.1043
+          },
+          {
+            "word": " over",
+            "prob": 0.0558
+          }
+        ]
+      },
+      {
+        "first_word": " midafternoon",
+        "preview": " midafternoon of Sunday stretched into the dusk between",
+        "prob": 0.0448,
+        "distinctive": "midafternoon",
+        "sub_branches": [
+          {
+            "word": " of",
+            "prob": 0.6992
+          },
+          {
+            "word": " on",
+            "prob": 0.065
+          },
+          {
+            "word": " Sunday",
+            "prob": 0.0574
+          }
+        ]
+      },
+      {
+        "first_word": " afternoon",
+        "preview": " afternoon of Sunday stretched into the dusk between laughter,",
+        "prob": 0.0396,
+        "distinctive": "afternoon",
+        "sub_branches": [
+          {
+            "word": " of",
+            "prob": 0.5062
+          },
+          {
+            "word": " lingered",
+            "prob": 0.0997
+          },
+          {
+            "word": " table",
+            "prob": 0.0471
+          }
+        ]
+      },
+      {
+        "first_word": " drowsy",
+        "preview": " drowsy Sunday afternoon stretched into the dusk between laughter",
+        "prob": 0.0308,
+        "distinctive": "drowsy",
+        "sub_branches": [
+          {
+            "word": " Sunday",
+            "prob": 0.3275
+          },
+          {
+            "word": " afternoon",
+            "prob": 0.0828
+          },
+          {
+            "word": " after",
+            "prob": 0.0443
+          }
+        ]
+      }
+    ]
+  },
+  "compass_sample": {
+    "source": "fork_head",
+    "fast_ms": 3.56,
+    "grad_ms": 1879.1,
+    "steer_pos": " Sunday overmesa lengthened until dusk between laughs, cold coffee and a complic",
+    "steer_neg": " hushed conversation at the Sunday table lingered on into the dusk, as"
+  },
+  "slider_comparison": {
+    "plain_domesticating": " afternoon lingered into the dusk between laughter, cold coffee",
+    "poetic_foreignising": " over-afternoon stretched into the dusk between laughter"
+  }
+}

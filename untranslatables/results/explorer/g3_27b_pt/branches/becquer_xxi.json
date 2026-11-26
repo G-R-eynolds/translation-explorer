@@ -1,0 +1,25 @@
+{
+ "id": "becquer_xxi",
+ "ref": "What is poetry?,",
+ "ref_tokens": [
+  " What",
+  " is",
+  " poetry",
+  "?,"
+ ],
+ "t": 3,
+ "specificity": null,
+ "why": "no reading-specific token: max output Fisher",
+ "entropy": [
+  0.4805908203125,
+  0.05136985331773758,
+  0.1491984724998474,
+  1.1887794733047485
+ ],
+ "fisher_top": [
+  0.10367174446582794,
+  0.00766162620857358,
+  0.010505752637982368,
+  0.2414635568857193
+ ]
+}

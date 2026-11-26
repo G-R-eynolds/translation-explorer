@@ -1,38 +1,50 @@
-# explorer/: interpretation explorer, step 1
+# `explorer/`: Live Spectral Co-Translation Studio (v2)
 
-- Spec: `../docs/superpowers/specs/2026-11-24-interpretation-explorer-design.md`
-- Plan: `../docs/superpowers/plans/2026-11-24-interpretation-explorer.md`
+Real-time token/word-by-word co-translation engine, interpretive fork discovery, continuous multi-layer `SpectralReFT` practice steering, and `<10 ms` amortised `ForkHead(n_dirs=2)` 2D steering compass.
 
-Question: does the base model (`google/gemma-3-4b-pt`) hold several distinct readings of a hard text, and does a direction found from its own sensitivities, added from the cursor onward, steer it into a chosen one?
+## Quick Commands
 
+```bash
+# 1. Live v2 Studio (Gemma 3 12B NF4 on 12 GB RTX 4070, or g3_27b_pt on 22.5 GB L4 / A100)
+python -m explorer serve --mode live --model g3_12b_pt \
+  --global-axes results/explorer/g3_12b_pt/phase3/global_axes.npz \
+  --lora results/explorer/g3_12b_pt/phase3/multiref_lora.pt \
+  --reft results/explorer/g3_12b_pt/phase3/spectral_reft.pt \
+  --fork-head results/explorer/g3_12b_pt/fork_head.pt \
+  --port 8765
+
+# 2. Train v2 artifacts for any model scale (g3_12b_pt | g3_27b_pt | qwen72b_base)
+MODEL=g3_27b_pt bash explorer/queues/train_g3_scale.sh
+
+# 3. Run real-GPU live v2 latency + formatting benchmark & record offline sessions
+python -m explorer.bench_live --model g3_27b_pt
+
+# 4. Build static HTML Phase-1 reports & multi-model offline showcase
+python -m explorer report --model g3_27b_pt
+python -m explorer report --model g3_4b_pt
+
+# 5. Run full CPU + headless Chrome test suite (158 tests)
+pytest -q tests/test_v2_cotranslate.py tests/test_explorer.py tests/test_phase1_multisteer.py \
+  tests/test_phase2_live.py tests/test_phase3_adapters.py tests/test_phase4_fork_head.py \
+  tests/test_integration_all_phases.py tests/e2e/
 ```
-remote/run.sh explorer bash explorer/queue.sh     # desktop 4070
-python -m explorer report --model g3_4b_pt        # results/explorer/g3_4b_pt/report.html
-.venv-cpu/bin/python -m pytest -q tests/test_explorer.py
-```
 
-| file | does |
+## Module Map
+
+| File | Responsibility |
 |---|---|
-| `frame.py` | few-shot "Spanish: / English:" frame, stop rules, loader (image encoder stubbed) |
-| `steer.py` | `CursorHook`: adds a vector at positions ≥ b, decode steps included (or at b only) |
-| `sample.py` | sampling (true distribution, T = 1), scoring, steered continuation |
-| `readings.py` | meaning-in-context embeddings, silhouette-chosen agglomerative clusters, readings (≥ 5% of samples) |
-| `branches.py` | per-token entropy and output-Fisher top eigenvalue; the cursor where two readings split |
-| `directions.py` | per-sample gradients at the cursor; natural (Fisher-whitened) and plain contrast directions; α from a target KL |
-| `run.py` | the pipeline (resumable per text) and `summary.json` with the pre-registered decision rule |
-| `report.py` | static HTML: reading cards, branch timeline, steering table |
+| `session.py` | Stateful KV-cached `CoTranslationSession` & `CoTranslationManager`: word/token stepping, exact rewind/redo, non-destructive history tree with LCP cache reuse, fast `glide()` to forks, depth-2 `sub_branches`, `<10 ms` `ForkHead` compass + Tier-2 gradient compass, source↔target line alignment, Gemma 3 `DynamicSlidingWindowLayer` crop safety. |
+| `live_engine.py` | `LiveTranslationEngine` (unified ReFT-primary global steering + local `CursorHook` + `LiveForkScorer`) and `ReplayEngine` (Phase-1 archive + curated reading labels). |
+| `server.py` | Threading HTTP/SSE server (`/api/session/*`, `/api/replay/*`, 2 MiB body cap, pre-header SSE validation) and multi-model standalone `build_offline_html()`. |
+| `static/workbench.html` | Clean two-pane editorial web UI: live source editor & aligned line view, bounded scrollable translation canvas, keyboard-first stepping (`Space`, `Tab`, `Backspace`, `1–6`, `Shift+1–6`, `C`, `S`, `H`, `Esc`), 2D SVG compass, hierarchical Paths tree, and multi-model offline viewer. |
+| `frame.py` | Doc/poem prompt framing (`build_doc_prompt`, `DOC_STOPS`) preserving `\n`, `\n\n`, and indentation, plus legacy few-shot framing and model loader. |
+| `readings.py` | Semantic sentence-embedder clustering with uncentered raw-dispersion gate (`disp_min=0.035`) + orthographic normalization eliminating factual control false positives (`control_museo: 5 → 1`). |
+| `directions.py` | OOM-safe per-sample gradients (`grads_at`), Fisher-whitened natural contrast directions, and KL-bisection calibration. |
+| `multisteer.py` | Multi-layer `MultiLayerCursorHook` (with `sync_pos` KV-cache tracking) and fast cached-$p_0$ bisection. |
+| `adapters.py` & `train_adapters.py` | Pure-PyTorch multi-reference `LoRALinear` (quantized merge guard) and continuous `SpectralReFTController` with automatic residual-norm-calibrated `max_delta_norm` (`10%` of median `||h||`). |
+| `fork_head.py` | `ForkHead(n_dirs=2)` side-head predicting fork probability, entropy, Fisher $\lambda_1$, and orthonormal local steering directions in `<10 ms`, plus re-entrant `LiveForkScorer.paused()`. |
+| `mapgrid.py` & `report.py` | 15×15 2D steering-plane sweep (with `spectral_basis` handling $R=2$ without rank collapse) and static HTML report generator. |
+| `bench_live.py` | End-to-end real-GPU live v2 latency, formatting, slider, and session-recording benchmark. |
+| `data/` | `texts.yaml` (9 benchmark texts), `tone_axes.yaml` (expanded multi-stanza poems & prose across ES/PT/FR/DE/IT), and `readings_labels.yaml` (curated reading labels for `g3_4b_pt` & `g3_27b_pt`). |
 
-**Labelling readings:** read the cards in the report, then write `data/readings_labels.yaml` (`{text_id: {reading_id: label}}`). The code never names a reading.
-
-**Changes from the spec, made during the build:**
-- **9 texts instead of 8:** the bare *duende* sentence was added.
-- **Cursor convention:** "steer at output token t" acts on the state at absolute position start + t − 1, the state that predicts token t.
-- **Reading representation, changed after the first three texts:** readings now come from a semantic sentence embedder (all-mpnet-base-v2), centred on each text's own samples, with the lowest-probability 10% of samples left out.
-  - *What went wrong:* the spec's representation (the base model's own mean final-layer state) merged *spirit*, *charm* and *elf* into one cluster and split off only a garbage sample.
-  - *Evidence for the change:* on the saved samples, the new representation separates spirit/soul, magic/fairy, charm/charisma and keep-*duende*/flame for the flamenco sentence, and elf/gnome/goblin/dwarf/fairy for the bare one.
-  - *Caveat:* some clusters are synonym choices rather than different interpretations, and the report says so.
-- **Fork rule, changed twice during the build:** the fork is now the token where the reference commits to its reading. That is the token of the reference most specific to its reading's members compared with the other readings' members ("magic"). The other readings' continuations are aligned to that point by sequence alignment.
-  - *Why:* exact-prefix rules either fired on stray first tokens (t = 0) or never fired, because punctuation variants break exact prefixes.
-- **Steering strength, changed after the first run:** α is now calibrated by measuring KL, by bisection, not by the single-position Fisher prediction. That prediction badly underestimated cursor mode, where the vector is added at every later position, and the text degenerated.
-  - *Grids:* at_b mode uses KL at the cursor ∈ {0.25, 0.5, 1, 2} nats. Cursor mode uses mean per-token KL along the reference ∈ {0.05, 0.1, 0.25, 0.5}.
-  - *Decision rule:* it uses the three lower levels of each grid.
+See [`results/explorer/SCALE_COMPARISON.md`](../results/explorer/SCALE_COMPARISON.md) for complete 4B vs 12B vs 27B empirical results.

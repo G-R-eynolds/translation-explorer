@@ -1,0 +1,167 @@
+{
+  "session_id": "g3_27b_pt_sobremesa_paragraph",
+  "model_key": "g3_27b_pt",
+  "text_id": "sobremesa_paragraph",
+  "title": "Literary Paragraph (Sobremesa & Duende) (g3_27b_pt)",
+  "source_text": "La sobremesa del domingo se alargó hasta el anochecer entre risas, café frío y un silencio cómplice que nadie se atrevía a romper. Cuando alguien puso a Camarón en el tocadiscos, la habitación entera pareció encogerse: aquello no era técnica ni adorno, sino un duende áspero que subía desde las plantas de los pies.",
+  "src_lang": "Spanish",
+  "tgt_lang": "English",
+  "committed_text": "The Sunday sobremesa stretched until dusk among laughter, cold coffee and a complicit silence that no one dared to break. When someone put Camarón on the record player, the whole room seemed to shrink: that was not technique nor adornment, but a rough duende that rose from the soles of the feet",
+  "n_tokens": 62,
+  "history": [
+    {
+      "id": "n0",
+      "parent_id": null,
+      "fork_token_idx": 0,
+      "label": "Main path",
+      "n_tokens": 62,
+      "snippet": " duende that rose from the soles of the feet",
+      "active": true
+    },
+    {
+      "id": "n1",
+      "parent_id": "n0",
+      "fork_token_idx": 1,
+      "label": "after-dinner conversation of",
+      "n_tokens": 11,
+      "snippet": "rsation of Sunday stretched until dusk among",
+      "active": false
+    }
+  ],
+  "alignment": {
+    "source_lines": [
+      {
+        "index": 0,
+        "text": "La sobremesa del domingo se alargó hasta el anochecer entre risas, café frío y un silencio cómplice que nadie se atrevía a romper.",
+        "stanza": 0
+      },
+      {
+        "index": 1,
+        "text": "Cuando alguien puso a Camarón en el tocadiscos, la habitación entera pareció encogerse: aquello no era técnica ni adorno, sino un duende áspero que subía desde las plantas de los pies.",
+        "stanza": 0
+      }
+    ],
+    "active_source_line": 1,
+    "spans": [
+      {
+        "target_start": 0,
+        "target_end": 24,
+        "source_line": 0,
+        "confidence": 0.8
+      },
+      {
+        "target_start": 24,
+        "target_end": 62,
+        "source_line": 1,
+        "confidence": 0.8
+      }
+    ]
+  },
+  "fork_snapshot": {
+    "at_token": 1,
+    "regime": "fork",
+    "entropy": 2.8674,
+    "fork_score": 0.9986,
+    "branches": [
+      {
+        "first_word": " Sunday",
+        "preview": " Sunday sobremesa stretched until dusk among laughter, cold",
+        "prob": 0.222,
+        "distinctive": "cold",
+        "sub_branches": [
+          {
+            "word": " sobremesa",
+            "prob": 0.4472
+          },
+          {
+            "word": " after",
+            "prob": 0.2393
+          },
+          {
+            "word": " afternoon",
+            "prob": 0.0686
+          }
+        ]
+      },
+      {
+        "first_word": " after",
+        "preview": " after-dinner conversation of Sunday stretched until dusk among",
+        "prob": 0.2005,
+        "distinctive": "after",
+        "sub_branches": [
+          {
+            "word": "-",
+            "prob": 0.9628
+          }
+        ]
+      },
+      {
+        "first_word": " sobremesa",
+        "preview": " sobremesa of Sunday stretched until the anochecer",
+        "prob": 0.196,
+        "distinctive": "anochecer",
+        "sub_branches": [
+          {
+            "word": " of",
+            "prob": 0.7388
+          },
+          {
+            "word": " (",
+            "prob": 0.1284
+          },
+          {
+            "word": " on",
+            "prob": 0.0472
+          }
+        ]
+      },
+      {
+        "first_word": " post",
+        "preview": " post-lunch of Sunday stretched until dusk between laughter",
+        "prob": 0.0721,
+        "distinctive": "post",
+        "sub_branches": [
+          {
+            "word": "-",
+            "prob": 0.7152
+          },
+          {
+            "word": "pr",
+            "prob": 0.2322
+          }
+        ]
+      },
+      {
+        "first_word": " over",
+        "preview": " over-table of Sunday stretched until the anoche",
+        "prob": 0.0386,
+        "distinctive": "over",
+        "sub_branches": [
+          {
+            "word": "-",
+            "prob": 0.4805
+          },
+          {
+            "word": "mesa",
+            "prob": 0.227
+          },
+          {
+            "word": "meal",
+            "prob": 0.0946
+          }
+        ]
+      }
+    ]
+  },
+  "compass_sample": {
+    "source": "fork_head",
+    "fast_ms": 4.09,
+    "grad_ms": 11403.97,
+    "steer_pos": " sobremesa of Sunday stretched until the evening between laughter, cold coffee and",
+    "steer_neg": " Sunday sobremesa stretched until the anochecer between laughs, cold coffee"
+  },
+  "slider_comparison": {
+    "plain_domesticating": " after-dinner conversation went on until dusk over coffee",
+    "poetic_foreignising": " sobremesa (the time after the midday meal)"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "session_id": "g3_12b_pt_becquer_liii_2stanzas",
+  "model_key": "g3_12b_pt",
+  "text_id": "becquer_liii_2stanzas",
+  "title": "Bécquer — Rima LIII (2 stanzas, indented) (g3_12b_pt)",
+  "source_text": "Volverán las oscuras golondrinas\n  en tu balcón sus nidos a colgar,\ny otra vez con el ala a sus cristales\n  jugando llamarán.\n\nPero aquellas que el vuelo refrenaban\n  tu hermosura y mi dicha a contemplar,\naquellas que aprendieron nuestros nombres...\n  ¡ésas... no volverán!",
+  "src_lang": "Spanish",
+  "tgt_lang": "English",
+  "committed_text": "The dark swallows will return\n  to hang their nests on your balcony,\nand once again with their wings against the glass\n  playing they will call.\n\nBut those that held back their flight\n  to contemplate your beauty and my happiness,\nthose that learned our names...",
+  "n_tokens": 58,
+  "history": [
+    {
+      "id": "n0",
+      "parent_id": null,
+      "fork_token_idx": 0,
+      "label": "Main path",
+      "n_tokens": 58,
+      "snippet": "those that learned our names...",
+      "active": true
+    },
+    {
+      "id": "n1",
+      "parent_id": "n0",
+      "fork_token_idx": 1,
+      "label": "somber swallows will return\n",
+      "n_tokens": 11,
+      "snippet": "  to hang",
+      "active": false
+    }
+  ],
+  "alignment": {
+    "source_lines": [
+      {
+        "index": 0,
+        "text": "Volverán las oscuras golondrinas",
+        "stanza": 0
+      },
+      {
+        "index": 1,
+        "text": "  en tu balcón sus nidos a colgar,",
+        "stanza": 0
+      },
+      {
+        "index": 2,
+        "text": "y otra vez con el ala a sus cristales",
+        "stanza": 0
+      },
+      {
+        "index": 3,
+        "text": "  jugando llamarán.",
+        "stanza": 0
+      },
+      {
+        "index": 4,
+        "text": "Pero aquellas que el vuelo refrenaban",
+        "stanza": 1
+      },
+      {
+        "index": 5,
+        "text": "  tu hermosura y mi dicha a contemplar,",
+        "stanza": 1
+      },
+      {
+        "index": 6,
+        "text": "aquellas que aprendieron nuestros nombres...",
+        "stanza": 1
+      },
+      {
+        "index": 7,
+        "text": "  ¡ésas... no volverán!",
+        "stanza": 1
+      }
+    ],
+    "active_source_line": 6,
+    "spans": [
+      {
+        "target_start": 0,
+        "target_end": 6,
+        "source_line": 0,
+        "confidence": 0.931
+      },
+      {
+        "target_start": 7,
+        "target_end": 16,
+        "source_line": 1,
+        "confidence": 0.928
+      },
+      {
+        "target_start": 17,
+        "target_end": 26,
+        "source_line": 2,
+        "confidence": 0.901
+      },
+      {
+        "target_start": 27,
+        "target_end": 33,
+        "source_line": 3,
+        "confidence": 0.898
+      },
+      {
+        "target_start": 34,
+        "target_end": 41,
+        "source_line": 4,
+        "confidence": 0.95
+      },
+      {
+        "target_start": 42,
+        "target_end": 51,
+        "source_line": 5,
+        "confidence": 0.918
+      },
+      {
+        "target_start": 52,
+        "target_end": 58,
+        "source_line": 6,
+        "confidence": 0.891
+      }
+    ]
+  },
+  "fork_snapshot": {
+    "at_token": 1,
+    "regime": "fork",
+    "entropy": 0.821,
+    "fork_score": 0.3039,
+    "branches": [
+      {
+        "first_word": " dark",
+        "preview": " dark swallows will return\n  to hang their",
+        "prob": 0.9363,
+        "distinctive": "dark",
+        "sub_branches": [
+          {
+            "word": " swallows",
+            "prob": 0.9117
+          },
+          {
+            "word": " sw",
+            "prob": 0.0454
+          }
+        ]
+      },
+      {
+        "first_word": " somber",
+        "preview": " somber swallows will return\n  to hang",
+        "prob": 0.0221,
+        "distinctive": "somber",
+        "sub_branches": [
+          {
+            "word": " swallows",
+            "prob": 0.825
+          },
+          {
+            "word": " sw",
+            "prob": 0.087
+          }
+        ]
+      }
+    ]
+  },
+  "compass_sample": {
+    "source": "fork_head",
+    "fast_ms": 3.13,
+    "grad_ms": 4523.57,
+    "steer_pos": " dark swallows will come back\n  to build their nests on your",
+    "steer_neg": " dark swallows will return\n  to hang their nests in your balcony"
+  },
+  "slider_comparison": {
+    "plain_domesticating": " swallows will come back\n  to build their",
+    "poetic_foreignising": " golondrinas (swifts) will return"
+  }
+}

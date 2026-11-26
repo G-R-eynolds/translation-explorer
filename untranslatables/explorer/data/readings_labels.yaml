@@ -82,3 +82,36 @@ models:
       2: "Ten in the morning (spelled)"
       3: "Ten o'clock (straight apostrophe)"
       4: "10 in the morning (numeral)"
+  g3_27b_pt:
+    duende_flamenco:
+      0: "Spirit & soul (domesticating)"
+      1: "Keep untranslated duende (foreignising)"
+    duende_cuento:
+      0: "Goblin / fairy under the bed"
+      2: "Elf under the bed"
+    duende_bare:
+      0: "Leprechaun / little man"
+      1: "Untranslated duende / creature"
+      2: "Elf"
+      3: "Goblin / sprite"
+      4: "Dwarf"
+      5: "Gnome"
+    becquer_xxi:
+      0: "Idiomatic gaze ('look with blue eyes')"
+      1: "Literal image ('pierce/stab blue pupil')"
+    becquer_liii:
+      0: "Return & hang nests (literal syntax)"
+      1: "Come back & build nests (idiomatic)"
+    machado_caminante:
+      0: "Wayfarer / Walker (literary)"
+      1: "Traveler (modern)"
+    rosalia_dicen:
+      0: "Unanimous lyric translation ('plants, fountains, birds, wave')"
+    monte_catalejo:
+      1: "On the mountain + telescope"
+      2: "In the mountain + telescope"
+      3: "Mountain + spyglass"
+      4: "Mountain + binoculars"
+      5: "On the mount + telescope"
+    control_museo:
+      0: "Unanimous ('opens at ten in the morning')"

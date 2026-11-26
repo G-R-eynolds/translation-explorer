@@ -84,9 +84,7 @@ def _build_model_offline_entry(
             if isinstance(mobj, dict):
                 maps[tid] = mobj
 
-    sess_dirs = [model_dir / "sessions"]
-    if extra_sessions_dir is not None:
-        sess_dirs.append(extra_sessions_dir)
+    sess_dirs = [extra_sessions_dir] if extra_sessions_dir is not None else [model_dir / "sessions"]
     sessions = _collect_sessions(sess_dirs)
 
     return {

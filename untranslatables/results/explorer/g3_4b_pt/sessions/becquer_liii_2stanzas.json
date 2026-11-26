@@ -1,0 +1,175 @@
+{
+  "session_id": "g3_4b_pt_becquer_liii_2stanzas",
+  "model_key": "g3_4b_pt",
+  "text_id": "becquer_liii_2stanzas",
+  "title": "Bécquer — Rima LIII (2 stanzas, indented) (g3_4b_pt)",
+  "source_text": "Volverán las oscuras golondrinas\n  en tu balcón sus nidos a colgar,\ny otra vez con el ala a sus cristales\n  jugando llamarán.\n\nPero aquellas que el vuelo refrenaban\n  tu hermosura y mi dicha a contemplar,\naquellas que aprendieron nuestros nombres...\n  ¡ésas... no volverán!",
+  "src_lang": "Spanish",
+  "tgt_lang": "English",
+  "committed_text": "The dark swallows will return\n  to hang their nests on your balcony,\nand again with their wings to your windows\n  they will play and call.\n\nBut those who held back their flight\n  your beauty and my happiness to behold,\nthose who learned our names...",
+  "n_tokens": 58,
+  "history": [
+    {
+      "id": "n0",
+      "parent_id": null,
+      "fork_token_idx": 0,
+      "label": "Main path",
+      "n_tokens": 58,
+      "snippet": "those who learned our names...",
+      "active": true
+    },
+    {
+      "id": "n1",
+      "parent_id": "n0",
+      "fork_token_idx": 2,
+      "label": "martins will return\n  to han",
+      "n_tokens": 12,
+      "snippet": "  to hang their nests",
+      "active": false
+    }
+  ],
+  "alignment": {
+    "source_lines": [
+      {
+        "index": 0,
+        "text": "Volverán las oscuras golondrinas",
+        "stanza": 0
+      },
+      {
+        "index": 1,
+        "text": "  en tu balcón sus nidos a colgar,",
+        "stanza": 0
+      },
+      {
+        "index": 2,
+        "text": "y otra vez con el ala a sus cristales",
+        "stanza": 0
+      },
+      {
+        "index": 3,
+        "text": "  jugando llamarán.",
+        "stanza": 0
+      },
+      {
+        "index": 4,
+        "text": "Pero aquellas que el vuelo refrenaban",
+        "stanza": 1
+      },
+      {
+        "index": 5,
+        "text": "  tu hermosura y mi dicha a contemplar,",
+        "stanza": 1
+      },
+      {
+        "index": 6,
+        "text": "aquellas que aprendieron nuestros nombres...",
+        "stanza": 1
+      },
+      {
+        "index": 7,
+        "text": "  ¡ésas... no volverán!",
+        "stanza": 1
+      }
+    ],
+    "active_source_line": 6,
+    "spans": [
+      {
+        "target_start": 0,
+        "target_end": 6,
+        "source_line": 0,
+        "confidence": 0.931
+      },
+      {
+        "target_start": 7,
+        "target_end": 16,
+        "source_line": 1,
+        "confidence": 0.928
+      },
+      {
+        "target_start": 17,
+        "target_end": 25,
+        "source_line": 2,
+        "confidence": 0.926
+      },
+      {
+        "target_start": 26,
+        "target_end": 33,
+        "source_line": 3,
+        "confidence": 0.892
+      },
+      {
+        "target_start": 34,
+        "target_end": 41,
+        "source_line": 4,
+        "confidence": 0.945
+      },
+      {
+        "target_start": 42,
+        "target_end": 51,
+        "source_line": 5,
+        "confidence": 0.94
+      },
+      {
+        "target_start": 52,
+        "target_end": 58,
+        "source_line": 6,
+        "confidence": 0.886
+      }
+    ]
+  },
+  "fork_snapshot": {
+    "at_token": 2,
+    "regime": "fork",
+    "entropy": 0.4574,
+    "fork_score": 0.2187,
+    "branches": [
+      {
+        "first_word": " swallows",
+        "preview": " swallows will return\n  to hang their nests",
+        "prob": 0.9406,
+        "distinctive": "swallows",
+        "sub_branches": [
+          {
+            "word": " will",
+            "prob": 0.9266
+          },
+          {
+            "word": "\n",
+            "prob": 0.0359
+          }
+        ]
+      },
+      {
+        "first_word": " martins",
+        "preview": " martins will return\n  to hang their nests",
+        "prob": 0.0354,
+        "distinctive": "martins",
+        "sub_branches": [
+          {
+            "word": " will",
+            "prob": 0.8027
+          },
+          {
+            "word": "\n",
+            "prob": 0.1231
+          },
+          {
+            "word": " shall",
+            "prob": 0.0311
+          }
+        ]
+      }
+    ]
+  },
+  "compass_sample": {
+    "source": "fork_head",
+    "fast_ms": 3.19,
+    "grad_ms": 1897.43,
+    "steer_pos": " swallows\n  will return to hang their nests\non your balcony",
+    "steer_neg": " swallows will return to your balcony to hang their nests again,\n"
+  },
+  "slider_comparison": {
+    "plain_domesticating": " will return\n  to hang their nests on your",
+    "poetic_foreignising": " will return\n  to hang their nests on your"
+  }
+}

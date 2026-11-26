@@ -1,0 +1,100 @@
+{
+  "session_id": "g3_12b_pt_duende_flamenco",
+  "model_key": "g3_12b_pt",
+  "text_id": "duende_flamenco",
+  "title": "Camarón's Duende (Flamenco) (g3_12b_pt)",
+  "source_text": "Cuando canta Camarón, tiene duende; me gusta mucho el duende.",
+  "src_lang": "Spanish",
+  "tgt_lang": "English",
+  "committed_text": "When Camarón sings, he has duende; I like duende very much.\n",
+  "n_tokens": 18,
+  "history": [
+    {
+      "id": "n0",
+      "parent_id": null,
+      "fork_token_idx": 0,
+      "label": "Main path",
+      "n_tokens": 18,
+      "snippet": "ngs, he has duende; I like duende very much.",
+      "active": true
+    },
+    {
+      "id": "n1",
+      "parent_id": "n0",
+      "fork_token_idx": 3,
+      "label": "(a famous flamenco singer) s",
+      "n_tokens": 13,
+      "snippet": "rón (a famous flamenco singer) sings, he has",
+      "active": false
+    }
+  ],
+  "alignment": {
+    "source_lines": [
+      {
+        "index": 0,
+        "text": "Cuando canta Camarón, tiene duende; me gusta mucho el duende.",
+        "stanza": 0
+      }
+    ],
+    "active_source_line": 0,
+    "spans": [
+      {
+        "target_start": 0,
+        "target_end": 18,
+        "source_line": 0,
+        "confidence": 0.95
+      }
+    ]
+  },
+  "fork_snapshot": {
+    "at_token": 3,
+    "regime": "fork",
+    "entropy": 0.1406,
+    "fork_score": 0.158,
+    "branches": [
+      {
+        "first_word": " sings",
+        "preview": " sings, he has duende; I like du",
+        "prob": 0.9816,
+        "distinctive": "duende",
+        "sub_branches": [
+          {
+            "word": ",",
+            "prob": 0.9885
+          }
+        ]
+      },
+      {
+        "first_word": " (",
+        "preview": " (a famous flamenco singer) sings, he has",
+        "prob": 0.0085,
+        "distinctive": "famous",
+        "sub_branches": [
+          {
+            "word": "a",
+            "prob": 0.331
+          },
+          {
+            "word": "fl",
+            "prob": 0.1218
+          },
+          {
+            "word": "the",
+            "prob": 0.1218
+          }
+        ]
+      }
+    ]
+  },
+  "compass_sample": {
+    "source": "fork_head",
+    "fast_ms": 7.28,
+    "grad_ms": 5701.04,
+    "steer_pos": " sings, he has duende; I like duende very much.",
+    "steer_neg": " sings, he has duende; I like duende very much."
+  },
+  "slider_comparison": {
+    "plain_domesticating": ", he has duende; I like duende",
+    "poetic_foreignising": ", he has duende; I like much the"
+  }
+}

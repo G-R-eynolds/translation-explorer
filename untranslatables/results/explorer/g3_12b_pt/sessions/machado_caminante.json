@@ -1,0 +1,185 @@
+{
+  "session_id": "g3_12b_pt_machado_caminante",
+  "model_key": "g3_12b_pt",
+  "text_id": "machado_caminante",
+  "title": "Machado — Proverbios y cantares XXIX (g3_12b_pt)",
+  "source_text": "Caminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\n\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.",
+  "src_lang": "Spanish",
+  "tgt_lang": "English",
+  "committed_text": "Caminante, your footprints\nare the road and nothing more;\ncaminante, there is no road,\nthe road is made by walking.\n\nWalking makes the road\nand looking back\nyou see the path that\nwill never be trodden again.\n",
+  "n_tokens": 56,
+  "history": [
+    {
+      "id": "n0",
+      "parent_id": null,
+      "fork_token_idx": 0,
+      "label": "Main path",
+      "n_tokens": 56,
+      "snippet": "will never be trodden again.",
+      "active": true
+    },
+    {
+      "id": "n1",
+      "parent_id": "n0",
+      "fork_token_idx": 3,
+      "label": "(traveler), your footprints\n",
+      "n_tokens": 13,
+      "snippet": "are the road",
+      "active": false
+    }
+  ],
+  "alignment": {
+    "source_lines": [
+      {
+        "index": 0,
+        "text": "Caminante, son tus huellas",
+        "stanza": 0
+      },
+      {
+        "index": 1,
+        "text": "el camino y nada más;",
+        "stanza": 0
+      },
+      {
+        "index": 2,
+        "text": "caminante, no hay camino,",
+        "stanza": 0
+      },
+      {
+        "index": 3,
+        "text": "se hace camino al andar.",
+        "stanza": 0
+      },
+      {
+        "index": 4,
+        "text": "Al andar se hace camino",
+        "stanza": 1
+      },
+      {
+        "index": 5,
+        "text": "y al volver la vista atrás",
+        "stanza": 1
+      },
+      {
+        "index": 6,
+        "text": "se ve la senda que nunca",
+        "stanza": 1
+      },
+      {
+        "index": 7,
+        "text": "se ha de volver a pisar.",
+        "stanza": 1
+      }
+    ],
+    "active_source_line": 7,
+    "spans": [
+      {
+        "target_start": 0,
+        "target_end": 6,
+        "source_line": 0,
+        "confidence": 0.95
+      },
+      {
+        "target_start": 7,
+        "target_end": 14,
+        "source_line": 1,
+        "confidence": 0.89
+      },
+      {
+        "target_start": 15,
+        "target_end": 24,
+        "source_line": 2,
+        "confidence": 0.929
+      },
+      {
+        "target_start": 25,
+        "target_end": 32,
+        "source_line": 3,
+        "confidence": 0.921
+      },
+      {
+        "target_start": 33,
+        "target_end": 37,
+        "source_line": 4,
+        "confidence": 0.941
+      },
+      {
+        "target_start": 38,
+        "target_end": 41,
+        "source_line": 5,
+        "confidence": 0.873
+      },
+      {
+        "target_start": 42,
+        "target_end": 47,
+        "source_line": 6,
+        "confidence": 0.925
+      },
+      {
+        "target_start": 48,
+        "target_end": 55,
+        "source_line": 7,
+        "confidence": 0.921
+      }
+    ]
+  },
+  "fork_snapshot": {
+    "at_token": 3,
+    "regime": "fork",
+    "entropy": 0.8953,
+    "fork_score": 0.2983,
+    "branches": [
+      {
+        "first_word": ",",
+        "preview": ", your footprints\nare the road and nothing more",
+        "prob": 0.7584,
+        "distinctive": "nothing",
+        "sub_branches": [
+          {
+            "word": " your",
+            "prob": 0.6671
+          },
+          {
+            "word": " son",
+            "prob": 0.1489
+          },
+          {
+            "word": " it",
+            "prob": 0.0548
+          }
+        ]
+      },
+      {
+        "first_word": " (",
+        "preview": " (traveler), your footprints\nare the road",
+        "prob": 0.1986,
+        "distinctive": "traveler",
+        "sub_branches": [
+          {
+            "word": "traveler",
+            "prob": 0.2229
+          },
+          {
+            "word": "way",
+            "prob": 0.1053
+          },
+          {
+            "word": "the",
+            "prob": 0.0929
+          }
+        ]
+      }
+    ]
+  },
+  "compass_sample": {
+    "source": "fork_head",
+    "fast_ms": 3.34,
+    "grad_ms": 4393.67,
+    "steer_pos": ", son tus huellas\nel camino y nada más;\nc",
+    "steer_neg": ", your footprints\nare the road and nothing more;\ncamin"
+  },
+  "slider_comparison": {
+    "plain_domesticating": " your footprints\nare the only road;\nC",
+    "poetic_foreignising": " son tus huellas\nel camino y nada más"
+  }
+}
