@@ -34,13 +34,24 @@ def grads_at(model, prefix, conts, layer, b, batch=8):
 
     hd = arch.layers(model)[layer].register_forward_hook(hook)
     try:
-        for c in range(0, len(conts), batch):
-            part = [y if y else [prefix[-1]] for y in conts[c:c + batch]]
-            state["z"] = torch.zeros(len(part), d, device=dev, dtype=torch.float32, requires_grad=True)
-            lp = seq_logp(model, prefix, part)
-            (g,) = torch.autograd.grad(lp.sum(), [state["z"]])
-            out.append(g.float().cpu().numpy())
-            state.pop("z")
+        cur_batch = max(1, int(batch))
+        c = 0
+        while c < len(conts):
+            part = [y if y else [prefix[-1]] for y in conts[c:c + cur_batch]]
+            try:
+                state["z"] = torch.zeros(len(part), d, device=dev, dtype=torch.float32, requires_grad=True)
+                lp = seq_logp(model, prefix, part)
+                (g,) = torch.autograd.grad(lp.sum(), [state["z"]])
+                out.append(g.detach().float().cpu().numpy())
+                state.pop("z", None)
+                c += len(part)
+            except torch.cuda.OutOfMemoryError:
+                state.pop("z", None)
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                if cur_batch == 1:
+                    raise
+                cur_batch = max(1, cur_batch // 2)
     finally:
         hd.remove()
     return np.concatenate(out).astype(np.float64)
