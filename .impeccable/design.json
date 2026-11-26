@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-26T09:18:00-08:00",
+  "title": "Design System: Translation Explorer",
+  "extensions": {
+    "colorMeta": {
+      "spruce-teal": {
+        "role": "primary",
+        "displayName": "Spruce Teal",
+        "canonical": "oklch(45.5% 0.088 175)",
+        "tonalRamp": [
+          "oklch(18% 0.036 175)",
+          "oklch(26% 0.056 175)",
+          "oklch(36% 0.078 175)",
+          "oklch(45.5% 0.088 175)",
+          "oklch(58% 0.095 175)",
+          "oklch(72% 0.085 175)",
+          "oklch(85% 0.052 175)",
+          "oklch(95% 0.018 175)"
+        ]
+      },
+      "spruce-deep": {
+        "role": "primary",
+        "displayName": "Spruce Deep",
+        "canonical": "oklch(38.5% 0.078 175)",
+        "tonalRamp": [
+          "oklch(16% 0.032 175)",
+          "oklch(24% 0.052 175)",
+          "oklch(32% 0.068 175)",
+          "oklch(38.5% 0.078 175)",
+          "oklch(52% 0.085 175)",
+          "oklch(68% 0.072 175)",
+          "oklch(83% 0.044 175)",
+          "oklch(94% 0.015 175)"
+        ]
+      },
+      "amber-ochre": {
+        "role": "secondary",
+        "displayName": "Amber Ochre",
+        "canonical": "oklch(52% 0.125 68)",
+        "tonalRamp": [
+          "oklch(20% 0.048 68)",
+          "oklch(30% 0.075 68)",
+          "oklch(41% 0.102 68)",
+          "oklch(52% 0.125 68)",
+          "oklch(65% 0.128 68)",
+          "oklch(77% 0.105 68)",
+          "oklch(88% 0.058 68)",
+          "oklch(96% 0.020 68)"
+        ]
+      },
+      "cinnabar-fork": {
+        "role": "secondary",
+        "displayName": "Cinnabar Fork",
+        "canonical": "oklch(48% 0.155 27)",
+        "tonalRamp": [
+          "oklch(19% 0.058 27)",
+          "oklch(29% 0.095 27)",
+          "oklch(39% 0.130 27)",
+          "oklch(48% 0.155 27)",
+          "oklch(62% 0.145 27)",
+          "oklch(74% 0.112 27)",
+          "oklch(86% 0.060 27)",
+          "oklch(95% 0.020 27)"
+        ]
+      },
+      "cobalt-align": {
+        "role": "tertiary",
+        "displayName": "Cobalt Align",
+        "canonical": "oklch(43% 0.092 246)",
+        "tonalRamp": [
+          "oklch(18% 0.040 246)",
+          "oklch(27% 0.062 246)",
+          "oklch(35% 0.078 246)",
+          "oklch(43% 0.092 246)",
+          "oklch(58% 0.095 246)",
+          "oklch(72% 0.082 246)",
+          "oklch(85% 0.048 246)",
+          "oklch(95% 0.016 246)"
+        ]
+      },
+      "celadon-vellum": {
+        "role": "neutral",
+        "displayName": "Celadon Vellum",
+        "canonical": "oklch(94.5% 0.009 148)",
+        "tonalRamp": [
+          "oklch(18% 0.012 148)",
+          "oklch(28% 0.014 148)",
+          "oklch(42% 0.015 148)",
+          "oklch(58% 0.014 148)",
+          "oklch(74% 0.012 148)",
+          "oklch(86% 0.011 148)",
+          "oklch(94.5% 0.009 148)",
+          "oklch(98.5% 0.004 148)"
+        ]
+      },
+      "specimen-paper": {
+        "role": "neutral",
+        "displayName": "Specimen Paper",
+        "canonical": "oklch(98.8% 0.004 150)",
+        "tonalRamp": [
+          "oklch(16% 0.010 150)",
+          "oklch(26% 0.012 150)",
+          "oklch(40% 0.012 150)",
+          "oklch(56% 0.010 150)",
+          "oklch(72% 0.008 150)",
+          "oklch(86% 0.006 150)",
+          "oklch(94% 0.005 150)",
+          "oklch(98.8% 0.004 150)"
+        ]
+      },
+      "mineral-rail": {
+        "role": "neutral",
+        "displayName": "Mineral Rail",
+        "canonical": "oklch(96.5% 0.007 148)",
+        "tonalRamp": [
+          "oklch(17% 0.011 148)",
+          "oklch(27% 0.013 148)",
+          "oklch(41% 0.013 148)",
+          "oklch(57% 0.012 148)",
+          "oklch(73% 0.010 148)",
+          "oklch(86% 0.009 148)",
+          "oklch(96.5% 0.007 148)",
+          "oklch(99% 0.003 148)"
+        ]
+      },
+      "botanical-ink": {
+        "role": "neutral",
+        "displayName": "Botanical Ink",
+        "canonical": "oklch(23.5% 0.018 162)",
+        "tonalRamp": [
+          "oklch(15% 0.014 162)",
+          "oklch(23.5% 0.018 162)",
+          "oklch(35% 0.019 162)",
+          "oklch(49% 0.018 162)",
+          "oklch(64% 0.016 162)",
+          "oklch(78% 0.013 162)",
+          "oklch(89% 0.009 162)",
+          "oklch(96% 0.005 162)"
+        ]
+      },
+      "botanical-chrome": {
+        "role": "neutral",
+        "displayName": "Botanical Chrome",
+        "canonical": "oklch(22% 0.024 162)",
+        "tonalRamp": [
+          "oklch(14% 0.016 162)",
+          "oklch(22% 0.024 162)",
+          "oklch(31% 0.028 162)",
+          "oklch(44% 0.026 162)",
+          "oklch(59% 0.022 162)",
+          "oklch(74% 0.017 162)",
+          "oklch(87% 0.011 162)",
+          "oklch(95% 0.006 162)"
+        ]
+      },
+      "dark-spruce": {
+        "role": "primary",
+        "displayName": "Evening Spruce",
+        "canonical": "oklch(71% 0.115 174)",
+        "tonalRamp": [
+          "oklch(18% 0.036 174)",
+          "oklch(28% 0.058 174)",
+          "oklch(40% 0.082 174)",
+          "oklch(55% 0.104 174)",
+          "oklch(71% 0.115 174)",
+          "oklch(80% 0.092 174)",
+          "oklch(89% 0.056 174)",
+          "oklch(96% 0.020 174)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Archive Epigraph",
+        "purpose": "Italic Literata source epigraphs in Replay and Offline Archive views."
+      },
+      "headline": {
+        "displayName": "Living Translation Prose",
+        "purpose": "Primary Literata prose surface for committed words, active caret, and ghost preview."
+      },
+      "title": {
+        "displayName": "Folio & Drawer Title",
+        "purpose": "Quiet Public Sans semibold column and instrument drawer headings."
+      },
+      "body": {
+        "displayName": "Source Folio Prose",
+        "purpose": "Facing source poem editor, aligned line-numbered folio, and continuous replay tokens."
+      },
+      "label": {
+        "displayName": "Workspace Control",
+        "purpose": "Transport buttons, selects, regime badges, and bipolar slider poles."
+      },
+      "mono": {
+        "displayName": "Cartographic Telemetry",
+        "purpose": "Tabular JetBrains Mono probabilities, entropies, coordinates, line numbers, and keycaps."
+      }
+    },
+    "shadows": [
+      {
+        "name": "thumb-micro",
+        "value": "0 1px 2px rgba(0, 0, 0, 0.24)",
+        "purpose": "Subtle tactile lift on bipolar slider thumb only."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 2px #fafcfa, 0 0 0 4px #186456",
+        "purpose": "High-contrast double-ring keyboard focus indicator."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-herbarium",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Crisp deceleration for button states, branch hover rows, and tension meter transitions (120ms-200ms)."
+      }
+    ],
+    "breakpoints": [
+      { "name": "rail-wrap", "value": "1180px" },
+      { "name": "replay-stack", "value": "940px" },
+      { "name": "folio-stack", "value": "860px" },
+      { "name": "spread-stack", "value": "760px" },
+      { "name": "mobile", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Single dominant workspace CTA (Start Co-Translating before session start, Step Word once live).",
+      "html": "<button class=\"ds-btn-primary\">Step Word</button>",
+      "css": ".ds-btn-primary { height: 32px; padding: 0 11px; border-radius: 4px; border: 1px solid #186456; background: #186456; color: #ffffff; font: 600 12.5px/1 'Public Sans', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 140ms cubic-bezier(0.22, 1, 0.36, 1), border-color 140ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-primary:hover { background: #135045; border-color: #135045; } .ds-btn-primary:active { transform: translateY(0.5px); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #fafcfa, 0 0 0 4px #186456; }"
+    },
+    {
+      "name": "Secondary Transport Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Hairline-framed specimen-paper control for Rewind, Redo, Glide, Restart, and Compass.",
+      "html": "<button class=\"ds-btn-secondary\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"5.8\"/><polygon points=\"8,4 9.5,8 8,12 6.5,8\" fill=\"currentColor\" stroke=\"none\"/></svg>Compass</button>",
+      "css": ".ds-btn-secondary { height: 32px; padding: 0 11px; border-radius: 4px; border: 1px solid #d3ddd4; background: #fafcfa; color: #17231e; font: 500 12.5px/1 'Public Sans', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 140ms cubic-bezier(0.22, 1, 0.36, 1), border-color 140ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-secondary:hover { background: #e5ece4; border-color: #b7c6b9; } .ds-btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 2px #fafcfa, 0 0 0 4px #186456; }"
+    },
+    {
+      "name": "Ghost Utility Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Low-emphasis transparent action for Copy, Mode toggle, Reset, and Re-probe.",
+      "html": "<button class=\"ds-btn-ghost\">Mode: Word</button>",
+      "css": ".ds-btn-ghost { height: 32px; padding: 0 11px; border-radius: 4px; border: 1px solid transparent; background: transparent; color: #465850; font: 500 12.5px/1 'Public Sans', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 140ms cubic-bezier(0.22, 1, 0.36, 1), border-color 140ms cubic-bezier(0.22, 1, 0.36, 1), color 140ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-ghost:hover { background: #e5ece4; border-color: #d3ddd4; color: #17231e; } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 2px #fafcfa, 0 0 0 4px #186456; }"
+    },
+    {
+      "name": "Custom Word Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Inline Literata text entry inside the transport strip for manually typing any next word.",
+      "html": "<input class=\"ds-custom-word\" type=\"text\" placeholder=\"Or type next word &amp; Enter...\" aria-label=\"Type custom next word\">",
+      "css": ".ds-custom-word { width: 240px; height: 32px; padding: 0 10px; border-radius: 4px; border: 1px solid #d3ddd4; background: #fafcfa; color: #17231e; font: 400 14px/1 'Literata', Georgia, serif; caret-color: #186456; transition: border-color 140ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-custom-word::placeholder { font-family: 'Public Sans', sans-serif; font-size: 12.5px; color: #51645c; } .ds-custom-word:focus { outline: none; border-color: #186456; box-shadow: 0 0 0 2px #fafcfa, 0 0 0 4px #186456; }"
+    },
+    {
+      "name": "Botanical Studio Header Bar",
+      "kind": "nav",
+      "refersTo": "status-pill",
+      "description": "Committed dark forest-slate top bar pairing brand mark, live status pill, and instrument rail toggles.",
+      "html": "<div class=\"ds-header\"><span class=\"ds-brand\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"#6fd6c2\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"7.5\"/><line x1=\"10\" y1=\"1.5\" x2=\"10\" y2=\"18.5\"/><line x1=\"1.5\" y1=\"10\" x2=\"18.5\" y2=\"10\"/><polygon points=\"10,4.5 11.8,10 10,15.5 8.2,10\" fill=\"#6fd6c2\" stroke=\"none\"/></svg>Translation <em>Explorer</em></span><span class=\"ds-pill-live\"><i class=\"ds-dot\"></i>Live</span><button class=\"ds-chrome-btn\">Sliders <kbd class=\"ds-kbd\">S</kbd></button></div>",
+      "css": ".ds-header { display: flex; align-items: center; gap: 10px; padding: 9px 16px; background: #15241e; color: #eef4f0; border-bottom: 1px solid #253b32; border-radius: 6px; } .ds-brand { display: inline-flex; align-items: center; gap: 8px; font: 600 16px/1 'Literata', Georgia, serif; } .ds-brand em { font-style: italic; font-weight: 400; color: #8ee0cf; } .ds-pill-live { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(111,214,194,0.35); background: rgba(73,184,163,0.14); color: #9bf0de; font: 500 11.5px/1 'Public Sans', sans-serif; } .ds-dot { width: 6px; height: 6px; border-radius: 50%; background: #5de0c6; display: inline-block; } .ds-chrome-btn { margin-left: auto; height: 30px; padding: 0 10px; border-radius: 4px; border: 1px solid #253b32; background: #1e322a; color: #eef4f0; font: 500 12.5px/1 'Public Sans', sans-serif; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; } .ds-chrome-btn:hover { background: #284137; border-color: #3c5c4f; } .ds-kbd { font: 500 10px/1 'JetBrains Mono', monospace; padding: 2px 4px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.08); color: #9eb5aa; }"
+    },
+    {
+      "name": "Hairline Branch Comparison Row",
+      "kind": "custom",
+      "refersTo": "branch-row",
+      "description": "Flat hairline branch row showing numbered key, bold lead word, muted continuation, depth-2 SVG twigs, and probability bar.",
+      "html": "<button class=\"ds-branch-row\"><span class=\"ds-branch-key\">1</span><div class=\"ds-branch-body\"><div class=\"ds-branch-text\"><strong>balcony</strong>, <span class=\"ds-rest\">and once again tap at its glass</span></div><div class=\"ds-twigs\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 14 14\" fill=\"none\" stroke=\"#51645c\" stroke-width=\"1.4\" aria-hidden=\"true\"><path d=\"M2.5 2.5v4.5a2.5 2.5 0 0 0 2.5 2.5h6.2\"/><path d=\"M8.8 7l2.4 2.5-2.4 2.5\"/></svg><span class=\"ds-twig-chip\">and once <em>46%</em></span><span class=\"ds-twig-chip\">while tapping <em>31%</em></span></div></div><div class=\"ds-branch-stat\"><span class=\"ds-pct\">34%</span><span class=\"ds-bar\"><i style=\"width:34%\"></i></span></div></button>",
+      "css": ".ds-branch-row { width: 100%; max-width: 560px; text-align: left; padding: 10px 8px; border: none; border-top: 1px solid #d3ddd4; border-bottom: 1px solid #d3ddd4; background: #fafcfa; cursor: pointer; display: grid; grid-template-columns: 24px minmax(0, 1fr) 82px; gap: 4px 12px; align-items: start; transition: background 130ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-branch-row:hover { background: rgba(24, 100, 86, 0.10); } .ds-branch-key { width: 22px; height: 22px; border-radius: 4px; background: #186456; color: #fff; font: 600 11px/1 'JetBrains Mono', monospace; display: inline-flex; align-items: center; justify-content: center; } .ds-branch-text { font: 400 16px/1.42 'Literata', Georgia, serif; color: #17231e; } .ds-rest { color: #465850; } .ds-twigs { margin-top: 5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; } .ds-twig-chip { display: inline-flex; align-items: baseline; gap: 4px; padding: 2px 7px; border-radius: 999px; background: #f2f6f1; border: 1px solid #d3ddd4; font: 400 12.5px/1.25 'Literata', Georgia, serif; color: #17231e; } .ds-twig-chip em { font: 500 10px/1 'JetBrains Mono', monospace; font-style: normal; color: #465850; } .ds-branch-stat { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; padding-top: 3px; } .ds-pct { font: 600 12px/1 'JetBrains Mono', monospace; color: #17231e; font-variant-numeric: tabular-nums; } .ds-bar { width: 70px; height: 4px; border-radius: 99px; background: #ebf0ea; overflow: hidden; } .ds-bar > i { display: block; height: 100%; background: #186456; border-radius: 99px; }"
+    },
+    {
+      "name": "Bipolar Zero-Centered Axis Slider",
+      "kind": "custom",
+      "refersTo": "input-field",
+      "description": "Tone and practice slider expanding from a central zero tick so neutral 0.0 carries zero false fill.",
+      "html": "<div class=\"ds-slider\"><div class=\"ds-slider-lbl\"><span>Plain</span><span class=\"ds-slider-val\">+0.6</span><span>Poetic</span></div><div class=\"ds-bipolar\"><div class=\"ds-track\"></div><div class=\"ds-zero\"></div><div class=\"ds-fill\"></div><div class=\"ds-thumb\"></div></div></div>",
+      "css": ".ds-slider { width: 280px; padding: 10px 12px; background: #f2f6f1; border: 1px solid #d3ddd4; border-radius: 6px; } .ds-slider-lbl { display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline; gap: 6px; font: 500 11.5px/1.2 'Public Sans', sans-serif; color: #465850; margin-bottom: 6px; } .ds-slider-lbl span:last-child { text-align: right; } .ds-slider-val { font: 600 11px/1 'JetBrains Mono', monospace; color: #186456; padding: 2px 5px; border-radius: 3px; background: rgba(24,100,86,0.10); border: 1px solid #186456; font-variant-numeric: tabular-nums; } .ds-bipolar { position: relative; height: 22px; } .ds-track { position: absolute; left: 0; right: 0; top: 50%; height: 4px; transform: translateY(-50%); border-radius: 99px; background: #b7c6b9; } .ds-zero { position: absolute; left: 50%; top: 50%; width: 1.5px; height: 11px; transform: translate(-50%, -50%); background: #465850; opacity: 0.75; } .ds-fill { position: absolute; left: 50%; width: 30%; top: 50%; height: 4px; transform: translateY(-50%); border-radius: 99px; background: #186456; } .ds-thumb { position: absolute; left: 80%; top: 50%; width: 14px; height: 14px; transform: translate(-50%, -50%); border-radius: 50%; background: #186456; border: 2px solid #fafcfa; box-shadow: 0 1px 2px rgba(0,0,0,0.24); }"
+    },
+    {
+      "name": "Transit-Interchange Path Node",
+      "kind": "custom",
+      "refersTo": "button-secondary",
+      "description": "Indented explored branch history node with hairline stem connector and station dot.",
+      "html": "<div class=\"ds-paths\"><div class=\"ds-path-item\"><span class=\"ds-path-left\"><i class=\"ds-station\"></i><strong>Main</strong> <span class=\"ds-meta\">11t</span></span><span class=\"ds-snip\">The dark swallows...</span></div><div class=\"ds-path-item ds-child ds-active\"><span class=\"ds-path-left\"><i class=\"ds-station\"></i><strong>Branch A</strong> <span class=\"ds-meta\">@t1 · 11t</span></span><span class=\"ds-snip\">The dusky swallows...</span></div></div>",
+      "css": ".ds-paths { width: 290px; display: flex; flex-direction: column; gap: 6px; padding: 10px; background: #f2f6f1; border-radius: 6px; } .ds-path-item { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 10px; border-radius: 4px; border: 1px solid #d3ddd4; background: #fafcfa; font: 500 12.5px/1.3 'Public Sans', sans-serif; color: #17231e; } .ds-child { margin-left: 14px; } .ds-child::before { content: ''; position: absolute; left: -10px; top: -8px; width: 1px; height: calc(50% + 8px); background: #b7c6b9; } .ds-child::after { content: ''; position: absolute; left: -10px; top: 50%; width: 10px; height: 1px; background: #b7c6b9; } .ds-active { border-color: #186456; background: rgba(24,100,86,0.10); } .ds-path-left { display: inline-flex; align-items: center; gap: 7px; } .ds-station { width: 8px; height: 8px; border-radius: 50%; border: 2px solid #465850; background: #fafcfa; display: inline-block; } .ds-active .ds-station { border-color: #186456; background: #186456; } .ds-meta { font: 500 11px/1 'JetBrains Mono', monospace; color: #465850; } .ds-snip { font: 400 12px/1.2 'Literata', Georgia, serif; color: #465850; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Herbarium Cartographic Desk",
+    "overview": "Translation Explorer treats live literary co-translation like examining pressed botanical specimens on an archival mineral-paper desk beside engraved surveying instruments. The poetry and prose stay open, legible, and undisturbed across facing folios, while every steering tool—the 2D Spectral Compass, zero-centered bipolar tone sliders, and transit-interchange branch history—lives in a disciplined right-hand instrument rail that opens on demand and never competes with the words.\n\nThe visual voice rejects generic SaaS cards, heavy drop shadows, neon glows, and stacked dashboard chrome. Surface tone shifts (celadon-vellum desk, mineral rail, crisp specimen paper) and 1px hairline rules establish clear spatial hierarchy across both Daylight Vellum light mode and Evening Botanical dark mode, while a single committed dark botanical studio bar anchors the top of the workspace.",
+    "keyCharacteristics": [
+      "Open facing manuscripts separated by crisp 1px hairlines rather than nested card frames",
+      "High-legibility literary serif typography (Literata) paired with restrained geometric UI chrome (Public Sans) and tabular monospace metrics (JetBrains Mono)",
+      "Strictly semantic signal colors: spruce-teal for active steering and primary actions, amber-ochre for subtle choices, cinnabar for high-tension interpretive forks, and cobalt for bidirectional source-target line alignment",
+      "Zero-build single-file HTML/CSS/JS delivery unified across both the live FastAPI studio and standalone offline archival exports"
+    ],
+    "rules": [
+      {
+        "name": "The Single Primary Action Rule",
+        "body": "Only one solid Spruce Teal CTA occupies visual dominance in the main desk at a time: Start Co-Translating while composing source text, demoted to secondary Restart once live so Step Word commands focus.",
+        "section": "colors"
+      },
+      {
+        "name": "The Semantic Ink Rule",
+        "body": "Cinnabar, ochre, and cobalt are reserved strictly for fork tension, subtle choice, and cross-folio line alignment—never for decorative chrome or generic buttons.",
+        "section": "colors"
+      },
+      {
+        "name": "The Prose-First Scale Rule",
+        "body": "Source and translation text stay at 18.5px–19.5px Literata while all surrounding controls remain compact (11.5px–13.5px sans/mono), ensuring poetry dominates the eye before chrome.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Numerals Rule",
+        "body": "Every live metric—entropy (H), probability (%), coordinates (x, y), and slider readout (+0.6)—uses font-variant-numeric: tabular-nums in JetBrains Mono so values never jitter horizontally during streaming or dragging.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Never stack drop-shadowed cards inside a column. Separate open workspaces with surface tone shifts and 1px hairlines.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the active Source poem and live Translation canvas open and flush across a single 1px vertical hairline so both manuscripts read as a single facing spread.",
+      "Do enforce the Single Primary Action Rule—demote Start Co-Translating to secondary Restart once a session is active so Step Word is the unmistakable primary action.",
+      "Do render every bipolar axis slider from a true center zero tick (0.0 = zero colored fill) so neutral axes never falsely appear half-pulled toward the negative pole.",
+      "Do clip compass scatter dots inside the r=1.20 bezel and mix reading label colors toward var(--ink) with a var(--paper) halo so dark mode stays crisp and legible.",
+      "Do use custom stroke-1.5 inline SVGs for transport and drawer icons (↵, ¶, sliders, twigs) while preserving accessible aria-label attributes and all keyboard shortcuts."
+    ],
+    "donts": [
+      "Don't wrap every branch option or active source poem in a drop-shadowed card box—use 1px hairline rows and tonal surface layering instead.",
+      "Don't repeat identical keyboard-hint copy on every branch row; place one quiet caption line beneath the branch list.",
+      "Don't dump recorded offline sessions as raw plain text with ASCII — Divider — lines or flex-gapped subword chips that break words like Camarón or duende apart.",
+      "Don't keep the top header sticky below 640px where wrapped controls would consume vertical reading height on mobile screens.",
+      "Don't introduce external build steps or CSS frameworks that break single-file standalone offline HTML export."
+    ]
+  }
+}

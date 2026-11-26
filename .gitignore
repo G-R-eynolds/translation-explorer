@@ -40,3 +40,7 @@ Thumbs.db
 .agents/
 *.token
 
+# Ephemeral Impeccable review captures
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/

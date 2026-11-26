@@ -5,413 +5,1551 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spectral Translation Explorer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter+Tight:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
 :root {
-  --bg: #f8f6f2;
-  --surface: #fdfcfa;
-  --surface-2: #f1eee8;
-  --ink: #1c1a1e;
-  --muted: #6c6872;
-  --rule: #e2dfd9;
-  --accent: #8a2343;
-  --accent-soft: rgba(138, 35, 67, 0.10);
-  --teal: #2c5d72;
-  --ochre: #9c6520;
-  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --sans: "Inter Tight", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  /* Herbarium Cartographic Desk — Daylight Vellum */
+  --desk: #ebf0ea;
+  --paper: #fafcfa;
+  --rail: #f2f6f1;
+  --surface-hover: #e5ece4;
+  --ink: #17231e;
+  --muted: #465850;
+  --subtle: #51645c;
+  --rule: #d3ddd4;
+  --rule-strong: #b7c6b9;
+
+  /* Committed Botanical Header Chrome */
+  --chrome-bg: #15241e;
+  --chrome-ink: #eef4f0;
+  --chrome-muted: #9eb5aa;
+  --chrome-rule: #253b32;
+  --chrome-surface: #1e322a;
+  --chrome-hover: #284137;
+
+  /* Semantic Palette */
+  --spruce: #186456;
+  --spruce-hover: #135045;
+  --spruce-ink: #ffffff;
+  --spruce-wash: rgba(24, 100, 86, 0.10);
+  --spruce-wash-strong: rgba(24, 100, 86, 0.17);
+  --ochre: #965710;
+  --ochre-wash: rgba(150, 87, 16, 0.11);
+  --cinnabar: #a63227;
+  --cinnabar-wash: rgba(166, 50, 39, 0.10);
+  --cobalt: #23527c;
+  --cobalt-wash: rgba(35, 82, 124, 0.12);
+
+  /* Typography */
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --focus-ring: 0 0 0 2px var(--paper), 0 0 0 4px var(--spruce);
 }
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #141317;
-    --surface: #1b191f;
-    --surface-2: #24212a;
-    --ink: #edece8;
-    --muted: #9c97a3;
-    --rule: #2f2b36;
-    --accent: #e07a9b;
-    --accent-soft: rgba(224, 122, 155, 0.14);
-    --teal: #6ba8c2;
-    --ochre: #dfa055;
+    --desk: #0f1613;
+    --paper: #151f1b;
+    --rail: #111a16;
+    --surface-hover: #1c2923;
+    --ink: #e7efe9;
+    --muted: #9eb5aa;
+    --subtle: #8fa69b;
+    --rule: #24352e;
+    --rule-strong: #354c42;
+
+    --chrome-bg: #0a100d;
+    --chrome-ink: #ebf2ed;
+    --chrome-muted: #9bb2a7;
+    --chrome-rule: #1c2c25;
+    --chrome-surface: #14211b;
+    --chrome-hover: #1d2f27;
+
+    --spruce: #49b8a3;
+    --spruce-hover: #60cbb7;
+    --spruce-ink: #0a1714;
+    --spruce-wash: rgba(73, 184, 163, 0.14);
+    --spruce-wash-strong: rgba(73, 184, 163, 0.22);
+    --ochre: #e0a34c;
+    --ochre-wash: rgba(224, 163, 76, 0.14);
+    --cinnabar: #e57367;
+    --cinnabar-wash: rgba(229, 115, 103, 0.15);
+    --cobalt: #72addb;
+    --cobalt-wash: rgba(114, 173, 219, 0.16);
     color-scheme: dark;
   }
 }
+
 :root[data-theme="dark"] {
-  --bg: #141317;
-  --surface: #1b191f;
-  --surface-2: #24212a;
-  --ink: #edece8;
-  --muted: #9c97a3;
-  --rule: #2f2b36;
-  --accent: #e07a9b;
-  --accent-soft: rgba(224, 122, 155, 0.14);
-  --teal: #6ba8c2;
-  --ochre: #dfa055;
+  --desk: #0f1613;
+  --paper: #151f1b;
+  --rail: #111a16;
+  --surface-hover: #1c2923;
+  --ink: #e7efe9;
+  --muted: #9eb5aa;
+  --subtle: #8fa69b;
+  --rule: #24352e;
+  --rule-strong: #354c42;
+
+  --chrome-bg: #0a100d;
+  --chrome-ink: #ebf2ed;
+  --chrome-muted: #9bb2a7;
+  --chrome-rule: #1c2c25;
+  --chrome-surface: #14211b;
+  --chrome-hover: #1d2f27;
+
+  --spruce: #49b8a3;
+  --spruce-hover: #60cbb7;
+  --spruce-ink: #0a1714;
+  --spruce-wash: rgba(73, 184, 163, 0.14);
+  --spruce-wash-strong: rgba(73, 184, 163, 0.22);
+  --ochre: #e0a34c;
+  --ochre-wash: rgba(224, 163, 76, 0.14);
+  --cinnabar: #e57367;
+  --cinnabar-wash: rgba(229, 115, 103, 0.15);
+  --cobalt: #72addb;
+  --cobalt-wash: rgba(114, 173, 219, 0.16);
   color-scheme: dark;
 }
-* { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  background: var(--bg); color: var(--ink);
-  font: 14.5px/1.5 var(--sans);
-  -webkit-font-smoothing: antialiased;
-}
-button, input, select, textarea { font-family: inherit; color: inherit; }
 
-/* Header */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--desk);
+  color: var(--ink);
+  font: 400 14px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--spruce-wash-strong);
+  color: var(--ink);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Subtle palette-matched scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--muted); border: 2px solid transparent; background-clip: content-box; }
+
+.ico {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ==================== BOTANICAL STUDIO TOP BAR ==================== */
 header {
-  position: sticky; top: 0; z-index: 20;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--chrome-bg);
+  color: var(--chrome-ink);
+  border-bottom: 1px solid var(--chrome-rule);
 }
+
 .bar {
-  max-width: 1380px; margin: 0 auto;
-  padding: 10px 22px;
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  max-width: 1640px;
+  margin: 0 auto;
+  min-height: 50px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
+
 .brand {
-  font: 600 18px/1 var(--serif);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font: 600 16px/1 var(--serif);
   letter-spacing: -0.015em;
+  color: var(--chrome-ink);
   margin-right: 4px;
 }
-.brand em { color: var(--accent); font-style: italic; font-weight: 500; }
-.pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 3px 9px; border-radius: 999px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
-  color: var(--muted); white-space: nowrap;
-}
-.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
-.pill.live { border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); color: var(--accent); background: var(--accent-soft); }
-.pill.live .dot { background: var(--accent); }
-.pill.replay .dot { background: var(--teal); }
-.spacer { flex: 1; }
 
-.btn {
-  height: 31px; padding: 0 10px; border-radius: 6px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 12.5px; font-weight: 600; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 5px;
-  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+.brand-mark {
+  width: 18px;
+  height: 18px;
+  color: #6fd6c2;
+  flex-shrink: 0;
+}
+
+.brand em {
+  font-style: italic;
+  font-weight: 400;
+  color: #8ee0cf;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--chrome-rule);
+  background: var(--chrome-surface);
+  font: 500 11.5px/1 var(--sans);
+  color: var(--chrome-muted);
   white-space: nowrap;
 }
-.btn:hover:not(:disabled) { background: var(--surface-2); border-color: var(--muted); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn.primary:hover:not(:disabled) { filter: brightness(1.07); }
-.btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-.btn:disabled { opacity: 0.42; cursor: not-allowed; }
-select.sel {
-  height: 31px; padding: 0 8px; border-radius: 6px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 12.5px; outline: none; cursor: pointer;
+
+.pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--chrome-muted);
 }
-select.sel:focus { border-color: var(--accent); }
+
+.pill.live {
+  color: #9bf0de;
+  border-color: rgba(111, 214, 194, 0.35);
+  background: rgba(73, 184, 163, 0.14);
+}
+.pill.live .dot { background: #5de0c6; }
+.pill.replay .dot { background: #82b8e0; }
+
+.spacer { flex: 1; min-width: 8px; }
+
+.bar-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--chrome-rule);
+  margin: 0 2px;
+}
+
+.lang-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lang-arrow {
+  color: var(--chrome-muted);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Header buttons & selects (dark botanical surface) */
+header .btn,
+header select.sel {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--chrome-rule);
+  background: var(--chrome-surface);
+  color: var(--chrome-ink);
+  font: 500 12.5px/1 var(--sans);
+}
+
+header .btn:hover:not(:disabled),
+header select.sel:hover {
+  background: var(--chrome-hover);
+  border-color: #3c5c4f;
+}
+
+header .btn.active {
+  background: rgba(73, 184, 163, 0.22);
+  border-color: #56c9b3;
+  color: #bef7eb;
+}
+
+header .btn:focus-visible,
+header select.sel:focus-visible {
+  box-shadow: 0 0 0 2px var(--chrome-bg), 0 0 0 4px #5de0c6;
+}
+
+header kbd {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--chrome-muted);
+}
+
+header .btn.active kbd {
+  color: #bef7eb;
+  border-color: rgba(155, 240, 222, 0.35);
+}
+
+@media (max-width: 640px) {
+  header { position: static; }
+  .bar { padding: 8px 14px; gap: 6px; }
+  .bar-sep { display: none; }
+  header kbd { display: none; }
+  .col-bar { padding: 11px 16px; }
+  .source-body { padding: 14px 16px; }
+  .canvas-wrap { padding: 18px 16px; }
+  .transport { padding: 10px 14px; }
+  .frontier-box { padding: 12px 16px 18px; }
+}
+
+/* ==================== WORKSPACE CONTROLS ==================== */
+.btn {
+  height: 32px;
+  padding: 0 11px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 12.5px/1 var(--sans);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: background 140ms var(--ease), border-color 140ms var(--ease), color 140ms var(--ease), opacity 140ms var(--ease);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--surface-hover);
+  border-color: var(--rule-strong);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+.btn.primary {
+  background: var(--spruce);
+  border-color: var(--spruce);
+  color: var(--spruce-ink);
+  font-weight: 600;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--spruce-hover);
+  border-color: var(--spruce-hover);
+}
+
+.btn.active {
+  border-color: var(--spruce);
+  background: var(--spruce-wash);
+  color: var(--spruce);
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+}
+
+.btn.ghost:hover:not(:disabled) {
+  background: var(--surface-hover);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.btn.icon-btn {
+  padding: 0 9px;
+  min-width: 32px;
+}
+
+.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+select.sel {
+  height: 32px;
+  padding: 0 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 12.5px/1 var(--sans);
+  cursor: pointer;
+  transition: border-color 140ms var(--ease), background 140ms var(--ease);
+}
+
+select.sel:hover {
+  border-color: var(--rule-strong);
+}
+
 kbd {
   font: 500 10px/1 var(--mono);
-  padding: 2px 4px; border-radius: 4px;
-  border: 1px solid var(--rule); background: var(--surface-2); color: var(--muted);
-}
-.lang-pair { display: inline-flex; align-items: center; gap: 4px; }
-.lang-arrow { color: var(--muted); font-size: 12px; }
-
-/* Main two-pane workspace */
-main {
-  max-width: 1380px; margin: 0 auto;
-  padding: 18px 22px 48px;
-}
-.studio {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
-  gap: 20px;
-  align-items: start;
-}
-@media (max-width: 920px) {
-  .studio { grid-template-columns: 1fr; }
-}
-.pane {
-  background: var(--surface);
+  padding: 2px 4px;
+  border-radius: 3px;
   border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 18px 20px;
-  display: flex; flex-direction: column; gap: 13px;
-}
-.pane-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-}
-.eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--muted);
+  background: var(--rail);
+  color: var(--muted);
 }
 
-/* Source editor + annotated alignment view */
-textarea.source-editor {
-  width: 100%; min-height: 270px; max-height: 440px; resize: vertical;
-  padding: 14px 16px; border-radius: 8px;
-  border: 1px solid var(--rule); background: var(--bg);
-  font: 400 17.5px/1.62 var(--serif);
-  color: var(--ink); outline: none;
-  white-space: pre-wrap; tab-size: 2;
+.status-msg {
+  font: 400 12px/1.35 var(--sans);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
-textarea.source-editor:focus { border-color: var(--accent); }
+
+.mono-num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==================== OPEN FULL-BLEED HERBARIUM DESK ==================== */
+main {
+  max-width: 1640px;
+  margin: 0 auto;
+  min-height: calc(100vh - 51px);
+  display: flex;
+  flex-direction: column;
+}
+
+.studio {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(290px, 0.86fr) minmax(0, 1.14fr);
+  background: transparent;
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  align-items: stretch;
+}
+
+.studio.rail-open {
+  grid-template-columns: minmax(270px, 0.78fr) minmax(0, 1.06fr) minmax(300px, 356px);
+}
+
+@media (max-width: 1180px) {
+  .studio.rail-open {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  }
+  .studio.rail-open .instrument-rail {
+    grid-column: 1 / -1;
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+}
+
+@media (max-width: 860px) {
+  .studio,
+  .studio.rail-open {
+    grid-template-columns: 1fr;
+    border-left: none;
+    border-right: none;
+  }
+  .desk-col + .desk-col {
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+}
+
+.studio.hidden { display: none; }
+
+.desk-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.desk-col + .desk-col {
+  border-left: 1px solid var(--rule);
+}
+
+.source-col {
+  background: var(--rail);
+}
+
+.translation-col {
+  background: var(--paper);
+}
+
+.col-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 22px 11px;
+  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+
+.col-title {
+  margin: 0;
+  font: 600 13.5px/1.2 var(--sans);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.col-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ==================== LEFT ZONE: SOURCE FOLIO ==================== */
+.source-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 22px 16px;
+  gap: 14px;
+}
+
+textarea.source-editor {
+  width: 100%;
+  flex: 1;
+  min-height: 290px;
+  max-height: 520px;
+  resize: vertical;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font: 400 18.5px/1.72 var(--serif);
+  color: var(--ink);
+  caret-color: var(--spruce);
+  white-space: pre-wrap;
+  tab-size: 2;
+  transition: border-color 140ms var(--ease);
+}
+
+textarea.source-editor::placeholder {
+  color: var(--subtle);
+}
+
+textarea.source-editor:focus {
+  border-color: var(--spruce);
+}
+
 .source-annotated {
   display: none;
-  min-height: 220px; max-height: 420px; overflow-y: auto;
-  padding: 14px 16px; border-radius: 8px;
-  border: 1px solid var(--rule); background: var(--bg);
-  font: 400 17.5px/1.65 var(--serif);
-}
-.source-annotated.visible { display: block; }
-.src-line {
-  display: block; padding: 2px 8px; margin: 1px -8px;
-  border-radius: 5px; border-left: 2px solid transparent;
-  white-space: pre-wrap; cursor: pointer;
-  transition: background 0.12s, border-color 0.12s;
-}
-.src-line.empty { height: 0.9em; pointer-events: none; }
-.src-line.active-line {
-  background: var(--accent-soft);
-  border-left-color: var(--accent);
-}
-.src-line.hover-line {
-  background: color-mix(in srgb, var(--teal) 14%, transparent);
-  border-left-color: var(--teal);
-}
-.source-foot {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  flex: 1;
+  min-height: 260px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding: 16px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font: 400 18.5px/1.72 var(--serif);
 }
 
-/* Living translation surface (bounded + scrollable for long poems) */
+.source-annotated.visible { display: block; }
+
+.source-col.reading-mode .source-body {
+  padding: 0;
+  gap: 0;
+}
+
+.source-col.reading-mode .source-annotated.visible {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  max-height: none;
+  padding: 20px 18px 16px 14px;
+}
+
+.source-col.reading-mode .source-foot {
+  padding: 11px 22px 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.src-line {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 3px 10px 3px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 140ms var(--ease);
+}
+
+.src-line.empty {
+  display: block;
+  height: 0.95em;
+  pointer-events: none;
+  padding: 0;
+}
+
+.src-lnum {
+  font: 500 11px/1 var(--mono);
+  color: var(--subtle);
+  text-align: right;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.src-ltext {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.src-line.active-line {
+  background: var(--spruce-wash);
+}
+.src-line.active-line .src-lnum {
+  color: var(--spruce);
+  font-weight: 600;
+}
+
+.src-line.hover-line {
+  background: var(--cobalt-wash);
+}
+.src-line.hover-line .src-lnum {
+  color: var(--cobalt);
+}
+
+.source-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 2px;
+}
+
+/* ==================== CENTER ZONE: LIVING TRANSLATION DESK ==================== */
+.translation-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .canvas-wrap {
-  min-height: 200px;
+  min-height: 215px;
   max-height: 360px;
   overflow-y: auto;
-  padding: 16px 18px;
-  border-radius: 8px;
-  border: 1px solid var(--rule);
-  background: var(--bg);
-  font: 400 18.5px/1.68 var(--serif);
+  padding: 24px 28px 22px;
+  background: var(--paper);
+  font: 400 19.5px/1.74 var(--serif);
   white-space: pre-wrap;
   word-wrap: break-word;
   position: relative;
 }
+
 .ctok {
-  cursor: pointer; border-radius: 3px;
-  transition: background 0.1s;
-}
-.ctok:hover { background: var(--accent-soft); }
-.ctok.aligned-hl {
-  background: color-mix(in srgb, var(--teal) 18%, transparent);
-}
-.ctok.forked {
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-.ctok.steered {
-  background: color-mix(in srgb, var(--teal) 14%, transparent);
-}
-.cursor-caret {
-  display: inline-block; width: 2px; height: 1.1em;
-  background: var(--accent); vertical-align: -0.15em;
-  margin: 0 1px; animation: blink 1.1s steps(2) infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-.ghost-text {
-  color: var(--muted); opacity: 0.62; font-style: italic;
-}
-.ghost-text.hover-preview {
-  color: var(--accent); opacity: 0.92; font-style: normal;
-  background: var(--accent-soft); border-radius: 3px; padding: 0 2px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 120ms var(--ease);
 }
 
-/* Tension meter & adaptive branch fan */
+.ctok:hover {
+  background: var(--spruce-wash-strong);
+}
+
+.ctok.aligned-hl {
+  background: var(--cobalt-wash);
+}
+
+.ctok.forked {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--cinnabar) 62%, transparent);
+  text-decoration-thickness: 1.8px;
+  text-underline-offset: 5px;
+}
+
+.ctok.steered {
+  background: var(--spruce-wash);
+}
+
+.cursor-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.12em;
+  background: var(--spruce);
+  vertical-align: -0.16em;
+  margin: 0 1px;
+  border-radius: 1px;
+  animation: caretPulse 1.15s steps(2) infinite;
+}
+
+@keyframes caretPulse { 50% { opacity: 0; } }
+
+.ghost-text {
+  color: var(--subtle);
+  opacity: 1;
+  font-style: italic;
+}
+
+.ghost-text.hover-preview {
+  color: var(--spruce);
+  opacity: 1;
+  font-style: normal;
+  background: var(--spruce-wash);
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+/* Unified Hairline Transport Strip */
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px 22px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--rail);
+}
+
+.transport-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--rule-strong);
+  margin: 0 2px;
+}
+
+.custom-word {
+  flex: 1;
+  min-width: 145px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font: 400 14px/1 var(--serif);
+  color: var(--ink);
+  caret-color: var(--spruce);
+  transition: border-color 140ms var(--ease);
+}
+
+.custom-word::placeholder {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--subtle);
+}
+
+.custom-word:focus {
+  border-color: var(--spruce);
+}
+
+/* ==================== ADAPTIVE CRITICAL BRANCH FAN ==================== */
 .frontier-box {
-  display: flex; flex-direction: column; gap: 10px;
-  padding-top: 2px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 22px 22px;
+  gap: 10px;
+  background: var(--paper);
 }
+
 .regime-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
 }
+
 .regime-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 12px; font-weight: 600; color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font: 600 12.5px/1.2 var(--sans);
+  color: var(--muted);
 }
-.regime-badge.fork { color: var(--accent); }
+
+.regime-badge.fork { color: var(--cinnabar); }
 .regime-badge.subtle { color: var(--ochre); }
+
 .meter {
-  width: 72px; height: 5px; border-radius: 99px;
-  background: var(--surface-2); overflow: hidden; display: inline-block;
+  width: 76px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--desk);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  display: inline-block;
 }
+
 .meter > i {
-  display: block; height: 100%; border-radius: 99px;
-  background: var(--muted); transition: width 0.18s ease, background 0.18s ease;
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--spruce);
+  transition: width 200ms var(--ease), background 200ms var(--ease);
 }
-.regime-badge.fork .meter > i { background: var(--accent); }
+
+.regime-badge.fork .meter > i { background: var(--cinnabar); }
 .regime-badge.subtle .meter > i { background: var(--ochre); }
 
 .linear-hint {
-  padding: 10px 13px; border-radius: 8px;
-  border: 1px dashed var(--rule); background: var(--bg);
-  font-size: 13px; color: var(--muted);
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--rule-strong);
+  background: var(--rail);
+  font: 400 13px/1.45 var(--sans);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-.branch-list {
-  display: flex; flex-direction: column; gap: 7px;
-}
-.branch-btn {
-  width: 100%; text-align: left;
-  padding: 9px 12px; border-radius: 8px;
-  border: 1px solid var(--rule); background: var(--surface);
-  cursor: pointer; display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) 52px;
-  gap: 6px 12px; align-items: center;
-  transition: border-color 0.12s, background 0.12s;
-}
-.branch-btn:hover {
-  border-color: var(--accent);
-  background: var(--surface-2);
-}
-.branch-key {
-  width: 22px; height: 22px; border-radius: 5px;
-  display: inline-flex; align-items: center; justify-content: center;
-  font: 600 11px/1 var(--mono); color: #fff;
-}
-.branch-body { min-width: 0; }
-.branch-text {
-  font: 400 15.5px/1.4 var(--serif);
-  white-space: pre-wrap; overflow-wrap: anywhere;
-}
-.branch-text strong { font-weight: 600; }
-.branch-sub {
-  margin-top: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  font-size: 11.5px; color: var(--muted);
-}
-.branch-bar {
-  flex: 1; min-width: 48px; max-width: 110px; height: 4px; border-radius: 99px;
-  background: var(--surface-2); overflow: hidden;
-}
-.branch-bar > i { display: block; height: 100%; border-radius: 99px; }
-.sub-forks {
-  margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px;
-  font-size: 11px; color: var(--muted);
-}
-.sub-chip {
-  padding: 1px 6px; border-radius: 999px;
-  background: var(--surface-2); border: 1px solid var(--rule);
+
+.linear-hint strong {
+  color: var(--ink);
   font-family: var(--serif);
+  font-weight: 600;
+  font-size: 14.5px;
 }
-.branch-pct {
-  text-align: right; font: 600 12px/1 var(--mono); color: var(--muted);
+
+/* Crisp Hairline Branch Table (no stacked boxes) */
+.branch-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+
+.branch-btn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 8px;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 88px;
+  gap: 4px 12px;
+  align-items: start;
+  transition: background 130ms var(--ease);
+}
+
+.branch-btn:hover {
+  background: var(--spruce-wash);
+}
+
+.branch-btn:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--spruce);
+}
+
+.branch-key {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 11px/1 var(--mono);
+  color: #ffffff;
+}
+
+.branch-body { min-width: 0; }
+
+.branch-text {
+  font: 400 16px/1.42 var(--serif);
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.branch-text strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.branch-text .cont-rest {
+  color: var(--muted);
+}
+
+/* Inline depth-2 branching twigs */
+.sub-forks {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 6px;
+  font: 400 11.5px/1.3 var(--sans);
+  color: var(--muted);
+}
+
+.twig-label {
+  font: 500 10.5px/1 var(--mono);
+  color: var(--subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.sub-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--rail);
+  border: 1px solid var(--rule);
+  font: 400 12.5px/1.25 var(--serif);
+  color: var(--ink);
+}
+
+.sub-chip em {
+  font: 500 10px/1 var(--mono);
+  font-style: normal;
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
-/* Transport bar */
-.transport {
-  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-  padding-top: 6px; border-top: 1px solid var(--rule);
-}
-.custom-word {
-  flex: 1; min-width: 130px; height: 31px;
-  padding: 0 10px; border-radius: 6px;
-  border: 1px solid var(--rule); background: var(--bg);
-  font: 400 14px/1 var(--serif); outline: none;
-}
-.custom-word:focus { border-color: var(--accent); }
-
-/* Drawers (Compass, Sliders, History) */
-.drawer {
+.branch-sub {
   margin-top: 4px;
-  padding: 14px 16px; border-radius: 10px;
-  border: 1px solid var(--rule); background: var(--bg);
-  display: none; flex-direction: column; gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font: 400 11.5px/1.2 var(--sans);
+  color: var(--subtle);
 }
+
+.branch-foot {
+  padding: 8px 4px 0;
+  font: 400 11.5px/1.35 var(--sans);
+  color: var(--subtle);
+}
+
+.branch-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  padding-top: 3px;
+}
+
+.branch-pct {
+  font: 600 12px/1 var(--mono);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.branch-bar {
+  width: 74px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--desk);
+  overflow: hidden;
+}
+
+.branch-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+}
+
+/* ==================== RIGHT ZONE: DOCKED INSTRUMENT RAIL ==================== */
+.instrument-rail {
+  display: none;
+  flex-direction: column;
+  background: var(--rail);
+  min-width: 0;
+}
+
+.studio.rail-open .instrument-rail {
+  display: flex;
+}
+
+.drawer {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px 18px 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
 .drawer.open { display: flex; }
 
-.compass-grid {
-  display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 16px; align-items: center;
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-@media (max-width: 640px) { .compass-grid { grid-template-columns: 1fr; } }
+
+.drawer-title {
+  margin: 0;
+  font: 600 13px/1.2 var(--sans);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Engraved Cartographic Compass Rose */
+.compass-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.compass-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
 svg.compass-svg {
-  width: 230px; height: 230px; display: block;
-  border-radius: 10px; border: 1px solid var(--rule);
-  background: var(--surface); cursor: crosshair; touch-action: none;
+  width: 248px;
+  height: 248px;
+  max-width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  cursor: crosshair;
+  touch-action: none;
 }
+
+.coord-readout {
+  font: 500 11px/1 var(--mono);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .steered-preview {
-  padding: 12px 14px; border-radius: 8px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font: 400 16px/1.5 var(--serif); min-height: 76px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font: 400 16px/1.55 var(--serif);
+  min-height: 76px;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
+.compass-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Continuous SpectralReFT Bipolar Sliders (zero-centered origin) */
 .slider-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
+
 .slider-item label {
-  display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 4px;
-}
-.slider-item input[type=range] {
-  width: 100%; accent-color: var(--accent); cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 6px;
+  font: 500 11.5px/1.2 var(--sans);
+  color: var(--muted);
+  margin-bottom: 5px;
 }
 
-.history-list { display: flex; flex-direction: column; gap: 6px; }
+.slider-item label span:last-child { text-align: right; }
+
+.slider-val {
+  font: 600 11px/1 var(--mono);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+
+.slider-val.nonzero {
+  color: var(--spruce);
+  border-color: var(--spruce);
+  background: var(--spruce-wash);
+}
+
+.bipolar-range {
+  position: relative;
+  height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.bipolar-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 99px;
+  background: var(--rule-strong);
+  pointer-events: none;
+}
+
+.bipolar-zero {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.5px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+  background: var(--muted);
+  border-radius: 1px;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.bipolar-fill {
+  position: absolute;
+  left: 50%;
+  width: 0%;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 99px;
+  background: var(--spruce);
+  pointer-events: none;
+}
+
+.bipolar-range input[type="range"] {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.bipolar-range input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+  border: none;
+}
+
+.bipolar-range input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--spruce);
+  border: 2px solid var(--paper);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: transform 120ms var(--ease);
+}
+
+.bipolar-range input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+.bipolar-range input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: transparent;
+  border: none;
+}
+
+.bipolar-range input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--spruce);
+  border: 2px solid var(--paper);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: transform 120ms var(--ease);
+}
+
+/* Transit-Interchange Branch Tree (Paths) */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .hist-item {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 7px 10px; border-radius: 7px;
-  border: 1px solid var(--rule); background: var(--surface);
-  cursor: pointer; font-size: 12.5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  cursor: pointer;
+  font: 500 12.5px/1.3 var(--sans);
+  transition: border-color 130ms var(--ease), background 130ms var(--ease);
 }
-.hist-item.active { border-color: var(--accent); background: var(--accent-soft); }
-.hist-item .snip { font-family: var(--serif); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 240px; }
 
-/* Replay / Offline Archive View */
-.replay-wrap { display: none; flex-direction: column; gap: 18px; }
-.replay-wrap.active { display: flex; }
-.studio.hidden { display: none; }
-.replay-grid {
-  display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start;
+.hist-item[data-depth]:not([data-depth="0"])::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -8px;
+  width: 1px;
+  height: calc(50% + 8px);
+  background: var(--rule-strong);
+  pointer-events: none;
 }
-@media (max-width: 900px) { .replay-grid { grid-template-columns: 1fr; } }
+
+.hist-item[data-depth]:not([data-depth="0"])::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background: var(--rule-strong);
+  pointer-events: none;
+}
+
+.hist-item:hover {
+  border-color: var(--rule-strong);
+  background: var(--surface-hover);
+}
+
+.hist-item.active {
+  border-color: var(--spruce);
+  background: var(--spruce-wash);
+}
+
+.hist-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.hist-node-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--muted);
+  background: var(--paper);
+  flex-shrink: 0;
+}
+
+.hist-item.active .hist-node-dot {
+  border-color: var(--spruce);
+  background: var(--spruce);
+}
+
+.hist-item .snip {
+  font: 400 12px/1.2 var(--serif);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+}
+
+/* ==================== REPLAY / OFFLINE ARCHIVE VIEW ==================== */
+.replay-wrap {
+  display: none;
+  flex: 1;
+  background: var(--paper);
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  flex-direction: column;
+}
+
+.replay-wrap.active { display: flex; }
+
+.replay-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(310px, 370px);
+  align-items: stretch;
+}
+
+@media (max-width: 940px) {
+  .replay-grid {
+    grid-template-columns: 1fr;
+  }
+  .replay-compass-col {
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+  .replay-compass-sticky {
+    position: static;
+  }
+}
+
+.replay-main-col {
+  padding: 24px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.replay-compass-col {
+  background: var(--rail);
+  border-left: 1px solid var(--rule);
+  padding: 22px 24px 28px;
+}
+
+.replay-compass-sticky {
+  position: sticky;
+  top: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.replay-source {
+  font: italic 400 21px/1.55 var(--serif);
+  color: var(--ink);
+  white-space: pre-wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
 .replay-tokens {
-  display: flex; flex-wrap: wrap; gap: 4px 2px;
-  padding: 14px 16px; border-radius: 8px; background: var(--bg); border: 1px solid var(--rule);
-  font: 400 18px/1.6 var(--serif);
+  display: block;
+  padding: 15px 18px;
+  border-radius: var(--radius-md);
+  background: var(--rail);
+  border: 1px solid var(--rule);
+  font: 400 18.5px/1.85 var(--serif);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.rtok {
+  display: inline;
+  padding: 2px 1px;
+  border-radius: 3px;
+  border-bottom: 2.5px solid transparent;
   white-space: pre-wrap;
 }
-.rtok { padding: 2px 3px; border-radius: 3px; border-bottom: 3px solid transparent; white-space: pre-wrap; }
-.rtok.cur { outline: 2px solid var(--accent); }
-.share-chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 4px 10px; border-radius: 999px;
-  border: 1px solid var(--rule); background: var(--surface);
-  font-size: 12px; font-variant-numeric: tabular-nums;
+
+.rtok.cur {
+  background: var(--cinnabar-wash);
+  outline: 1.5px solid var(--cinnabar);
 }
-.share-chip .dot { width: 7px; height: 7px; border-radius: 50%; }
-.share-mini { width: 42px; height: 4px; border-radius: 99px; background: var(--surface-2); overflow: hidden; display: inline-block; }
-.share-mini > i { display: block; height: 100%; border-radius: 99px; }
-.status-msg { font-size: 12px; color: var(--muted); min-height: 18px; }
+
+.section-heading {
+  margin: 0;
+  font: 600 13px/1.2 var(--sans);
+  color: var(--muted);
+}
+
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.share-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--rail);
+  font: 500 12px/1 var(--sans);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.share-chip .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.share-mini {
+  width: 40px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--desk);
+  overflow: hidden;
+  display: inline-block;
+}
+
+.share-mini > i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+}
+
+.share-chip strong {
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.offline-sessions {
+  display: none;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+  margin-top: 6px;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.offline-session-card {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.offline-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 760px) {
+  .offline-spread { grid-template-columns: 1fr; }
+  .offline-pane + .offline-pane { border-left: none; border-top: 1px solid var(--rule); }
+}
+
+.offline-pane {
+  padding: 16px 18px;
+  min-width: 0;
+}
+
+.offline-pane + .offline-pane {
+  border-left: 1px solid var(--rule);
+}
+
+.offline-pane.src-pane {
+  background: var(--rail);
+}
+
+.offline-subhead {
+  font: 600 11.5px/1.2 var(--sans);
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.offline-prose {
+  font: 400 16.5px/1.65 var(--serif);
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.offline-pane.src-pane .offline-prose {
+  font-style: italic;
+}
+
+.offline-section {
+  border-top: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+
+.offline-paths-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+
+.offline-path-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font: 400 14.5px/1.45 var(--serif);
+  color: var(--ink);
+}
+
+.offline-path-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.offline-path-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 11.5px/1 var(--sans);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.offline-slider-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .offline-slider-grid { grid-template-columns: 1fr; }
+}
+
+.offline-slider-spec {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
+  background: var(--rail);
+}
+
+.offline-slider-spec .offline-prose {
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 </style>
 </head>
 <body>
 <header>
   <div class="bar">
-    <div class="brand">Translation <em>Explorer</em></div>
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <circle cx="10" cy="10" r="7.5"/>
+        <line x1="10" y1="1.5" x2="10" y2="18.5"/>
+        <line x1="1.5" y1="10" x2="18.5" y2="10"/>
+        <polygon points="10,4.5 11.8,10 10,15.5 8.2,10" fill="currentColor" stroke="none" opacity="0.85"/>
+      </svg>
+      <span>Translation <em>Explorer</em></span>
+    </div>
     <span id="modePill" class="pill"><i class="dot"></i><span id="modeLabel">Loading…</span></span>
-    <span id="modelPill" class="pill" style="display:none"></span>
+    <span id="modelPill" class="pill mono-num" style="display:none"></span>
     <div class="spacer"></div>
     <div id="langPairWrap" class="lang-pair">
-      <select id="srcLang" class="sel" title="Source language">
+      <select id="srcLang" class="sel" aria-label="Source language" title="Source language">
         <option value="Spanish">Spanish</option>
         <option value="Portuguese">Portuguese</option>
         <option value="Italian">Italian</option>
         <option value="French">French</option>
         <option value="German">German</option>
       </select>
-      <span class="lang-arrow">→</span>
-      <select id="tgtLang" class="sel" title="Target language">
+      <span class="lang-arrow" aria-hidden="true">
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9.5 4.5 13 8l-3.5 3.5"/></svg>
+      </span>
+      <select id="tgtLang" class="sel" aria-label="Target language" title="Target language">
         <option value="English">English</option>
         <option value="Spanish">Spanish</option>
         <option value="French">French</option>
@@ -420,140 +1558,191 @@ svg.compass-svg {
         <option value="Portuguese">Portuguese</option>
       </select>
     </div>
-    <button id="btnSliders" class="btn" title="Global tone & practice sliders (S)">Sliders <kbd>S</kbd></button>
-    <button id="btnHistory" class="btn" title="Explored branch history (H)">Paths <kbd>H</kbd></button>
+    <span id="headerSep" class="bar-sep" aria-hidden="true"></span>
+    <button id="btnSliders" class="btn" title="Global tone &amp; practice sliders (S)">
+      <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/><circle cx="6" cy="4.5" r="1.4" fill="currentColor"/><circle cx="10.5" cy="8" r="1.4" fill="currentColor"/><circle cx="7.5" cy="11.5" r="1.4" fill="currentColor"/></svg>
+      Sliders <kbd>S</kbd>
+    </button>
+    <button id="btnHistory" class="btn" title="Explored branch history (H)">
+      <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="4.5" cy="4" r="1.6"/><circle cx="4.5" cy="12" r="1.6"/><circle cx="11.5" cy="8" r="1.6"/><path d="M4.5 5.6v4.8M6.1 4.5c2.2 0 3.8 1.2 3.8 3.5"/></svg>
+      Paths <kbd>H</kbd>
+    </button>
     <button id="btnSwitchMode" class="btn" style="display:none">Replay Archive</button>
-    <button id="btnTheme" class="btn" title="Toggle light/dark">◐</button>
+    <button id="btnTheme" class="btn icon-btn" title="Toggle light/dark theme" aria-label="Toggle light or dark theme">
+      <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M8 2.5a5.5 5.5 0 0 1 0 11z" fill="currentColor" stroke="none"/></svg>
+    </button>
   </div>
 </header>
 
 <main>
-  <!-- ==================== LIVE CO-TRANSLATION STUDIO ==================== -->
+  <!-- ==================== LIVE CO-TRANSLATION DESK ==================== -->
   <section id="liveStudio" class="studio">
-    <!-- Left: Source Poem / Paragraph -->
-    <div class="pane">
-      <div class="pane-head">
-        <span class="eyebrow">Source Text</span>
-        <div style="display:flex;gap:6px;align-items:center">
+    <!-- Left Zone: Source Folio -->
+    <div id="sourceCol" class="desk-col source-col">
+      <div class="col-bar">
+        <h2 class="col-title">Source</h2>
+        <div class="col-actions">
           <button id="btnEditSource" class="btn" style="display:none" title="Edit raw source text">Edit</button>
-          <select id="presetSelect" class="sel" title="Load an example poem or passage">
+          <select id="presetSelect" class="sel" aria-label="Example texts" title="Load an example poem or passage">
             <option value="">Load example…</option>
           </select>
         </div>
       </div>
-      <textarea id="sourceInput" class="source-editor" spellcheck="false"
-        placeholder="Paste a poem, stanza, or paragraph in Spanish (or another language)…&#10;Line breaks, stanzas, and indentation are preserved."></textarea>
-      <div id="sourceAnnotated" class="source-annotated" aria-label="Aligned source text"></div>
-      <div class="source-foot">
-        <span id="sourceStats" class="status-msg">Line breaks &amp; stanzas preserved</span>
-        <button id="btnStart" class="btn primary">Start Co-Translating</button>
-      </div>
-
-      <!-- Collapsible Global Practice Sliders -->
-      <div id="slidersDrawer" class="drawer">
-        <div class="pane-head">
-          <span class="eyebrow">Global Practice &amp; Tone Axes</span>
-          <button id="btnResetSliders" class="btn">Reset</button>
+      <div class="source-body">
+        <textarea id="sourceInput" class="source-editor" spellcheck="false" aria-label="Source text"
+          placeholder="Paste a poem, stanza, or paragraph in Spanish (or another language)…&#10;Line breaks, stanzas, and indentation are preserved."></textarea>
+        <div id="sourceAnnotated" class="source-annotated" aria-label="Aligned source text"></div>
+        <div class="source-foot">
+          <span id="sourceStats" class="status-msg">Line breaks &amp; stanzas preserved</span>
+          <button id="btnStart" class="btn primary">Start Co-Translating</button>
         </div>
-        <div id="sliderGrid" class="slider-grid"></div>
-      </div>
-
-      <!-- Collapsible Explored Paths (Hierarchical Tree) -->
-      <div id="historyDrawer" class="drawer">
-        <div class="pane-head">
-          <span class="eyebrow">Explored Branches</span>
-          <span class="status-msg">Click any path to restore</span>
-        </div>
-        <div id="historyList" class="history-list"></div>
       </div>
     </div>
 
-    <!-- Right: Live Cursor & Adaptive Branches -->
-    <div class="pane">
-      <div class="pane-head">
-        <span class="eyebrow">Live Translation</span>
-        <span id="liveStatus" class="status-msg">Ready — click Start to prefill</span>
-      </div>
-
-      <div id="translationCanvas" class="canvas-wrap" title="Click any committed word to rewind there">
-        <span class="ghost-text">Your translation will unfold here word by word…</span>
-      </div>
-
-      <div class="transport">
-        <button id="btnRewind" class="btn" disabled title="Rewind (Backspace / ←)">← Rewind</button>
-        <button id="btnRedo" class="btn" disabled title="Redo along rewound path">Redo →</button>
-        <button id="btnStep" class="btn primary" disabled title="Advance (Space / →)">Step Word →</button>
-        <button id="btnStepMode" class="btn" title="Switch between Word and Token stepping">Mode: Word</button>
-        <button id="btnGlide" class="btn" disabled title="Stream automatically until next complex fork (Tab)">▶ Glide</button>
-        <button id="btnNewline" class="btn" disabled title="Insert line break (↵)">↵</button>
-        <button id="btnStanza" class="btn" disabled title="Insert stanza break (¶)">¶</button>
-        <button id="btnCompass" class="btn" disabled title="Open 2D Spectral Steering Compass at cursor (C)">◎ Compass</button>
-        <button id="btnCopy" class="btn" disabled title="Copy committed translation">Copy</button>
-        <input id="customWord" class="custom-word" placeholder="Or type next word & Enter…" disabled>
-      </div>
-
-      <!-- Adaptive Branch Frontier -->
-      <div id="frontierBox" class="frontier-box">
-        <div class="regime-row">
-          <span id="regimeBadge" class="regime-badge">
-            <span class="meter"><i id="tensionBar" style="width:0%"></i></span>
-            <span id="regimeText">Waiting for session</span>
-          </span>
-          <span id="frontierMetrics" class="status-msg"></span>
+    <!-- Center Zone: Living Translation & Adaptive Branch Fan -->
+    <div class="desk-col translation-col">
+      <div class="col-bar">
+        <h2 class="col-title">Translation</h2>
+        <div class="col-actions">
+          <span id="liveStatus" class="status-msg">Ready — click Start to prefill</span>
+          <button id="btnCopy" class="btn ghost" disabled title="Copy committed translation">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="7.5" height="8" rx="1.2"/><path d="M10.5 5.5V3.7A1.2 1.2 0 0 0 9.3 2.5H4.2A1.2 1.2 0 0 0 3 3.7v6.6a1.2 1.2 0 0 0 1.2 1.2h1.3"/></svg>
+            Copy
+          </button>
         </div>
-        <div id="branchContainer"></div>
       </div>
 
-      <!-- On-demand 2D Spectral Compass -->
-      <div id="compassDrawer" class="drawer">
-        <div class="pane-head">
-          <span class="eyebrow">2D Spectral Steering Compass (at cursor)</span>
-          <span id="compassMeta" class="status-msg">Drag to steer live</span>
+      <div class="translation-body">
+        <div id="translationCanvas" class="canvas-wrap" title="Click any committed word to rewind there"><span class="ghost-text">Your translation will unfold here word by word…</span></div>
+
+        <div class="transport">
+          <button id="btnRewind" class="btn" disabled title="Rewind (Backspace / Left Arrow)">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12.5 8H3.5M7 4.5 3.5 8 7 11.5"/></svg>
+            Rewind
+          </button>
+          <button id="btnRedo" class="btn" disabled title="Redo along rewound path">
+            Redo
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 8h9M9 4.5 12.5 8 9 11.5"/></svg>
+          </button>
+          <button id="btnStep" class="btn primary" disabled title="Advance (Space / Right Arrow)">Step Word</button>
+          <button id="btnGlide" class="btn" disabled title="Stream automatically until next complex fork (Tab)">
+            <svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><polygon points="4.5,3 12.5,8 4.5,13"/></svg>
+            Glide
+          </button>
+          <button id="btnStepMode" class="btn ghost" title="Switch between Word and Token stepping">Mode: Word</button>
+          <span class="transport-sep" aria-hidden="true"></span>
+          <button id="btnNewline" class="btn icon-btn" disabled title="Insert line break (Enter)" aria-label="Insert line break ↵">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12.5 3.5v4.3a2 2 0 0 1-2 2H4"/><path d="M6.8 7 4 9.8l2.8 2.8"/></svg>
+          </button>
+          <button id="btnStanza" class="btn icon-btn" disabled title="Insert stanza break" aria-label="Insert stanza break ¶">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10.2 3v10M12.4 3v10M10.2 3H7.2a2.7 2.7 0 0 0 0 5.4h3"/></svg>
+          </button>
+          <button id="btnCompass" class="btn" disabled title="Open 2D Spectral Steering Compass at cursor (C)">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="5.8"/><polygon points="8,4 9.5,8 8,12 6.5,8" fill="currentColor" stroke="none"/></svg>
+            Compass
+          </button>
+          <input id="customWord" class="custom-word" placeholder="Or type next word &amp; Enter…" aria-label="Type custom next word" disabled>
         </div>
-        <div class="compass-grid">
-          <svg id="compassSvg" class="compass-svg" viewBox="-1.45 -1.45 2.9 2.9"></svg>
-          <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
-            <div id="steeredPreview" class="steered-preview"><span class="ghost-text">Drag inside the compass to generate a steered continuation…</span></div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button id="btnCommitSteeredWord" class="btn primary" disabled>Commit Next Word</button>
-              <button id="btnCommitSteeredAll" class="btn" disabled>Commit Full Phrase</button>
-              <button id="btnReprobeCompass" class="btn">Re-probe Cursor</button>
-            </div>
+
+        <!-- Adaptive Branch Frontier -->
+        <div id="frontierBox" class="frontier-box">
+          <div class="regime-row">
+            <span id="regimeBadge" class="regime-badge">
+              <span class="meter"><i id="tensionBar" style="width:0%"></i></span>
+              <span id="regimeText">Waiting for session</span>
+            </span>
+            <span id="frontierMetrics" class="status-msg mono-num"></span>
+          </div>
+          <div id="branchContainer">
+            <div class="linear-hint"><span>Click <strong>Start Co-Translating</strong> to prefill the source text. Once live: <kbd>Space</kbd> step · <kbd>Tab</kbd> glide to fork · <kbd>1–6</kbd> pick branch · <kbd>C</kbd> compass · <kbd>S</kbd> sliders · <kbd>H</kbd> paths.</span></div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Right Zone: Docked Instrument Rail (Compass · Sliders · Paths) -->
+    <aside id="instrumentRail" class="desk-col instrument-rail" aria-label="Steering instruments and paths">
+      <!-- 2D Spectral Steering Compass -->
+      <div id="compassDrawer" class="drawer">
+        <div class="drawer-head">
+          <h3 class="drawer-title">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="5.8"/><polygon points="8,4 9.5,8 8,12 6.5,8" fill="currentColor" stroke="none"/></svg>
+            Spectral Compass
+          </h3>
+          <span id="compassMeta" class="status-msg mono-num">Drag to steer</span>
+        </div>
+        <div class="compass-stack">
+          <div class="compass-frame">
+            <svg id="compassSvg" class="compass-svg" viewBox="-1.45 -1.45 2.9 2.9" role="img" aria-label="2D Spectral Steering Compass"></svg>
+            <span id="compassCoords" class="coord-readout">(0.00, 0.00)</span>
+          </div>
+          <div id="steeredPreview" class="steered-preview"><span class="ghost-text">Drag inside the compass to generate a steered continuation…</span></div>
+          <div class="compass-actions">
+            <button id="btnCommitSteeredWord" class="btn primary" disabled>Commit Word</button>
+            <button id="btnCommitSteeredAll" class="btn" disabled>Commit Phrase</button>
+            <button id="btnReprobeCompass" class="btn ghost">Re-probe</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continuous Global Practice & Tone Sliders -->
+      <div id="slidersDrawer" class="drawer">
+        <div class="drawer-head">
+          <h3 class="drawer-title">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/><circle cx="6" cy="4.5" r="1.4" fill="currentColor"/><circle cx="10.5" cy="8" r="1.4" fill="currentColor"/><circle cx="7.5" cy="11.5" r="1.4" fill="currentColor"/></svg>
+            Tone &amp; Practice Axes
+          </h3>
+          <button id="btnResetSliders" class="btn ghost">Reset</button>
+        </div>
+        <div id="sliderGrid" class="slider-grid"></div>
+      </div>
+
+      <!-- Explored Branch Tree (Paths) -->
+      <div id="historyDrawer" class="drawer">
+        <div class="drawer-head">
+          <h3 class="drawer-title">
+            <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="4.5" cy="4" r="1.6"/><circle cx="4.5" cy="12" r="1.6"/><circle cx="11.5" cy="8" r="1.6"/><path d="M4.5 5.6v4.8M6.1 4.5c2.2 0 3.8 1.2 3.8 3.5"/></svg>
+            Explored Paths
+          </h3>
+          <span class="status-msg">Click to restore</span>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </div>
+    </aside>
   </section>
 
   <!-- ==================== REPLAY / OFFLINE ARCHIVE VIEW ==================== -->
   <section id="replayView" class="replay-wrap">
-    <div class="pane">
-      <div class="pane-head">
-        <span class="eyebrow">Saved Explorer Archive</span>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <select id="replayModelSelect" class="sel" style="display:none" title="Switch model"></select>
-          <select id="replaySelect" class="sel" title="Select text"></select>
+    <div class="col-bar">
+      <h2 class="col-title">Saved Explorer Archive</h2>
+      <div class="col-actions">
+        <select id="replayModelSelect" class="sel" style="display:none" aria-label="Select model" title="Switch model"></select>
+        <select id="replaySelect" class="sel" aria-label="Select archived text" title="Select text"></select>
+      </div>
+    </div>
+    <div class="replay-grid">
+      <div class="replay-main-col">
+        <div id="replaySource" class="replay-source"></div>
+        <div id="replayTokens" class="replay-tokens"></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 class="section-heading">Steered Output</h3>
+          <div id="replayOut" class="steered-preview" style="font-size:18.5px"></div>
+          <div id="replayReadings" class="share-row"></div>
+        </div>
+        <div id="offlineSessionsBox" class="offline-sessions">
+          <div class="drawer-head">
+            <h3 class="section-heading">Recorded Live Co-Translation Sessions</h3>
+            <select id="offlineSessionSelect" class="sel" aria-label="Select recorded live session"></select>
+          </div>
+          <div id="offlineSessionDetail" class="offline-session-card"></div>
         </div>
       </div>
-      <div id="replaySource" style="font:italic 400 20px/1.45 var(--serif);border-left:3px solid var(--accent);padding-left:14px;white-space:pre-wrap"></div>
-      <div id="replayTokens" class="replay-tokens"></div>
-      <div class="replay-grid">
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div class="eyebrow">Steered Output</div>
-          <div id="replayOut" class="steered-preview" style="font-size:18px"></div>
-          <div id="replayReadings" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+      <div class="replay-compass-col">
+        <div class="replay-compass-sticky">
+          <h3 class="section-heading" style="align-self:flex-start">2D Steering Plane</h3>
+          <svg id="replayCompass" class="compass-svg" style="width:288px;height:288px" viewBox="-1.45 -1.45 2.9 2.9" role="img" aria-label="Saved steering compass"></svg>
+          <span id="replayMeta" class="status-msg mono-num">Drag compass to explore saved steering</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
-          <svg id="replayCompass" class="compass-svg" style="width:280px;height:280px" viewBox="-1.45 -1.45 2.9 2.9"></svg>
-          <span id="replayMeta" class="status-msg">Drag compass to explore saved steering</span>
-        </div>
-      </div>
-      <div id="offlineSessionsBox" style="display:none;border-top:1px solid var(--rule);padding-top:14px;margin-top:4px">
-        <div class="pane-head" style="margin-bottom:8px">
-          <span class="eyebrow">Recorded Live Co-Translation Sessions</span>
-          <select id="offlineSessionSelect" class="sel"></select>
-        </div>
-        <div id="offlineSessionDetail" class="steered-preview" style="font-size:15px"></div>
       </div>
     </div>
   </section>
@@ -607,7 +1796,7 @@ svg.compass-svg {
   const state = {
     serverMode: "replay",
     activeView: "live",
-    stepMode: "word", // "word" | "token"
+    stepMode: "word",
     editingSource: true,
     session: null,
     gliding: false,
@@ -630,6 +1819,13 @@ svg.compass-svg {
 
   function escapeHtml(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function syncRailVisibility() {
+    const anyOpen = ["compassDrawer", "slidersDrawer", "historyDrawer"].some(
+      id => $(id) && $(id).classList.contains("open")
+    );
+    $("liveStudio").classList.toggle("rail-open", anyOpen);
   }
 
   // Theme toggle
@@ -657,6 +1853,7 @@ svg.compass-svg {
     updateSourceStats();
   };
   $("sourceInput").value = PRESETS[0].text;
+
   function updateSourceStats() {
     const v = $("sourceInput").value;
     const words = (v.trim().match(/\S+/g) || []).length;
@@ -682,6 +1879,10 @@ svg.compass-svg {
     $("sourceInput").style.display = editing ? "" : "none";
     $("sourceAnnotated").classList.toggle("visible", !editing);
     $("btnEditSource").style.display = editing ? "none" : "";
+    $("sourceCol").classList.toggle("reading-mode", !editing);
+    const activeReading = !editing && !!state.session;
+    $("btnStart").classList.toggle("primary", !activeReading);
+    $("btnStart").textContent = activeReading ? "Restart" : "Start Co-Translating";
   }
   $("btnEditSource").onclick = () => {
     setSourceEditMode(true);
@@ -692,10 +1893,22 @@ svg.compass-svg {
   $("btnStepMode").onclick = () => {
     state.stepMode = state.stepMode === "word" ? "token" : "word";
     $("btnStepMode").textContent = state.stepMode === "word" ? "Mode: Word" : "Mode: Token";
-    $("btnStep").textContent = state.stepMode === "word" ? "Step Word →" : "Step Token →";
+    $("btnStep").textContent = state.stepMode === "word" ? "Step Word" : "Step Token";
   };
 
-  // Global sliders
+  function updateBipolarFill(fillEl, v) {
+    if (!fillEl) return;
+    const clamped = Math.max(-1, Math.min(1, v));
+    if (clamped >= 0) {
+      fillEl.style.left = "50%";
+      fillEl.style.width = `${clamped * 50}%`;
+    } else {
+      fillEl.style.left = `${50 + clamped * 50}%`;
+      fillEl.style.width = `${-clamped * 50}%`;
+    }
+  }
+
+  // Global Tone & Practice Sliders
   function buildSliders(schema) {
     const grid = $("sliderGrid");
     grid.innerHTML = "";
@@ -703,13 +1916,22 @@ svg.compass-svg {
       state.globalCoords[ax.id] = 0;
       const div = document.createElement("div");
       div.className = "slider-item";
-      div.innerHTML = `<label><span>${escapeHtml(ax.neg)}</span><span id="val_${ax.id}">0.0</span><span>${escapeHtml(ax.pos)}</span></label>
-        <input type="range" min="-1" max="1" step="0.1" value="0" data-axis="${ax.id}">`;
+      div.innerHTML = `<label><span>${escapeHtml(ax.neg)}</span><span id="val_${ax.id}" class="slider-val">0.0</span><span>${escapeHtml(ax.pos)}</span></label>
+        <div class="bipolar-range">
+          <div class="bipolar-track"></div>
+          <div class="bipolar-zero"></div>
+          <div id="fill_${ax.id}" class="bipolar-fill"></div>
+          <input type="range" min="-1" max="1" step="0.1" value="0" data-axis="${ax.id}" aria-label="${escapeHtml(ax.neg)} to ${escapeHtml(ax.pos)}">
+        </div>`;
       const inp = div.querySelector("input");
+      const fill = div.querySelector(".bipolar-fill");
       inp.oninput = () => {
         const v = parseFloat(inp.value);
         state.globalCoords[ax.id] = v;
-        $(`val_${ax.id}`).textContent = v.toFixed(1);
+        const badge = $(`val_${ax.id}`);
+        badge.textContent = v > 0 ? `+${v.toFixed(1)}` : v.toFixed(1);
+        badge.classList.toggle("nonzero", Math.abs(v) > 0.01);
+        updateBipolarFill(fill, v);
       };
       inp.onchange = () => applySliders();
       grid.appendChild(div);
@@ -721,7 +1943,10 @@ svg.compass-svg {
     Object.keys(state.globalCoords).forEach(k => state.globalCoords[k] = 0);
     $("sliderGrid").querySelectorAll("input[type=range]").forEach(inp => {
       inp.value = "0";
-      $(`val_${inp.dataset.axis}`).textContent = "0.0";
+      const badge = $(`val_${inp.dataset.axis}`);
+      badge.textContent = "0.0";
+      badge.classList.remove("nonzero");
+      updateBipolarFill($(`fill_${inp.dataset.axis}`), 0);
     });
     applySliders();
   };
@@ -729,14 +1954,17 @@ svg.compass-svg {
   function closeAllDrawers() {
     ["slidersDrawer", "historyDrawer", "compassDrawer"].forEach(id => $(id).classList.remove("open"));
     ["btnSliders", "btnHistory", "btnCompass"].forEach(id => $(id).classList.remove("active"));
+    syncRailVisibility();
   }
   $("btnSliders").onclick = () => {
     $("slidersDrawer").classList.toggle("open");
     $("btnSliders").classList.toggle("active");
+    syncRailVisibility();
   };
   $("btnHistory").onclick = () => {
     $("historyDrawer").classList.toggle("open");
     $("btnHistory").classList.toggle("active");
+    syncRailVisibility();
   };
 
   // HTTP helper with optional AbortSignal
@@ -778,6 +2006,7 @@ svg.compass-svg {
     setBusy(true, "Prefilling source & inspecting opening frontier…");
     $("compassDrawer").classList.remove("open");
     $("btnCompass").classList.remove("active");
+    syncRailVisibility();
     state.compassData = null;
     try {
       const s = await apiPost("/api/session/start", {
@@ -789,7 +2018,7 @@ svg.compass-svg {
       state.session = s;
       setSourceEditMode(false);
       renderSession();
-      setBusy(false, "Ready — Space to step · Tab to glide to fork");
+      setBusy(false, "Ready · Space to step · Tab to glide");
     } catch (e) {
       setBusy(false, `Error: ${e.message}`);
     }
@@ -808,6 +2037,7 @@ svg.compass-svg {
       state.lastSteered = null;
       $("compassDrawer").classList.remove("open");
       $("btnCompass").classList.remove("active");
+      syncRailVisibility();
       renderSession();
       setBusy(false, s.frontier.at_end ? "Reached end of translation" : `${s.n_tokens} tokens committed`);
     } catch (e) {
@@ -829,6 +2059,7 @@ svg.compass-svg {
       state.compassData = null;
       $("compassDrawer").classList.remove("open");
       $("btnCompass").classList.remove("active");
+      syncRailVisibility();
       renderSession();
       setBusy(false, `Rewound to token ${toIdx}`);
     } catch (e) {
@@ -885,7 +2116,7 @@ svg.compass-svg {
   async function applySliders() {
     if (!state.session || state.busy) return;
     stopGlide();
-    setBusy(true, "Updating global practice steering…");
+    setBusy(true, "Updating global tone steering…");
     try {
       state.session = await apiPost("/api/session/sliders", {
         session_id: state.session.session_id,
@@ -898,91 +2129,90 @@ svg.compass-svg {
     }
   }
 
+  const GLIDE_IDLE_HTML = `<svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><polygon points="4.5,3 12.5,8 4.5,13"/></svg> Glide`;
+  const GLIDE_ACTIVE_HTML = `<svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3.5" width="2.8" height="9" rx="0.6"/><rect x="9.2" y="3.5" width="2.8" height="9" rx="0.6"/></svg> Pause`;
+
   function stopGlide() {
     if (state.glideES) {
       state.glideES.close();
       state.glideES = null;
     }
     state.gliding = false;
-    $("btnGlide").textContent = "▶ Glide";
+    $("btnGlide").innerHTML = GLIDE_IDLE_HTML;
     $("btnGlide").classList.remove("active");
   }
 
   function toggleGlide() {
+    if (!state.session) return;
     if (state.gliding) {
       stopGlide();
       setBusy(false, "Glide paused");
       return;
     }
-    if (!state.session) return;
+    if (state.busy) return;
     state.gliding = true;
-    $("btnGlide").textContent = "■ Stop";
+    $("btnGlide").innerHTML = GLIDE_ACTIVE_HTML;
     $("btnGlide").classList.add("active");
-    $("liveStatus").textContent = "Gliding until next complex fork…";
+    setBusy(true, "Gliding until next complex fork…");
     const qs = new URLSearchParams({
       session_id: state.session.session_id,
-      max_words: "36",
+      max_words: "32",
       stop_on_fork: "1",
     });
     const es = new EventSource(`/api/session/glide?${qs.toString()}`);
     state.glideES = es;
-    es.addEventListener("step", ev => {
-      const d = JSON.parse(ev.data);
-      if (d.state) {
-        state.session = d.state;
-        renderSession();
-      }
+    es.addEventListener("step", (ev) => {
+      state.session = JSON.parse(ev.data);
+      renderSession();
     });
-    es.addEventListener("paused", ev => {
+    es.addEventListener("done", (ev) => {
       const d = JSON.parse(ev.data);
-      if (d.state) {
-        state.session = d.state;
-        renderSession();
-      }
-      const why = d.reason === "fork"
-        ? "Paused at complex fork — pick a branch (1–6) or open Compass (C)"
-        : d.reason === "end"
-          ? "Translation complete"
-          : `Stepped ${d.steps} words`;
       stopGlide();
-      setBusy(false, why);
+      setBusy(false, d.stopped_reason === "fork"
+        ? "Paused at complex interpretive fork"
+        : `Glided ${d.steps_taken} words (${d.stopped_reason})`);
     });
     es.onerror = () => {
       stopGlide();
-      setBusy(false, "Glide paused");
+      setBusy(false, "Glide stopped");
     };
   }
 
-  // ==================== COMPASS (TIER 2 with AbortController + Seq Guard) ====================
+  // ==================== 2D SPECTRAL COMPASS ====================
   async function openCompass(forceReprobe = false) {
-    if (!state.session) return;
-    const drawer = $("compassDrawer");
-    if (!forceReprobe && drawer.classList.contains("open")) {
-      drawer.classList.remove("open");
+    if (!state.session || state.busy) return;
+    const dr = $("compassDrawer");
+    if (!forceReprobe && dr.classList.contains("open")) {
+      dr.classList.remove("open");
       $("btnCompass").classList.remove("active");
+      syncRailVisibility();
       return;
     }
-    drawer.classList.add("open");
+    dr.classList.add("open");
     $("btnCompass").classList.add("active");
-    if (!forceReprobe && state.compassData && state.compassData.cursor_len === state.session.n_tokens) {
-      return;
-    }
-    $("compassMeta").textContent = "Probing spectral steering plane at cursor…";
-    $("steeredPreview").innerHTML = `<span class="ghost-text">Computing local reading directions…</span>`;
+    syncRailVisibility();
+    if (state.compassData && !forceReprobe) return;
+    $("compassMeta").textContent = forceReprobe ? "Probing gradients…" : "Probing cursor…";
+    $("steeredPreview").innerHTML = `<span class="ghost-text">Computing 2D steering plane at current cursor…</span>`;
+    $("btnCommitSteeredWord").disabled = true;
+    $("btnCommitSteeredAll").disabled = true;
     try {
-      const data = await apiPost("/api/session/compass/probe", {
+      const c = await apiPost("/api/session/compass/probe", {
         session_id: state.session.session_id,
         n_samples: 10,
         lookahead_tokens: 12,
+        force: forceReprobe,
+        force_gradient: forceReprobe,
       });
-      state.compassData = data;
+      state.compassData = c;
       state.compassPos = [0, 0];
-      const msTxt = data.probe_ms != null ? ` · ${data.probe_ms} ms` : "";
-      $("compassMeta").textContent = data.source === "fork_head"
-        ? `Amortised ForkHead plane${msTxt} · drag to steer`
-        : `Gradient plane (${Math.round(data.variance_explained * 100)}% var${msTxt}) · drag to steer`;
-      drawCompass($("compassSvg"), data.readings, data.dots, state.compassPos, (x, y) => {
+      const msTxt = c.elapsed_ms != null ? `${Math.round(c.elapsed_ms)} ms` : "";
+      const srcTxt = c.source === "fork_head" ? "ForkHead" : "Gradients";
+      $("compassMeta").textContent = `${srcTxt}${msTxt ? ` · ${msTxt}` : ""} · ${Math.round((c.variance_explained || 0) * 100)}% var`;
+      $("compassCoords").textContent = "(0.00, 0.00)";
+      drawCompass($("compassSvg"), c.readings, c.dots, [0, 0], (x, y) => {
         state.compassPos = [x, y];
+        $("compassCoords").textContent = `(${x >= 0 ? "+" : ""}${x.toFixed(2)}, ${y >= 0 ? "+" : ""}${y.toFixed(2)})`;
         scheduleLiveSteer(x, y);
       });
       scheduleLiveSteer(0, 0);
@@ -1008,7 +2238,7 @@ svg.compass-svg {
           { session_id: state.session.session_id, x, y, max_new: 18 },
           ctrl.signal,
         );
-        if (seq !== state.steerSeq) return; // Discard stale out-of-order response!
+        if (seq !== state.steerSeq) return;
         state.lastSteered = res;
         $("steeredPreview").textContent = res.preview_text || "(empty)";
         $("btnCommitSteeredWord").disabled = !(res.first_word_ids && res.first_word_ids.length);
@@ -1023,6 +2253,7 @@ svg.compass-svg {
     }, 35);
   }
 
+  // Engraved Cartographic Compass Rose renderer
   function drawCompass(svg, readings, dots, pos, onDrag) {
     const ns = "http://www.w3.org/2000/svg";
     svg.innerHTML = "";
@@ -1031,30 +2262,129 @@ svg.compass-svg {
       Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, String(v)));
       return n;
     };
-    [0.5, 1.0].forEach(r => svg.appendChild(el("circle", {
-      cx: 0, cy: 0, r, fill: "none", stroke: "var(--rule)", "stroke-width": 0.015, "stroke-dasharray": "0.04 0.04"
-    })));
-    svg.appendChild(el("line", { x1: -1.35, y1: 0, x2: 1.35, y2: 0, stroke: "var(--rule)", "stroke-width": 0.012 }));
-    svg.appendChild(el("line", { x1: 0, y1: -1.35, x2: 0, y2: 1.35, stroke: "var(--rule)", "stroke-width": 0.012 }));
 
+    // Circular clipPath so scatter dots never slice against the outer SVG border
+    const clipId = `compassClip_${svg.id || "c"}`;
+    const defs = el("defs", {});
+    const cp = el("clipPath", { id: clipId });
+    cp.appendChild(el("circle", { cx: 0, cy: 0, r: 1.20 }));
+    defs.appendChild(cp);
+    svg.appendChild(defs);
+
+    // Concentric engraved rings & outer degree bezel
+    svg.appendChild(el("circle", {
+      cx: 0, cy: 0, r: 1.24, fill: "none", stroke: "var(--rule)", "stroke-width": 0.012
+    }));
+    [0.5, 1.0].forEach(r => svg.appendChild(el("circle", {
+      cx: 0, cy: 0, r, fill: "none", stroke: "var(--rule-strong)",
+      "stroke-width": r === 1.0 ? 0.015 : 0.011,
+      "stroke-dasharray": r === 0.5 ? "0.035 0.035" : "none",
+      opacity: r === 1.0 ? 0.75 : 0.6
+    })));
+
+    // 16 cartographic compass ticks around outer ring
+    for (let i = 0; i < 16; i++) {
+      const ang = (i * Math.PI) / 8;
+      const major = i % 4 === 0;
+      const r0 = major ? 1.15 : 1.20;
+      const r1 = 1.26;
+      svg.appendChild(el("line", {
+        x1: (Math.cos(ang) * r0).toFixed(3), y1: (Math.sin(ang) * r0).toFixed(3),
+        x2: (Math.cos(ang) * r1).toFixed(3), y2: (Math.sin(ang) * r1).toFixed(3),
+        stroke: major ? "var(--muted)" : "var(--rule-strong)",
+        "stroke-width": major ? 0.016 : 0.01
+      }));
+    }
+
+    // Cardinal hairlines
+    svg.appendChild(el("line", { x1: -1.24, y1: 0, x2: 1.24, y2: 0, stroke: "var(--rule)", "stroke-width": 0.011 }));
+    svg.appendChild(el("line", { x1: 0, y1: -1.24, x2: 0, y2: 1.24, stroke: "var(--rule)", "stroke-width": 0.011 }));
+
+    // Sample clouds (clipped to interior bezel)
+    const dotGroup = el("g", { "clip-path": `url(#${clipId})` });
     (dots || []).forEach(d => {
-      svg.appendChild(el("circle", { cx: d.x, cy: -d.y, r: 0.035, fill: d.color, opacity: 0.45 }));
+      dotGroup.appendChild(el("circle", { cx: d.x, cy: -d.y, r: 0.032, fill: d.color, opacity: 0.44 }));
     });
+    svg.appendChild(dotGroup);
+
+    // Vector spokes + anchor medallions + radially separated high-contrast labels
+    const labelSpecs = [];
     (readings || []).forEach(rd => {
       const [ax, ay] = rd.anchor;
-      svg.appendChild(el("circle", { cx: ax, cy: -ay, r: 0.075, fill: rd.color, stroke: "var(--surface)", "stroke-width": 0.02 }));
+      const sx = ax;
+      const sy = -ay;
+      svg.appendChild(el("line", {
+        x1: 0, y1: 0, x2: sx, y2: sy,
+        stroke: rd.color, "stroke-width": 0.014, opacity: 0.45, "stroke-dasharray": "0.03 0.03"
+      }));
+      svg.appendChild(el("circle", {
+        cx: sx, cy: sy, r: 0.072, fill: rd.color, stroke: "var(--paper)", "stroke-width": 0.022
+      }));
+
+      // Push label radially outward from anchor so it stays clear of origin spokes
+      const dist = Math.hypot(sx, sy);
+      const ux = dist > 0.12 ? sx / dist : 0;
+      const uy = dist > 0.12 ? sy / dist : -1;
+      let lx = sx + ux * 0.17;
+      let ly = sy + uy * 0.17;
+      let anchorMode = "middle";
+      if (sx > 0.35) {
+        anchorMode = "end";
+        lx = Math.min(1.36, Math.max(lx, sx + 0.06));
+      } else if (sx < -0.35) {
+        anchorMode = "start";
+        lx = Math.max(-1.36, Math.min(lx, sx - 0.06));
+      } else {
+        lx = Math.max(-1.12, Math.min(1.12, lx));
+      }
+      ly = Math.max(-1.28, Math.min(1.28, ly));
+      const rawLab = String(rd.label || `Variant ${rd.id}`);
+      const text = rawLab.length > 18 ? (rawLab.slice(0, 17).trimEnd() + "…") : rawLab;
+      labelSpecs.push({ lx, ly, anchorMode, color: rd.color, text });
+    });
+
+    // Greedy vertical de-overlap pass for nearby labels
+    labelSpecs.sort((a, b) => a.ly - b.ly);
+    const minDy = 0.22;
+    for (let pass = 0; pass < 3; pass++) {
+      for (let i = 0; i < labelSpecs.length; i++) {
+        for (let j = i + 1; j < labelSpecs.length; j++) {
+          const a = labelSpecs[i];
+          const b = labelSpecs[j];
+          if (Math.abs(a.lx - b.lx) < 0.85 && Math.abs(b.ly - a.ly) < minDy) {
+            const push = (minDy - Math.abs(b.ly - a.ly)) * 0.55;
+            a.ly = Math.max(-1.30, a.ly - push);
+            b.ly = Math.min(1.30, b.ly + push);
+          }
+        }
+      }
+    }
+
+    labelSpecs.forEach(ls => {
       const tx = el("text", {
-        x: ax * 1.16, y: -ay * 1.16,
-        fill: rd.color, "font-size": 0.12, "font-weight": 600,
-        "text-anchor": "middle", "dominant-baseline": "middle",
-        style: "pointer-events:none;font-family:var(--sans)"
+        x: ls.lx.toFixed(3),
+        y: ls.ly.toFixed(3),
+        fill: `color-mix(in srgb, ${ls.color} 42%, var(--ink))`,
+        "font-size": 0.105,
+        "font-weight": 600,
+        "text-anchor": ls.anchorMode,
+        "dominant-baseline": "middle",
+        style: "pointer-events:none;font-family:var(--sans);paint-order:stroke;stroke:var(--paper);stroke-width:0.08;stroke-linejoin:round"
       });
-      tx.textContent = (rd.label || `Variant ${rd.id}`).slice(0, 14);
+      tx.textContent = ls.text;
       svg.appendChild(tx);
     });
+
+    // Live vector ray from origin to knob
+    const ray = el("line", {
+      x1: 0, y1: 0, x2: pos[0], y2: -pos[1],
+      stroke: "var(--spruce)", "stroke-width": 0.02, opacity: 0.85
+    });
+    svg.appendChild(ray);
+
     const knob = el("circle", {
-      cx: pos[0], cy: -pos[1], r: 0.085,
-      fill: "var(--accent)", stroke: "#fff", "stroke-width": 0.028
+      cx: pos[0], cy: -pos[1], r: 0.088,
+      fill: "var(--spruce)", stroke: "var(--paper)", "stroke-width": 0.028
     });
     svg.appendChild(knob);
 
@@ -1069,6 +2399,8 @@ svg.compass-svg {
       const [x, y] = toCoords(ev);
       knob.setAttribute("cx", String(x));
       knob.setAttribute("cy", String(-y));
+      ray.setAttribute("x2", String(x));
+      ray.setAttribute("y2", String(-y));
       onDrag(x, y);
     };
     svg.onpointerdown = (ev) => { dragging = true; if (svg.setPointerCapture) svg.setPointerCapture(ev.pointerId); move(ev); };
@@ -1083,20 +2415,31 @@ svg.compass-svg {
     if (!s || !s.alignment || !s.alignment.source_lines) return;
     const activeLine = s.alignment.active_source_line;
     box.innerHTML = "";
+    let lineNum = 0;
     s.alignment.source_lines.forEach(sl => {
-      const sp = document.createElement("span");
+      const row = document.createElement("div");
       const isEmpty = !sl.text || !sl.text.trim();
-      sp.className = "src-line"
+      row.className = "src-line"
         + (isEmpty ? " empty" : "")
         + (sl.index === activeLine ? " active-line" : "")
         + (state.hoverSourceLine === sl.index ? " hover-line" : "");
-      sp.dataset.lineIdx = String(sl.index);
-      sp.textContent = isEmpty ? " " : sl.text;
-      if (!isEmpty) {
-        sp.onmouseenter = () => { state.hoverSourceLine = sl.index; renderCanvasOnly(); };
-        sp.onmouseleave = () => { state.hoverSourceLine = null; renderCanvasOnly(); };
+      row.dataset.lineIdx = String(sl.index);
+      if (isEmpty) {
+        row.textContent = " ";
+      } else {
+        lineNum += 1;
+        const num = document.createElement("span");
+        num.className = "src-lnum";
+        num.textContent = String(lineNum);
+        const txt = document.createElement("span");
+        txt.className = "src-ltext";
+        txt.textContent = sl.text;
+        row.appendChild(num);
+        row.appendChild(txt);
+        row.onmouseenter = () => { state.hoverSourceLine = sl.index; renderCanvasOnly(); };
+        row.onmouseleave = () => { state.hoverSourceLine = null; renderCanvasOnly(); };
       }
-      box.appendChild(sp);
+      box.appendChild(row);
     });
   }
 
@@ -1153,47 +2496,36 @@ svg.compass-svg {
       g.textContent = preview;
       canvas.appendChild(g);
     }
-    // Keep cursor smoothly scrolled into view for long poems
     canvas.scrollTop = canvas.scrollHeight;
   }
 
   function renderHistoryTree() {
     const s = state.session;
-    const hl = $("historyList");
-    hl.innerHTML = "";
-    const nodes = s.history || [];
-    const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
-    const children = {};
-    nodes.forEach(n => {
-      const pid = n.parent_id && byId[n.parent_id] ? n.parent_id : "__ROOT__";
-      (children[pid] = children[pid] || []).push(n);
+    const hlist = $("historyList");
+    hlist.innerHTML = "";
+    const byParent = {};
+    (s.history || []).forEach(n => {
+      const p = n.parent_id || "__root__";
+      if (!byParent[p]) byParent[p] = [];
+      byParent[p].push(n);
     });
-
-    const ordered = [];
-    function walk(pid, depth) {
-      (children[pid] || []).forEach(n => {
-        ordered.push({ node: n, depth });
-        walk(n.id, depth + 1);
-      });
-    }
-    walk("__ROOT__", 0);
-    // Fallback if any orphan node existed
-    if (ordered.length < nodes.length) {
-      const seen = new Set(ordered.map(o => o.node.id));
-      nodes.forEach(n => { if (!seen.has(n.id)) ordered.push({ node: n, depth: 0 }); });
-    }
-
-    ordered.forEach(({ node: n, depth }) => {
+    const visited = new Set();
+    const emit = (node, depth) => {
+      if (visited.has(node.id)) return;
+      visited.add(node.id);
       const row = document.createElement("div");
-      row.className = "hist-item" + (n.active ? " active" : "");
+      row.className = "hist-item" + (node.active ? " active" : "");
       row.dataset.depth = String(depth);
-      row.setAttribute("aria-level", String(depth + 1));
-      row.style.marginLeft = `${depth * 18}px`;
-      const prefix = depth > 0 ? "↳ " : "";
-      row.innerHTML = `<span>${prefix}<strong>${escapeHtml(n.label)}</strong> · ${n.n_tokens} tok</span><span class="snip">${escapeHtml(n.snippet || "(start)")}</span>`;
-      row.onclick = () => checkoutNode(n.id);
-      hl.appendChild(row);
-    });
+      row.style.marginLeft = `${depth * 14}px`;
+      const forkTag = depth > 0 ? `@t${node.fork_token_idx} · ` : "";
+      row.innerHTML = `<span class="hist-left"><i class="hist-node-dot"></i><span><strong>${escapeHtml(node.label)}</strong> <span class="status-msg mono-num">${forkTag}${node.n_tokens}t</span></span></span>
+        <span class="snip">${escapeHtml(node.snippet || "(start)")}</span>`;
+      row.onclick = () => checkoutNode(node.id);
+      hlist.appendChild(row);
+      (byParent[node.id] || []).forEach(ch => emit(ch, depth + 1));
+    };
+    (byParent["__root__"] || []).forEach(r => emit(r, 0));
+    (s.history || []).forEach(n => { if (!visited.has(n.id)) emit(n, 0); });
   }
 
   function renderSession() {
@@ -1203,58 +2535,68 @@ svg.compass-svg {
     renderCanvasOnly();
     renderHistoryTree();
 
-    const f = s.frontier;
+    const f = s.frontier || {};
+    const score = Math.round((f.fork_score || 0) * 100);
+    $("tensionBar").style.width = `${score}%`;
     const badge = $("regimeBadge");
     badge.className = "regime-badge " + (f.regime || "linear");
-    $("tensionBar").style.width = `${Math.round((f.fork_score || 0) * 100)}%`;
-    const regimeLabels = {
-      linear: "Linear · low spread",
-      subtle: "Subtle divergence",
-      fork: "Complex fork — multiple readings"
-    };
-    $("regimeText").textContent = f.at_end ? "End of translation" : (regimeLabels[f.regime] || f.regime);
-    const fhPart = f.fork_head_prob != null ? ` · ForkHead ${Math.round(f.fork_head_prob * 100)}%` : "";
-    $("frontierMetrics").textContent = `H = ${f.entropy.toFixed(2)} · top1 = ${Math.round(f.top1_prob * 100)}%${fhPart}`;
+    if (f.at_end) {
+      $("regimeText").textContent = "Translation complete";
+    } else if (f.regime === "fork") {
+      $("regimeText").textContent = `Complex fork · ${(f.branches || []).length} branches`;
+    } else if (f.regime === "subtle") {
+      $("regimeText").textContent = `Subtle choice · ${(f.branches || []).length} options`;
+    } else {
+      $("regimeText").textContent = "Linear flow · low ambiguity";
+    }
+    const fh = f.fork_head_prob != null ? ` · FH ${(f.fork_head_prob * 100).toFixed(0)}%` : "";
+    $("frontierMetrics").textContent = f.at_end ? "" : `H ${f.entropy} · top ${Math.round((f.top1_prob || 0) * 100)}%${fh}`;
 
     const box = $("branchContainer");
     box.innerHTML = "";
+    const branches = f.branches || [];
     if (f.at_end) {
-      box.innerHTML = `<div class="linear-hint"><span>Reached end of translation. Click any word to rewind and explore another branch.</span></div>`;
-    } else if (f.regime === "linear" || f.branches.length <= 1) {
-      const nextW = (f.ghost && f.ghost.next_word_text) ? f.ghost.next_word_text.trim() || "↵" : "";
+      box.innerHTML = `<div class="linear-hint"><span>Reached end of passage. Click any committed word to rewind and try another branch.</span></div>`;
+    } else if (f.regime === "linear" || branches.length <= 1) {
+      const nextW = (f.ghost && f.ghost.next_word_text) ? f.ghost.next_word_text.trim() : "";
       box.innerHTML = `<div class="linear-hint">
-        <span>Linear continuation — next: <strong style="font-family:var(--serif);color:var(--ink)">${escapeHtml(nextW)}</strong>.</span>
-        <span><kbd>Space</kbd> step · <kbd>Tab</kbd> glide to fork</span>
+        <span>Straightforward continuation${nextW ? `: <strong>${escapeHtml(nextW)}</strong>` : ""}. Press <kbd>Space</kbd> to step or <kbd>Tab</kbd> to glide straight to the next fork.</span>
       </div>`;
     } else {
       const list = document.createElement("div");
       list.className = "branch-list";
-      f.branches.forEach((br, idx) => {
+      const twigIcon = `<svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 2.5v4.5a2.5 2.5 0 0 0 2.5 2.5h6.2"/><path d="M8.8 7l2.4 2.5-2.4 2.5"/></svg>`;
+      branches.forEach((br, idx) => {
         const btn = document.createElement("button");
         btn.className = "branch-btn";
-        const pct = Math.round(br.share * 100);
-        const subs = (br.sub_branches || []).slice(0, 3);
-        const subHtml = subs.length
-          ? `<div class="sub-forks">${subs.map(sb => `<span class="sub-chip">↳ ${escapeHtml((sb.first_word_text || sb.preview_text || "").trim() || "↵")} ${Math.round((sb.share || 0) * 100)}%</span>`).join("")}</div>`
+        const pct = Math.round((br.prob || 0) * 100);
+        const subList = (br.sub_branches || []).slice(0, 3);
+        const subHtml = subList.length
+          ? `<div class="sub-forks"><span class="twig-label" title="Next continuation">${twigIcon}</span>${subList.map(sb => `<span class="sub-chip">${escapeHtml((sb.first_word_text || sb.preview_text || "").trim())} <em>${Math.round((sb.prob || 0) * 100)}%</em></span>`).join("")}</div>`
           : "";
+        const rest = br.preview_text.slice(br.first_word_text.length);
+        const subNote = br.distinctive ? `<div class="branch-sub"><span>${escapeHtml(br.distinctive)}</span></div>` : "";
         btn.innerHTML = `
           <span class="branch-key" style="background:${br.color}">${idx + 1}</span>
           <div class="branch-body">
-            <div class="branch-text"><strong>${escapeHtml(br.first_word_text)}</strong>${escapeHtml(br.preview_text.slice(br.first_word_text.length))}</div>
-            <div class="branch-sub">
-              <span>${escapeHtml(br.distinctive || "")}</span>
-              <span class="branch-bar"><i style="width:${pct}%;background:${br.color}"></i></span>
-              <span>click: 1 word · Shift: full</span>
-            </div>
+            <div class="branch-text"><strong>${escapeHtml(br.first_word_text)}</strong><span class="cont-rest">${escapeHtml(rest)}</span></div>
             ${subHtml}
+            ${subNote}
           </div>
-          <span class="branch-pct">${pct}%</span>`;
+          <div class="branch-stat">
+            <span class="branch-pct">${pct}%</span>
+            <span class="branch-bar"><i style="width:${pct}%;background:${br.color}"></i></span>
+          </div>`;
         btn.onmouseenter = () => { state.hoverPreview = br.preview_text; renderCanvasOnly(); };
         btn.onmouseleave = () => { state.hoverPreview = null; renderCanvasOnly(); };
         btn.onclick = (ev) => doStep({ branch_index: idx, commit_full_branch: !!ev.shiftKey });
         list.appendChild(btn);
       });
       box.appendChild(list);
+      const foot = document.createElement("div");
+      foot.className = "branch-foot";
+      foot.textContent = "Click or press 1–6 for one word · Shift+click or Shift+1–6 for full phrase";
+      box.appendChild(foot);
     }
   }
 
@@ -1295,7 +2637,7 @@ svg.compass-svg {
     }
   };
 
-  // Keyboard-first workflow (Escape always cancels glide / closes drawers; other shortcuts suppressed inside TEXTAREA / INPUT / SELECT)
+  // Keyboard-first workflow (Escape always cancels glide / closes drawers)
   document.addEventListener("keydown", (ev) => {
     if (state.activeView !== "live") return;
     if (ev.key === "Escape") {
@@ -1374,29 +2716,30 @@ svg.compass-svg {
   }
 
   function pickOfflineSteered(bundle, x, y, shares) {
+    const readings = bundle.readings || [];
     const r = Math.hypot(x, y);
     if (r < 0.08 && bundle.ref_text) {
       return { text: bundle.ref_text, source: "baseline" };
     }
-    const pts = bundle.steering_points || [];
-    if (pts.length > 0) {
-      let best = pts[0], bestScore = Infinity;
-      for (const p of pts) {
-        const dx = (p.x || 0) - x;
-        const dy = (p.y || 0) - y;
-        const dist = dx * dx + dy * dy;
-        if (dist < bestScore) { bestScore = dist; best = p; }
-      }
-      return { text: best.text, source: "steered" };
+    let domId = readings.length ? readings[0].id : 0;
+    let bestShare = -1;
+    readings.forEach(rd => {
+      const sh = shares[String(rd.id)] || 0;
+      if (sh > bestShare) { bestShare = sh; domId = rd.id; }
+    });
+    const sp = (bundle.steering_points || []).filter(p => Number(p.A) === Number(domId) && p.text);
+    if (sp.length) {
+      const targetLv = r < 0.55 ? 0 : (r < 0.95 ? 1 : 2);
+      sp.sort((a, b) => {
+        const da = Math.abs((a.kl_level || 0) - targetLv) - (a.variant === "natural" ? 0.15 : 0);
+        const db = Math.abs((b.kl_level || 0) - targetLv) - (b.variant === "natural" ? 0.15 : 0);
+        return da - db;
+      });
+      return { text: sp[0].text, source: "steered" };
     }
-    const dots = bundle.dots || [];
-    if (dots.length > 0) {
-      let best = dots[0], bestD = Infinity;
-      for (const d of dots) {
-        const dist = (d.x - x) ** 2 + (d.y - y) ** 2;
-        if (dist < bestD) { bestD = dist; best = d; }
-      }
-      return { text: best.text, source: "sample" };
+    const domRd = readings.find(rd => Number(rd.id) === Number(domId));
+    if (domRd && domRd.exemplars && domRd.exemplars.length) {
+      return { text: domRd.exemplars[0].text, source: "exemplar" };
     }
     return { text: bundle.ref_text || "", source: "baseline" };
   }
@@ -1408,7 +2751,7 @@ svg.compass-svg {
       box.style.display = "none";
       return;
     }
-    box.style.display = "";
+    box.style.display = "flex";
     sel.innerHTML = "";
     sessions.forEach((s, i) => {
       const opt = document.createElement("option");
@@ -1419,8 +2762,40 @@ svg.compass-svg {
     const show = (idx) => {
       const s = sessions[idx];
       if (!s) return;
-      const lines = (s.history || []).map(h => `• ${h.label}: ${h.snippet || h.text || ""}`).join("\n");
-      $("offlineSessionDetail").textContent = `${s.source_text || ""}\n\n${lines}`;
+      const chunks = [];
+      if (s.source_text || s.committed_text) {
+        chunks.push(`<div class="offline-spread">
+          <div class="offline-pane src-pane">
+            <div class="offline-subhead">Source</div>
+            <div class="offline-prose">${escapeHtml(s.source_text || "")}</div>
+          </div>
+          <div class="offline-pane">
+            <div class="offline-subhead">Live Translation</div>
+            <div class="offline-prose">${escapeHtml(s.committed_text || "")}</div>
+          </div>
+        </div>`);
+      }
+      if (s.history && s.history.length) {
+        const rows = s.history.map(h => `
+          <div class="offline-path-row">
+            <span class="offline-path-tag"><i class="hist-node-dot"></i>${escapeHtml(h.label || "Path")}</span>
+            <span>${escapeHtml(h.snippet || h.text || "")}</span>
+          </div>`).join("");
+        chunks.push(`<div class="offline-section">
+          <div class="offline-subhead">Explored Paths</div>
+          <div class="offline-paths-list">${rows}</div>
+        </div>`);
+      }
+      if (s.slider_comparison && (s.slider_comparison.plain_domesticating || s.slider_comparison.poetic_foreignising)) {
+        chunks.push(`<div class="offline-section">
+          <div class="offline-subhead">Global Tone Sliders</div>
+          <div class="offline-slider-grid">
+            ${s.slider_comparison.plain_domesticating ? `<div class="offline-slider-spec"><div class="offline-subhead">Plain · Domesticating</div><div class="offline-prose">${escapeHtml(s.slider_comparison.plain_domesticating)}</div></div>` : ""}
+            ${s.slider_comparison.poetic_foreignising ? `<div class="offline-slider-spec"><div class="offline-subhead">Poetic · Foreignising</div><div class="offline-prose">${escapeHtml(s.slider_comparison.poetic_foreignising)}</div></div>` : ""}
+          </div>
+        </div>`);
+      }
+      $("offlineSessionDetail").innerHTML = chunks.join("");
     };
     sel.onchange = () => show(Number(sel.value));
     show(0);
@@ -1444,7 +2819,7 @@ svg.compass-svg {
     if (state.replayTexts.length) {
       await loadReplayText(state.replayTexts[0].id);
     } else {
-      $("replaySource").textContent = "No saved texts in this model archive.";
+      $("replaySource").textContent = "Recorded live co-translation sessions for this model are shown below.";
       $("replayTokens").innerHTML = "";
       $("replayOut").textContent = "";
       $("replayReadings").innerHTML = "";
@@ -1467,7 +2842,7 @@ svg.compass-svg {
       sp.className = "rtok" + (i === b.fork_t ? " cur" : "");
       sp.textContent = tok;
       const pct = Math.min(100, Math.round(100 * (b.entropy[i] || 0) / mx));
-      sp.style.borderBottomColor = `color-mix(in srgb, var(--accent) ${pct}%, transparent)`;
+      sp.style.borderBottomColor = `color-mix(in srgb, var(--cinnabar) ${pct}%, transparent)`;
       rt.appendChild(sp);
     });
     renderReplayShares(b.readings, null);
@@ -1483,12 +2858,12 @@ svg.compass-svg {
       const picked = pickOfflineSteered(b, x, y, shares);
       $("replayOut").textContent = picked.text;
       renderReplayShares(b.readings, shares);
-      $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · offline ${picked.source}`;
+      $("replayMeta").textContent = `(${x >= 0 ? "+" : ""}${x.toFixed(2)}, ${y >= 0 ? "+" : ""}${y.toFixed(2)}) · offline ${picked.source}`;
     } else {
       const res = await apiPost("/api/replay/steer", { text_id: b.id, x, y });
       $("replayOut").textContent = res.text;
       renderReplayShares(b.readings, res.shares);
-      $("replayMeta").textContent = `(${x.toFixed(2)}, ${y.toFixed(2)}) · ${res.source}`;
+      $("replayMeta").textContent = `(${x >= 0 ? "+" : ""}${x.toFixed(2)}, ${y >= 0 ? "+" : ""}${y.toFixed(2)}) · ${res.source}`;
     }
   }
 
@@ -1499,6 +2874,7 @@ svg.compass-svg {
       $("modePill").className = "pill replay";
       $("modeLabel").textContent = "Offline Replay";
       $("langPairWrap").style.display = "none";
+      $("headerSep").style.display = "none";
       $("btnSliders").style.display = "none";
       $("btnHistory").style.display = "none";
       setView("replay");
