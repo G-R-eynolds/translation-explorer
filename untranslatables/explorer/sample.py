@@ -21,16 +21,27 @@ def generate(model, tok, ids, n, max_new, temperature=1.0, seed=0, batch=64):
                           temperature=temperature if temperature > 0 else None,
                           top_k=0 if temperature > 0 else None, top_p=1.0 if temperature > 0 else None)
     out = []
-    for c in range(0, n, batch):
-        m = min(batch, n - c)
+    cur_batch = max(1, int(batch))
+    c = 0
+    while c < n:
+        m = min(cur_batch, n - c)
         seed_all((seed * 100003 + c) % 2 ** 32)
         x = torch.tensor([ids] * m, device=_dev(model))
-        with torch.no_grad():
-            g = model.generate(input_ids=x, attention_mask=torch.ones_like(x), generation_config=gc,
-                               tokenizer=tok)[:, len(ids):].tolist()
-        for row in g:
-            row = [t for t in row if t not in (tok.pad_token_id, tok.eos_token_id)]
-            out.append(cut(tok, row))
+        try:
+            with torch.no_grad():
+                g = model.generate(input_ids=x, attention_mask=torch.ones_like(x), generation_config=gc,
+                                   tokenizer=tok)[:, len(ids):].tolist()
+            for row in g:
+                row = [t for t in row if t not in (tok.pad_token_id, tok.eos_token_id)]
+                out.append(cut(tok, row))
+            c += m
+        except torch.cuda.OutOfMemoryError:
+            del x
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            if cur_batch == 1:
+                raise
+            cur_batch = max(1, cur_batch // 2)
     return out
 
 
@@ -42,11 +53,21 @@ def score(model, ids, ys, batch=16):
     """Summed log p(y | ids) per continuation (no grad).  Empty continuations score 0."""
     out = np.zeros(len(ys))
     idx = [i for i, y in enumerate(ys) if y]
-    for c in range(0, len(idx), batch):
-        part = idx[c:c + batch]
-        with torch.no_grad():
-            lp = seq_logp(model, ids, [ys[i] for i in part]).float().cpu().numpy()
-        out[part] = lp
+    cur_batch = max(1, int(batch))
+    c = 0
+    while c < len(idx):
+        part = idx[c:c + cur_batch]
+        try:
+            with torch.no_grad():
+                lp = seq_logp(model, ids, [ys[i] for i in part]).float().cpu().numpy()
+            out[part] = lp
+            c += len(part)
+        except torch.cuda.OutOfMemoryError:
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            if cur_batch == 1:
+                raise
+            cur_batch = max(1, cur_batch // 2)
     return out
 
 
