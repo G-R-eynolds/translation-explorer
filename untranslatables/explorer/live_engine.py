@@ -839,6 +839,7 @@ class LiveTranslationEngine:
         self._calibrated_axis_scales: dict[str, float] = {}
         self.fork_scorer: Any = None
         self.reft_controller: Any = None
+        self.en_decomposer: Any = None
         self._lora_loaded = False
         self.forks: dict[str, dict[str, Any]] = {}
         self._lock = threading.RLock()
@@ -862,6 +863,12 @@ class LiveTranslationEngine:
         if self.reft_path and self.reft_path.exists() and self.reft_controller is None:
             from explorer.adapters import SpectralReFTController
             self.reft_controller = SpectralReFTController.from_checkpoint(self.model, self.reft_path)
+        if self.en_decomposer is None:
+            try:
+                from explorer.recipe_live import load_en_pool_for_model
+                self.en_decomposer = load_en_pool_for_model(self.model_key)
+            except Exception:
+                self.en_decomposer = None
         if self.hook is None:
             self.hook = CursorHook(self.model, self.layer)
         if self.global_hook is None:

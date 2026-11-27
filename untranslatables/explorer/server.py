@@ -559,6 +559,20 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
                             y=float(body.get("y", 0.0)),
                             max_new=int(body.get("max_new", 16)),
                         )
+                    elif path == "/api/session/recipe":
+                        res = srv.live.sessions.source_recipe(
+                            session_id,
+                            word=body.get("word"),
+                        )
+                    elif path == "/api/session/constellation":
+                        raw_idxs = body.get("branch_indices")
+                        if not isinstance(raw_idxs, list):
+                            raise TypeError("branch_indices must be a list of integers")
+                        res = srv.live.sessions.constellation(
+                            session_id,
+                            branch_indices=[int(i) for i in raw_idxs],
+                            action=str(body.get("action", "chord")),
+                        )
                     else:
                         self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Not found: {path}"})
                         return

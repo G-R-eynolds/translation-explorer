@@ -775,6 +775,7 @@ textarea.source-editor:focus {
 }
 
 .regime-badge.fork { color: var(--cinnabar); }
+.regime-badge.fork.stylistic { color: var(--ochre); }
 .regime-badge.subtle { color: var(--ochre); }
 
 .meter {
@@ -796,7 +797,112 @@ textarea.source-editor:focus {
 }
 
 .regime-badge.fork .meter > i { background: var(--cinnabar); }
+.regime-badge.fork.stylistic .meter > i { background: var(--ochre); }
 .regime-badge.subtle .meter > i { background: var(--ochre); }
+
+.regime-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn.compact {
+  height: 25px;
+  padding: 0 8px;
+  font-size: 11.5px;
+}
+
+.recipe-strip {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--rule);
+  background: var(--rail);
+}
+
+.recipe-strip.visible { display: flex; }
+
+.recipe-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.recipe-word {
+  font: italic 600 14.5px/1.2 var(--serif);
+  color: var(--ink);
+}
+
+.recipe-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 99px;
+  overflow: hidden;
+  background: var(--desk);
+  border: 1px solid var(--rule);
+  gap: 1px;
+}
+
+.recipe-seg {
+  height: 100%;
+  min-width: 3px;
+}
+
+.recipe-seg.sound-alike {
+  opacity: 0.65;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.recipe-leftover {
+  flex: 1;
+  background: transparent;
+}
+
+.recipe-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font: 400 11.5px/1.25 var(--sans);
+  color: var(--muted);
+}
+
+.recipe-legend .mono-num {
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.constellation-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--spruce);
+  background: var(--spruce-wash);
+  font: 500 12px/1.3 var(--sans);
+  color: var(--ink);
+}
+
+.constellation-bar.visible { display: flex; }
+
+.constellation-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.branch-btn.const-picked {
+  background: var(--spruce-wash);
+  box-shadow: inset 3px 0 0 var(--spruce);
+}
 
 .linear-hint {
   padding: 12px 14px;
@@ -1651,7 +1757,18 @@ svg.compass-svg {
               <span class="meter"><i id="tensionBar" style="width:0%"></i></span>
               <span id="regimeText">Waiting for session</span>
             </span>
-            <span id="frontierMetrics" class="status-msg mono-num"></span>
+            <div class="regime-right">
+              <span id="frontierMetrics" class="status-msg mono-num"></span>
+              <button id="btnSketchSpace" class="btn ghost compact" style="display:none" title="Select 2+ poles to sketch a multi-word constellation">Sketch space</button>
+            </div>
+          </div>
+          <div id="recipeStrip" class="recipe-strip" aria-label="Source word English ingredients and leftover"></div>
+          <div id="constellationBar" class="constellation-bar">
+            <span id="constellationSummary">Select 2 or more branches below to keep a chord or blend a phrase</span>
+            <div class="constellation-actions">
+              <button id="btnConstChord" class="btn compact primary" disabled>Keep as Chord</button>
+              <button id="btnConstBlend" class="btn compact" disabled>Blend Phrase</button>
+            </div>
           </div>
           <div id="branchContainer">
             <div class="linear-hint"><span>Click <strong>Start Co-Translating</strong> to prefill the source text. Once live: <kbd>Space</kbd> step · <kbd>Tab</kbd> glide to fork · <kbd>1–6</kbd> pick branch · <kbd>C</kbd> compass · <kbd>S</kbd> sliders · <kbd>H</kbd> paths.</span></div>
@@ -1815,6 +1932,8 @@ svg.compass-svg {
     replayBundle: null,
     offlineModels: null,
     activeOfflineModel: null,
+    sketchMode: false,
+    sketchSelected: [],
   };
 
   function escapeHtml(s) {
@@ -2528,6 +2647,72 @@ svg.compass-svg {
     (s.history || []).forEach(n => { if (!visited.has(n.id)) emit(n, 0); });
   }
 
+  function renderRecipeStrip(recipe) {
+    const strip = $("recipeStrip");
+    if (!recipe || !recipe.ingredients || !recipe.ingredients.length) {
+      strip.classList.remove("visible");
+      strip.innerHTML = "";
+      return;
+    }
+    const palette = ["#a63227", "#b8563f", "#c97a63", "#d69d89", "#e2beb1"];
+    const segs = recipe.ingredients.map((ing, i) => {
+      const pct = Math.max(2, Math.round((ing.share || 0) * 100));
+      const cls = ing.sound_alike ? "recipe-seg sound-alike" : "recipe-seg";
+      return `<span class="${cls}" style="width:${pct}%;background:${palette[i % palette.length]}" title="${escapeHtml(ing.word)} (${pct}%)"></span>`;
+    }).join("");
+    const leftPct = Math.round((recipe.leftover || 0) * 100);
+    const legend = recipe.ingredients.map(ing => {
+      const pct = Math.round((ing.share || 0) * 100);
+      const mark = ing.sound_alike ? "<sup>†</sup>" : "";
+      return `<span>${escapeHtml(ing.word)}${mark} <span class="mono-num">${pct}%</span></span>`;
+    }).join("");
+    strip.innerHTML = `
+      <div class="recipe-head">
+        <span class="recipe-word">${escapeHtml(recipe.word || "source")}</span>
+        <span class="status-msg mono-num">left over ${leftPct}%</span>
+      </div>
+      <div class="recipe-bar">${segs}<span class="recipe-leftover"></span></div>
+      <div class="recipe-legend">${legend}</div>`;
+    strip.classList.add("visible");
+  }
+
+  function updateConstellationBar(branches) {
+    const bar = $("constellationBar");
+    const show = state.sketchMode && branches && branches.length >= 2;
+    bar.classList.toggle("visible", !!show);
+    if (!show) return;
+    const words = state.sketchSelected
+      .filter(i => i >= 0 && i < branches.length)
+      .map(i => (branches[i].first_word_text || "").trim())
+      .filter(Boolean);
+    $("btnConstChord").disabled = words.length < 2;
+    $("btnConstBlend").disabled = words.length < 2;
+    $("constellationSummary").textContent = words.length >= 2
+      ? `Selected: ${words.join(" · ")}`
+      : "Select 2 or more branches below to keep a chord or blend a phrase";
+  }
+
+  async function commitConstellation(action) {
+    if (!state.session || state.busy || state.sketchSelected.length < 2) return;
+    stopGlide();
+    setBusy(true, action === "chord" ? "Keeping prismatic chord…" : "Blending phrase…");
+    try {
+      const s = await apiPost("/api/session/constellation", {
+        session_id: state.session.session_id,
+        branch_indices: state.sketchSelected,
+        action,
+      });
+      state.session = s;
+      state.sketchMode = false;
+      state.sketchSelected = [];
+      state.compassData = null;
+      renderSession();
+      setBusy(false, `${s.n_tokens} tokens committed`);
+    } catch (e) {
+      setBusy(false, `Error: ${e.message}`);
+    }
+  }
+
   function renderSession() {
     const s = state.session;
     if (!s) return;
@@ -2536,25 +2721,44 @@ svg.compass-svg {
     renderHistoryTree();
 
     const f = s.frontier || {};
+    const branches = f.branches || [];
     const score = Math.round((f.fork_score || 0) * 100);
     $("tensionBar").style.width = `${score}%`;
     const badge = $("regimeBadge");
-    badge.className = "regime-badge " + (f.regime || "linear");
+    const forkKind = f.fork_kind || (f.regime === "fork" ? "conceptual" : f.regime || "linear");
+    const kindCls = (f.regime === "fork" && forkKind === "stylistic") ? " stylistic" : "";
+    badge.className = "regime-badge " + (f.regime || "linear") + kindCls;
     if (f.at_end) {
       $("regimeText").textContent = "Translation complete";
     } else if (f.regime === "fork") {
-      $("regimeText").textContent = `Complex fork · ${(f.branches || []).length} branches`;
+      $("regimeText").textContent = forkKind === "stylistic"
+        ? `Stylistic fork · ${branches.length} cadences`
+        : `Conceptual gap · ${branches.length} branches`;
     } else if (f.regime === "subtle") {
-      $("regimeText").textContent = `Subtle choice · ${(f.branches || []).length} options`;
+      $("regimeText").textContent = `Subtle choice · ${branches.length} options`;
     } else {
       $("regimeText").textContent = "Linear flow · low ambiguity";
     }
     const fh = f.fork_head_prob != null ? ` · FH ${(f.fork_head_prob * 100).toFixed(0)}%` : "";
-    $("frontierMetrics").textContent = f.at_end ? "" : `H ${f.entropy} · top ${Math.round((f.top1_prob || 0) * 100)}%${fh}`;
+    const dispTxt = (f.semantic_dispersion != null && f.regime === "fork")
+      ? ` · Δ ${Number(f.semantic_dispersion).toFixed(2)}`
+      : "";
+    $("frontierMetrics").textContent = f.at_end ? "" : `H ${f.entropy} · top ${Math.round((f.top1_prob || 0) * 100)}%${fh}${dispTxt}`;
+
+    const canSketch = !f.at_end && f.regime !== "linear" && branches.length >= 2;
+    const sketchBtn = $("btnSketchSpace");
+    sketchBtn.style.display = canSketch ? "" : "none";
+    if (!canSketch) {
+      state.sketchMode = false;
+      state.sketchSelected = [];
+    }
+    sketchBtn.classList.toggle("active", state.sketchMode);
+    renderRecipeStrip(f.source_recipe || null);
+    state.sketchSelected = state.sketchSelected.filter(i => i >= 0 && i < branches.length);
+    updateConstellationBar(branches);
 
     const box = $("branchContainer");
     box.innerHTML = "";
-    const branches = f.branches || [];
     if (f.at_end) {
       box.innerHTML = `<div class="linear-hint"><span>Reached end of passage. Click any committed word to rewind and try another branch.</span></div>`;
     } else if (f.regime === "linear" || branches.length <= 1) {
@@ -2568,7 +2772,8 @@ svg.compass-svg {
       const twigIcon = `<svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 2.5v4.5a2.5 2.5 0 0 0 2.5 2.5h6.2"/><path d="M8.8 7l2.4 2.5-2.4 2.5"/></svg>`;
       branches.forEach((br, idx) => {
         const btn = document.createElement("button");
-        btn.className = "branch-btn";
+        const isPicked = state.sketchMode && state.sketchSelected.includes(idx);
+        btn.className = "branch-btn" + (isPicked ? " const-picked" : "");
         const pct = Math.round((br.prob || 0) * 100);
         const subList = (br.sub_branches || []).slice(0, 3);
         const subHtml = subList.length
@@ -2589,18 +2794,36 @@ svg.compass-svg {
           </div>`;
         btn.onmouseenter = () => { state.hoverPreview = br.preview_text; renderCanvasOnly(); };
         btn.onmouseleave = () => { state.hoverPreview = null; renderCanvasOnly(); };
-        btn.onclick = (ev) => doStep({ branch_index: idx, commit_full_branch: !!ev.shiftKey });
+        btn.onclick = (ev) => {
+          if (state.sketchMode) {
+            const pos = state.sketchSelected.indexOf(idx);
+            if (pos >= 0) state.sketchSelected.splice(pos, 1);
+            else state.sketchSelected.push(idx);
+            renderSession();
+            return;
+          }
+          doStep({ branch_index: idx, commit_full_branch: !!ev.shiftKey });
+        };
         list.appendChild(btn);
       });
       box.appendChild(list);
       const foot = document.createElement("div");
       foot.className = "branch-foot";
-      foot.textContent = "Click or press 1–6 for one word · Shift+click or Shift+1–6 for full phrase";
+      foot.textContent = state.sketchMode
+        ? "Click branches above to add/remove them from your constellation"
+        : "Click or press 1–6 for one word · Shift+click or Shift+1–6 for full phrase";
       box.appendChild(foot);
     }
   }
 
   // Button bindings
+  $("btnSketchSpace").onclick = () => {
+    state.sketchMode = !state.sketchMode;
+    if (!state.sketchMode) state.sketchSelected = [];
+    renderSession();
+  };
+  $("btnConstChord").onclick = () => commitConstellation("chord");
+  $("btnConstBlend").onclick = () => commitConstellation("blend");
   $("btnStart").onclick = startSession;
   $("btnStep").onclick = () => doStep({ mode: state.stepMode });
   $("btnRewind").onclick = rewindUnit;

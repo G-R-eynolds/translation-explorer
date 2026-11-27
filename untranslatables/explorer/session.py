@@ -43,6 +43,7 @@ from explorer import readings as R
 from explorer.directions import alpha_for, calibrate
 from explorer.frame import DOC_STOPS, _partial_stop_pos, build_doc_prompt, cut_doc
 from explorer.live_engine import READING_PALETTE, _STOPWORDS
+from explorer.recipe_live import branch_semantic_dispersion
 from ut import arch
 
 # Common English function words that often sit immediately before an interpretive fork
@@ -673,9 +674,76 @@ class CoTranslationSession:
             }
         }
         self._node_seq = 1
+        self._source_word_vecs: dict[str, np.ndarray] = {}
+        self._source_recipe_cache: dict[str, dict[str, Any]] = {}
 
         # Initial prefill of the source prompt
         self._prefill_full()
+
+    def _extract_source_word_vecs(self, tok: Any, layer_states: torch.Tensor) -> None:
+        """Cache pooled hidden vectors for each content word in `self.source_text` (zero extra passes)."""
+        n_src = len(tok(self.source_text, add_special_tokens=False)["input_ids"])
+        tail_ids = tok(f"\n</source>\n<translation lang=\"{self.tgt_lang}\">\n", add_special_tokens=False)["input_ids"]
+        src_end = max(1, len(self.prompt_ids) - len(tail_ids))
+        src_start = max(0, src_end - n_src)
+        src_ids = self.prompt_ids[src_start:src_end]
+        if not src_ids or layer_states.shape[0] < src_end:
+            return
+        prev_decoded = ""
+        cur_word = ""
+        cur_vecs: list[np.ndarray] = []
+        for idx in range(len(src_ids)):
+            cur_decoded = tok.decode(src_ids[: idx + 1])
+            piece = cur_decoded[len(prev_decoded) :]
+            prev_decoded = cur_decoded
+            if not piece:
+                continue
+            vec = layer_states[src_start + idx].detach().float().cpu().numpy()
+            if piece[0].isspace() or _PUNCT_ONLY.match(piece):
+                if cur_word and cur_vecs:
+                    clean = cur_word.strip(" .,;:!?¡¿\"'()[]{}—–-").lower()
+                    if len(clean) >= 3:
+                        self._source_word_vecs[clean] = np.mean(cur_vecs, axis=0)
+                cur_word = piece.lstrip()
+                cur_vecs = [vec] if cur_word and not _PUNCT_ONLY.match(cur_word) else []
+            else:
+                cur_word += piece
+                cur_vecs.append(vec)
+        if cur_word and cur_vecs:
+            clean = cur_word.strip(" .,;:!?¡¿\"'()[]{}—–-").lower()
+            if len(clean) >= 3:
+                self._source_word_vecs[clean] = np.mean(cur_vecs, axis=0)
+
+    def get_source_recipe(self, word: str | None = None) -> dict[str, Any] | None:
+        """Return live English-basis NNOMP ingredients + leftover for a source word (or active line)."""
+        dec = getattr(self.engine, "en_decomposer", None)
+        if dec is None or not self._source_word_vecs:
+            return None
+        target_word = (word or "").strip(" .,;:!?¡¿\"'()[]{}—–-").lower()
+        if not target_word or target_word not in self._source_word_vecs:
+            # Pick the longest / most distinctive content word on the active source line
+            al_idx = 0
+            if self.last_frontier is not None:
+                al = self._compute_alignment([""] * len(self.committed_ids))
+                al_idx = int(al.get("active_source_line", 0))
+            line_txt = ""
+            for sl in self._source_lines:
+                if sl["index"] == al_idx:
+                    line_txt = sl["text"]
+                    break
+            cands = [m.group(0).lower() for m in _WORD_RE.finditer(line_txt) if m.group(0).lower() in self._source_word_vecs]
+            if not cands:
+                cands = list(self._source_word_vecs.keys())
+            if not cands:
+                return None
+            # Prefer longer words not in basic stopwords
+            cands.sort(key=lambda w: (w in _STOPWORDS, -len(w)))
+            target_word = cands[0]
+        if target_word in self._source_recipe_cache:
+            return self._source_recipe_cache[target_word]
+        rec = dec.decompose(target_word, self._source_word_vecs[target_word], k=5)
+        self._source_recipe_cache[target_word] = rec
+        return rec
 
     # ---------------------------------------------------------- Steering & ForkHead pause helpers
     def _pause_fork_scorer(self):
@@ -735,10 +803,13 @@ class CoTranslationSession:
 
     def _prefill_full(self) -> None:
         """Full prefill of `prompt_ids + committed_ids` with current global steering."""
-        _, model = self.engine.ensure_loaded()
+        tok, model = self.engine.ensure_loaded()
         dev = self.engine._dev()
         seq = self.prompt_ids + self.committed_ids
         x = torch.tensor([seq], dtype=torch.long, device=dev)
+
+        dec = getattr(self.engine, "en_decomposer", None)
+        want_src_vecs = dec is not None and not self._source_word_vecs
 
         self._apply_global_steering()
         self._sync_hooks_pos(0)
@@ -746,12 +817,16 @@ class CoTranslationSession:
             self.engine.fork_scorer.reset()
         try:
             with torch.no_grad():
-                out = arch.forward_hidden(model, input_ids=x, use_cache=True)
+                out = arch.forward_hidden(model, input_ids=x, use_cache=True, output_hidden_states=want_src_vecs)
                 self.pkv = out.past_key_values
                 h_last = out.last_hidden_state[0, -1]
                 self._record_last_hidden(h_last)
                 self.last_logits = arch.logits(model, h_last[None])[0].detach().cpu()
                 self.last_fh = self.engine.fork_scorer.latest() if self.engine.fork_scorer is not None else None
+                if want_src_vecs and getattr(out, "hidden_states", None) is not None:
+                    hs_list = out.hidden_states
+                    layer_idx = min(len(hs_list) - 1, dec.layer + 1)
+                    self._extract_source_word_vecs(tok, hs_list[layer_idx][0])
         finally:
             self._clear_steering()
 
@@ -1208,6 +1283,9 @@ class CoTranslationSession:
             fr = {
                 "at_end": True,
                 "regime": "linear",
+                "fork_kind": "linear",
+                "semantic_dispersion": 0.0,
+                "source_recipe": None,
                 "fork_score": 0.0,
                 "entropy": round(entropy, 4),
                 "peeked_entropy": round(entropy, 4),
@@ -1374,9 +1452,18 @@ class CoTranslationSession:
             "full_ids": b0["preview_ids"],
         }
 
+        sem_disp, fork_kind = branch_semantic_dispersion(top_merged, regime)
+        src_recipe = self.get_source_recipe() if fork_kind == "conceptual" else None
+        # If English leftover is very high (>= 0.60) on a fork, upgrade to conceptual gap even if surface ribbons overlap
+        if src_recipe is not None and regime == "fork" and src_recipe.get("leftover", 0.0) >= 0.60:
+            fork_kind = "conceptual"
+
         frontier = {
             "at_end": False,
             "regime": regime,
+            "fork_kind": fork_kind,
+            "semantic_dispersion": sem_disp,
+            "source_recipe": src_recipe,
             "fork_score": fork_score,
             "entropy": round(entropy, 4),
             "peeked_entropy": round(peeked_entropy, 4),
@@ -1445,6 +1532,9 @@ class CoTranslationSession:
         frontier = {
             "at_end": at_end,
             "regime": "linear",
+            "fork_kind": "linear",
+            "semantic_dispersion": 0.0,
+            "source_recipe": None,
             "fork_score": fork_score,
             "entropy": round(entropy, 4),
             "peeked_entropy": round(entropy, 4),
@@ -2875,6 +2965,50 @@ class CoTranslationSession:
             "shares": shares,
         }
 
+    def constellation(
+        self,
+        branch_indices: list[int],
+        action: str = "chord",
+    ) -> dict[str, Any]:
+        """Commit a multi-word prismatic chord or blended phrase from 2+ competing branch poles."""
+        frontier = self.last_frontier or self.inspect_frontier(_schedule_precompute=False)
+        branches = frontier.get("branches") or []
+        picked: list[dict[str, Any]] = []
+        seen_idx: set[int] = set()
+        for raw_i in branch_indices:
+            i = int(raw_i)
+            if i < 0 or i >= len(branches):
+                raise IndexError(f"branch_index {i} out of range (0..{len(branches) - 1})")
+            if i not in seen_idx:
+                seen_idx.add(i)
+                picked.append(branches[i])
+        if not picked:
+            raise ValueError("Select at least one branch to form a constellation.")
+
+        words = [str(b.get("first_word_text", "")).strip() for b in picked]
+        words = [w for w in words if w]
+        if not words:
+            raise ValueError("Selected branches have no words.")
+
+        tok, _ = self.engine.ensure_loaded()
+        cur_text = _strip_doc_stop(tok.decode(self.committed_ids))
+        need_space = bool(cur_text) and not cur_text[-1].isspace()
+
+        if action == "chord":
+            body = f"[{' / '.join(words)}]"
+        elif action == "blend":
+            if len(words) == 1:
+                body = words[0]
+            elif len(words) == 2:
+                body = f"{words[0]} ({words[1]})"
+            else:
+                body = f"{words[0]}—{', '.join(words[1:])}"
+        else:
+            raise ValueError(f"Invalid constellation action: {action!r} (expected 'chord' or 'blend')")
+
+        commit_str = (" " if need_space else "") + body
+        return self.step(custom_text=commit_str, source_tag="constellation")
+
 
 # ------------------------------------------------------------------ Session Manager
 class CoTranslationManager:
@@ -3015,3 +3149,14 @@ class CoTranslationManager:
     def steer_compass(self, session_id: str, x: float, y: float, max_new: int = 16) -> dict[str, Any]:
         with self.engine._lock:
             return self._get(session_id).steer_compass(x=x, y=y, max_new=max_new)
+
+    def source_recipe(self, session_id: str, word: str | None = None) -> dict[str, Any]:
+        with self.engine._lock:
+            rec = self._get(session_id).get_source_recipe(word=word)
+            return rec if rec is not None else {"word": word or "", "ingredients": [], "leftover": 1.0, "r2": 0.0, "unavailable": True}
+
+    def constellation(self, session_id: str, branch_indices: list[int], action: str = "chord") -> dict[str, Any]:
+        self._cancel_session_precompute(session_id, wait=False)
+        with self.engine._lock:
+            return self._get(session_id).constellation(branch_indices=branch_indices, action=action)
+
