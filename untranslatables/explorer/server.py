@@ -8,15 +8,18 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hmac
 import json
 import sys
 from http import HTTPStatus
+from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Mapping
 from urllib.parse import parse_qs, unquote, urlparse
 
 from explorer.live_engine import DEFAULT_GLOBAL_AXES, DEFAULT_RESULTS_DIR, LiveTranslationEngine, ReplayEngine
+from ut.common import ROOT
 
 HERE = Path(__file__).resolve().parent
 WORKBENCH_HTML = HERE / "static" / "workbench.html"
@@ -148,6 +151,19 @@ def build_offline_html(
     return out
 
 
+def discover_model_artifacts(model_key: str) -> dict[str, Path | None]:
+    """Return existing trained ForkHead, SpectralReFT, and GlobalAxes paths for `model_key`."""
+    base = ROOT / "results" / "explorer" / model_key
+    fk = base / "fork_head.pt"
+    reft = base / "phase3" / "spectral_reft.pt"
+    axes = base / "phase3" / "global_axes.npz"
+    return {
+        "fork_head_path": fk if fk.exists() else None,
+        "reft_path": reft if reft.exists() else None,
+        "global_axes_path": axes if axes.exists() else None,
+    }
+
+
 class WorkbenchServer(ThreadingHTTPServer):
     allow_reuse_address = True
     daemon_threads = True
@@ -159,11 +175,13 @@ class WorkbenchServer(ThreadingHTTPServer):
         replay_engine: ReplayEngine | None = None,
         live_engine: LiveTranslationEngine | None = None,
         quiet: bool = False,
+        passcode: str | None = None,
     ):
         self.mode = mode
         self.replay = replay_engine if replay_engine is not None else ReplayEngine()
         self.live = live_engine
         self.quiet = quiet
+        self.passcode = str(passcode) if passcode else None
         super().__init__(server_address, WorkbenchRequestHandler)
 
 
@@ -175,18 +193,68 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
             return
         sys.stderr.write(f"[workbench] {self.address_string()} - {fmt % args}\n")
 
-    def _send_bytes(self, status: int, content_type: str, body: bytes) -> None:
+    def _send_bytes(
+        self,
+        status: int,
+        content_type: str,
+        body: bytes,
+        extra_headers: dict[str, str] | None = None,
+    ) -> None:
         self.send_response(status)
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("Access-Control-Allow-Origin", "*")
+        if extra_headers:
+            for k, v in extra_headers.items():
+                self.send_header(k, v)
         self.end_headers()
         self.wfile.write(body)
 
     def _send_json(self, status: int, obj: Any) -> None:
         body = json.dumps(obj, ensure_ascii=False).encode("utf-8")
         self._send_bytes(status, "application/json; charset=utf-8", body)
+
+    def _is_authorized(self, qs: dict[str, list[str]]) -> tuple[bool, bool]:
+        """Return (authorized, set_cookie_needed)."""
+        srv: WorkbenchServer = self.server  # type: ignore[assignment]
+        expected = srv.passcode
+        if not expected:
+            return True, False
+        key_param = (qs.get("key") or [""])[0]
+        if key_param and hmac.compare_digest(key_param, expected):
+            return True, True
+        hdr_key = self.headers.get("X-Passcode", "")
+        if hdr_key and hmac.compare_digest(hdr_key, expected):
+            return True, False
+        raw_cookie = self.headers.get("Cookie", "")
+        if raw_cookie:
+            c = SimpleCookie()
+            c.load(raw_cookie)
+            if "te_key" in c and hmac.compare_digest(c["te_key"].value, expected):
+                return True, False
+        return False, False
+
+    def _send_passcode_gate(self, is_api: bool) -> None:
+        if is_api:
+            self._send_json(HTTPStatus.UNAUTHORIZED, {"error": "Passcode required"})
+            return
+        html = (
+            "<!DOCTYPE html><html><head><meta charset='utf-8'>"
+            "<meta name='viewport' content='width=device-width,initial-scale=1'>"
+            "<title>Translation Explorer — Passcode</title>"
+            "<style>body{margin:0;min-height:100vh;display:grid;place-items:center;"
+            "background:#ebf0ea;color:#17231e;font:15px/1.5 system-ui,sans-serif}"
+            "form{background:#fafcfa;border:1px solid #d3ddd4;border-radius:6px;padding:24px 28px;max-width:340px;width:90%}"
+            "h1{margin:0 0 8px;font:600 18px/1.2 Georgia,serif}p{margin:0 0 14px;color:#465850;font-size:13.5px}"
+            "input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #d3ddd4;border-radius:4px;margin-bottom:10px;font-size:14px}"
+            "button{width:100%;padding:9px 12px;border:0;border-radius:4px;background:#186456;color:#fff;font-weight:600;cursor:pointer}"
+            "</style></head><body><form method='GET' action='/'>"
+            "<h1>Translation Explorer</h1><p>Enter the session passcode to connect.</p>"
+            "<input type='password' name='key' placeholder='Passcode' autofocus required>"
+            "<button type='submit'>Open Studio</button></form></body></html>"
+        ).encode("utf-8")
+        self._send_bytes(HTTPStatus.UNAUTHORIZED, "text/html; charset=utf-8", html)
 
     def _read_json_body(self) -> dict[str, Any]:
         raw_len = self.headers.get("Content-Length", "0") or "0"
@@ -229,7 +297,12 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
     def do_DELETE(self) -> None:
         parsed = urlparse(self.path)
         path = parsed.path
+        qs = parse_qs(parsed.query)
         srv: WorkbenchServer = self.server  # type: ignore[assignment]
+        ok, _ = self._is_authorized(qs)
+        if not ok:
+            self._send_passcode_gate(is_api=True)
+            return
 
         try:
             if path.startswith("/api/session/"):
@@ -259,11 +332,16 @@ class WorkbenchRequestHandler(BaseHTTPRequestHandler):
         path = parsed.path
         qs = parse_qs(parsed.query)
         srv: WorkbenchServer = self.server  # type: ignore[assignment]
+        ok, set_cookie = self._is_authorized(qs)
+        if not ok:
+            self._send_passcode_gate(is_api=path.startswith("/api/"))
+            return
 
         try:
             if path in ("/", "/index.html", "/workbench.html"):
                 body = WORKBENCH_HTML.read_bytes()
-                self._send_bytes(HTTPStatus.OK, "text/html; charset=utf-8", body)
+                hdrs = {"Set-Cookie": f"te_key={srv.passcode}; Path=/; HttpOnly; SameSite=Lax"} if (set_cookie and srv.passcode) else None
+                self._send_bytes(HTTPStatus.OK, "text/html; charset=utf-8", body, extra_headers=hdrs)
                 return
 
             if path == "/api/status":
@@ -603,11 +681,18 @@ def create_server(
     replay_engine: ReplayEngine | None = None,
     live_engine: LiveTranslationEngine | None = None,
     quiet: bool = False,
+    passcode: str | None = None,
+    auto_artifacts: bool = False,
 ) -> WorkbenchServer:
     """Create a configured ThreadingHTTPServer ready for `.serve_forever()`."""
     replay = replay_engine if replay_engine is not None else ReplayEngine(results_dir)
     live = live_engine
     if mode == "live" and live is None:
+        if auto_artifacts:
+            found = discover_model_artifacts(model_key)
+            global_axes_path = global_axes_path or found["global_axes_path"]
+            fork_head_path = fork_head_path or found["fork_head_path"]
+            reft_path = reft_path or found["reft_path"]
         live = LiveTranslationEngine(
             model_key=model_key,
             layer=layer,
@@ -616,7 +701,14 @@ def create_server(
             reft_path=reft_path,
             lora_path=lora_path,
         )
-    return WorkbenchServer((host, int(port)), mode=mode, replay_engine=replay, live_engine=live, quiet=quiet)
+    return WorkbenchServer(
+        (host, int(port)),
+        mode=mode,
+        replay_engine=replay,
+        live_engine=live,
+        quiet=quiet,
+        passcode=passcode,
+    )
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -629,6 +721,9 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--fork-head", default=None, help="Optional trained ForkHead checkpoint (.pt)")
     ap.add_argument("--reft", default=None, help="Optional trained SpectralReFT checkpoint (.pt)")
     ap.add_argument("--lora", default=None, help="Optional trained multi-reference LoRA checkpoint (.pt)")
+    ap.add_argument("--no-auto-artifacts", action="store_true", help="Disable auto-loading trained artifacts for --model")
+    ap.add_argument("--passcode", default=None, help="Optional passcode required via ?key= or login form")
+    ap.add_argument("--preload", action="store_true", help="Load live model into memory immediately at startup")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--export-offline", default=None, help="Write standalone offline HTML bundle and exit")
@@ -650,7 +745,12 @@ def main(argv: list[str] | None = None) -> None:
         fork_head_path=args.fork_head,
         reft_path=args.reft,
         lora_path=args.lora,
+        passcode=args.passcode,
+        auto_artifacts=not args.no_auto_artifacts,
     )
+    if args.preload and srv.live is not None:
+        print(f"[workbench] preloading {args.model}...", flush=True)
+        srv.live.ensure_loaded()
     bound_host, bound_port = srv.server_address
     print(f"[workbench] mode={args.mode} listening on http://{bound_host}:{bound_port}", flush=True)
     try:
