@@ -1,0 +1,921 @@
+{
+ "model": "g3_12b_pt",
+ "layer": 24,
+ "rows": [
+  {
+   "id": "es_camisa",
+   "word": "camisa",
+   "lang": "Spanish",
+   "group": "ordinary",
+   "contextual_shift": 0.0005,
+   "twonn_dim": 6.0,
+   "source_nll": 6.5017,
+   "source_sharpness": 0.0003,
+   "en_leftover": 0.0234,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9569,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bearded",
+      "zipf": 3.34
+     },
+     "share": 0.0098,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "collateral",
+      "zipf": 3.66
+     },
+     "share": 0.0036,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dinners",
+      "zipf": 3.53
+     },
+     "share": 0.0048,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "asiatic",
+      "zipf": 3.09
+     },
+     "share": 0.0016,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1803,
+   "cycle_consistency_cc": 0.8571,
+   "fisher_lam1_ratio": 0.6321,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.6207,
+   "pole_pos": "",
+   "pole_neg": "She put on a white shirt for the interview."
+  },
+  {
+   "id": "it_domani",
+   "word": "domani",
+   "lang": "Italian",
+   "group": "ordinary",
+   "contextual_shift": 0.6661,
+   "twonn_dim": 4.1874,
+   "source_nll": 6.8154,
+   "source_sharpness": 0.3664,
+   "en_leftover": 0.023,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9575,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bearded",
+      "zipf": 3.34
+     },
+     "share": 0.0097,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "collateral",
+      "zipf": 3.66
+     },
+     "share": 0.0035,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dinners",
+      "zipf": 3.53
+     },
+     "share": 0.0047,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "asiatic",
+      "zipf": 3.09
+     },
+     "share": 0.0016,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1948,
+   "cycle_consistency_cc": 1.1357,
+   "fisher_lam1_ratio": 0.5639,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.6617,
+   "pole_pos": "",
+   "pole_neg": "We will leave tomorrow morning early for Rome."
+  },
+  {
+   "id": "pt_tristeza",
+   "word": "tristeza",
+   "lang": "Portuguese",
+   "group": "ordinary",
+   "contextual_shift": 0.6661,
+   "twonn_dim": 6.0,
+   "source_nll": 7.7208,
+   "source_sharpness": 0.3457,
+   "en_leftover": 0.0243,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9564,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bearded",
+      "zipf": 3.34
+     },
+     "share": 0.0096,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "collateral",
+      "zipf": 3.66
+     },
+     "share": 0.0035,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dinners",
+      "zipf": 3.53
+     },
+     "share": 0.0047,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "asiatic",
+      "zipf": 3.09
+     },
+     "share": 0.0015,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1997,
+   "cycle_consistency_cc": 0.9786,
+   "fisher_lam1_ratio": 0.5072,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.6957,
+   "pole_pos": "",
+   "pole_neg": "He felt a deep sadness when he heard the news."
+  },
+  {
+   "id": "es_volveran",
+   "word": "volverán",
+   "lang": "Spanish",
+   "group": "stylistic",
+   "contextual_shift": 1.1993,
+   "twonn_dim": 0.693,
+   "source_nll": 5.4714,
+   "source_sharpness": 0.7239,
+   "en_leftover": 0.048,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9326,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bearded",
+      "zipf": 3.34
+     },
+     "share": 0.0093,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "alternately",
+      "zipf": 3.22
+     },
+     "share": 0.0037,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appetizer",
+      "zipf": 2.86
+     },
+     "share": 0.0028,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "clays",
+      "zipf": 2.79
+     },
+     "share": 0.0036,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1481,
+   "cycle_consistency_cc": 0.9071,
+   "fisher_lam1_ratio": 0.7509,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5495,
+   "pole_pos": "Swallows will return to your balcony to hang their nests.",
+   "pole_neg": ""
+  },
+  {
+   "id": "en_bank_mixed",
+   "word": "bank",
+   "lang": "English",
+   "group": "stylistic",
+   "contextual_shift": 1.1992,
+   "twonn_dim": 0.5756,
+   "source_nll": 4.8502,
+   "source_sharpness": 0.758,
+   "en_leftover": 0.0334,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9475,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bearded",
+      "zipf": 3.34
+     },
+     "share": 0.0097,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "annals",
+      "zipf": 3.37
+     },
+     "share": 0.0038,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appetizer",
+      "zipf": 2.86
+     },
+     "share": 0.0032,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "assumed",
+      "zipf": 4.39
+     },
+     "share": 0.0024,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1985,
+   "cycle_consistency_cc": 0.2179,
+   "fisher_lam1_ratio": 0.4618,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3229,
+   "pole_pos": "We sat on the grassy bank watching the river flow past.",
+   "pole_neg": "The river is a mile wide at this point."
+  },
+  {
+   "id": "es_duende",
+   "word": "duende",
+   "lang": "Spanish",
+   "group": "untranslatable",
+   "contextual_shift": 0.6675,
+   "twonn_dim": 2.428,
+   "source_nll": 4.2714,
+   "source_sharpness": 0.4413,
+   "en_leftover": 0.0272,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.9401,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.019,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0074,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.0032,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.003,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1886,
+   "cycle_consistency_cc": 0.7286,
+   "fisher_lam1_ratio": 0.4738,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.7157,
+   "pole_pos": "",
+   "pole_neg": "When Camarón sings, he has duende; I like duende"
+  },
+  {
+   "id": "pt_saudade",
+   "word": "saudade",
+   "lang": "Portuguese",
+   "group": "untranslatable",
+   "contextual_shift": 1.1994,
+   "twonn_dim": 1.9693,
+   "source_nll": 6.133,
+   "source_sharpness": 0.6909,
+   "en_leftover": 0.0648,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9203,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "abode",
+      "zipf": 3.13
+     },
+     "share": 0.005,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dinners",
+      "zipf": 3.53
+     },
+     "share": 0.0046,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "colorectal",
+      "zipf": 3.0
+     },
+     "share": 0.0022,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "collateral",
+      "zipf": 3.66
+     },
+     "share": 0.0031,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1897,
+   "cycle_consistency_cc": 1.2143,
+   "fisher_lam1_ratio": 0.7326,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5604,
+   "pole_pos": "",
+   "pole_neg": "I miss the summer afternoons in Lisbon very much."
+  },
+  {
+   "id": "it_sprezzatura",
+   "word": "sprezzatura",
+   "lang": "Italian",
+   "group": "untranslatable",
+   "contextual_shift": 0.0021,
+   "twonn_dim": 6.0,
+   "source_nll": 4.7417,
+   "source_sharpness": 0.0014,
+   "en_leftover": 0.0217,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.9461,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0186,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0073,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.0032,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0031,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1867,
+   "cycle_consistency_cc": 0.9821,
+   "fisher_lam1_ratio": 0.9379,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.4373,
+   "pole_pos": "",
+   "pole_neg": "Castiglione describes sprezzatura as a grace that hides effort."
+  },
+  {
+   "id": "de_sehnsucht",
+   "word": "Sehnsucht",
+   "lang": "German",
+   "group": "untranslatable",
+   "contextual_shift": 0.6675,
+   "twonn_dim": 2.2608,
+   "source_nll": 3.7397,
+   "source_sharpness": 0.4607,
+   "en_leftover": 0.0236,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.9446,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0183,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0072,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.003,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0032,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1958,
+   "cycle_consistency_cc": 1.175,
+   "fisher_lam1_ratio": 0.4336,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3399,
+   "pole_pos": "a deep longing for the far",
+   "pole_neg": "A deep Desire for the Distance Filled My Heart"
+  },
+  {
+   "id": "es_sobremesa",
+   "word": "sobremesa",
+   "lang": "Spanish",
+   "group": "untranslatable",
+   "contextual_shift": 1.0664,
+   "twonn_dim": 1.4842,
+   "source_nll": 4.8079,
+   "source_sharpness": 0.6763,
+   "en_leftover": 0.0918,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.8767,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0183,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0069,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.0034,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0029,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1953,
+   "cycle_consistency_cc": 1.225,
+   "fisher_lam1_ratio": 0.6734,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.196,
+   "pole_pos": "Sunday's dinner table was extended until nightfall between laughter and coffee",
+   "pole_neg": "The overmesa del domingo se alargó hasta el anochecer entre"
+  },
+  {
+   "id": "rom_schertri",
+   "word": "schertri",
+   "lang": "Romanesco",
+   "group": "ignorance",
+   "contextual_shift": 1.0664,
+   "twonn_dim": 0.5,
+   "source_nll": 9.0068,
+   "source_sharpness": 0.5125,
+   "en_leftover": 0.022,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.946,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0186,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0072,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.003,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0031,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1896,
+   "cycle_consistency_cc": 0.9964,
+   "fisher_lam1_ratio": 0.4556,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3266,
+   "pole_pos": "the sheep and the rain",
+   "pole_neg": "Some people will be born and some will die."
+  },
+  {
+   "id": "rom_bbiocca",
+   "word": "bbiocca",
+   "lang": "Romanesco",
+   "group": "ignorance",
+   "contextual_shift": 1.0663,
+   "twonn_dim": 0.5,
+   "source_nll": 7.9182,
+   "source_sharpness": 0.5468,
+   "en_leftover": 0.0368,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "debugging",
+      "zipf": 2.89
+     },
+     "share": 0.9409,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bearded",
+      "zipf": 3.34
+     },
+     "share": 0.0103,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "collateral",
+      "zipf": 3.66
+     },
+     "share": 0.0047,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dinners",
+      "zipf": 3.53
+     },
+     "share": 0.0054,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "asiatic",
+      "zipf": 3.09
+     },
+     "share": 0.0019,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1686,
+   "cycle_consistency_cc": 1.0018,
+   "fisher_lam1_ratio": 0.422,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.7468,
+   "pole_pos": "",
+   "pole_neg": "Like mushrooms around the stump."
+  },
+  {
+   "id": "cy_hiraeth",
+   "word": "hiraeth",
+   "lang": "Welsh",
+   "group": "ignorance",
+   "contextual_shift": 1.0663,
+   "twonn_dim": 0.5,
+   "source_nll": 4.5623,
+   "source_sharpness": 0.6891,
+   "en_leftover": 0.0239,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.9452,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0176,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0072,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.003,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0032,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1865,
+   "cycle_consistency_cc": 1.0376,
+   "fisher_lam1_ratio": 0.561,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.6634,
+   "pole_pos": "",
+   "pole_neg": "I have a great longing for my old home in the valley."
+  },
+  {
+   "id": "eu_bihotz",
+   "word": "bihotz",
+   "lang": "Basque",
+   "group": "ignorance",
+   "contextual_shift": 1.0663,
+   "twonn_dim": 0.5,
+   "source_nll": 4.57,
+   "source_sharpness": 0.6886,
+   "en_leftover": 0.0253,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.9429,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0183,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.007,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.0029,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0035,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1926,
+   "cycle_consistency_cc": 1.2071,
+   "fisher_lam1_ratio": 0.4174,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3495,
+   "pole_pos": "My heart is full of love for all my friends.",
+   "pole_neg": "His warm heart gathered all the friends"
+  },
+  {
+   "id": "tao_anito",
+   "word": "anito",
+   "lang": "Yami",
+   "group": "ignorance",
+   "contextual_shift": 0.6666,
+   "twonn_dim": 4.9113,
+   "source_nll": 7.7664,
+   "source_sharpness": 0.345,
+   "en_leftover": 0.0219,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "deftly",
+      "zipf": 2.85
+     },
+     "share": 0.9465,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "broad",
+      "zipf": 4.53
+     },
+     "share": 0.0183,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "counterterrorism",
+      "zipf": 2.85
+     },
+     "share": 0.0072,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "battalion",
+      "zipf": 3.81
+     },
+     "share": 0.003,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cheeseburgers",
+      "zipf": 2.78
+     },
+     "share": 0.0031,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1949,
+   "cycle_consistency_cc": 1.0072,
+   "fisher_lam1_ratio": 0.532,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.2808,
+   "pole_pos": "O anito am ya mangay do pongso.",
+   "pole_neg": "I am a man who is a man."
+  }
+ ]
+}

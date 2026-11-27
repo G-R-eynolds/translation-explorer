@@ -91,8 +91,8 @@ def plot_all(models: list[str], out_dir: Path) -> None:
     ax.set_ylabel("Cross-Lingual Dispersion & English Leftover", labelpad=8)
     ax.set_title(
         f"Untranslatability vs. Model Ignorance ({primary_key})\n"
-        "Marker size = Directional Steerability (inverse RIG: larger = cleaner steering between readings)",
-        loc="left", fontsize=12.5, fontweight="bold", pad=12,
+        "Marker size = Directional Steerability (inverse RIG: larger = cleaner steering)",
+        loc="left", fontsize=11.8, fontweight="bold", pad=12,
     )
     ax.legend(frameon=True, facecolor="#f2f6f1", edgecolor="#d3ddd4", fontsize=8.8, loc="lower left")
     fig.tight_layout()
@@ -130,7 +130,7 @@ def plot_all(models: list[str], out_dir: Path) -> None:
         ax.set_title(
             f"Scale Trajectories: {m0} → {m1}\n"
             "Genuine untranslatables sharpen rightward while remaining dispersed; ignorance lags behind",
-            loc="left", fontsize=12.5, fontweight="bold", pad=12,
+            loc="left", fontsize=11.8, fontweight="bold", pad=12,
         )
         ax.legend(frameon=True, facecolor="#f2f6f1", edgecolor="#d3ddd4", fontsize=8.8, loc="lower left")
         fig.tight_layout()
@@ -138,7 +138,7 @@ def plot_all(models: list[str], out_dir: Path) -> None:
         plt.close(fig)
 
     # 3. Hsieh & Lian (2610.08303) Cycle-Consistency (CC) vs Directional RIG
-    fig, ax = plt.subplots(figsize=(9.6, 5.8), dpi=180)
+    fig, ax = plt.subplots(figsize=(9.6, 6.2), dpi=180)
     ax.grid(True, linestyle=":", color="#d3ddd4", linewidth=0.9, zorder=0)
     for grp, st in GROUP_STYLE.items():
         grp_rows = [r for r in rows if r["group"] == grp]
@@ -151,15 +151,18 @@ def plot_all(models: list[str], out_dir: Path) -> None:
             ax.annotate(r["word"], (rx, ry), xytext=(6, 4), textcoords="offset points", fontsize=9.0, color=st["color"], zorder=4)
 
     ax.set_xlabel("Cycle-Consistency Distortion CC = 1 − Spearman(d_src, d_roundtrip)  [Hsieh & Lian 2026]", labelpad=8)
-    ax.set_ylabel("Directional Representation–Intervention Gap (RIG proxy: higher = harder to steer)", labelpad=8)
+    ax.set_ylabel("Directional RIG Proxy (higher = harder to steer)", labelpad=8)
     ax.set_title(
         f"Testing Hsieh & Lian (arXiv:2610.08303) on {primary_key}\n"
         "Steerable untranslatables (high CC, lower RIG) vs. low-resource ignorance (high RIG)",
-        loc="left", fontsize=12.2, fontweight="bold", pad=12,
+        loc="left", fontsize=11.8, fontweight="bold", pad=12,
     )
-    ax.legend(frameon=True, facecolor="#f2f6f1", edgecolor="#d3ddd4", fontsize=8.8, loc="upper left")
+    ax.legend(
+        frameon=True, facecolor="#f2f6f1", edgecolor="#d3ddd4", fontsize=8.5,
+        loc="upper center", bbox_to_anchor=(0.5, -0.14), ncol=2,
+    )
     fig.tight_layout()
-    fig.savefig(out_dir / "7_cycle_consistency_and_rig.png", dpi=180)
+    fig.savefig(out_dir / "7_cycle_consistency_and_rig.png", dpi=180, bbox_inches="tight")
     plt.close(fig)
     print(f"Saved Track B figures -> {out_dir}")
 

@@ -1,0 +1,921 @@
+{
+ "model": "g3_4b_pt",
+ "layer": 17,
+ "rows": [
+  {
+   "id": "es_camisa",
+   "word": "camisa",
+   "lang": "Spanish",
+   "group": "ordinary",
+   "contextual_shift": 0.0014,
+   "twonn_dim": 6.0,
+   "source_nll": 6.5492,
+   "source_sharpness": 0.0008,
+   "en_leftover": 0.0328,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.9342,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "comprising",
+      "zipf": 3.88
+     },
+     "share": 0.0156,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologised",
+      "zipf": 3.06
+     },
+     "share": 0.0085,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0053,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bottomless",
+      "zipf": 2.96
+     },
+     "share": 0.0036,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1854,
+   "cycle_consistency_cc": 0.8286,
+   "fisher_lam1_ratio": 0.4317,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.741,
+   "pole_pos": "",
+   "pole_neg": "He put on a white shirt for the interview."
+  },
+  {
+   "id": "it_domani",
+   "word": "domani",
+   "lang": "Italian",
+   "group": "ordinary",
+   "contextual_shift": 0.6651,
+   "twonn_dim": 6.0,
+   "source_nll": 6.956,
+   "source_sharpness": 0.3625,
+   "en_leftover": 0.0326,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.9347,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "comprising",
+      "zipf": 3.88
+     },
+     "share": 0.0154,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologised",
+      "zipf": 3.06
+     },
+     "share": 0.0085,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0052,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bottomless",
+      "zipf": 2.96
+     },
+     "share": 0.0036,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1949,
+   "cycle_consistency_cc": 1.3464,
+   "fisher_lam1_ratio": 0.6388,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.6167,
+   "pole_pos": "",
+   "pole_neg": "We will leave tomorrow morning early for Rome."
+  },
+  {
+   "id": "pt_tristeza",
+   "word": "tristeza",
+   "lang": "Portuguese",
+   "group": "ordinary",
+   "contextual_shift": 0.666,
+   "twonn_dim": 5.3262,
+   "source_nll": 7.5371,
+   "source_sharpness": 0.3497,
+   "en_leftover": 0.0332,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.9336,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "comprising",
+      "zipf": 3.88
+     },
+     "share": 0.0157,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologised",
+      "zipf": 3.06
+     },
+     "share": 0.0088,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0052,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bottomless",
+      "zipf": 2.96
+     },
+     "share": 0.0035,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1996,
+   "cycle_consistency_cc": 1.25,
+   "fisher_lam1_ratio": 0.3783,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.773,
+   "pole_pos": "",
+   "pole_neg": "I felt a deep sadness when I heard the news. I felt a"
+  },
+  {
+   "id": "es_volveran",
+   "word": "volverán",
+   "lang": "Spanish",
+   "group": "stylistic",
+   "contextual_shift": 1.1984,
+   "twonn_dim": 0.8868,
+   "source_nll": 5.4569,
+   "source_sharpness": 0.7242,
+   "en_leftover": 0.0687,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.8962,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "comprising",
+      "zipf": 3.88
+     },
+     "share": 0.0166,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0115,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "baffles",
+      "zipf": 2.88
+     },
+     "share": 0.003,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "autofocus",
+      "zipf": 2.52
+     },
+     "share": 0.0039,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1651,
+   "cycle_consistency_cc": 0.9929,
+   "fisher_lam1_ratio": 0.3456,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.7927,
+   "pole_pos": "The dark swallows will return to your balcony to hang their nests.",
+   "pole_neg": ""
+  },
+  {
+   "id": "en_bank_mixed",
+   "word": "bank",
+   "lang": "English",
+   "group": "stylistic",
+   "contextual_shift": 1.1966,
+   "twonn_dim": 0.7392,
+   "source_nll": 5.0144,
+   "source_sharpness": 0.747,
+   "en_leftover": 0.0438,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.9257,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "comprising",
+      "zipf": 3.88
+     },
+     "share": 0.0144,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0098,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bottomless",
+      "zipf": 2.96
+     },
+     "share": 0.0035,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appeals",
+      "zipf": 4.22
+     },
+     "share": 0.0028,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1987,
+   "cycle_consistency_cc": 0.2357,
+   "fisher_lam1_ratio": 0.3852,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3689,
+   "pole_pos": "The river flowed past the grassy bank, and we sat there watching it",
+   "pole_neg": "We sat on the grassy bank watching the river flow past."
+  },
+  {
+   "id": "es_duende",
+   "word": "duende",
+   "lang": "Spanish",
+   "group": "untranslatable",
+   "contextual_shift": 0.6688,
+   "twonn_dim": 3.9796,
+   "source_nll": 4.5298,
+   "source_sharpness": 0.4333,
+   "en_leftover": 0.0479,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.9158,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "boulder",
+      "zipf": 3.71
+     },
+     "share": 0.024,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologies",
+      "zipf": 3.85
+     },
+     "share": 0.0055,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "beneath",
+      "zipf": 4.24
+     },
+     "share": 0.0037,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bidirectional",
+      "zipf": 2.55
+     },
+     "share": 0.0031,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1909,
+   "cycle_consistency_cc": 0.5571,
+   "fisher_lam1_ratio": 0.4719,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.7169,
+   "pole_pos": "",
+   "pole_neg": "Camarón is a singer who has a lot of duende. I"
+  },
+  {
+   "id": "pt_saudade",
+   "word": "saudade",
+   "lang": "Portuguese",
+   "group": "untranslatable",
+   "contextual_shift": 1.1982,
+   "twonn_dim": 2.117,
+   "source_nll": 6.2013,
+   "source_sharpness": 0.687,
+   "en_leftover": 0.0854,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.8835,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologised",
+      "zipf": 3.06
+     },
+     "share": 0.0113,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "comprising",
+      "zipf": 3.88
+     },
+     "share": 0.0114,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bottomless",
+      "zipf": 2.96
+     },
+     "share": 0.0041,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "coverage",
+      "zipf": 4.63
+     },
+     "share": 0.0044,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1996,
+   "cycle_consistency_cc": 1.0571,
+   "fisher_lam1_ratio": 0.6959,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5825,
+   "pole_pos": "",
+   "pole_neg": "I have a lot of nostalgia for the summer afternoons in Lisbon."
+  },
+  {
+   "id": "it_sprezzatura",
+   "word": "sprezzatura",
+   "lang": "Italian",
+   "group": "untranslatable",
+   "contextual_shift": 0.0045,
+   "twonn_dim": 6.0,
+   "source_nll": 5.0128,
+   "source_sharpness": 0.0028,
+   "en_leftover": 0.0367,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.9254,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.018,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cower",
+      "zipf": 2.55
+     },
+     "share": 0.0097,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "catchment",
+      "zipf": 3.02
+     },
+     "share": 0.0058,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologies",
+      "zipf": 3.85
+     },
+     "share": 0.0044,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1865,
+   "cycle_consistency_cc": 0.95,
+   "fisher_lam1_ratio": 0.8598,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.4841,
+   "pole_pos": "",
+   "pole_neg": "Castiglione describes sprezzatura as a grace that hides the effort"
+  },
+  {
+   "id": "de_sehnsucht",
+   "word": "Sehnsucht",
+   "lang": "German",
+   "group": "untranslatable",
+   "contextual_shift": 0.6674,
+   "twonn_dim": 3.6897,
+   "source_nll": 3.829,
+   "source_sharpness": 0.4573,
+   "en_leftover": 0.0412,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.9209,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.0174,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "catchment",
+      "zipf": 3.02
+     },
+     "share": 0.0097,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologies",
+      "zipf": 3.85
+     },
+     "share": 0.0068,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "beneath",
+      "zipf": 4.24
+     },
+     "share": 0.0041,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1869,
+   "cycle_consistency_cc": 0.8964,
+   "fisher_lam1_ratio": 0.4566,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.326,
+   "pole_pos": "His heart was filled with a deep longing for the distance.",
+   "pole_neg": "One deep longing for the distance filled his heart."
+  },
+  {
+   "id": "es_sobremesa",
+   "word": "sobremesa",
+   "lang": "Spanish",
+   "group": "untranslatable",
+   "contextual_shift": 1.0663,
+   "twonn_dim": 1.42,
+   "source_nll": 4.8456,
+   "source_sharpness": 0.6742,
+   "en_leftover": 0.1652,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.7998,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.0177,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "catchment",
+      "zipf": 3.02
+     },
+     "share": 0.0086,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologies",
+      "zipf": 3.85
+     },
+     "share": 0.0054,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "beneath",
+      "zipf": 4.24
+     },
+     "share": 0.0032,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1755,
+   "cycle_consistency_cc": 1.075,
+   "fisher_lam1_ratio": 0.3847,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3692,
+   "pole_pos": "The Sunday table was extended until the night between laughs and coffee.",
+   "pole_neg": "The late afternoon of Sunday lasted until the night between laughs and coffee."
+  },
+  {
+   "id": "rom_schertri",
+   "word": "schertri",
+   "lang": "Romanesco",
+   "group": "ignorance",
+   "contextual_shift": 1.0659,
+   "twonn_dim": 0.5,
+   "source_nll": 8.596,
+   "source_sharpness": 0.5247,
+   "en_leftover": 0.0367,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.9271,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.0178,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cyclones",
+      "zipf": 3.02
+     },
+     "share": 0.009,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "beneath",
+      "zipf": 4.24
+     },
+     "share": 0.0065,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "character",
+      "zipf": 5.11
+     },
+     "share": 0.0029,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1973,
+   "cycle_consistency_cc": 1.3047,
+   "fisher_lam1_ratio": 0.4756,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3146,
+   "pole_pos": "Monsters will come out of the earth as monsters.",
+   "pole_neg": "The schertri will come out from the earth to ppecor"
+  },
+  {
+   "id": "rom_bbiocca",
+   "word": "bbiocca",
+   "lang": "Romanesco",
+   "group": "ignorance",
+   "contextual_shift": 1.0657,
+   "twonn_dim": 0.5,
+   "source_nll": 7.9558,
+   "source_sharpness": 0.5452,
+   "en_leftover": 0.0802,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "brewer",
+      "zipf": 3.54
+     },
+     "share": 0.8811,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "baptize",
+      "zipf": 2.68
+     },
+     "share": 0.0175,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "coverage",
+      "zipf": 4.63
+     },
+     "share": 0.0137,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologised",
+      "zipf": 3.06
+     },
+     "share": 0.0037,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bottomless",
+      "zipf": 2.96
+     },
+     "share": 0.0038,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1757,
+   "cycle_consistency_cc": 0.8871,
+   "fisher_lam1_ratio": 0.4774,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3136,
+   "pole_pos": "As little cabbages around the mouth.",
+   "pole_neg": "Little peas around the mouth."
+  },
+  {
+   "id": "cy_hiraeth",
+   "word": "hiraeth",
+   "lang": "Welsh",
+   "group": "ignorance",
+   "contextual_shift": 1.0655,
+   "twonn_dim": 0.5,
+   "source_nll": 5.0241,
+   "source_sharpness": 0.6648,
+   "en_leftover": 0.038,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.9261,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.0167,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "catchment",
+      "zipf": 3.02
+     },
+     "share": 0.0091,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologies",
+      "zipf": 3.85
+     },
+     "share": 0.0059,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cower",
+      "zipf": 2.55
+     },
+     "share": 0.0043,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1977,
+   "cycle_consistency_cc": 1.2455,
+   "fisher_lam1_ratio": 0.734,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5596,
+   "pole_pos": "",
+   "pole_neg": "I have a great longing for my old home in the valley."
+  },
+  {
+   "id": "eu_bihotz",
+   "word": "bihotz",
+   "lang": "Basque",
+   "group": "ignorance",
+   "contextual_shift": 1.0651,
+   "twonn_dim": 0.564,
+   "source_nll": 4.871,
+   "source_sharpness": 0.6722,
+   "en_leftover": 0.044,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.921,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.0172,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cyclones",
+      "zipf": 3.02
+     },
+     "share": 0.0087,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "beneath",
+      "zipf": 4.24
+     },
+     "share": 0.0063,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "character",
+      "zipf": 5.11
+     },
+     "share": 0.0028,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1857,
+   "cycle_consistency_cc": 1.25,
+   "fisher_lam1_ratio": 0.6583,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.605,
+   "pole_pos": "",
+   "pole_neg": "His warm heart gathered all his friends."
+  },
+  {
+   "id": "tao_anito",
+   "word": "anito",
+   "lang": "Yami",
+   "group": "ignorance",
+   "contextual_shift": 0.6666,
+   "twonn_dim": 6.0,
+   "source_nll": 7.9916,
+   "source_sharpness": 0.3403,
+   "en_leftover": 0.0357,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "autocratic",
+      "zipf": 2.9
+     },
+     "share": 0.9303,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "brisket",
+      "zipf": 2.87
+     },
+     "share": 0.0164,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "catchment",
+      "zipf": 3.02
+     },
+     "share": 0.0083,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apologies",
+      "zipf": 3.85
+     },
+     "share": 0.0056,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cower",
+      "zipf": 2.55
+     },
+     "share": 0.0038,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1993,
+   "cycle_consistency_cc": 1.0214,
+   "fisher_lam1_ratio": 0.4259,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3445,
+   "pole_pos": "The spirit is in the pot.",
+   "pole_neg": "I am a girl from the Philippines."
+  }
+ ]
+}

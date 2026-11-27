@@ -2281,11 +2281,27 @@ svg.compass-svg {
     const es = new EventSource(`/api/session/glide?${qs.toString()}`);
     state.glideES = es;
     es.addEventListener("step", (ev) => {
-      state.session = JSON.parse(ev.data);
+      const d = JSON.parse(ev.data);
+      state.session = d.state || d;
       renderSession();
+    });
+    es.addEventListener("paused", (ev) => {
+      const d = JSON.parse(ev.data);
+      if (d.state) {
+        state.session = d.state;
+        renderSession();
+      }
+      stopGlide();
+      setBusy(false, d.reason === "fork"
+        ? "Paused at complex interpretive fork"
+        : `Glided ${d.steps || 0} words (${d.reason || "paused"})`);
     });
     es.addEventListener("done", (ev) => {
       const d = JSON.parse(ev.data);
+      if (d.state) {
+        state.session = d.state;
+        renderSession();
+      }
       stopGlide();
       setBusy(false, d.stopped_reason === "fork"
         ? "Paused at complex interpretive fork"

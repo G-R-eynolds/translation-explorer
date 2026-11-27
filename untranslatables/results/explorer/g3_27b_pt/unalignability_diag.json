@@ -1,0 +1,921 @@
+{
+ "model": "g3_27b_pt",
+ "layer": 31,
+ "rows": [
+  {
+   "id": "es_camisa",
+   "word": "camisa",
+   "lang": "Spanish",
+   "group": "ordinary",
+   "contextual_shift": 0.0007,
+   "twonn_dim": 6.0,
+   "source_nll": 6.6423,
+   "source_sharpness": 0.0004,
+   "en_leftover": 0.1279,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "choking",
+      "zipf": 3.58
+     },
+     "share": 0.7157,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "cohorts",
+      "zipf": 3.01
+     },
+     "share": 0.065,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "businessman",
+      "zipf": 3.95
+     },
+     "share": 0.0441,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "circumstance",
+      "zipf": 3.66
+     },
+     "share": 0.025,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "baruch",
+      "zipf": 2.77
+     },
+     "share": 0.0222,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1965,
+   "cycle_consistency_cc": 0.8464,
+   "fisher_lam1_ratio": 0.9184,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.4489,
+   "pole_pos": "",
+   "pole_neg": "She put on a white shirt for the interview."
+  },
+  {
+   "id": "it_domani",
+   "word": "domani",
+   "lang": "Italian",
+   "group": "ordinary",
+   "contextual_shift": 0.6654,
+   "twonn_dim": 6.0,
+   "source_nll": 7.2762,
+   "source_sharpness": 0.3552,
+   "en_leftover": 0.1343,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "choking",
+      "zipf": 3.58
+     },
+     "share": 0.717,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "boroughs",
+      "zipf": 3.22
+     },
+     "share": 0.0744,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "assertion",
+      "zipf": 3.63
+     },
+     "share": 0.0395,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "digitization",
+      "zipf": 2.52
+     },
+     "share": 0.0203,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "custodians",
+      "zipf": 2.71
+     },
+     "share": 0.0144,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1991,
+   "cycle_consistency_cc": 0.9321,
+   "fisher_lam1_ratio": 0.7835,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5299,
+   "pole_pos": "",
+   "pole_neg": "We will leave early tomorrow morning for Rome."
+  },
+  {
+   "id": "pt_tristeza",
+   "word": "tristeza",
+   "lang": "Portuguese",
+   "group": "ordinary",
+   "contextual_shift": 0.6667,
+   "twonn_dim": 6.0,
+   "source_nll": 8.1763,
+   "source_sharpness": 0.3365,
+   "en_leftover": 0.1129,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "choking",
+      "zipf": 3.58
+     },
+     "share": 0.7174,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "boroughs",
+      "zipf": 3.22
+     },
+     "share": 0.0741,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "assertion",
+      "zipf": 3.63
+     },
+     "share": 0.0397,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "custodians",
+      "zipf": 2.71
+     },
+     "share": 0.0185,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "butthurt",
+      "zipf": 2.76
+     },
+     "share": 0.0374,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1994,
+   "cycle_consistency_cc": 1.1464,
+   "fisher_lam1_ratio": 0.552,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.2688,
+   "pole_pos": "She felt a deep sadness when she heard the news.",
+   "pole_neg": "I felt a deep sadness when I heard the news."
+  },
+  {
+   "id": "es_volveran",
+   "word": "volverán",
+   "lang": "Spanish",
+   "group": "stylistic",
+   "contextual_shift": 1.1996,
+   "twonn_dim": 0.8225,
+   "source_nll": 5.5475,
+   "source_sharpness": 0.7202,
+   "en_leftover": 0.1125,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "choking",
+      "zipf": 3.58
+     },
+     "share": 0.7091,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "boroughs",
+      "zipf": 3.22
+     },
+     "share": 0.0778,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "compilation",
+      "zipf": 3.85
+     },
+     "share": 0.0408,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "butthurt",
+      "zipf": 2.76
+     },
+     "share": 0.0439,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0159,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1913,
+   "cycle_consistency_cc": 0.8464,
+   "fisher_lam1_ratio": 0.6759,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.1945,
+   "pole_pos": "The dark swallow will return and build their nests in your balcony.",
+   "pole_neg": "Dark swallows will return to your balcony to hang its nests."
+  },
+  {
+   "id": "en_bank_mixed",
+   "word": "bank",
+   "lang": "English",
+   "group": "stylistic",
+   "contextual_shift": 1.1969,
+   "twonn_dim": 0.564,
+   "source_nll": 5.1713,
+   "source_sharpness": 0.7386,
+   "en_leftover": 0.1016,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "bunch",
+      "zipf": 4.57
+     },
+     "share": 0.7264,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0727,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "digitization",
+      "zipf": 2.52
+     },
+     "share": 0.0403,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "butthurt",
+      "zipf": 2.76
+     },
+     "share": 0.0414,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "adoptions",
+      "zipf": 2.82
+     },
+     "share": 0.0176,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1984,
+   "cycle_consistency_cc": 0.4143,
+   "fisher_lam1_ratio": 0.7366,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.158,
+   "pole_pos": "We sat on the grassy bank watching the river flow past.",
+   "pole_neg": "The children were playing in the garden."
+  },
+  {
+   "id": "es_duende",
+   "word": "duende",
+   "lang": "Spanish",
+   "group": "untranslatable",
+   "contextual_shift": 0.6679,
+   "twonn_dim": 6.0,
+   "source_nll": 4.1014,
+   "source_sharpness": 0.4476,
+   "en_leftover": 0.0975,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.6461,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appraiser",
+      "zipf": 2.8
+     },
+     "share": 0.1375,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0749,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.0285,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "concerns",
+      "zipf": 4.59
+     },
+     "share": 0.0156,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1881,
+   "cycle_consistency_cc": 0.3214,
+   "fisher_lam1_ratio": 0.641,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.6154,
+   "pole_pos": "When Camarón sings, he has duende; I like duende",
+   "pole_neg": "When Camarón sings, he has duende; I like duende"
+  },
+  {
+   "id": "pt_saudade",
+   "word": "saudade",
+   "lang": "Portuguese",
+   "group": "untranslatable",
+   "contextual_shift": 1.1992,
+   "twonn_dim": 1.2497,
+   "source_nll": 6.1834,
+   "source_sharpness": 0.6884,
+   "en_leftover": 0.1548,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "bunch",
+      "zipf": 4.57
+     },
+     "share": 0.7144,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "authenticity",
+      "zipf": 3.6
+     },
+     "share": 0.0537,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "butthurt",
+      "zipf": 2.76
+     },
+     "share": 0.0509,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "ambassadors",
+      "zipf": 3.55
+     },
+     "share": 0.0142,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "defended",
+      "zipf": 4.0
+     },
+     "share": 0.0121,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1973,
+   "cycle_consistency_cc": 0.9857,
+   "fisher_lam1_ratio": 0.8328,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5003,
+   "pole_pos": "",
+   "pole_neg": "I miss the summer afternoons in Lisbon a lot. I miss the summer"
+  },
+  {
+   "id": "it_sprezzatura",
+   "word": "sprezzatura",
+   "lang": "Italian",
+   "group": "untranslatable",
+   "contextual_shift": 0.0015,
+   "twonn_dim": 4.3842,
+   "source_nll": 4.7761,
+   "source_sharpness": 0.0009,
+   "en_leftover": 0.0907,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.6849,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appraiser",
+      "zipf": 2.8
+     },
+     "share": 0.1168,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0683,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.0264,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "concerns",
+      "zipf": 4.59
+     },
+     "share": 0.0129,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.195,
+   "cycle_consistency_cc": 0.5071,
+   "fisher_lam1_ratio": 1.0,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.0,
+   "pole_pos": "Sprezzatura is a grace that hides effort.",
+   "pole_neg": "Castiglione describes sprezzatura as a grace that hides effort."
+  },
+  {
+   "id": "de_sehnsucht",
+   "word": "Sehnsucht",
+   "lang": "German",
+   "group": "untranslatable",
+   "contextual_shift": 0.6672,
+   "twonn_dim": 6.0,
+   "source_nll": 3.7267,
+   "source_sharpness": 0.461,
+   "en_leftover": 0.0934,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.6688,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appraiser",
+      "zipf": 2.8
+     },
+     "share": 0.1254,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0713,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.0268,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "concerns",
+      "zipf": 4.59
+     },
+     "share": 0.0143,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1832,
+   "cycle_consistency_cc": 1.2143,
+   "fisher_lam1_ratio": 0.8944,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.4633,
+   "pole_pos": "",
+   "pole_neg": "A deep longing for the distance filled his heart."
+  },
+  {
+   "id": "es_sobremesa",
+   "word": "sobremesa",
+   "lang": "Spanish",
+   "group": "untranslatable",
+   "contextual_shift": 1.0659,
+   "twonn_dim": 1.3879,
+   "source_nll": 4.7846,
+   "source_sharpness": 0.6771,
+   "en_leftover": 0.1399,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cupping",
+      "zipf": 2.6
+     },
+     "share": 0.5783,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.1409,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0833,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "authorised",
+      "zipf": 3.61
+     },
+     "share": 0.0405,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "antiquities",
+      "zipf": 3.26
+     },
+     "share": 0.0171,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1962,
+   "cycle_consistency_cc": 1.3036,
+   "fisher_lam1_ratio": 0.5244,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.2854,
+   "pole_pos": "The Sunday post-meal conversation stretched into the evening amidst laughter and coffee",
+   "pole_neg": "The after-dinner conversation on Sunday lasted until the evening between laughs and"
+  },
+  {
+   "id": "rom_schertri",
+   "word": "schertri",
+   "lang": "Romanesco",
+   "group": "ignorance",
+   "contextual_shift": 1.0653,
+   "twonn_dim": 0.5,
+   "source_nll": 8.9957,
+   "source_sharpness": 0.5123,
+   "en_leftover": 0.0866,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.7562,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appraiser",
+      "zipf": 2.8
+     },
+     "share": 0.073,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0529,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.0213,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "covers",
+      "zipf": 4.51
+     },
+     "share": 0.01,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.194,
+   "cycle_consistency_cc": 0.8961,
+   "fisher_lam1_ratio": 0.5339,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.2797,
+   "pole_pos": "The frogs usciranno dalla terra a schiere.",
+   "pole_neg": "Some people are born with a lot of money."
+  },
+  {
+   "id": "rom_bbiocca",
+   "word": "bbiocca",
+   "lang": "Romanesco",
+   "group": "ignorance",
+   "contextual_shift": 1.0642,
+   "twonn_dim": 0.5,
+   "source_nll": 7.7892,
+   "source_sharpness": 0.5501,
+   "en_leftover": 0.1328,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "choking",
+      "zipf": 3.58
+     },
+     "share": 0.6677,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "custodians",
+      "zipf": 2.71
+     },
+     "share": 0.0761,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "committee",
+      "zipf": 5.01
+     },
+     "share": 0.0715,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "categorical",
+      "zipf": 2.88
+     },
+     "share": 0.0322,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "apprehend",
+      "zipf": 3.02
+     },
+     "share": 0.0197,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.196,
+   "cycle_consistency_cc": 1.0591,
+   "fisher_lam1_ratio": 0.5067,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.696,
+   "pole_pos": "",
+   "pole_neg": "Like porcini mushrooms around the mouth."
+  },
+  {
+   "id": "cy_hiraeth",
+   "word": "hiraeth",
+   "lang": "Welsh",
+   "group": "ignorance",
+   "contextual_shift": 1.0644,
+   "twonn_dim": 0.5,
+   "source_nll": 4.894,
+   "source_sharpness": 0.6706,
+   "en_leftover": 0.0903,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.7739,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "analyzed",
+      "zipf": 3.9
+     },
+     "share": 0.0719,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0395,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.0164,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bring",
+      "zipf": 5.27
+     },
+     "share": 0.0081,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1994,
+   "cycle_consistency_cc": 1.2258,
+   "fisher_lam1_ratio": 0.5716,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.657,
+   "pole_pos": "",
+   "pole_neg": "I have a great longing for my old home in the valley."
+  },
+  {
+   "id": "eu_bihotz",
+   "word": "bihotz",
+   "lang": "Basque",
+   "group": "ignorance",
+   "contextual_shift": 1.0656,
+   "twonn_dim": 0.5,
+   "source_nll": 4.2759,
+   "source_sharpness": 0.7043,
+   "en_leftover": 0.0888,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.7463,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "appraiser",
+      "zipf": 2.8
+     },
+     "share": 0.078,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0552,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.022,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "covers",
+      "zipf": 4.51
+     },
+     "share": 0.0098,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1973,
+   "cycle_consistency_cc": 0.3714,
+   "fisher_lam1_ratio": 0.7296,
+   "distinct_poles": 0.0,
+   "rig_proxy": 0.5622,
+   "pole_pos": "His warm heart gathered all his friends.",
+   "pole_neg": "His warm heart gathered all his friends."
+  },
+  {
+   "id": "tao_anito",
+   "word": "anito",
+   "lang": "Yami",
+   "group": "ignorance",
+   "contextual_shift": 0.665,
+   "twonn_dim": 6.0,
+   "source_nll": 7.6757,
+   "source_sharpness": 0.3461,
+   "en_leftover": 0.086,
+   "en_ingredients": [
+    {
+     "word": {
+      "w": "cuticle",
+      "zipf": 2.69
+     },
+     "share": 0.7671,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "analyzed",
+      "zipf": 3.9
+     },
+     "share": 0.0771,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "dangled",
+      "zipf": 2.56
+     },
+     "share": 0.0411,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "bioinformatics",
+      "zipf": 2.82
+     },
+     "share": 0.0174,
+     "sound_alike": false
+    },
+    {
+     "word": {
+      "w": "convinced",
+      "zipf": 4.4
+     },
+     "share": 0.0113,
+     "sound_alike": false
+    }
+   ],
+   "sound_alike_rate": 0.0,
+   "en_semantic_spread": 1.1916,
+   "cycle_consistency_cc": 1.3429,
+   "fisher_lam1_ratio": 0.4852,
+   "distinct_poles": 1.0,
+   "rig_proxy": 0.3089,
+   "pole_pos": "The spirit is the one who brings the soul.",
+   "pole_neg": "I am going to the market."
+  }
+ ]
+}
