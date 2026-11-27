@@ -307,9 +307,10 @@ def _greedy_translate_batch(
     model: Any,
     tok: Any,
     prompts: list[str],
-    max_new: int = 24,
+    max_new: int = 22,
+    batch_size: int = 12,
 ) -> tuple[list[str], np.ndarray]:
-    """Greedy-decode short translations & return decoded strings + mean final-layer states."""
+    """Batched greedy decode + mean final-layer hidden states for generated tokens."""
     dev = arch.text_model(model).embed_tokens.weight.device
     if tok.pad_token_id is None:
         tok.pad_token_id = tok.eos_token_id or 0
@@ -319,39 +320,28 @@ def _greedy_translate_batch(
     out_texts: list[str] = []
     out_vecs: list[np.ndarray] = []
     try:
-        for p in prompts:
-            ids = tok(p, add_special_tokens=True)["input_ids"]
-            cur = torch.tensor([ids], dtype=torch.long, device=dev)
-            gen: list[int] = []
-            last_vecs: list[torch.Tensor] = []
+        for i in range(0, len(prompts), batch_size):
+            part = prompts[i : i + batch_size]
+            enc = tok(part, return_tensors="pt", padding=True, add_special_tokens=True).to(dev)
+            in_len = enc["input_ids"].shape[1]
             with torch.no_grad():
-                res = arch.forward_hidden(model, input_ids=cur, use_cache=True)
-                pkv = res.past_key_values
-                h = res.last_hidden_state[0, -1]
-                nxt = int(arch.logits(model, h[None])[0].argmax().item())
-                for _ in range(max_new):
-                    if eos is not None and nxt == eos:
-                        break
-                    gen.append(nxt)
-                    txt_so_far = tok.decode(gen)
-                    if "\n" in txt_so_far:
-                        break
-                    res = arch.forward_hidden(
-                        model,
-                        input_ids=torch.tensor([[nxt]], dtype=torch.long, device=dev),
-                        past_key_values=pkv,
-                        use_cache=True,
-                    )
-                    pkv = res.past_key_values
-                    h = res.last_hidden_state[0, -1]
-                    last_vecs.append(h.detach().float().cpu())
-                    nxt = int(arch.logits(model, h[None])[0].argmax().item())
-            clean = tok.decode(gen).split("\n")[0].strip()
-            out_texts.append(clean)
-            if last_vecs:
-                out_vecs.append(torch.stack(last_vecs).mean(0).numpy())
-            else:
-                out_vecs.append(h.detach().float().cpu().numpy())
+                gen_ids = model.generate(
+                    **enc,
+                    max_new_tokens=max_new,
+                    do_sample=False,
+                    pad_token_id=tok.pad_token_id,
+                    eos_token_id=eos,
+                )
+                out_h = arch.forward_hidden(model, input_ids=gen_ids, attention_mask=(gen_ids != tok.pad_token_id).long())
+                hs = out_h.last_hidden_state.float()  # (B, T_tot, d)
+            for b_idx in range(len(part)):
+                g = gen_ids[b_idx, in_len:].tolist()
+                if eos in g:
+                    g = g[: g.index(eos)]
+                txt = tok.decode([t for t in g if t != tok.pad_token_id], skip_special_tokens=True).split("\n")[0].strip()
+                out_texts.append(txt)
+                span_end = min(hs.shape[1], in_len + max(1, len(g)))
+                out_vecs.append(hs[b_idx, in_len:span_end].mean(0).cpu().numpy())
     finally:
         tok.padding_side = old_side
     return out_texts, np.stack(out_vecs, axis=0)
@@ -451,33 +441,44 @@ def run_diagnostic(model_key: str, limit: int | None = None) -> dict[str, Any]:
 
     hook = CursorHook(model, layer)
     items = DIAGNOSTIC_ITEMS[:limit] if limit else DIAGNOSTIC_ITEMS
-    rows: list[dict[str, Any]] = []
+    extracted: list[tuple[dict[str, Any], np.ndarray, float]] = []
+    for item in items:
+        src_vecs, src_nll = _extract_target_states_and_nll(model, tok, item["contexts"], item["word"], layer)
+        extracted.append((item, src_vecs, src_nll))
 
+    # Remove shared transformer anisotropy cone across all contextualized vectors
+    all_raw = np.concatenate([sv for _, sv, _ in extracted], axis=0)
+    corpus_mean = all_raw.mean(axis=0)
+
+    rows: list[dict[str, Any]] = []
     try:
-        for item in items:
+        for item, raw_src_vecs, src_nll in extracted:
             lang = item["lang"]
             word = item["word"]
             ctxs = item["contexts"]
 
-            # 1. Source precision & micro-shifts
-            src_vecs, src_nll = _extract_target_states_and_nll(model, tok, ctxs, word, layer)
+            # 1. Centered source precision & micro-shifts
+            src_vecs = raw_src_vecs - corpus_mean[None, :]
             ctx_shift = _mean_pairwise_cos_dist(src_vecs)
             twonn = _twonn_dim(src_vecs)
 
-            # 2. English-basis leftover recipe
-            rec = decomposer.decompose(word, src_vecs.mean(0), k=5)
+            # 2. English-basis leftover recipe (add decomposer.centroid back since decompose() subtracts it)
+            mean_centered = src_vecs.mean(0) + decomposer.centroid
+            rec = decomposer.decompose(word, mean_centered, k=5)
             sa_rate = float(np.mean([1.0 if ing.get("sound_alike") else 0.0 for ing in rec["ingredients"]])) if rec["ingredients"] else 0.0
 
             # 3. English translation spread + Cycle-Consistency (CC)
             fwd_prompts = [f"Translate from {lang} to English:\n{lang}: {c}\nEnglish:" for c in ctxs]
-            en_texts, en_vecs = _greedy_translate_batch(model, tok, fwd_prompts, max_new=24)
-            en_spread = _mean_pairwise_cos_dist(en_vecs)
+            en_texts, en_vecs = _greedy_translate_batch(model, tok, fwd_prompts, max_new=22)
+            en_vecs_c = en_vecs - en_vecs.mean(axis=0, keepdims=True)
+            en_spread = _mean_pairwise_cos_dist(en_vecs_c)
 
             cyc_prompts = [f"Translate from English to {lang}:\nEnglish: {e}\n{lang}:" for e in en_texts]
-            cyc_texts, cyc_vecs = _greedy_translate_batch(model, tok, cyc_prompts, max_new=24)
+            cyc_texts, cyc_vecs = _greedy_translate_batch(model, tok, cyc_prompts, max_new=22)
+            cyc_vecs_c = cyc_vecs - cyc_vecs.mean(axis=0, keepdims=True)
 
             d_src = _pairwise_dist_vec(src_vecs)
-            d_cyc = _pairwise_dist_vec(cyc_vecs)
+            d_cyc = _pairwise_dist_vec(cyc_vecs_c)
             if len(d_src) >= 3 and np.std(d_src) > 1e-8 and np.std(d_cyc) > 1e-8:
                 rho = float(spearmanr(d_src, d_cyc).statistic)
                 cc = float(max(0.0, min(2.0, 1.0 - (0.0 if np.isnan(rho) else rho))))
@@ -488,7 +489,7 @@ def run_diagnostic(model_key: str, limit: int | None = None) -> dict[str, Any]:
             rig_info = _measure_steerability_rig(model, tok, hook, fwd_prompts[0], layer, n_samples=5)
 
             # Composite sharpness: high micro-shift + low NLL + low sound-alike pull
-            sharpness = float(ctx_shift * (1.0 / (1.0 + 0.15 * src_nll)) * (1.0 - 0.5 * sa_rate))
+            sharpness = float(ctx_shift * (1.0 / (1.0 + 0.12 * src_nll)) * (1.0 - 0.5 * sa_rate))
 
             row = {
                 "id": item["id"],
